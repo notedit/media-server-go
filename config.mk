@@ -4,7 +4,7 @@
 LOG				= yes
 DEBUG			= yes
 SANITIZE		= no
-STATIC			= yes
+STATIC			= no
 STATIC_OPENSSL	= yes
 STATIC_LIBSRTP	= yes
 STATIC_LIBMP4	= yes

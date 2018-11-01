@@ -1,7 +1,11 @@
 package mediaserver
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/external/libsrtp/include -I/Users/xiang/Work/RTCEngine/media-server-go/external/openssl/include -I${SRCDIR}/external/mp4v2/include
-#cgo LDFLAGS: -L${SRCDIR}/mediaserver/bin/debug/libmediaserver.a
+#cgo CXXFLAGS: -I${SRCDIR}/external/libsrtp/include
+#cgo CXXFLAGS: -I${SRCDIR}/external/openssl/include
+#cgo CXXFLAGS: -I${SRCDIR}/external/mp4v2/include
+#cgo CXXFLAGS: -I${SRCDIR}/mediaserver/include
+#cgo CXXFLAGS: -I${SRCDIR}/mediaserver/src
+#cgo LDFLAGS: -l${SRCDIR}/mediaserver/bin/debug/libmediaserver.a -lstdc++
 */
 import "C"

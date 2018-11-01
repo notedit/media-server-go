@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include <functional>
+#include "mediaserver_callback.h"
 #include "mediaserver/include/config.h"	
 #include "mediaserver/include/dtls.h"
 #include "mediaserver/include/OpenSSL.h"
@@ -508,6 +509,7 @@ private:
 %include <typemaps.i>
 %include "stdint.i"
 %include "std_vector.i"
+%include "mediaserver_callback.h"
 %include "mediaserver/include/config.h"	
 %include "mediaserver/include/media.h"
 %include "mediaserver/include/acumulator.h"
@@ -518,9 +520,11 @@ private:
 %include "mediaserver/include/rtp/RTPStreamTransponder.h"
 
 
+
 %feature("director") PlayerListener;
 %feature("director") REMBListener;
 %feature("director") TargetBitrateListener;
+
 
 
 struct LayerInfo
@@ -700,10 +704,7 @@ RTPSenderFacade*	SessionToSender(RTPSessionFacade* session);
 RTPReceiverFacade*	SessionToReceiver(RTPSessionFacade* session);
 
 
-class REMBListener {
-public:
-	virtual void onREMB() {}
-};
+
 
 class RTPStreamTransponderFacade 
 {
@@ -725,15 +726,11 @@ public:
 };
 
 
-class PlayerListener {
-public:
-	virtual void onEnd() {}
-};
 
 class PlayerFacade
 {
 public:
-	PlayerFacade();
+	PlayerFacade(PlayerListener *listener);
 	RTPIncomingSourceGroup* GetAudioSource();
 	RTPIncomingSourceGroup* GetVideoSource();
 	void Reset();
@@ -757,16 +754,11 @@ public:
 };
 
 
-class TargetBitrateListener {
-public:
-	virtual void onBitrate() {}
-};
-
 class SenderSideEstimatorListener :
 	public RemoteRateEstimator::Listener
 {
 public:
-	SenderSideEstimatorListener();
+	SenderSideEstimatorListener(TargetBitrateListener *listener);
 };
 
 
@@ -778,6 +770,9 @@ public:
 	void AddIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 	void RemoveIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 };
+
+
+
 
 
 
