@@ -1,0 +1,9 @@
+[submodule "mediaserver"]
+	path = mediaserver
+	url = git@github.com:notedit/media-server.git
+[submodule "external/mp4v2"]
+	path = external/mp4v2
+	url = https://github.com/medooze/mp4v2.git
+[submodule "external/libsrtp"]
+	path = external/libsrtp
+	url = https://github.com/cisco/libsrtp.git
