@@ -3,7 +3,7 @@ package mediaserver
 type Endpoint struct {
 	ip          string
 	bundle      RTPBundleTransport
-	transports  map[int]*Transport
+	transports  map[string]*Transport
 	candidate   interface{}
 	fingerprint string
 }
@@ -16,7 +16,7 @@ func NewEndpoint(ip string) *Endpoint {
 	return &Endpoint{
 		ip:          ip,
 		bundle:      bundle,
-		transports:  make(map[int]*Transport),
+		transports:  make(map[string]*Transport),
 		fingerprint: fingerprint,
 	}
 }
