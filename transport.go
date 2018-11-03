@@ -11,9 +11,10 @@ type Transport struct {
 	remoteDtls    *sdp.DTLSInfo
 	bundle        RTPBundleTransport
 	dtlsTransport DTLSICETransport
+	username   StringFacade
 }
 
-func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo,
+func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo, candidates []*sdp.CandidateInfo
 	localIce *sdp.ICEInfo, localDtls *sdp.DTLSInfo, disableSTUNKeepAlive bool) *Transport {
 
 	transport := &Transport{}
@@ -30,12 +31,33 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	properties.SetProperty("ice.remoteUsername", remoteIce.GetUfrag())
 	properties.SetProperty("ice.remotePassword", remoteIce.GetPassword())
 
+	properties.SetProperty("dtls.setup", remoteDtls.GetSetup().String())
+	properties.SetProperty("dtls.hash", remoteDtls.GetHash())
+	properties.SetProperty("dtls.fingerprint", remoteDtls.GetFingerprint())
+
 	properties.SetProperty("disableSTUNKeepAlive", disableSTUNKeepAlive)
 
 	// todo set srtpProtectionProfiles, when will we use this?
 
-	username := NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
+	transport.username = NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
 	transport.dtlsTransport = bundle.AddICETransport(username, properties)
+
+	// todo ontargetbitrate callback 
+	// SenderSideEstimatorListener
+	var address string
+	var port int
+	for _,candidate := range candidates {
+		if candidate.GetType() == "relay" {
+			address = candidate.GetRelAddr()
+			port = candidate.GetRelPort()
+		} else {
+			address = candidate.GetAddress()
+			port = candidate.GetPort()
+		}
+		bundle.AddRemoteCandidate(transport.username, address, port)
+	}
+
+	// todo 
 
 	return transport
 }

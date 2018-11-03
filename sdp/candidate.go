@@ -9,11 +9,11 @@ type CandidateInfo struct {
 	port        int
 	ctype       string
 	relAddr     string
-	relPort     string
+	relPort     int
 }
 
 func NewCandidateInfo(foundation string, componentID int, transport string,
-	priority int, address string, port int, ctype string, relAddr string, relPort string) *CandidateInfo {
+	priority int, address string, port int, ctype string, relAddr string, relPort int) *CandidateInfo {
 
 	candidate := &CandidateInfo{
 		foundation:  foundation,
@@ -77,6 +77,6 @@ func (c *CandidateInfo) GetRelAddr() string {
 	return c.relAddr
 }
 
-func (c *CandidateInfo) GetRelPort() string {
+func (c *CandidateInfo) GetRelPort() int {
 	return c.relPort
 }

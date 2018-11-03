@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	sdptransform "github.com/notedit/go-sdp-transform"
+	sdptransform "../sdp-transform"
 )
 
 type SDPInfo struct {
