@@ -14,7 +14,7 @@ type IncomingStreamTrack struct {
 	encodings map[string]*encoding
 }
 
-type Stats struct {
+type IncomingStats struct {
 	LostPackets    int
 	DropPackets    int
 	NumPackets     int
@@ -46,15 +46,27 @@ func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade,
 	return track
 }
 
+func (i *IncomingStreamTrack) GetID() string {
+	return i.id
+}
+
 func (i *IncomingStreamTrack) GetMedia() string {
 	return i.media
 }
 
-func (i *IncomingStreamTrack) GetStats() *Stats {
+func (i *IncomingStreamTrack) GetSSRCs() {
+
+}
+
+func (i *IncomingStreamTrack) GetStats() *IncomingStats {
 	return nil
 }
 
 func (i *IncomingStreamTrack) GetActiveLayers() {
+
+}
+
+func (i *IncomingStreamTrack) Refresh() {
 
 }
 
