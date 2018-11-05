@@ -1,6 +1,8 @@
 package mediaserver
 
-import sdp "./sdp"
+import (
+	sdp "mediaserver/sdp"
+)
 
 type Endpoint struct {
 	ip          string

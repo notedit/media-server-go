@@ -1,7 +1,7 @@
 package mediaserver
 
 import (
-	sdp "./sdp"
+	"mediaserver/sdp"
 )
 
 type Transport struct {
@@ -46,7 +46,7 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	// SenderSideEstimatorListener
 	var address string
 	var port int
-	for _, candidate := range candidates {
+	for _, candidate := range remoteCandidates {
 		if candidate.GetType() == "relay" {
 			address = candidate.GetRelAddr()
 			port = candidate.GetRelPort()

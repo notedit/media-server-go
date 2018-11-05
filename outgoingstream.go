@@ -3,7 +3,7 @@ package mediaserver
 import (
 	"strings"
 
-	sdp "./sdp"
+	"mediaserver/sdp"
 )
 
 type OutgoingStream struct {

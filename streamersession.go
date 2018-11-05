@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	sdp "./sdp"
+	"mediaserver/sdp"
 )
 
 type StreamerSession struct {

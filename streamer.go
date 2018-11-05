@@ -1,6 +1,8 @@
 package mediaserver
 
-import sdp "./sdp"
+import (
+	"mediaserver/sdp"
+)
 
 type Streamer struct {
 	sessions []*StreamerSession
