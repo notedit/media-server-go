@@ -98,7 +98,7 @@ func (p *Player) Pause() {
 	}
 }
 
-func (p *Player) Seek(time int64) {
+func (p *Player) Seek(time uint64) {
 
 	if p.player != nil {
 		p.player.Seek(time)

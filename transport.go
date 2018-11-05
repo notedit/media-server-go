@@ -14,8 +14,8 @@ type Transport struct {
 	username      StringFacade
 }
 
-func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo, candidates []*sdp.CandidateInfo,
-	localIce *sdp.ICEInfo, localDtls *sdp.DTLSInfo, disableSTUNKeepAlive bool) *Transport {
+func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo, remoteCandidates []*sdp.CandidateInfo,
+	localIce *sdp.ICEInfo, localDtls *sdp.DTLSInfo, localCandidates []*sdp.CandidateInfo, disableSTUNKeepAlive bool) *Transport {
 
 	transport := &Transport{}
 	transport.remoteIce = remoteIce
