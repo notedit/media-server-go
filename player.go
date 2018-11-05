@@ -98,7 +98,7 @@ func (p *Player) Pause() {
 	}
 }
 
-func (p *Player) Seek(time int) {
+func (p *Player) Seek(time int64) {
 
 	if p.player != nil {
 		p.player.Seek(time)
@@ -111,15 +111,15 @@ func (p *Player) Stop() {
 		return
 	}
 
-	for _, track := range p.tracks {
+	for k, track := range p.tracks {
 		track.Stop()
 	}
 
-	P.tracks = nil
+	p.tracks = nil
 
 	p.player.Close()
 
-	P.player = nil
+	p.player = nil
 }
 
 // add fake interface, make Player can build,  todo
