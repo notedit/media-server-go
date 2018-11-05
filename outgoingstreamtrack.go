@@ -16,7 +16,7 @@ type OutgoingStats struct {
 	Bitrate        int
 }
 
-func NewOutgoingStreamTrack(id string, media string, sender RTPSenderFacade, source interface{}) *OutgoingStreamTrack {
+func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, source interface{}) *OutgoingStreamTrack {
 
 	track := &OutgoingStreamTrack{}
 	track.id = id
