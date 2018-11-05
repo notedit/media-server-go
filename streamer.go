@@ -25,6 +25,5 @@ func (s *Streamer) Stop() {
 	for _, session := range s.sessions {
 		session.Stop()
 	}
-
 	s.sessions = nil
 }
