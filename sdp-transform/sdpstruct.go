@@ -65,7 +65,7 @@ type SsrcGroupStruct struct {
 }
 
 type SsrcStruct struct {
-	Id        int
+	Id        uint
 	Attribute string
 	Value     string
 }

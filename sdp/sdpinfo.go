@@ -351,7 +351,7 @@ func (s *SDPInfo) String() string {
 			payloads = append(payloads, rtp.Payload)
 		}
 
-		mediaMap.Payloads = arrayToString(payloads, " ")
+		mediaMap.Payloads = intArrayToString(payloads, " ")
 
 		for id, uri := range media.GetExtensions() {
 
@@ -399,7 +399,7 @@ func (s *SDPInfo) String() string {
 						for _, group := range groups {
 							md.SsrcGroups = append(md.SsrcGroups, &sdptransform.SsrcGroupStruct{
 								Semantics: group.GetSemantics(),
-								Ssrcs:     arrayToString(group.GetSSRCs(), " "),
+								Ssrcs:     uintArrayToString(group.GetSSRCs(), " "),
 							})
 						}
 						ssrcs := track.GetSSRCS()
@@ -420,7 +420,7 @@ func (s *SDPInfo) String() string {
 					for _, group := range groups {
 						md.SsrcGroups = append(md.SsrcGroups, &sdptransform.SsrcGroupStruct{
 							Semantics: group.GetSemantics(),
-							Ssrcs:     arrayToString(group.GetSSRCs(), " "),
+							Ssrcs:     uintArrayToString(group.GetSSRCs(), " "),
 						})
 					}
 					ssrcs := track.GetSSRCS()
@@ -728,7 +728,7 @@ func Parse(sdp string) (*SDPInfo, error) {
 
 		encodings := [][]*TrackEncodingInfo{}
 
-		sources := map[int]*SourceInfo{}
+		sources := map[uint]*SourceInfo{}
 
 		if md.Ssrcs != nil {
 
@@ -844,10 +844,10 @@ func Parse(sdp string) (*SDPInfo, error) {
 		if md.SsrcGroups != nil {
 			for _, ssrcGroupAttr := range md.SsrcGroups {
 				ssrcs := strings.Split(ssrcGroupAttr.Ssrcs, " ")
-				ssrcsint := []int{}
+				ssrcsint := []uint{}
 				for _, ssrcstr := range ssrcs {
-					ssrcint, _ := strconv.Atoi(ssrcstr)
-					ssrcsint = append(ssrcsint, ssrcint)
+					ssrcint, _ := strconv.ParseUint(ssrcstr, 10, 32)
+					ssrcsint = append(ssrcsint, uint(ssrcint))
 				}
 				group := NewSourceGroupInfo(ssrcGroupAttr.Semantics, ssrcsint)
 				ssrc := ssrcsint[0]

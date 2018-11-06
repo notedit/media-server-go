@@ -6,7 +6,7 @@ type TrackInfo struct {
 	id        string
 	mediaID   string
 	media     string // "audio" | "video"
-	ssrcs     []int
+	ssrcs     []uint
 	groups    []*SourceGroupInfo
 	encodings [][]*TrackEncodingInfo
 }
@@ -16,7 +16,7 @@ func NewTrackInfo(id, media string) *TrackInfo {
 	info := &TrackInfo{
 		id:        id,
 		media:     media,
-		ssrcs:     []int{},
+		ssrcs:     []uint{},
 		groups:    []*SourceGroupInfo{},
 		encodings: [][]*TrackEncodingInfo{},
 	}
@@ -29,7 +29,7 @@ func (t *TrackInfo) Clone() *TrackInfo {
 	cloned := &TrackInfo{
 		id:        t.id,
 		media:     t.media,
-		ssrcs:     make([]int, len(t.ssrcs)),
+		ssrcs:     make([]uint, len(t.ssrcs)),
 		groups:    make([]*SourceGroupInfo, 0),
 		encodings: make([][]*TrackEncodingInfo, len(t.encodings)),
 	}
@@ -65,12 +65,12 @@ func (t *TrackInfo) GetID() string {
 	return t.id
 }
 
-func (t *TrackInfo) AddSSRC(ssrc int) {
+func (t *TrackInfo) AddSSRC(ssrc uint) {
 
 	t.ssrcs = append(t.ssrcs, ssrc)
 }
 
-func (t *TrackInfo) GetSSRCS() []int {
+func (t *TrackInfo) GetSSRCS() []uint {
 
 	return t.ssrcs
 }
@@ -83,12 +83,10 @@ func (t *TrackInfo) AddSourceGroup(group *SourceGroupInfo) {
 func (t *TrackInfo) GetSourceGroup(schematics string) *SourceGroupInfo {
 
 	for _, group := range t.groups {
-
 		if strings.ToLower(group.GetSemantics()) == strings.ToLower(schematics) {
 			return group
 		}
 	}
-
 	return nil
 }
 

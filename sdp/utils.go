@@ -5,6 +5,10 @@ import (
 	"strings"
 )
 
-func arrayToString(a []int, delim string) string {
+func uintArrayToString(a []uint, delim string) string {
+	return strings.Trim(strings.Join(strings.Split(fmt.Sprint(a), " "), delim), "[]")
+}
+
+func intArrayToString(a []int, delim string) string {
 	return strings.Trim(strings.Join(strings.Split(fmt.Sprint(a), " "), delim), "[]")
 }

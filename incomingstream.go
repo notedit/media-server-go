@@ -11,19 +11,75 @@ import (
 type IncomingStream struct {
 	id        string
 	info      *sdp.StreamInfo
-	transport *Transport
+	transport DTLSICETransport
 	tracks    map[string]*IncomingStreamTrack
 	*emission.Emitter
 }
 
-func newIncomingStream(transport *Transport, receiver RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
+func newIncomingStream(transport DTLSICETransport, receiver RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
 	stream := &IncomingStream{}
 
 	stream.id = info.GetID()
 	stream.transport = transport
 	stream.tracks = make(map[string]*IncomingStreamTrack)
 	stream.Emitter = emission.NewEmitter()
-	// todo init track
+
+	for _, track := range info.GetTracks() {
+
+		var mediaType MediaFrameType = 0
+		if track.GetMedia() == "video" {
+			mediaType = 1
+		}
+
+		sources := []RTPIncomingSourceGroup{}
+
+		encodings := track.GetEncodings()
+
+		if len(encodings) > 0 {
+			// simulcast encoding
+			// we handle it later
+			// todo
+		} else if track.GetSourceGroup("SIM") != nil {
+			// chrome like simulcast
+			// todo
+		} else {
+			source := NewRTPIncomingSourceGroup(mediaType)
+
+			source.GetMedia().SetSsrc(track.GetSSRCS()[0])
+
+			fid := track.GetSourceGroup("FID")
+			fec_fr := track.GetSourceGroup("FEC-FR")
+
+			if fid != nil {
+				source.GetRtx().SetSsrc(fid.GetSSRCs()[1])
+			} else {
+				source.GetRtx().SetSsrc(0)
+			}
+
+			if fec_fr != nil {
+				source.GetFec().SetSsrc(fec_fr.GetSSRCs()[1])
+			} else {
+				source.GetFec().SetSsrc(0)
+			}
+
+			stream.transport.AddIncomingSourceGroup(source)
+
+			sources = append(sources, source)
+		}
+
+		incomingTrack := newIncomingStreamTrack(track.GetMedia(), track.GetID(), receiver, sources)
+
+		incomingTrack.Once("stopped", func() {
+
+			delete(stream.tracks, incomingTrack.GetID())
+
+			for _, source := range sources {
+				stream.transport.RemoveIncomingSourceGroup(source)
+			}
+		})
+
+		stream.tracks[incomingTrack.GetID()] = incomingTrack
+	}
 
 	return stream
 }
@@ -36,9 +92,15 @@ func (i *IncomingStream) GetStreamInfo() *sdp.StreamInfo {
 	return i.info
 }
 
-func (i *IncomingStream) GetStats() map[string]interface{} {
+func (i *IncomingStream) GetStats() map[string]*IncomingStats {
 
-	return nil
+	stats := map[string]*IncomingStats{}
+
+	for _, track := range i.tracks {
+		stats[track.GetID()] = track.GetStats()
+	}
+
+	return stats
 }
 
 func (i *IncomingStream) GetTrack(trackID string) *IncomingStreamTrack {
@@ -71,7 +133,6 @@ func (i *IncomingStream) GetVideoTracks() []*IncomingStreamTrack {
 		}
 	}
 	return videoTracks
-
 }
 
 func (i *IncomingStream) Stop() {
@@ -84,6 +145,8 @@ func (i *IncomingStream) Stop() {
 		track.Stop()
 		delete(i.tracks, k)
 	}
+
+	i.Emit("stopped")
 
 	i.transport = nil
 }

@@ -183,7 +183,6 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 	outgoingStream := NewOutgoingStream(t, info)
 
 	outgoingStream.Once("stopped", func() {
-
 		delete(t.outgoingStreams, outgoingStream.GetID())
 	})
 
@@ -237,7 +236,7 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 
 func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingStream {
 
-	incomingStream := newIncomingStream(t, TransportToReceiver(t.transport), streamInfo)
+	incomingStream := newIncomingStream(t.transport, TransportToReceiver(t.transport), streamInfo)
 
 	t.incomingStreams[incomingStream.GetID()] = incomingStream
 
