@@ -180,7 +180,7 @@ func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingStream {
 
 	info := streamInfo.Clone()
-	outgoingStream := NewOutgoingStream(t, info)
+	outgoingStream := NewOutgoingStream(t.transport, info)
 
 	outgoingStream.Once("stopped", func() {
 		delete(t.outgoingStreams, outgoingStream.GetID())

@@ -57,7 +57,12 @@ func (o *OutgoingStreamTrack) Mute(muting bool) {
 
 }
 
-func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) {
+func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Transponder {
+
+	return nil
+}
+
+func (o *OutgoingStreamTrack) Detach() {
 
 }
 
