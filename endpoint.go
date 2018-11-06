@@ -57,7 +57,10 @@ func (e *Endpoint) CreateTransport(remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSI
 
 	e.transports[transport.username.ToString()] = transport
 
-	// auto remove
+	transport.Once("stopped", func() {
+		delete(e.transports, transport.username.ToString())
+	})
+
 	return transport
 }
 
