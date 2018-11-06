@@ -3,6 +3,9 @@ package mediaserver
 import "github.com/chuckpreslar/emission"
 
 type Transponder struct {
+	muted       bool
+	track       *IncomingStreamTrack
+	transponder RTPStreamTransponderFacade
 	*emission.Emitter
 }
 
