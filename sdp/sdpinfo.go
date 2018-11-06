@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	sdptransform "mediaserver/sdp-transform"
+	sdptransform "../sdp-transform"
 )
 
 type SDPInfo struct {

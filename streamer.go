@@ -1,7 +1,7 @@
 package mediaserver
 
 import (
-	"mediaserver/sdp"
+	"./sdp"
 )
 
 type Streamer struct {

@@ -21,6 +21,21 @@ func NewICEInfo(ufrag, password string) *ICEInfo {
 	}
 }
 
+func GenerateICEInfo(lite bool) *ICEInfo {
+
+	ufrag := make([]byte, 8)
+	password := make([]byte, 24)
+	rand.Read(ufrag)
+	rand.Read(password)
+
+	return &ICEInfo{
+		ufrag:           hex.EncodeToString(ufrag),
+		password:        hex.EncodeToString(password),
+		lite:            lite,
+		endOfCandidates: false,
+	}
+}
+
 func GenerateIce(lite bool) *ICEInfo {
 
 	ufrag := make([]byte, 8)

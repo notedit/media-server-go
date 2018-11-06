@@ -1,7 +1,9 @@
 package mediaserver
 
 import (
-	sdp "mediaserver/sdp"
+	"./sdp"
+
+	"github.com/chuckpreslar/emission"
 )
 
 type Endpoint struct {
@@ -10,16 +12,18 @@ type Endpoint struct {
 	transports  map[string]*Transport
 	candidate   *sdp.CandidateInfo
 	fingerprint string
+	*emission.Emitter
 }
 
 // NewEndpoint create a endpoint
 func NewEndpoint(ip string) *Endpoint {
-	endpoint := &Endpoint{}
+	endpoint := new(Endpoint)
 	endpoint.bundle = NewRTPBundleTransport()
 	endpoint.bundle.Init()
 	endpoint.transports = make(map[string]*Transport)
 	endpoint.fingerprint = MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
+	endpoint.Emitter = emission.NewEmitter()
 	return endpoint
 }
 
@@ -65,10 +69,42 @@ func (e *Endpoint) GetDTLSFingerprint() string {
 	return e.fingerprint
 }
 
-func (e *Endpoint) CreateOffer() {
+// CreateOffer  create offer based on audio and video capability
+func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sdp.SDPInfo {
 
+	dtls := sdp.NewDTLSInfo(sdp.SETUPACTPASS, "sha-256", e.fingerprint)
+
+	ice := sdp.GenerateICEInfo(true)
+
+	candidates := e.GetLocalCandidates()
+
+	capabilities := make(map[string]*sdp.Capability)
+
+	if video != nil {
+		capabilities["video"] = video
+	}
+
+	if audio != nil {
+		capabilities["audio"] = audio
+	}
+
+	return sdp.Create(ice, dtls, candidates, capabilities)
 }
 
+// Stop  stop this endpoint
 func (e *Endpoint) Stop() {
 
+	if e.bundle == nil {
+		return
+	}
+
+	for _, transport := range e.transports {
+		transport.Stop()
+	}
+
+	e.transports = nil
+
+	e.bundle.End()
+
+	e.bundle = nil
 }

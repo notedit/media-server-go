@@ -1,11 +1,14 @@
 package mediaserver
 
+import "github.com/chuckpreslar/emission"
+
 type OutgoingStreamTrack struct {
 	id     string
 	media  string
 	sender RTPSenderFacade
-	source interface{}
+	source RTPOutgoingSourceGroup
 	muted  bool
+	*emission.Emitter
 }
 
 type OutgoingStats struct {
@@ -16,7 +19,7 @@ type OutgoingStats struct {
 	Bitrate        int
 }
 
-func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, source interface{}) *OutgoingStreamTrack {
+func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, source RTPOutgoingSourceGroup) *OutgoingStreamTrack {
 
 	track := &OutgoingStreamTrack{}
 	track.id = id
@@ -24,6 +27,7 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 	track.sender = sender
 	track.muted = false
 	track.source = source
+	track.Emitter = emission.NewEmitter()
 
 	// todo onremb callback
 	return track

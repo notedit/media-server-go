@@ -3,7 +3,9 @@ package mediaserver
 import (
 	"strings"
 
-	"mediaserver/sdp"
+	"github.com/chuckpreslar/emission"
+
+	"./sdp"
 )
 
 type IncomingStream struct {
@@ -11,6 +13,7 @@ type IncomingStream struct {
 	info      *sdp.StreamInfo
 	transport *Transport
 	tracks    map[string]*IncomingStreamTrack
+	*emission.Emitter
 }
 
 func newIncomingStream(transport *Transport, receiver RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
@@ -19,13 +22,13 @@ func newIncomingStream(transport *Transport, receiver RTPReceiverFacade, info *s
 	stream.id = info.GetID()
 	stream.transport = transport
 	stream.tracks = make(map[string]*IncomingStreamTrack)
-
+	stream.Emitter = emission.NewEmitter()
 	// todo init track
 
 	return stream
 }
 
-func (i *IncomingStream) getID() string {
+func (i *IncomingStream) GetID() string {
 	return i.id
 }
 
