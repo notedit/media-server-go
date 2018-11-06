@@ -22,9 +22,7 @@ func NewPlayer(filename string) (*Player, error) {
 		source := player.player.GetVideoSource()
 
 		// todo  fix source
-		incoming := newIncomingStreamTrack("video", trackID, nil, map[string]RTPIncomingSourceGroup{
-			"": source,
-		})
+		incoming := newIncomingStreamTrack("video", trackID, nil, []RTPIncomingSourceGroup{source})
 
 		// todo event
 		player.tracks[trackID] = incoming
@@ -35,9 +33,7 @@ func NewPlayer(filename string) (*Player, error) {
 		trackID := "audio"
 		source := player.player.GetAudioSource()
 
-		incoming := newIncomingStreamTrack("audio", trackID, nil, map[string]RTPIncomingSourceGroup{
-			"": source,
-		})
+		incoming := newIncomingStreamTrack("audio", trackID, nil, []RTPIncomingSourceGroup{source})
 
 		// todo
 		player.tracks[trackID] = incoming
@@ -111,7 +107,7 @@ func (p *Player) Stop() {
 		return
 	}
 
-	for k, track := range p.tracks {
+	for _, track := range p.tracks {
 		track.Stop()
 	}
 

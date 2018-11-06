@@ -1,8 +1,10 @@
 package mediaserver
 
+import "github.com/chuckpreslar/emission"
+
 type encoding struct {
-	id           string
-	souce        interface{}
+	id           int
+	souce        RTPIncomingSourceGroup
 	depacketizer StreamTrackDepacketizer
 }
 
@@ -11,7 +13,8 @@ type IncomingStreamTrack struct {
 	media     string
 	receiver  RTPReceiverFacade
 	counter   int
-	encodings map[string]*encoding
+	encodings map[int]*encoding
+	*emission.Emitter
 }
 
 type IncomingStats struct {
@@ -26,14 +29,15 @@ type IncomingStats struct {
 	Bitrate        int
 }
 
-func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade, souces map[string]interface{}) *IncomingStreamTrack {
+func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade, souces []RTPIncomingSourceGroup) *IncomingStreamTrack {
 	track := &IncomingStreamTrack{}
 
 	track.id = id
 	track.media = media
 	track.receiver = receiver
 	track.counter = 0
-	track.encodings = make(map[string]*encoding)
+	track.encodings = make(map[int]*encoding)
+	track.Emitter = emission.NewEmitter()
 
 	for k, souce := range souces {
 		track.encodings[k] = &encoding{

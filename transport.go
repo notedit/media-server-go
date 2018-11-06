@@ -248,7 +248,77 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 	return incomingStream
 }
 
+func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrcs map[string]uint) *IncomingStreamTrack {
+
+	var mediaType MediaFrameType = 0
+	if media == "video" {
+		mediaType = 1
+	}
+
+	if trackId == "" {
+		trackId = uuid.Must(uuid.NewV4()).String()
+	}
+
+	source := NewRTPIncomingSourceGroup(mediaType)
+
+	if ssrc, ok := ssrcs["media"]; ok {
+		source.GetMedia().SetSsrc(ssrc)
+	} else {
+		source.GetMedia().SetSsrc(GenerateSSRC())
+	}
+
+	if ssrc, ok := ssrcs["rtx"]; ok {
+		source.GetRtx().SetSsrc(ssrc)
+	} else {
+		source.GetRtx().SetSsrc(GenerateSSRC())
+	}
+
+	if ssrc, ok := ssrcs["fec"]; ok {
+		source.GetFec().SetSsrc(ssrc)
+	} else {
+		source.GetFec().SetSsrc(GenerateSSRC())
+	}
+
+	t.transport.AddIncomingSourceGroup(source)
+
+	sources := []RTPIncomingSourceGroup{source}
+
+	incomingTrack := newIncomingStreamTrack(media, trackId, TransportToReceiver(t.transport), sources)
+
+	incomingTrack.Once("stopped", func() {
+		for _, item := range sources {
+			t.transport.RemoveIncomingSourceGroup(item)
+		}
+	})
+
+	return incomingTrack
+}
+
+// todo create simple outgoing stream
+
 // Stop stop this transport
 func (t *Transport) Stop() {
+
+	if t.bundle == nil {
+		return
+	}
+
+	for _, incoming := range t.incomingStreams {
+		incoming.Stop()
+	}
+
+	for _, outgoing := range t.outgoingStreams {
+		outgoing.Stop()
+	}
+
+	t.incomingStreams = nil
+	t.outgoingStreams = nil
+
+	t.bundle.RemoveICETransport(t.username)
+
+	t.Emit("stopped", t)
+
+	t.username = nil
+	t.bundle = nil
 
 }

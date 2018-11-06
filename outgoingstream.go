@@ -68,3 +68,7 @@ func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
 	return videoTracks
 
 }
+
+func (o *OutgoingStream) Stop() {
+
+}

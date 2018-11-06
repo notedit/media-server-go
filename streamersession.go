@@ -48,9 +48,7 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 	session.Init(properties)
 	streamerSession.session = session
 
-	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), SessionToReceiver(session), map[string]interface{}{
-		"": session.GetIncomingSourceGroup(),
-	})
+	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), SessionToReceiver(session), []RTPIncomingSourceGroup{session.GetIncomingSourceGroup()})
 
 	streamerSession.outgoing = newOutgoingStreamTrack(media.GetType(), media.GetType(), SessionToSender(session), session.GetOutgoingSourceGroup())
 
