@@ -1,12 +1,16 @@
 package mediaserver
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 type Recorder struct {
-	recorder  MP4Recorder
-	tracks    map[string]*IncomingStreamTrack
-	ticker    *time.Ticker
-	refresher *Refresher
+	recorder   MP4Recorder
+	tracks     map[string]*RecorderTrack
+	ticker     *time.Ticker
+	refresher  *Refresher
+	maxTrackId int
 }
 
 func NewRecorder(filename string, waitForIntra bool, refresh int) *Recorder {
@@ -14,20 +18,61 @@ func NewRecorder(filename string, waitForIntra bool, refresh int) *Recorder {
 	recorder.recorder = NewMP4Recorder()
 	recorder.recorder.Create(filename)
 	recorder.recorder.Record(waitForIntra)
+	recorder.tracks = map[string]*RecorderTrack{}
+	recorder.maxTrackId = 1
 
 	if refresh > 0 {
 		recorder.refresher = NewRefresher(refresh)
 	}
 
-	// todo track stoped event
 	return recorder
 }
 
-func (r *Recorder) Record(incom *IncomingStreamTrack) {
+func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 
-	// todo
+	for _, encoding := range incoming.GetEncodings() {
+		encoding.GetDepacketizer().AddMediaListener(r.recorder)
+
+		r.maxTrackId += 1
+		recorderTrack := NewRecorderTrack(strconv.Itoa(r.maxTrackId), incoming, encoding)
+
+		recorderTrack.Once("stopped", func() {
+			
+			recorderTrack.encoding.depacketizer.RemoveMediaListener(r.recorder)
+
+			delete(r.tracks, recorderTrack.GetID())
+		})
+		r.tracks[recorderTrack.GetID] = recorderTrack
+	}
+
+	if r.refresher != nil {
+		r.refresher.Add(incoming)
+	}
+}
+
+func (r *Recorder) RecordStream(incoming *IncomingStream) {
+
+	for _, track := range incoming.GetTracks() {
+		r.Record(track)
+	}
 }
 
 func (r *Recorder) Stop() {
-	// todo
+
+	if r.recorder == nil {
+		return
+	}
+
+	for _,track := r.tracks {
+		track.Stop()
+	}
+
+	if r.refresher != nil {
+		r.refresher.Stop()
+	}
+
+	r.recorder.Close()
+
+	r.refresher = nil
+	r.recorder = nil
 }

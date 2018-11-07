@@ -1,19 +1,25 @@
 package mediaserver
 
+import "github.com/chuckpreslar/emission"
+
 type RecorderTrack struct {
 	id       string
 	track    *IncomingStreamTrack
-	encoding interface{}
+	encoding *Encoding
+	*emission.Emitter
 }
 
-func NewRecorderTrack(id string, track *IncomingStreamTrack, encoding interface{}) *RecorderTrack {
+func NewRecorderTrack(id string, track *IncomingStreamTrack, encoding *Encoding) *RecorderTrack {
 
 	recorderTrack := &RecorderTrack{}
 	recorderTrack.id = id
 	recorderTrack.track = track
 	recorderTrack.encoding = encoding
 
-	// todo event callback
+	recorderTrack.Emitter = emission.NewEmitter()
+
+	track.Once("stopped", recorderTrack.onTrackStopped)
+
 	return recorderTrack
 }
 
@@ -25,7 +31,7 @@ func (r *RecorderTrack) GetTrack() *IncomingStreamTrack {
 	return r.track
 }
 
-func (r *RecorderTrack) GetEncoding() interface{} {
+func (r *RecorderTrack) GetEncoding() *Encoding {
 	return r.encoding
 }
 
@@ -35,6 +41,14 @@ func (r *RecorderTrack) Stop() {
 		return
 	}
 
+	r.track.Off("stopped", r.onTrackStopped)
+
+	r.EmitSync("stopped")
+
 	r.track = nil
 	r.encoding = nil
+}
+
+func (r *RecorderTrack) onTrackStopped() {
+	r.Stop()
 }
