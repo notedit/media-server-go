@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: mediaserver.swigcxx
+// source: mediaserver.i
 
 package mediaserver
 
@@ -228,6 +228,8 @@ extern _Bool _wrap_DTLSICETransport_AddOutgoingSourceGroup_mediaserver_171a552db
 extern _Bool _wrap_DTLSICETransport_RemoveOutgoingSourceGroup_mediaserver_171a552dbef2f4a1(uintptr_t arg1, uintptr_t arg2);
 extern _Bool _wrap_DTLSICETransport_AddIncomingSourceGroup_mediaserver_171a552dbef2f4a1(uintptr_t arg1, uintptr_t arg2);
 extern _Bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_mediaserver_171a552dbef2f4a1(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_DTLSICETransport_SetBandwidthProbing_mediaserver_171a552dbef2f4a1(uintptr_t arg1, _Bool arg2);
+extern void _wrap_DTLSICETransport_SetMaxProbingBitrate_mediaserver_171a552dbef2f4a1(uintptr_t arg1, swig_intgo arg2);
 extern void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_mediaserver_171a552dbef2f4a1(uintptr_t arg1, uintptr_t arg2);
 extern swig_type_47 _wrap_DTLSICETransport_GetRemoteUsername_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
 extern swig_type_48 _wrap_DTLSICETransport_GetRemotePwd_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
@@ -238,7 +240,8 @@ extern swig_intgo _wrap_DTLSICETransport_onData_mediaserver_171a552dbef2f4a1(uin
 extern swig_intgo _wrap_DTLSICETransport_GetRTT_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
 extern uintptr_t _wrap_new_RTPBundleTransport_mediaserver_171a552dbef2f4a1(void);
 extern void _wrap_delete_RTPBundleTransport_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
-extern swig_intgo _wrap_RTPBundleTransport_Init_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
+extern swig_intgo _wrap_RTPBundleTransport_Init__SWIG_0_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
+extern swig_intgo _wrap_RTPBundleTransport_Init__SWIG_1_mediaserver_171a552dbef2f4a1(uintptr_t arg1, swig_intgo arg2);
 extern uintptr_t _wrap_RTPBundleTransport_AddICETransport_mediaserver_171a552dbef2f4a1(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
 extern swig_intgo _wrap_RTPBundleTransport_RemoveICETransport_mediaserver_171a552dbef2f4a1(uintptr_t arg1, uintptr_t arg2);
 extern swig_intgo _wrap_RTPBundleTransport_End_mediaserver_171a552dbef2f4a1(uintptr_t arg1);
@@ -1870,6 +1873,18 @@ func (arg1 SwigcptrDTLSICETransport) RemoveIncomingSourceGroup(arg2 RTPIncomingS
 	return swig_r
 }
 
+func (arg1 SwigcptrDTLSICETransport) SetBandwidthProbing(arg2 bool) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_DTLSICETransport_SetBandwidthProbing_mediaserver_171a552dbef2f4a1(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetMaxProbingBitrate(arg2 uint) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_DTLSICETransport_SetMaxProbingBitrate_mediaserver_171a552dbef2f4a1(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+}
+
 func (arg1 SwigcptrDTLSICETransport) SetSenderSideEstimatorListener(arg2 RemoteRateEstimator_Listener) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
@@ -1963,6 +1978,8 @@ type DTLSICETransport interface {
 	RemoveOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool)
 	AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
 	RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
+	SetBandwidthProbing(arg2 bool)
+	SetMaxProbingBitrate(arg2 uint)
 	SetSenderSideEstimatorListener(arg2 RemoteRateEstimator_Listener)
 	GetRemoteUsername() (_swig_ret string)
 	GetRemotePwd() (_swig_ret string)
@@ -1993,11 +2010,30 @@ func DeleteRTPBundleTransport(arg1 RTPBundleTransport) {
 	C._wrap_delete_RTPBundleTransport_mediaserver_171a552dbef2f4a1(C.uintptr_t(_swig_i_0))
 }
 
-func (arg1 SwigcptrRTPBundleTransport) Init() (_swig_ret int) {
+func (arg1 SwigcptrRTPBundleTransport) Init__SWIG_0() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RTPBundleTransport_Init_mediaserver_171a552dbef2f4a1(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_RTPBundleTransport_Init__SWIG_0_mediaserver_171a552dbef2f4a1(C.uintptr_t(_swig_i_0)))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) Init__SWIG_1(arg2 int) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (int)(C._wrap_RTPBundleTransport_Init__SWIG_1_mediaserver_171a552dbef2f4a1(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	return swig_r
+}
+
+func (p SwigcptrRTPBundleTransport) Init(a ...interface{}) int {
+	argc := len(a)
+	if argc == 0 {
+		return p.Init__SWIG_0()
+	}
+	if argc == 1 {
+		return p.Init__SWIG_1(a[0].(int))
+	}
+	panic("No match for overloaded function call")
 }
 
 func (arg1 SwigcptrRTPBundleTransport) AddICETransport(arg2 Std_string, arg3 Properties) (_swig_ret DTLSICETransport) {
@@ -2057,7 +2093,7 @@ func (arg1 SwigcptrRTPBundleTransport) Send(arg2 ICERemoteCandidate, arg3 *byte,
 type RTPBundleTransport interface {
 	Swigcptr() uintptr
 	SwigIsRTPBundleTransport()
-	Init() (_swig_ret int)
+	Init(a ...interface{}) int
 	AddICETransport(arg2 Std_string, arg3 Properties) (_swig_ret DTLSICETransport)
 	RemoveICETransport(arg2 Std_string) (_swig_ret int)
 	End() (_swig_ret int)

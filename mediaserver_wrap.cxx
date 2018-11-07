@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: mediaserver.swigcxx
+// source: mediaserver.i
 
 #define SWIGMODULE mediaserver
 #define SWIG_DIRECTORS
@@ -2642,6 +2642,30 @@ bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_mediaserver_171a552dbef2f4
 }
 
 
+void _wrap_DTLSICETransport_SetBandwidthProbing_mediaserver_171a552dbef2f4a1(DTLSICETransport *_swig_go_0, bool _swig_go_1) {
+  DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
+  bool arg2 ;
+  
+  arg1 = *(DTLSICETransport **)&_swig_go_0; 
+  arg2 = (bool)_swig_go_1; 
+  
+  (arg1)->SetBandwidthProbing(arg2);
+  
+}
+
+
+void _wrap_DTLSICETransport_SetMaxProbingBitrate_mediaserver_171a552dbef2f4a1(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
+  DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
+  uint32_t arg2 ;
+  
+  arg1 = *(DTLSICETransport **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
+  
+  (arg1)->SetMaxProbingBitrate(arg2);
+  
+}
+
+
 void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_mediaserver_171a552dbef2f4a1(DTLSICETransport *_swig_go_0, RemoteRateEstimator::Listener *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RemoteRateEstimator::Listener *arg2 = (RemoteRateEstimator::Listener *) 0 ;
@@ -2786,7 +2810,7 @@ void _wrap_delete_RTPBundleTransport_mediaserver_171a552dbef2f4a1(RTPBundleTrans
 }
 
 
-intgo _wrap_RTPBundleTransport_Init_mediaserver_171a552dbef2f4a1(RTPBundleTransport *_swig_go_0) {
+intgo _wrap_RTPBundleTransport_Init__SWIG_0_mediaserver_171a552dbef2f4a1(RTPBundleTransport *_swig_go_0) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -2794,6 +2818,21 @@ intgo _wrap_RTPBundleTransport_Init_mediaserver_171a552dbef2f4a1(RTPBundleTransp
   arg1 = *(RTPBundleTransport **)&_swig_go_0; 
   
   result = (int)(arg1)->Init();
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+intgo _wrap_RTPBundleTransport_Init__SWIG_1_mediaserver_171a552dbef2f4a1(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
+  RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
+  int arg2 ;
+  int result;
+  intgo _swig_go_result;
+  
+  arg1 = *(RTPBundleTransport **)&_swig_go_0; 
+  arg2 = (int)_swig_go_1; 
+  
+  result = (int)(arg1)->Init(arg2);
   _swig_go_result = result; 
   return _swig_go_result;
 }

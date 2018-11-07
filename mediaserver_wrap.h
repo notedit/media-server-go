@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: mediaserver.swigcxx
+// source: mediaserver.i
 
 #ifndef SWIG_mediaserver_WRAP_H_
 #define SWIG_mediaserver_WRAP_H_
