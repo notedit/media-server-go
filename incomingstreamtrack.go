@@ -8,6 +8,18 @@ type Encoding struct {
 	depacketizer StreamTrackDepacketizer
 }
 
+func (e *Encoding) GetID() int {
+	return e.id
+}
+
+func (e *Encoding) GetSource() RTPIncomingSourceGroup {
+	return e.source
+}
+
+func (e *Encoding) GetDepacketizer() StreamTrackDepacketizer {
+	return e.depacketizer
+}
+
 type IncomingStreamTrack struct {
 	id        string
 	media     string
@@ -83,6 +95,11 @@ func (i *IncomingStreamTrack) GetStats() *IncomingStats {
 func (i *IncomingStreamTrack) GetActiveLayers() {
 
 	// todo
+}
+
+func (i *IncomingStreamTrack) GetEncodings() []*Encoding {
+
+	return i.encodings
 }
 
 func (i *IncomingStreamTrack) Attached() {

@@ -18,3 +18,17 @@ func GenerateSSRC() uint {
 	fmt.Printf("rand is %v\n", randNum)
 	return uint(randNum)
 }
+
+func Min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
+}
+
+func Max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
