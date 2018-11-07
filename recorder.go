@@ -42,7 +42,7 @@ func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 
 			delete(r.tracks, recorderTrack.GetID())
 		})
-		r.tracks[recorderTrack.GetID] = recorderTrack
+		r.tracks[recorderTrack.GetID()] = recorderTrack
 	}
 
 	if r.refresher != nil {
