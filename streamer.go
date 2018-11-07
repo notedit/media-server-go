@@ -5,20 +5,24 @@ import (
 )
 
 type Streamer struct {
-	sessions []*StreamerSession
+	sessions map[string]*StreamerSession
 }
 
 func NewStreamer() *Streamer {
 	streamer := &Streamer{}
-	streamer.sessions = []*StreamerSession{}
+	streamer.sessions = make(map[string]*StreamerSession)
 	return streamer
 }
 
 func (s *Streamer) CreateSession(local bool, ip string, port int, media *sdp.MediaInfo) *StreamerSession {
 
 	session := NewStreamerSession(local, ip, port, media)
-	// todo stopped event
-	s.sessions = append(s.sessions, session)
+
+	session.Once("stopped", func() {
+		delete(s.sessions, session.GetID())
+	})
+
+	s.sessions[session.id] = session
 	return session
 }
 

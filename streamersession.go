@@ -4,16 +4,21 @@ import (
 	"fmt"
 	"strings"
 
-	"./sdp"
+	"github.com/satori/go.uuid"
+
+	sdp "./sdp"
+	"github.com/chuckpreslar/emission"
 )
 
 type StreamerSession struct {
+	id       string
 	local    bool
 	port     int
 	ip       string
 	incoming *IncomingStreamTrack
 	outgoing *OutgoingStreamTrack
 	session  RTPSessionFacade
+	*emission.Emitter
 }
 
 func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *StreamerSession {
@@ -30,7 +35,10 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 		session.SetRemotePort(ip, port)
 	}
 
+	streamerSession.id = uuid.Must(uuid.NewV4()).String()
+
 	properties := NewProperties()
+
 	if media != nil {
 		num := 0
 		for _, codec := range media.GetCodecs() {
@@ -46,15 +54,26 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 	}
 
 	session.Init(properties)
+
 	streamerSession.session = session
 
 	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), SessionToReceiver(session), []RTPIncomingSourceGroup{session.GetIncomingSourceGroup()})
 
 	streamerSession.outgoing = newOutgoingStreamTrack(media.GetType(), media.GetType(), SessionToSender(session), session.GetOutgoingSourceGroup())
 
-	// some callback event
+	streamerSession.incoming.Once("stopped", func() {
+		streamerSession.incoming = nil
+	})
+
+	streamerSession.outgoing.Once("stopped", func() {
+		streamerSession.outgoing = nil
+	})
 
 	return streamerSession
+}
+
+func (s *StreamerSession) GetID() string {
+	return s.id
 }
 
 func (s *StreamerSession) GetIncomingStreamTrack() *IncomingStreamTrack {
@@ -79,7 +98,9 @@ func (s *StreamerSession) Stop() {
 		s.outgoing.Stop()
 	}
 
-	DeleteRTPSessionFacade(s.session)
+	s.session.End()
+
+	s.EmitSync("stopped")
 
 	s.session = nil
 }
