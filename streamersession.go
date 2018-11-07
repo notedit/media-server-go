@@ -6,8 +6,8 @@ import (
 
 	"github.com/satori/go.uuid"
 
-	sdp "./sdp"
 	"github.com/chuckpreslar/emission"
+	"github.com/notedit/media-server-go/sdp"
 )
 
 type StreamerSession struct {

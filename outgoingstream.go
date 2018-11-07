@@ -3,8 +3,8 @@ package mediaserver
 import (
 	"strings"
 
-	"./sdp"
 	"github.com/chuckpreslar/emission"
+	"github.com/notedit/media-server-go/sdp"
 )
 
 type OutgoingStream struct {

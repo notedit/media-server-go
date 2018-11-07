@@ -1,7 +1,7 @@
 package mediaserver
 
 import (
-	"./sdp"
+	"github.com/notedit/media-server-go/sdp"
 )
 
 type Streamer struct {

@@ -3,8 +3,8 @@ package mediaserver
 import (
 	"fmt"
 
-	"./sdp"
 	"github.com/chuckpreslar/emission"
+	"github.com/notedit/media-server-go/sdp"
 	uuid "github.com/satori/go.uuid"
 )
 

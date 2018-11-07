@@ -4,8 +4,7 @@ import (
 	"strings"
 
 	"github.com/chuckpreslar/emission"
-
-	"./sdp"
+	"github.com/notedit/media-server-go/sdp"
 )
 
 type IncomingStream struct {
