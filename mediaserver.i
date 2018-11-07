@@ -792,11 +792,3 @@ public:
 	void AddIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 	void RemoveIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 };
-
-
-
-
-
-
-
-
