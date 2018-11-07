@@ -20,24 +20,19 @@ all:OPENSSL SRTP MP4V2 MEDIASERVER
 	echo $(ROOT_DIR)
 
 OPENSSL:
-	cd ${OPENSSL_DIR}
-	${OPENSSL_DIR}/config no-shared && make -C ${OPENSSL_DIR}
+	cd ${OPENSSL_DIR} && ${OPENSSL_DIR}/config no-shared && make 
 	cd $(ROOT_DIR)
 
 SRTP:
-	cd ${LIBSRTP_DIR}
-	configure && make 
-	cd $(ROOT_DIR)
+	cd ${LIBSRTP_DIR} && configure && make  
+	cd $(ROOT_DIR) 
 
 MP4V2:
-	autoreconf -i && configure && make
+	cd ${LIBMP4_DIR} && autoreconf -i && configure && make 
 	cd $(ROOT_DIR)
 
 MEDIASERVER:
-	cd $(ROOT_DIR)
-	cp config.mk  ./mediaserver/
-	cd ${SRCDIR}
-	make libmediaserver.a
+	cp config.mk  ./mediaserver/ && cd ${SRCDIR} && make libmediaserver.a 
 	cd ${ROOT_DIR}
 
 ECHO:
