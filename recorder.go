@@ -37,7 +37,7 @@ func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 		recorderTrack := NewRecorderTrack(strconv.Itoa(r.maxTrackId), incoming, encoding)
 
 		recorderTrack.Once("stopped", func() {
-			
+
 			recorderTrack.encoding.depacketizer.RemoveMediaListener(r.recorder)
 
 			delete(r.tracks, recorderTrack.GetID())
@@ -63,7 +63,7 @@ func (r *Recorder) Stop() {
 		return
 	}
 
-	for _,track := r.tracks {
+	for _, track := range r.tracks {
 		track.Stop()
 	}
 
