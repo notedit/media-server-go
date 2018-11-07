@@ -6,8 +6,8 @@ import (
 )
 
 type Recorder struct {
-	recorder   MP4Recorder
 	tracks     map[string]*RecorderTrack
+	recorder   MP4Recorder
 	ticker     *time.Ticker
 	refresher  *Refresher
 	maxTrackId int
