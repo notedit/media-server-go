@@ -1,6 +1,6 @@
 [submodule "mediaserver"]
 	path = mediaserver
-	url = git@github.com:notedit/media-server.git
+	url = https://github.com/notedit/media-server.git
 [submodule "external/mp4v2"]
 	path = external/mp4v2
 	url = https://github.com/medooze/mp4v2.git
