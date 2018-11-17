@@ -49,7 +49,7 @@ func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade,
 	track.media = media
 	track.receiver = receiver
 	track.counter = 0
-	track.encodings = make([]*Encoding)
+	track.encodings = make(map[string]*Encoding)
 	track.Emitter = emission.NewEmitter()
 
 	for k, source := range souces {
@@ -58,7 +58,7 @@ func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade,
 			source:       source,
 			depacketizer: NewStreamTrackDepacketizer(source),
 		}
-		track.encodings = append(track.encodings, encoding)
+		track.encodings[k] = encoding
 	}
 
 	return track
@@ -97,9 +97,19 @@ func (i *IncomingStreamTrack) GetActiveLayers() {
 	// todo
 }
 
-func (i *IncomingStreamTrack) GetEncodings() []*Encoding {
+func (i *IncomingStreamTrack) GetEncodings() map[string]*Encoding {
 
 	return i.encodings
+}
+
+func (i *IncomingStreamTrack) GetFirstEncoding() *Encoding {
+
+	for _, encoding := range i.encodings {
+		if encoding != nil {
+			return encoding
+		}
+	}
+	return nil
 }
 
 func (i *IncomingStreamTrack) Attached() {

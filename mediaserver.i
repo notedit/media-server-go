@@ -327,7 +327,11 @@ public:
         // todo  make callback
 		Log("onREMB\n");
 	}
+	void SetMinPeriod(DWORD period) { this->period = period; }
+
 private:
+	DWORD period = 1000;
+	QWORD last = 0; 
 	REMBListener* listener;
 };
 
@@ -560,7 +564,7 @@ struct LayerSource : public LayerInfo
 {
 	DWORD		numPackets;
 	DWORD		totalBytes;
-	Acumulator	bitrate;
+	DWORD		bitrate;
 };
 
 class LayerSources : public std::vector<LayerSource*>
@@ -573,14 +577,14 @@ public:
 struct RTPSource 
 {
 	DWORD ssrc;
-	DWORD extSeq;
+	DWORD extSeqNum;
 	DWORD cycles;
 	DWORD jitter;
 	DWORD numPackets;
 	DWORD numRTCPPackets;
 	DWORD totalBytes;
 	DWORD totalRTCPBytes;
-	Acumulator bitrate;
+	DWORD bitrate;
 };
 
 struct RTPIncomingSource : public RTPSource

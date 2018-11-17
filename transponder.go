@@ -19,7 +19,7 @@ type Transponder struct {
 	muted              bool
 	track              *IncomingStreamTrack
 	transponder        RTPStreamTransponderFacade
-	encodingId         int
+	encodingId         string
 	spatialLayerId     int
 	temporalLayerId    int
 	maxSpatialLayerId  int
@@ -59,7 +59,7 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 	t.track = incomingTrack
 
 	// get first encoding
-	encoding := t.track.GetEncodings()[0]
+	encoding := t.track.GetFirstEncoding()
 
 	t.transponder.SetIncoming(encoding.GetSource(), incomingTrack.receiver)
 
@@ -134,7 +134,7 @@ func (t *Transponder) SelectEncoding() {
 	// todo
 }
 
-func (t *Transponder) GetSelectedEncoding() int {
+func (t *Transponder) GetSelectedEncoding() string {
 
 	return t.encodingId
 }
