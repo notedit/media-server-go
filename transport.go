@@ -207,19 +207,19 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 	if ssrc, ok := ssrcs["media"]; ok {
 		source.GetMedia().SetSsrc(ssrc)
 	} else {
-		source.GetMedia().SetSsrc(GenerateSSRC())
+		source.GetMedia().SetSsrc(NextSSRC())
 	}
 
 	if ssrc, ok := ssrcs["rtx"]; ok {
 		source.GetRtx().SetSsrc(ssrc)
 	} else {
-		source.GetRtx().SetSsrc(GenerateSSRC())
+		source.GetRtx().SetSsrc(NextSSRC())
 	}
 
 	if ssrc, ok := ssrcs["fec"]; ok {
 		source.GetFec().SetSsrc(ssrc)
 	} else {
-		source.GetFec().SetSsrc(GenerateSSRC())
+		source.GetFec().SetSsrc(NextSSRC())
 	}
 
 	// todo error handle
@@ -263,19 +263,19 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 	if ssrc, ok := ssrcs["media"]; ok {
 		source.GetMedia().SetSsrc(ssrc)
 	} else {
-		source.GetMedia().SetSsrc(GenerateSSRC())
+		source.GetMedia().SetSsrc(NextSSRC())
 	}
 
 	if ssrc, ok := ssrcs["rtx"]; ok {
 		source.GetRtx().SetSsrc(ssrc)
 	} else {
-		source.GetRtx().SetSsrc(GenerateSSRC())
+		source.GetRtx().SetSsrc(NextSSRC())
 	}
 
 	if ssrc, ok := ssrcs["fec"]; ok {
 		source.GetFec().SetSsrc(ssrc)
 	} else {
-		source.GetFec().SetSsrc(GenerateSSRC())
+		source.GetFec().SetSsrc(NextSSRC())
 	}
 
 	t.transport.AddIncomingSourceGroup(source)

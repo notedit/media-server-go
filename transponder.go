@@ -58,6 +58,8 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 
 	t.track = incomingTrack
 
+	// we need make sure first encoding id not nil
+	// todo check
 	// get first encoding
 	encoding := t.track.GetFirstEncoding()
 
