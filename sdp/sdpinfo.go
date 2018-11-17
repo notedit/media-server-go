@@ -67,8 +67,18 @@ func (s *SDPInfo) GetMediaByID(mid string) *MediaInfo {
 			return media
 		}
 	}
-
 	return nil
+}
+
+func (s *SDPInfo) ReplaceMedia(media *MediaInfo) bool {
+
+	for i, rmedia := range s.medias {
+		if rmedia.GetID() == media.GetID() {
+			s.medias[i] = media
+			return true
+		}
+	}
+	return false
 }
 
 func (s *SDPInfo) GetMedias() []*MediaInfo {
@@ -145,6 +155,18 @@ func (s *SDPInfo) AddStream(stream *StreamInfo) {
 func (s *SDPInfo) RemoveStream(stream *StreamInfo) {
 
 	delete(s.streams, stream.GetID())
+}
+
+func (s *SDPInfo) GetTrackByMediaID(mid string) *TrackInfo {
+
+	for _, stream := range s.streams {
+		for _, track := range stream.GetTracks() {
+			if track.GetMediaID() == mid {
+				return track
+			}
+		}
+	}
+	return nil
 }
 
 func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, capabilities map[string]*Capability) *SDPInfo {
@@ -769,6 +791,7 @@ func Parse(sdp string) (*SDPInfo, error) {
 						track = NewTrackInfo(trackId, media)
 						// Set simulcast encodings (if any)
 						// todo
+						track.SetMediaID(mid)
 						track.SetEncodings(encodings)
 						stream.AddTrack(track)
 					}
@@ -815,7 +838,6 @@ func Parse(sdp string) (*SDPInfo, error) {
 		for ssrc, source := range sources {
 
 			if source.GetStreamID() == "" {
-
 				streamId := source.GetCName()
 				trackId := mid
 
@@ -833,6 +855,7 @@ func Parse(sdp string) (*SDPInfo, error) {
 
 				if track == nil {
 					track = NewTrackInfo(trackId, media)
+					track.SetMediaID(mid)
 					track.SetEncodings(encodings)
 					stream.AddTrack(track)
 				}
