@@ -30,7 +30,7 @@ func newIncomingStream(transport DTLSICETransport, receiver RTPReceiverFacade, i
 			mediaType = 1
 		}
 
-		sources := []RTPIncomingSourceGroup{}
+		sources := map[string]RTPIncomingSourceGroup{}
 
 		encodings := track.GetEncodings()
 
@@ -63,7 +63,8 @@ func newIncomingStream(transport DTLSICETransport, receiver RTPReceiverFacade, i
 
 			stream.transport.AddIncomingSourceGroup(source)
 
-			sources = append(sources, source)
+			// Append to soruces with empty rid
+			sources[""] = source
 		}
 
 		incomingTrack := newIncomingStreamTrack(track.GetMedia(), track.GetID(), receiver, sources)

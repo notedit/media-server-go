@@ -280,7 +280,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 
 	t.transport.AddIncomingSourceGroup(source)
 
-	sources := []RTPIncomingSourceGroup{source}
+	sources := map[string]RTPIncomingSourceGroup{"": source}
 
 	incomingTrack := newIncomingStreamTrack(media, trackId, TransportToReceiver(t.transport), sources)
 
