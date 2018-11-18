@@ -45,7 +45,12 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	properties.SetProperty("dtls.hash", remoteDtls.GetHash())
 	properties.SetProperty("dtls.fingerprint", remoteDtls.GetFingerprint())
 
-	properties.SetProperty("disableSTUNKeepAlive", disableSTUNKeepAlive)
+	stunKeepAlive := "false"
+	if disableSTUNKeepAlive {
+		stunKeepAlive = "true"
+	}
+
+	properties.SetProperty("disableSTUNKeepAlive", stunKeepAlive)
 
 	transport.username = NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
 	transport.transport = bundle.AddICETransport(transport.username, properties)
@@ -315,7 +320,7 @@ func (t *Transport) Stop() {
 
 	t.bundle.RemoveICETransport(t.username)
 
-	t.Emit("stopped", t)
+	t.Emit("stopped")
 
 	t.username = nil
 	t.bundle = nil
