@@ -1,11 +1,13 @@
 package sdp
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/notedit/media-server-go/sdp-transform"
+	"github.com/sanity-io/litter"
 )
 
 type SDPInfo struct {
@@ -294,16 +296,13 @@ func (s *SDPInfo) String() string {
 		for _, codec := range media.GetCodecs() {
 
 			if "video" == strings.ToLower(media.GetType()) {
-
 				mediaMap.Rtp = append(mediaMap.Rtp, &sdptransform.RtpStruct{
 					Payload: codec.GetType(),
 					Codec:   strings.ToUpper(codec.GetCodec()),
 					Rate:    90000,
 				})
 			} else {
-
 				if "opus" == strings.ToLower(codec.GetCodec()) {
-
 					mediaMap.Rtp = append(mediaMap.Rtp, &sdptransform.RtpStruct{
 						Payload:  codec.GetType(),
 						Codec:    codec.GetCodec(),
@@ -311,7 +310,6 @@ func (s *SDPInfo) String() string {
 						Encoding: 2,
 					})
 				} else {
-
 					mediaMap.Rtp = append(mediaMap.Rtp, &sdptransform.RtpStruct{
 						Payload: codec.GetType(),
 						Codec:   codec.GetCodec(),
@@ -406,6 +404,8 @@ func (s *SDPInfo) String() string {
 			mediaMap.Rids = append(mediaMap.Rids, rid)
 		}
 
+		litter.Dump(mediaMap)
+
 		// Todo simulcast
 		sdpMap.Media = append(sdpMap.Media, mediaMap)
 	}
@@ -438,7 +438,6 @@ func (s *SDPInfo) String() string {
 				} else if strings.ToLower(md.Type) == strings.ToLower(track.GetMedia()) {
 
 					groups := track.GetSourceGroupS()
-
 					for _, group := range groups {
 						md.SsrcGroups = append(md.SsrcGroups, &sdptransform.SsrcGroupStruct{
 							Semantics: group.GetSemantics(),
@@ -468,10 +467,15 @@ func (s *SDPInfo) String() string {
 		Type: bundleType,
 	})
 
+	litter.Dump(sdpMap)
+
 	sdpStr, err := sdptransform.Write(sdpMap)
 	if err != nil {
+		fmt.Println(sdpStr)
 		println(err)
 	}
+
+	litter.Dump(sdpStr)
 
 	return sdpStr
 }

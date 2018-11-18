@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/Jeffail/gabs"
+	"github.com/sanity-io/litter"
 )
 
 var outerOrder = []byte{'v', 'o', 's', 'i', 'u', 'e', 'p', 'c', 'b', 't', 'r', 'z', 'a'}
@@ -23,6 +24,9 @@ func Write(sdpStruct *SdpStruct) (string, error) {
 		return "", err
 	}
 	session, err := gabs.ParseJSON(sdpBuffer)
+
+	litter.Dump(string(session.Bytes()))
+
 	if err != nil {
 		return "", err
 	}

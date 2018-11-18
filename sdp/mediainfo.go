@@ -1,7 +1,6 @@
 package sdp
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -100,7 +99,6 @@ func (m *MediaInfo) GetCodec(codec string) *CodecInfo {
 func (m *MediaInfo) GetCodecForType(pt int) *CodecInfo {
 
 	for _, codecInfo := range m.codecs {
-		fmt.Println("GetCodec ", codecInfo.GetCodec(), codecInfo.GetType())
 		if codecInfo.GetType() == pt {
 			return codecInfo
 		}
@@ -116,7 +114,6 @@ func (m *MediaInfo) GetCodecs() map[string]*CodecInfo {
 func (m *MediaInfo) HasRTX() bool {
 
 	for _, codecInfo := range m.codecs {
-
 		if codecInfo.HasRTX() {
 			return true
 		}
