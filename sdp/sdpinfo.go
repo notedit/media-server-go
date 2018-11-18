@@ -565,22 +565,17 @@ func Create(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, capabilit
 	dyn := 96
 
 	for mType, capability := range capabilities {
-
 		media := MediaInfoCreate(mType, capability)
-
 		for _, codec := range media.GetCodecs() {
-
 			if codec.GetType() >= 96 {
 				dyn++
 				codec.SetType(dyn)
 			}
-
 			if codec.GetRTX() > 0 {
 				dyn++
 				codec.SetRTX(dyn)
 			}
 		}
-
 		sdpInfo.AddMedia(media)
 	}
 

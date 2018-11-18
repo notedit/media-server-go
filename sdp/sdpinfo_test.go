@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-const sdp = "v=0\r\n" +
+const sdp = "v=1\r\n" +
 	"o=- 4327261771880257373 2 IN IP4 127.0.0.1\r\n" +
 	"s=-\r\n" +
 	"t=0 0\r\n" +
@@ -157,4 +157,43 @@ func Test_Parse(t *testing.T) {
 	if track.GetMedia() != "audio" {
 		t.Error("track can not get media")
 	}
+}
+
+func Test_SDPTOString(t *testing.T) {
+
+	sdpInfo, err := Parse(sdp)
+	if err != nil {
+		t.Error(err)
+	}
+
+	sdpstring := sdpInfo.String()
+
+	sdpInfo2, err := Parse(sdpstring)
+
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Log(sdpstring)
+
+	if sdpInfo.version != sdpInfo2.version {
+		t.Error("version does not equal")
+	}
+
+	if sdpInfo2.GetFirstStream().GetID() != sdpInfo.GetFirstStream().GetID() {
+		t.Error("stream does not equal")
+	}
+
+	if len(sdpInfo2.GetMedias()) != len(sdpInfo.GetMedias()) {
+		t.Error("media count does not equal")
+	}
+
+	if sdpInfo2.ice.GetUfrag() != sdpInfo.ice.GetUfrag() {
+		t.Error("ufrag does not equal")
+	}
+
+	if sdpInfo2.dtls.GetHash() != sdpInfo.dtls.GetHash() {
+		t.Error("dtls hash does not match")
+	}
+
 }
