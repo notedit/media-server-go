@@ -31,7 +31,7 @@ func (s *SimulcastInfo) Clone() *SimulcastInfo {
 
 func (s *SimulcastInfo) AddSimulcastAlternativeStreams(direction DirectionWay, streams []*SimulcastStreamInfo) {
 
-	if direction == DirectionWaySEND {
+	if direction == SEND {
 		s.send = append(s.send, streams)
 	} else {
 		s.recv = append(s.recv, streams)
@@ -40,7 +40,7 @@ func (s *SimulcastInfo) AddSimulcastAlternativeStreams(direction DirectionWay, s
 
 func (s *SimulcastInfo) AddSimulcastStream(direction DirectionWay, stream *SimulcastStreamInfo) {
 
-	if direction == DirectionWaySEND {
+	if direction == SEND {
 		s.send = append(s.send, []*SimulcastStreamInfo{stream})
 	} else {
 		s.recv = append(s.recv, []*SimulcastStreamInfo{stream})
@@ -49,7 +49,7 @@ func (s *SimulcastInfo) AddSimulcastStream(direction DirectionWay, stream *Simul
 
 func (s *SimulcastInfo) GetSimulcastStreams(direction DirectionWay) [][]*SimulcastStreamInfo {
 
-	if direction == DirectionWaySEND {
+	if direction == SEND {
 		return s.send
 	}
 

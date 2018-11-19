@@ -3,6 +3,7 @@ package sdptransform
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -160,8 +161,11 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 			argStr, _ := arg.(string)
 			return argStr
 		} else if x == "%d" {
-			argInt, _ := arg.(int)
-			argStr := strconv.Itoa(argInt)
+			argInt, ok := arg.(float64)
+			if !ok {
+				fmt.Println("interface cast to int error, realtype is ", reflect.TypeOf(arg).String())
+			}
+			argStr := strconv.Itoa(int(argInt))
 			return argStr
 		} else if x == "%v" {
 			return ""

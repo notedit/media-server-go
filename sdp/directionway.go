@@ -1,21 +1,21 @@
 package sdp
 
-type DirectionWay string
+type DirectionWay uint8
 
 const (
-	DirectionWaySEND DirectionWay = "send"
-	DirectionWayRECV DirectionWay = "recv"
+	SEND DirectionWay = iota + 1
+	RECV
 )
 
 func DirectionWaybyValue(d string) DirectionWay {
 
 	switch d {
 	case "recv":
-		return DirectionWayRECV
+		return RECV
 	case "send":
-		return DirectionWaySEND
+		return SEND
 	default:
-		return ""
+		return 0
 	}
 
 }
@@ -23,21 +23,21 @@ func DirectionWaybyValue(d string) DirectionWay {
 func (d DirectionWay) Reverse() DirectionWay {
 
 	switch d {
-	case DirectionWaySEND:
-		return DirectionWayRECV
-	case DirectionWayRECV:
-		return DirectionWaySEND
+	case SEND:
+		return RECV
+	case RECV:
+		return SEND
 	default:
-		return ""
+		return 0
 	}
 }
 
 func (d DirectionWay) String() string {
 
 	switch d {
-	case DirectionWaySEND:
+	case SEND:
 		return "send"
-	case DirectionWayRECV:
+	case RECV:
 		return "recv"
 	default:
 		return ""

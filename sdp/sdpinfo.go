@@ -647,7 +647,7 @@ func Parse(sdp string) (*SDPInfo, error) {
 
 		sdpInfo.SetDTLS(NewDTLSInfo(setup, remoteHash, remoteFingerprint))
 
-		direction := DirectionSENDRECV
+		direction := SENDRECV
 
 		if md.Direction != "" {
 			direction = DirectionbyValue(md.Direction)

@@ -29,6 +29,8 @@ func hasValue(obj *gabs.Container, key string) bool {
 		return true
 	} else if _, ok := value.Data().(int); ok {
 		return true
+	} else if _, ok := value.Data().(float64); ok {
+		return true
 	} else {
 		return false
 	}

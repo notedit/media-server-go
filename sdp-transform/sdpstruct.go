@@ -1,134 +1,135 @@
 package sdptransform
 
 type OriginStruct struct {
-	Username       string `json:"username"`
-	SessionId      string `json:"sessionId"`
-	SessionVersion int    `json:"sessionVersion"`
-	NetType        string `json:"netType"`
-	Address        string `json:"address"`
+	Username       string `json:"username,omitempty"`
+	SessionId      string `json:"sessionId,omitempty"`
+	SessionVersion int    `json:"sessionVersion,omitempty"`
+	NetType        string `json:"netType,omitempty"`
+	IpVer          int    `json:"ipVer,omitempty"`
+	Address        string `json:"address,omitempty"`
 }
 
 type GroupStruct struct {
-	Type string `json:"type"`
-	Mids string `json:"mids"`
+	Type string `json:"type,omitempty"`
+	Mids string `json:"mids,omitempty"`
 }
 
 type MsidSemanticStruct struct {
-	Semantic string `json:"semantic"`
-	Token    string `json:"token"`
+	Semantic string `json:"semantic,omitempty"`
+	Token    string `json:"token,omitempty"`
 }
 
 type ConnectionStruct struct {
-	Version int    `json:"version"`
-	Ip      string `json:"ip"`
+	Version int    `json:"version,omitempty"`
+	Ip      string `json:"ip,omitempty"`
 }
 
 type RtpStruct struct {
 	Payload  int    `json:"payload"`
 	Codec    string `json:"codec"`
-	Rate     int    `json:"rate"`
-	Encoding int    `json:"encoding"`
+	Rate     int    `json:"rate,omitempty"`
+	Encoding int    `json:"encoding,omitempty"`
 }
 
 type RtcpStruct struct {
-	Port    int    `json:"port"`
-	NetType string `json:"netType"`
-	IpVer   int    `json:"ipVer"`
-	Address string `json:"address"`
+	Port    int    `json:"port,omitempty"`
+	NetType string `json:"netType,omitempty"`
+	IpVer   int    `json:"ipVer,omitempty"`
+	Address string `json:"address,omitempty"`
 }
 
 type FmtpStruct struct {
-	Payload int    `json:"payload"`
-	Config  string `json:"config"`
+	Payload int    `json:"payload,omitempty"`
+	Config  string `json:"config,omitempty"`
 }
 
 type FingerprintStruct struct {
-	Type string `json:"type"`
-	Hash string `json:"hash"`
+	Type string `json:"type,omitempty"`
+	Hash string `json:"hash,omitempty"`
 }
 
 type ExtStruct struct {
-	Value int    `json:"value"`
-	Uri   string `json:"uri"`
+	Value int    `json:"value,omitempty"`
+	Uri   string `json:"uri,omitempty"`
 }
 
 type RtcpFbStruct struct {
-	Payload int    `json:"payload"`
-	Type    string `json:"type"`
-	Subtype string `json:"subtype"`
+	Payload int    `json:"payload,omitempty"`
+	Type    string `json:"type,omitempty"`
+	Subtype string `json:"subtype,omitempty"`
 }
 
 type SsrcGroupStruct struct {
-	Semantics string `json:"semantics"`
-	Ssrcs     string `json:"ssrcs"`
+	Semantics string `json:"semantics,omitempty"`
+	Ssrcs     string `json:"ssrcs,omitempty"`
 	SsrcArr   []string
 }
 
 type SsrcStruct struct {
-	Id        uint   `json:"id"`
-	Attribute string `json:"attribute"`
-	Value     string `json:"value"`
+	Id        uint   `json:"id,omitempty"`
+	Attribute string `json:"attribute,omitempty"`
+	Value     string `json:"value,omitempty"`
 }
 
 type BandwithStruct struct {
-	Type  string `json:"type"`
-	Limit int    `json:"limit"`
+	Type  string `json:"type,omitempty"`
+	Limit int    `json:"limit,omitempty"`
 }
 
 type CandidateStruct struct {
-	Foundation string `json:"foundation"`
-	Component  int    `json:"component"`
-	Transport  string `json:"transport"`
-	Priority   int    `json:"priority"`
-	Ip         string `json:"ip"`
-	Port       int    `json:"port"`
-	Type       string `json:"type"`
-	Raddr      string `json:"raddr"`
-	Rport      int    `json:"aport"`
+	Foundation string `json:"foundation,omitempty"`
+	Component  int    `json:"component,omitempty"`
+	Transport  string `json:"transport,omitempty"`
+	Priority   int    `json:"priority,omitempty"`
+	Ip         string `json:"ip,omitempty"`
+	Port       int    `json:"port,omitempty"`
+	Type       string `json:"type,omitempty"`
+	Raddr      string `json:"raddr,omitempty"`
+	Rport      int    `json:"aport,omitempty"`
 }
 
 type RidStruct struct {
-	Id        string `json:"id"`
-	Direction string `json:"direction"`
-	Params    string `json:"params"`
+	Id        string `json:"id,omitempty"`
+	Direction string `json:"direction,omitempty"`
+	Params    string `json:"params,omitempty"`
 }
 
 type MediaStruct struct {
-	Rtp         []*RtpStruct       `json:"rtp"`
-	Fmtp        []*FmtpStruct      `json:"fmtp"`
-	Type        string             `json:"type"`
-	Port        int                `json:"port"`
-	Protocal    string             `json:"protocal"`
-	Payloads    string             `json:"payloads"`
-	Connection  *ConnectionStruct  `json:"connection"`
-	Rtcp        *RtcpStruct        `json:"rtcp"`
-	IceUfrag    string             `json:"iceUfrag"`
-	IcePwd      string             `json:"icePwd"`
-	Fingerprint *FingerprintStruct `json:"fingerprint"`
-	Setup       string             `json:"setup"`
-	Mid         string             `json:"mid"`
-	Msid        string             `json:"msid"`
-	Ext         []*ExtStruct       `json:"ext"`
-	Direction   string             `json:"direction"`
-	RtcpRsize   string             `json:"rtcpRsize"`
-	RtcpMux     string             `json:"rtcpMux"`
-	RtcpFb      []*RtcpFbStruct    `json:"rtcpFb"`
-	Rids        []*RidStruct       `json:"rids"`
-	SsrcGroups  []*SsrcGroupStruct `json:"ssrcGroups"`
-	Ssrcs       []*SsrcStruct      `json:"ssrcs"`
-	Candidates  []*CandidateStruct `json:"candidates"`
-	Bandwidth   []*BandwithStruct  `json:"bandwidth"`
+	Rtp         []*RtpStruct       `json:"rtp,omitempty"`
+	Fmtp        []*FmtpStruct      `json:"fmtp,omitempty"`
+	Type        string             `json:"type,omitempty"`
+	Port        int                `json:"port,omitempty"`
+	Protocal    string             `json:"protocal,omitempty"`
+	Payloads    string             `json:"payloads,omitempty"`
+	Connection  *ConnectionStruct  `json:"connection,omitempty"`
+	Rtcp        *RtcpStruct        `json:"rtcp,omitempty"`
+	IceUfrag    string             `json:"iceUfrag,omitempty"`
+	IcePwd      string             `json:"icePwd,omitempty"`
+	Fingerprint *FingerprintStruct `json:"fingerprint,omitempty"`
+	Setup       string             `json:"setup,omitempty"`
+	Mid         string             `json:"mid,omitempty"`
+	Msid        string             `json:"msid,omitempty"`
+	Ext         []*ExtStruct       `json:"ext,omitempty"`
+	Direction   string             `json:"direction,omitempty"`
+	RtcpRsize   string             `json:"rtcpRsize,omitempty"`
+	RtcpMux     string             `json:"rtcpMux,omitempty"`
+	RtcpFb      []*RtcpFbStruct    `json:"rtcpFb,omitempty"`
+	Rids        []*RidStruct       `json:"rids,omitempty"`
+	SsrcGroups  []*SsrcGroupStruct `json:"ssrcGroups,omitempty"`
+	Ssrcs       []*SsrcStruct      `json:"ssrcs,omitempty"`
+	Candidates  []*CandidateStruct `json:"candidates,omitempty"`
+	Bandwidth   []*BandwithStruct  `json:"bandwidth,omitempty"`
 }
 
 type SdpStruct struct {
-	Version      int                 `json:"version"`
-	Origin       *OriginStruct       `json:"origin"`
-	Name         string              `json:"name"`
-	Timing       interface{}         `json:"timing"`
-	Groups       []*GroupStruct      `json:"groups"`
-	MsidSemantic *MsidSemanticStruct `json:"msidSemantic"`
-	Media        []*MediaStruct      `json:"media"`
-	Fingerprint  *FingerprintStruct  `json:"fingerprint"`
-	Connection   *ConnectionStruct   `json:"connection"`
-	Icelite      string              `json:"icelite"`
+	Version      int                 `json:"version,omitempty"`
+	Origin       *OriginStruct       `json:"origin,omitempty"`
+	Name         string              `json:"name,omitempty"`
+	Timing       interface{}         `json:"timing,omitempty"`
+	Groups       []*GroupStruct      `json:"groups,omitempty"`
+	MsidSemantic *MsidSemanticStruct `json:"msidSemantic,omitempty"`
+	Media        []*MediaStruct      `json:"media,omitempty"`
+	Fingerprint  *FingerprintStruct  `json:"fingerprint,omitempty"`
+	Connection   *ConnectionStruct   `json:"connection,omitempty"`
+	Icelite      string              `json:"icelite,omitempty"`
 }

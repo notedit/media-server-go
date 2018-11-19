@@ -1,55 +1,55 @@
 package sdp
 
-type Direction string
+type Direction uint8
 
 const (
-	DirectionSENDRECV Direction = "sendrecv"
-	DirectionSENDONLY Direction = "sendonly"
-	DirectionRECVONLY Direction = "recvonly"
-	DirectionINACTIVE Direction = "inactive"
+	SENDRECV Direction = iota + 1
+	SENDONLY
+	RECVONLY
+	INACTIVE
 )
 
 func DirectionbyValue(direction string) Direction {
 
 	switch direction {
 	case "sendrecv":
-		return DirectionSENDRECV
+		return SENDRECV
 	case "sendonly":
-		return DirectionSENDONLY
+		return SENDONLY
 	case "recvonly":
-		return DirectionRECVONLY
+		return RECVONLY
 	case "inactive":
-		return DirectionINACTIVE
+		return INACTIVE
 	default:
-		return ""
+		return 0
 	}
 
 }
 
 func (d Direction) Reverse() Direction {
 	switch d {
-	case DirectionSENDRECV:
-		return DirectionSENDRECV
-	case DirectionSENDONLY:
-		return DirectionRECVONLY
-	case DirectionRECVONLY:
-		return DirectionSENDONLY
-	case DirectionINACTIVE:
-		return DirectionINACTIVE
+	case SENDRECV:
+		return SENDRECV
+	case SENDONLY:
+		return RECVONLY
+	case RECVONLY:
+		return SENDONLY
+	case INACTIVE:
+		return INACTIVE
 	default:
-		return ""
+		return 0
 	}
 }
 
 func (d Direction) String() string {
 	switch d {
-	case DirectionSENDRECV:
+	case SENDRECV:
 		return "sendrecv"
-	case DirectionSENDONLY:
+	case SENDONLY:
 		return "sendonly"
-	case DirectionRECVONLY:
+	case RECVONLY:
 		return "recvonly"
-	case DirectionINACTIVE:
+	case INACTIVE:
 		return "inactive"
 	default:
 		return ""

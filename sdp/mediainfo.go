@@ -20,7 +20,7 @@ func NewMediaInfo(id string, mtype string) *MediaInfo {
 	media := &MediaInfo{
 		id:         id,
 		mtype:      mtype,
-		direction:  DirectionSENDRECV,
+		direction:  SENDRECV,
 		extensions: map[int]string{},
 		codecs:     map[string]*CodecInfo{},
 		rids:       map[string]*RIDInfo{},
@@ -184,7 +184,7 @@ func MediaInfoCreate(mType string, capability *Capability) *MediaInfo {
 			mediaInfo.AddExtension(i, extension)
 		}
 	} else {
-		mediaInfo.SetDirection(DirectionINACTIVE)
+		mediaInfo.SetDirection(INACTIVE)
 	}
 
 	return mediaInfo

@@ -7,7 +7,6 @@ import (
 
 var sdpStr = `v=0
 o=- 20518 0 IN IP4 203.0.113.1
-s= 
 t=0 0
 c=IN IP4 203.0.113.1
 a=ice-ufrag:F7gI
