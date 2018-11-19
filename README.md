@@ -5,10 +5,8 @@ WebRTC media server for go
 
 ## How to build
 
-1,  build external mp4v2  openssl  libsrtp
+1,  clone the code, include the submodule
 
-2,  cp config.mk  mediaserver/  then build  make libmediaserver.a
+2,  make all
 
-3,  swig -go -cgo -c++ -intgosize 64 mediaserver.i
-
-4,  go build 
+3,  go build 
