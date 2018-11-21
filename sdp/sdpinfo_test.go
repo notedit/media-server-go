@@ -175,24 +175,20 @@ func Test_SDPTOString(t *testing.T) {
 		t.Error(err)
 	}
 
-	// if sdpInfo.version != sdpInfo2.version {
-	// 	t.Error("version does not equal")
-	// }
+	if sdpInfo2.GetFirstStream().GetID() != sdpInfo.GetFirstStream().GetID() {
+		t.Error("stream does not equal")
+	}
 
-	// if sdpInfo2.GetFirstStream().GetID() != sdpInfo.GetFirstStream().GetID() {
-	// 	t.Error("stream does not equal")
-	// }
+	if len(sdpInfo2.GetMedias()) != len(sdpInfo.GetMedias()) {
+		t.Error("media count does not equal")
+	}
 
-	// if len(sdpInfo2.GetMedias()) != len(sdpInfo.GetMedias()) {
-	// 	t.Error("media count does not equal")
-	// }
+	if sdpInfo2.ice.GetUfrag() != sdpInfo.ice.GetUfrag() {
+		t.Error("ufrag does not equal")
+	}
 
-	// if sdpInfo2.ice.GetUfrag() != sdpInfo.ice.GetUfrag() {
-	// 	t.Error("ufrag does not equal")
-	// }
-
-	// if sdpInfo2.dtls.GetHash() != sdpInfo.dtls.GetHash() {
-	// 	t.Error("dtls hash does not match")
-	// }
+	if sdpInfo2.dtls.GetHash() != sdpInfo.dtls.GetHash() {
+		t.Error("dtls hash does not match")
+	}
 
 }

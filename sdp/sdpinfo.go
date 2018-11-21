@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/notedit/media-server-go/sdp-transform"
-	"github.com/sanity-io/litter"
 )
 
 type SDPInfo struct {
@@ -404,8 +403,6 @@ func (s *SDPInfo) String() string {
 			mediaMap.Rids = append(mediaMap.Rids, rid)
 		}
 
-		litter.Dump(mediaMap)
-
 		// Todo simulcast
 		sdpMap.Media = append(sdpMap.Media, mediaMap)
 	}
@@ -467,15 +464,11 @@ func (s *SDPInfo) String() string {
 		Type: bundleType,
 	})
 
-	litter.Dump(sdpMap)
-
 	sdpStr, err := sdptransform.Write(sdpMap)
 	if err != nil {
 		fmt.Println(sdpStr)
 		println(err)
 	}
-
-	litter.Dump(sdpStr)
 
 	return sdpStr
 }
