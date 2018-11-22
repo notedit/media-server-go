@@ -1,6 +1,9 @@
 package mediaserver
 
-import "github.com/chuckpreslar/emission"
+import (
+	"github.com/chuckpreslar/emission"
+	"github.com/notedit/media-server-go/sdp"
+)
 
 type Encoding struct {
 	id           string
@@ -27,6 +30,7 @@ type IncomingStreamTrack struct {
 	counter   int
 	encodings map[string]*Encoding
 	stats     *IncomingStats // buffer the last stats
+	trackInfo *sdp.TrackInfo
 	*emission.Emitter
 }
 
@@ -70,6 +74,11 @@ func (i *IncomingStreamTrack) GetID() string {
 
 func (i *IncomingStreamTrack) GetMedia() string {
 	return i.media
+}
+
+func (i *IncomingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
+	// todo check trackInfo
+	return i.trackInfo
 }
 
 func (i *IncomingStreamTrack) GetSSRCs() []map[string]RTPIncomingSource {

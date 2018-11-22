@@ -1,6 +1,9 @@
 package mediaserver
 
-import "github.com/chuckpreslar/emission"
+import (
+	"github.com/chuckpreslar/emission"
+	"github.com/notedit/media-server-go/sdp"
+)
 
 type OutgoingStreamTrack struct {
 	id         string
@@ -9,6 +12,7 @@ type OutgoingStreamTrack struct {
 	sender     RTPSenderFacade
 	source     RTPOutgoingSourceGroup
 	transpoder *Transponder
+	trackInfo  *sdp.TrackInfo
 	*emission.Emitter
 }
 
@@ -30,6 +34,28 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 	track.source = source
 	track.Emitter = emission.NewEmitter()
 
+	track.trackInfo = sdp.NewTrackInfo(id, media)
+
+	track.trackInfo.AddSSRC(source.GetMedia().GetSsrc())
+
+	if source.GetRtx().GetSsrc() > 0 {
+		track.trackInfo.AddSSRC(source.GetRtx().GetSsrc())
+	}
+
+	if source.GetFec().GetSsrc() > 0 {
+		track.trackInfo.AddSSRC(source.GetFec().GetSsrc())
+	}
+
+	if source.GetRtx().GetSsrc() > 0 {
+		sourceGroup := sdp.NewSourceGroupInfo("FID", []uint{source.GetMedia().GetSsrc(), source.GetRtx().GetSsrc()})
+		track.trackInfo.AddSourceGroup(sourceGroup)
+	}
+
+	if source.GetFec().GetSsrc() > 0 {
+		sourceGroup := sdp.NewSourceGroupInfo("FEC-FR", []uint{source.GetMedia().GetSsrc(), source.GetFec().GetSsrc()})
+		track.trackInfo.AddSourceGroup(sourceGroup)
+	}
+
 	// todo onremb callback
 
 	return track
@@ -41,6 +67,10 @@ func (o *OutgoingStreamTrack) GetID() string {
 
 func (o *OutgoingStreamTrack) GetMedia() string {
 	return o.media
+}
+
+func (o *OutgoingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
+	return o.trackInfo
 }
 
 func (o *OutgoingStreamTrack) GetStats() {

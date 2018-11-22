@@ -1,6 +1,7 @@
 package mediaserver
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/chuckpreslar/emission"
@@ -26,41 +27,7 @@ func NewOutgoingStream(transport DTLSICETransport, info *sdp.StreamInfo) *Outgoi
 	stream.Emitter = emission.NewEmitter()
 
 	for _, track := range info.GetTracks() {
-
-		var mediaType MediaFrameType = 0
-		if track.GetMedia() == "video" {
-			mediaType = 1
-		}
-
-		source := NewRTPOutgoingSourceGroup(mediaType)
-
-		source.GetMedia().SetSsrc(track.GetSSRCS()[0])
-
-		fid := track.GetSourceGroup("FID")
-		fec_fr := track.GetSourceGroup("FEC-FR")
-
-		if fid != nil {
-			source.GetRtx().SetSsrc(fid.GetSSRCs()[1])
-		} else {
-			source.GetRtx().SetSsrc(0)
-		}
-
-		if fec_fr != nil {
-			source.GetFec().SetSsrc(fec_fr.GetSSRCs()[1])
-		} else {
-			source.GetFec().SetSsrc(0)
-		}
-
-		stream.transport.AddOutgoingSourceGroup(source)
-
-		outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), TransportToSender(stream.transport), source)
-
-		outgoingTrack.Once("stopped", func() {
-			delete(stream.tracks, outgoingTrack.GetID())
-			stream.transport.RemoveOutgoingSourceGroup(source)
-		})
-
-		stream.tracks[outgoingTrack.GetID()] = outgoingTrack
+		stream.CreateTrack(track)
 	}
 
 	return stream
@@ -174,6 +141,63 @@ func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
 		}
 	}
 	return videoTracks
+}
+
+func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) error {
+
+	if _, ok := o.tracks[track.GetID()]; ok {
+		return errors.New("Track id already present in stream")
+	}
+
+	track.Once("stopped", func() {
+		delete(o.tracks, track.GetID())
+	})
+
+	o.tracks[track.GetID()] = track
+
+	return nil
+}
+
+func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack {
+
+	var mediaType MediaFrameType = 0
+	if track.GetMedia() == "video" {
+		mediaType = 1
+	}
+
+	source := NewRTPOutgoingSourceGroup(mediaType)
+
+	source.GetMedia().SetSsrc(track.GetSSRCS()[0])
+
+	fid := track.GetSourceGroup("FID")
+	fec_fr := track.GetSourceGroup("FEC-FR")
+
+	if fid != nil {
+		source.GetRtx().SetSsrc(fid.GetSSRCs()[1])
+	} else {
+		source.GetRtx().SetSsrc(0)
+	}
+
+	if fec_fr != nil {
+		source.GetFec().SetSsrc(fec_fr.GetSSRCs()[1])
+	} else {
+		source.GetFec().SetSsrc(0)
+	}
+
+	o.transport.AddOutgoingSourceGroup(source)
+
+	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), TransportToSender(o.transport), source)
+
+	outgoingTrack.Once("stopped", func() {
+		delete(o.tracks, outgoingTrack.GetID())
+		o.transport.RemoveOutgoingSourceGroup(source)
+	})
+
+	o.tracks[outgoingTrack.GetID()] = outgoingTrack
+
+	o.EmitSync("track", outgoingTrack)
+
+	return outgoingTrack
 }
 
 func (o *OutgoingStream) Stop() {

@@ -193,8 +193,24 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 
 	t.outgoingStreams[outgoingStream.GetID()] = outgoingStream
 
+	outgoingStream.On("track", func(track *OutgoingStreamTrack) {
+
+		t.EmitSync("outgoingtrack", track, outgoingStream)
+	})
+
+	for _, track := range outgoingStream.GetTracks() {
+
+		t.EmitSync("outgoingtrack", track, outgoingStream)
+	}
+
 	return outgoingStream
 }
+
+// func (t *Transport) CreateOutgoingStreamWithID(streamID string) *OutgoingStream {
+
+// 	fmt.Println(streamID)
+// 	return nil
+// }
 
 func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrcs map[string]uint) *OutgoingStreamTrack {
 
@@ -236,6 +252,8 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 		t.transport.RemoveOutgoingSourceGroup(source)
 	})
 
+	t.EmitSync("outgoingtrack", outgoingTrack)
+
 	return outgoingTrack
 }
 
@@ -248,6 +266,16 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 	incomingStream.Once("stopped", func() {
 		delete(t.incomingStreams, incomingStream.GetID())
 	})
+
+	incomingStream.On("track", func(track *IncomingStreamTrack) {
+
+		t.EmitSync("incomingtrack", track, incomingStream)
+	})
+
+	for _, track := range incomingStream.GetTracks() {
+
+		t.EmitSync("incomingtrack", track, incomingStream)
+	}
 
 	return incomingStream
 }
@@ -295,10 +323,36 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 		}
 	})
 
+	t.EmitSync("incomingtrack", incomingTrack, nil)
+
 	return incomingTrack
 }
 
 // todo create simple outgoing stream
+
+func (t *Transport) GetIncomingStreams() []*IncomingStream {
+	incomings := []*IncomingStream{}
+	for _, stream := range t.incomingStreams {
+		incomings = append(incomings, stream)
+	}
+	return incomings
+}
+
+func (t *Transport) GetIncomingStream(streamId string) *IncomingStream {
+	return t.incomingStreams[streamId]
+}
+
+func (t *Transport) GetOutgoingStreams() []*OutgoingStream {
+	outgoings := []*OutgoingStream{}
+	for _, stream := range t.outgoingStreams {
+		outgoings = append(outgoings, stream)
+	}
+	return outgoings
+}
+
+func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
+	return t.outgoingStreams[streamId]
+}
 
 // Stop stop this transport
 func (t *Transport) Stop() {

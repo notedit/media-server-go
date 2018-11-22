@@ -51,8 +51,16 @@ func (e *Endpoint) CreateTransport(remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSI
 		localCandidatesClone = append(localCandidatesClone, candidate.Clone())
 	}
 
-	transport := NewTransport(e.bundle, remoteIce.Clone(), remoteDtls.Clone(), remoteCandidatesClone,
-		localIce.Clone(), localDtls.Clone(), localCandidatesClone, disableSTUNKeepAlive)
+	remoteIceClone := remoteIce.Clone()
+	remoteDtlsClone := remoteDtls.Clone()
+	localIceClone := localIce.Clone()
+	localDtlsClone := localDtls.Clone()
+
+	localIceClone.SetLite(true)
+	localIceClone.SetEndOfCandidate(true)
+
+	transport := NewTransport(e.bundle, remoteIceClone, remoteDtlsClone, remoteCandidatesClone,
+		localIceClone, localDtlsClone, localCandidatesClone, disableSTUNKeepAlive)
 
 	e.transports[transport.username.ToString()] = transport
 
@@ -134,6 +142,8 @@ func (e *Endpoint) Stop() {
 	}
 
 	e.transports = nil
+
+	e.EmitSync("stopped")
 
 	e.bundle.End()
 
