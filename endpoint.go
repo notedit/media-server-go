@@ -71,25 +71,21 @@ func (e *Endpoint) CreateTransport(remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSI
 	return transport
 }
 
-func (e *Endpoint) CreateTransportWithRemote(remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo,
-	remoteCandidates []*sdp.CandidateInfo, disableSTUNKeepAlive bool) *Transport {
+func (e *Endpoint) CreateTransportWithRemote(sdpInfo *sdp.SDPInfo, disableSTUNKeepAlive bool) *Transport {
 
 	localIce := sdp.GenerateICEInfo(true)
-	localDtls := sdp.NewDTLSInfo(remoteDtls.GetSetup().Reverse(), "sha-256", e.fingerprint)
-	localCandidates := []*sdp.CandidateInfo{e.candidate}
+	localDtls := sdp.NewDTLSInfo(sdpInfo.GetDTLS().GetSetup().Reverse(), "sha-256", e.fingerprint)
+	localCandidates := []*sdp.CandidateInfo{e.candidate.Clone()}
 
 	remoteCandidatesClone := []*sdp.CandidateInfo{}
-	for _, candidate := range remoteCandidates {
+	for _, candidate := range sdpInfo.GetCandidates() {
 		remoteCandidatesClone = append(remoteCandidatesClone, candidate.Clone())
 	}
 
-	localCandidatesClone := []*sdp.CandidateInfo{}
-	for _, candidate := range localCandidates {
-		localCandidatesClone = append(localCandidatesClone, candidate.Clone())
-	}
+	remoteIceClone := sdpInfo.GetICE().Clone()
+	remoteDtlsClone := sdpInfo.GetDTLS().Clone()
 
-	transport := NewTransport(e.bundle, remoteIce.Clone(), remoteDtls.Clone(), remoteCandidatesClone,
-		localIce, localDtls, localCandidatesClone, disableSTUNKeepAlive)
+	transport := NewTransport(e.bundle, remoteIceClone, remoteDtlsClone, remoteCandidatesClone, localIce, localDtls, localCandidates, disableSTUNKeepAlive)
 
 	e.transports[transport.username.ToString()] = transport
 

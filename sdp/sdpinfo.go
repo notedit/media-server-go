@@ -170,7 +170,7 @@ func (s *SDPInfo) GetTrackByMediaID(mid string) *TrackInfo {
 	return nil
 }
 
-func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, capabilities map[string]*Capability) *SDPInfo {
+func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, medias map[string]*MediaInfo) *SDPInfo {
 
 	sdpInfo := NewSDPInfo()
 
@@ -187,10 +187,9 @@ func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateIn
 	}
 
 	for _, media := range s.medias {
-
-		capability := capabilities[media.GetType()]
-		if capability != nil {
-			media.Answer(capability)
+		supported := medias[media.GetType()]
+		if supported != nil {
+			media.Answer(supported)
 			sdpInfo.AddMedia(media)
 		}
 	}
