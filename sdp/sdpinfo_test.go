@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-const sdp = "v=1\r\n" +
+const sdpstr = "v=1\r\n" +
 	"o=- 4327261771880257373 2 IN IP4 127.0.0.1\r\n" +
 	"s=-\r\n" +
 	"t=0 0\r\n" +
@@ -111,9 +111,43 @@ const sdp = "v=1\r\n" +
 	"a=ssrc:1080772241 mslabel:xIKmAwWv4ft4ULxNJGhkHzvPaCkc8EKo4SGj\r\n" +
 	"a=ssrc:1080772241 label:cf093ab0-0b28-4930-8fe1-7ca8d529be25\r\n"
 
+var Capabilities = map[string]*Capability{
+	"audio": &Capability{
+		Codecs: []string{"opus"},
+	},
+	"video": &Capability{
+		Codecs: []string{"vp8"},
+		Rtx:    true,
+		Rtcpfbs: []*RtcpFeedback{
+			&RtcpFeedback{
+				ID: "goog-remb",
+			},
+			&RtcpFeedback{
+				ID: "transport-cc",
+			},
+			&RtcpFeedback{
+				ID:     "ccm",
+				Params: []string{"fir"},
+			},
+			&RtcpFeedback{
+				ID:     "nack",
+				Params: []string{"pli"},
+			},
+		},
+		Extensions: []string{
+			"urn:3gpp:video-orientation",
+			"http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01",
+			"http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time",
+			"urn:ietf:params:rtp-hdrext:toffse",
+			"urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id",
+			"urn:ietf:params:rtp-hdrext:sdes:mid",
+		},
+	},
+}
+
 func Test_Parse(t *testing.T) {
 
-	offer, err := Parse(sdp)
+	offer, err := Parse(sdpstr)
 	if err != nil {
 		t.Error(err)
 	}
@@ -161,7 +195,7 @@ func Test_Parse(t *testing.T) {
 
 func Test_SDPTOString(t *testing.T) {
 
-	sdpInfo, err := Parse(sdp)
+	sdpInfo, err := Parse(sdpstr)
 	if err != nil {
 		t.Error(err)
 	}
@@ -189,6 +223,29 @@ func Test_SDPTOString(t *testing.T) {
 
 	if sdpInfo2.dtls.GetHash() != sdpInfo.dtls.GetHash() {
 		t.Error("dtls hash does not match")
+	}
+}
+
+func Test_SDPAnswer(t *testing.T) {
+
+	offer, err := Parse(sdpstr)
+
+	if err != nil {
+		t.Error(err)
+	}
+
+	iceInfo := ICEInfoGenerate(true)
+	dtlsInfo := NewDTLSInfo(SETUPACTPASS, "sha-256", "F2:AA:0E:C3:22:59:5E:14:95:69:92:3D:13:B4:84:24:2C:C2:A2:C0:3E:FD:34:8E:5E:EA:6F:AF:52:CE:E6:0F")
+	candidate := NewCandidateInfo("1", 1, "UDP", 33554431, "127.0.0.1", 10000, "host", "", 0)
+
+	answer := offer.Answer(iceInfo, dtlsInfo, []*CandidateInfo{candidate}, Capabilities)
+
+	if answer.GetMedia("audio") == nil {
+		t.Error("answer audio error")
+	}
+
+	if answer.GetMedia("video") == nil {
+		t.Error("answer video error")
 	}
 
 }

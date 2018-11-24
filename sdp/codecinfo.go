@@ -145,9 +145,15 @@ func CodecMapFromNames(names []string, rtx bool, rtcpfbs []*RTCPFeedbackInfo) ma
 			}
 		}
 
-		for _, param := range params {
-			values := strings.Split(param, "=")
-			codec.AddParam(values[0], values[1])
+		if len(params) > 1 {
+			params = params[1:]
+			for _, param := range params {
+				values := strings.Split(param, "=")
+				if len(values) < 2 {
+					continue
+				}
+				codec.AddParam(values[0], values[1])
+			}
 		}
 
 		codecs[codecName] = codec
