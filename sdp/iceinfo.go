@@ -36,6 +36,21 @@ func GenerateICEInfo(lite bool) *ICEInfo {
 	}
 }
 
+func ICEInfoGenerate(lite bool) *ICEInfo {
+
+	ufrag := make([]byte, 8)
+	password := make([]byte, 24)
+	rand.Read(ufrag)
+	rand.Read(password)
+
+	return &ICEInfo{
+		ufrag:           hex.EncodeToString(ufrag),
+		password:        hex.EncodeToString(password),
+		lite:            lite,
+		endOfCandidates: false,
+	}
+}
+
 func (c *ICEInfo) Clone() *ICEInfo {
 
 	return &ICEInfo{
