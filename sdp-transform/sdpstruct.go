@@ -14,6 +14,11 @@ type GroupStruct struct {
 	Mids string `json:"mids,omitempty"`
 }
 
+type TimingStruct struct {
+	Start int `json:"start"`
+	Stop  int `json:"stop"`
+}
+
 type MsidSemanticStruct struct {
 	Semantic string `json:"semantic,omitempty"`
 	Token    string `json:"token,omitempty"`
@@ -122,10 +127,10 @@ type MediaStruct struct {
 }
 
 type SdpStruct struct {
-	Version      int                 `json:"version,omitempty"`
+	Version      int                 `json:"version"`
 	Origin       *OriginStruct       `json:"origin,omitempty"`
 	Name         string              `json:"name,omitempty"`
-	Timing       interface{}         `json:"timing,omitempty"`
+	Timing       *TimingStruct       `json:"timing"`
 	Groups       []*GroupStruct      `json:"groups,omitempty"`
 	MsidSemantic *MsidSemanticStruct `json:"msidSemantic,omitempty"`
 	Media        []*MediaStruct      `json:"media,omitempty"`

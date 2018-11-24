@@ -37,7 +37,7 @@ func Write(sdpStruct *SdpStruct) (string, error) {
 	}
 
 	if !session.Exists("name") {
-		session.Set("-", "name")
+		session.Set(" ", "name")
 	}
 
 	if !session.Exists("media") {
@@ -112,6 +112,10 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 
 	var format string
 
+	if otype == 't' {
+		litter.Dump(rule)
+	}
+
 	if len(rule.Format) == 0 {
 		if rule.FormatFunc != nil {
 			var container *gabs.Container
@@ -173,6 +177,8 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 
 		return ""
 	})
+
+	litter.Dump(string(line) + formatStr)
 
 	return string(line) + formatStr
 }

@@ -1,7 +1,10 @@
 package sdp
 
 import (
+	"fmt"
 	"strings"
+
+	"github.com/sanity-io/litter"
 )
 
 type MediaInfo struct {
@@ -247,10 +250,18 @@ func (m *MediaInfo) AnswerCapability(cap *Capability) *MediaInfo {
 	}
 	codecs := CodecMapFromNames(cap.Codecs, cap.Rtx, rtcpfbs)
 
+	if m.mtype == "video" {
+		fmt.Println("11111111111111111")
+		litter.Dump(codecs)
+	}
+
 	for codecName, codec := range m.codecs {
 		// If we support this codec
-		if codecs[codecName] != nil {
-			supported := codecs[codecName]
+
+		lowerCodecName := strings.ToLower(codecName)
+		if codecs[lowerCodecName] != nil {
+
+			supported := codecs[lowerCodecName]
 			if supported.GetCodec() == "h264" && supported.HasParam("packetization-mode") && supported.GetParam("packetization-mode") != codec.GetParam("packetization-mode") {
 				continue
 			}

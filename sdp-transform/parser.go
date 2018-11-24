@@ -215,6 +215,7 @@ func parseReg(rule *Rule, location *gabs.Container, content []byte) {
 	if len(rule.Push) != 0 {
 		location.ArrayAppend(keyLocation.Data(), rule.Push)
 	}
+
 }
 
 func attachProperties(match [][]byte, location *gabs.Container, names []string, rawName string, types []rune) {

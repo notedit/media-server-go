@@ -110,7 +110,7 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	o.Detach()
 
 	// todo add remblistener
-	transponder := NewRTPStreamTransponderFacade(o.source, o.sender, nil)
+	transponder := NewRTPStreamTransponderFacade(o.source, o.sender, o)
 
 	o.transpoder = NewTransponder(transponder)
 
@@ -161,4 +161,17 @@ func (o *OutgoingStreamTrack) Stop() {
 func (o *OutgoingStreamTrack) onTransponderStopped() {
 
 	o.transpoder = nil
+}
+
+// add fake OnREMB listender
+func (o *OutgoingStreamTrack) Swigcptr() uintptr {
+	return 0
+}
+
+func (o *OutgoingStreamTrack) SwigIsREMBListener() {
+
+}
+
+func (o *OutgoingStreamTrack) OnREMB() {
+
 }

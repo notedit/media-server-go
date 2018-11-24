@@ -170,6 +170,6 @@ func TestStruct(t *testing.T) {
 		t.Error("can not parse payload")
 	}
 
-	t.Log("==========")
-	t.Log(sdpStruct)
+	t.Log("=================")
+	t.Log(sdpStruct.Timing)
 }
