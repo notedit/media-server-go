@@ -170,7 +170,7 @@ func (s *SDPInfo) GetTrackByMediaID(mid string) *TrackInfo {
 	return nil
 }
 
-func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, medias map[string]*MediaInfo) *SDPInfo {
+func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, medias map[string]*Capability) *SDPInfo {
 
 	sdpInfo := NewSDPInfo()
 
@@ -189,8 +189,8 @@ func (s *SDPInfo) Answer(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateIn
 	for _, media := range s.medias {
 		supported := medias[media.GetType()]
 		if supported != nil {
-			media.Answer(supported)
-			sdpInfo.AddMedia(media)
+			answer := media.AnswerCapability(supported)
+			sdpInfo.AddMedia(answer)
 		}
 	}
 
@@ -533,13 +533,6 @@ func (s *SDPInfo) Unify() *SDPInfo {
 	cloned.SetDTLS(s.GetDTLS().Clone())
 
 	return cloned
-}
-
-type Capability struct {
-	Codecs     []string
-	Rtx        bool
-	Rtcpfbs    []*RTCPFeedbackInfo
-	Extensions []string
 }
 
 func Create(ice *ICEInfo, dtls *DTLSInfo, candidates []*CandidateInfo, capabilities map[string]*Capability) *SDPInfo {

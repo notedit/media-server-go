@@ -236,13 +236,67 @@ func (m *MediaInfo) Answer(supportedMedia *MediaInfo) *MediaInfo {
 	return answer
 }
 
+func (m *MediaInfo) AnswerCapability(cap *Capability) *MediaInfo {
+
+	answer := NewMediaInfo(m.id, m.mtype)
+	answer.SetDirection(m.direction.Reverse())
+
+	rtcpfbs := []*RTCPFeedbackInfo{}
+	for _, rtcpfb := range cap.Rtcpfbs {
+		rtcpfbs = append(rtcpfbs, NewRTCPFeedbackInfo(rtcpfb.ID, rtcpfb.Params))
+	}
+	codecs := CodecMapFromNames(cap.Codecs, cap.Rtx, rtcpfbs)
+
+	for codecName, codec := range m.codecs {
+		// If we support this codec
+		if codecs[codecName] != nil {
+			supported := codecs[codecName]
+			if supported.GetCodec() == "h264" && supported.HasParam("packetization-mode") && supported.GetParam("packetization-mode") != codec.GetParam("packetization-mode") {
+				continue
+			}
+			if supported.GetCodec() == "h264" && supported.HasParam("profile-level-id") && supported.GetParam("profile-level-id") != codec.GetParam("profile-level-id") {
+				continue
+			}
+			cloned := supported.Clone()
+			cloned.SetType(codec.GetType())
+			if cloned.HasRTX() {
+				cloned.SetRTX(codec.GetRTX())
+			}
+			cloned.AddParams(codec.GetParams())
+			answer.AddCodec(cloned)
+		}
+	}
+
+	//extentions
+	for i, uri := range m.extensions {
+		if contains(cap.Extensions, uri) {
+			answer.AddExtension(i, uri)
+		}
+	}
+
+	if cap.Simulcast && m.simulcast && m.simulcastInfo != nil {
+		// simulcast := NewSimulcastInfo()
+
+		// send := m.simulcastInfo.GetSimulcastStreams(SEND)
+		// if send != nil {
+
+		// }
+	}
+
+	return answer
+}
+
 func MediaInfoCreate(mType string, capability *Capability) *MediaInfo {
 
 	mediaInfo := NewMediaInfo(mType, mType)
 
 	if capability != nil {
 		if capability.Codecs != nil {
-			codecs := CodecMapFromNames(capability.Codecs, capability.Rtx, capability.Rtcpfbs)
+			rtcpfbs := []*RTCPFeedbackInfo{}
+			for _, rtcpfb := range capability.Rtcpfbs {
+				rtcpfbs = append(rtcpfbs, NewRTCPFeedbackInfo(rtcpfb.ID, rtcpfb.Params))
+			}
+			codecs := CodecMapFromNames(capability.Codecs, capability.Rtx, rtcpfbs)
 			mediaInfo.SetCodecs(codecs)
 		}
 		for i, extension := range capability.Extensions {

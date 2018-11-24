@@ -141,6 +141,62 @@ func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaIn
 	}
 
 	t.transport.SetRemoteProperties(properties)
+
+	DeleteProperties(properties)
+}
+
+func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
+
+	properties := NewProperties()
+
+	if audio != nil {
+		num := 0
+		for _, codec := range audio.GetCodecs() {
+			item := fmt.Sprintf("audio.codecs.%d", num)
+			properties.SetProperty(item+".codec", codec.GetCodec())
+			properties.SetProperty(item+".pt", codec.GetType())
+			if codec.HasRTX() {
+				properties.SetProperty(item+".rtx", codec.GetRTX())
+			}
+			num = num + 1
+		}
+		properties.SetProperty("audio.codecs.length", num)
+		num = 0
+		for id, uri := range audio.GetExtensions() {
+			item := fmt.Sprintf("audio.ext.%d", num)
+			properties.SetProperty(item+".id", id)
+			properties.SetProperty(item+".uri", uri)
+			num = num + 1
+		}
+		properties.SetProperty("audio.ext.length", num)
+	}
+
+	if video != nil {
+		num := 0
+		for _, codec := range video.GetCodecs() {
+			item := fmt.Sprintf("video.codecs.%d", num)
+			properties.SetProperty(item+".codec", codec.GetCodec())
+			properties.SetProperty(item+".pt", codec.GetType())
+			if codec.HasRTX() {
+				properties.SetProperty(item+".rtx", codec.GetRTX())
+			}
+			num = num + 1
+		}
+		properties.SetProperty("video.codecs.length", num)
+		num = 0
+		for id, uri := range video.GetExtensions() {
+			item := fmt.Sprintf("video.ext.%d", num)
+			properties.SetProperty(item+".id", id)
+			properties.SetProperty(item+".uri", uri)
+			num = num + 1
+		}
+		properties.SetProperty("video.ext.length", num)
+	}
+
+	t.transport.SetLocalProperties(properties)
+
+	DeleteProperties(properties)
+
 }
 
 func (t *Transport) GetLocalDTLSInfo() *sdp.DTLSInfo {
