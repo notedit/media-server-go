@@ -1,9 +1,13 @@
 package sdp
 
+import (
+	"strconv"
+)
+
 type RIDInfo struct {
 	id        string
 	direction DirectionWay // TODO
-	formats   []string
+	formats   []int
 	params    map[string]string
 }
 
@@ -12,7 +16,7 @@ func NewRIDInfo(id string, direction DirectionWay) *RIDInfo {
 	ridInfo := &RIDInfo{
 		id:        id,
 		direction: direction,
-		formats:   []string{},
+		formats:   []int{},
 		params:    map[string]string{},
 	}
 	return ridInfo
@@ -23,7 +27,7 @@ func (r *RIDInfo) Clone() *RIDInfo {
 	ridInfo := &RIDInfo{}
 	ridInfo.id = r.id
 	ridInfo.direction = r.direction
-	ridInfo.formats = make([]string, len(r.formats))
+	ridInfo.formats = make([]int, len(r.formats))
 	ridInfo.params = make(map[string]string)
 	copy(ridInfo.formats, r.formats)
 	for k, v := range r.params {
@@ -44,13 +48,18 @@ func (r *RIDInfo) SetDirection(direction DirectionWay) {
 	r.direction = direction
 }
 
-func (r *RIDInfo) GetFormats() []string {
+func (r *RIDInfo) GetFormats() []int {
 	return r.formats
 }
 
 func (r *RIDInfo) SetFormats(formats []string) {
-	r.formats = []string{}
-	r.formats = append(r.formats, formats...)
+	r.formats = []int{}
+	for _, format := range formats {
+		formatInt, err := strconv.Atoi(format)
+		if err != nil {
+			r.formats = append(r.formats, formatInt)
+		}
+	}
 }
 
 func (r *RIDInfo) GetParams() map[string]string {

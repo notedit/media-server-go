@@ -388,7 +388,8 @@ func (s *SDPInfo) String() string {
 			}
 
 			if len(ridInfo.GetFormats()) > 0 {
-				rid.Params = "pt=" + strings.Join(ridInfo.GetFormats(), ",")
+				//rid.Params = "pt=" + strings.Join(ridInfo.GetFormats(), ",")
+				rid.Params = "pt=" + intArrayToString(ridInfo.GetFormats(), ",")
 			}
 
 			for key, val := range ridInfo.GetParams() {
@@ -730,16 +731,70 @@ func Parse(sdp string) (*SDPInfo, error) {
 			mediaInfo.AddRID(ridInfo)
 		}
 
-		// todo simulcast
-
 		encodings := [][]*TrackEncodingInfo{}
+
+		if md.Simulcast != nil {
+
+			simulcast := NewSimulcastInfo()
+
+			if md.Simulcast.Dir1 != "" {
+				direction := DirectionWaybyValue(md.Simulcast.Dir1)
+				streamList := sdptransform.ParseSimulcastStreamList(md.Simulcast.List1)
+				for _, streams := range streamList {
+					alternatives := []*SimulcastStreamInfo{}
+					for _, stream := range streams {
+						simulcastStreamInfo := NewSimulcastStreamInfo(stream.Scid, stream.Paused)
+						alternatives = append(alternatives, simulcastStreamInfo)
+					}
+					simulcast.AddSimulcastAlternativeStreams(direction, alternatives)
+				}
+			}
+
+			if md.Simulcast.Dir2 != "" {
+				direction := DirectionWaybyValue(md.Simulcast.Dir2)
+				streamList := sdptransform.ParseSimulcastStreamList(md.Simulcast.List2)
+				for _, streams := range streamList {
+					alternatives := []*SimulcastStreamInfo{}
+					for _, stream := range streams {
+						simulcastStreamInfo := NewSimulcastStreamInfo(stream.Scid, stream.Paused)
+						alternatives = append(alternatives, simulcastStreamInfo)
+					}
+					simulcast.AddSimulcastAlternativeStreams(direction, alternatives)
+				}
+			}
+
+			// For all sending encodings
+			for _, streams := range simulcast.GetSimulcastStreams(SEND) {
+				alternatives := []*TrackEncodingInfo{}
+				for _, stream := range streams {
+					encoding := NewTrackEncodingInfo(stream.GetID(), stream.IsPaused())
+					ridInfo := mediaInfo.GetRID(encoding.GetID())
+					if ridInfo != nil {
+						//Get associated payloads
+						formats := ridInfo.GetFormats()
+						for _, format := range formats {
+							codecInfo := mediaInfo.GetCodecForType(format)
+							if codecInfo != nil {
+								encoding.AddCodec(codecInfo)
+							}
+						}
+						encoding.SetParams(ridInfo.GetParams())
+						alternatives = append(alternatives, encoding)
+					}
+				}
+
+				if len(alternatives) > 0 {
+					encodings = append(encodings, alternatives)
+				}
+			}
+
+			mediaInfo.SetSimulcastInfo(simulcast)
+		}
 
 		sources := map[uint]*SourceInfo{}
 
 		if md.Ssrcs != nil {
-
 			for _, ssrcAttr := range md.Ssrcs {
-
 				ssrc := ssrcAttr.Id
 				key := ssrcAttr.Attribute
 				value := ssrcAttr.Value
@@ -773,14 +828,13 @@ func Parse(sdp string) (*SDPInfo, error) {
 
 					if track == nil {
 						track = NewTrackInfo(trackId, media)
-						// Set simulcast encodings (if any)
-						// todo
 						track.SetMediaID(mid)
 						track.SetEncodings(encodings)
 						stream.AddTrack(track)
 					}
 					// Add ssrc
 					track.AddSSRC(ssrc)
+
 				}
 
 			}
