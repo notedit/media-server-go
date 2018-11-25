@@ -1,10 +1,7 @@
 package sdp
 
 import (
-	"fmt"
 	"strings"
-
-	"github.com/sanity-io/litter"
 )
 
 type MediaInfo struct {
@@ -249,11 +246,6 @@ func (m *MediaInfo) AnswerCapability(cap *Capability) *MediaInfo {
 		rtcpfbs = append(rtcpfbs, NewRTCPFeedbackInfo(rtcpfb.ID, rtcpfb.Params))
 	}
 	codecs := CodecMapFromNames(cap.Codecs, cap.Rtx, rtcpfbs)
-
-	if m.mtype == "video" {
-		fmt.Println("11111111111111111")
-		litter.Dump(codecs)
-	}
 
 	for codecName, codec := range m.codecs {
 		// If we support this codec
