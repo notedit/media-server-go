@@ -1,7 +1,6 @@
 package sdptransform
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -12,14 +11,10 @@ func TestWrite(t *testing.T) {
 		t.Error(err)
 	}
 
-	fmt.Println(session)
-
-	ret, err := Write(session)
+	_, err = Write(session)
 
 	if err != nil {
 		t.Error(err)
 	}
-
-	fmt.Println(ret)
 
 }

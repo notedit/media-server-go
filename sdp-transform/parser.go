@@ -146,34 +146,38 @@ func ParseImageAttributes(str string) []map[string]int {
 
 }
 
-func ParseSimulcastStreamList(str string) [][]map[string]interface{} {
+type SimulCastItem struct {
+	Scid   string
+	Paused bool
+}
 
-	ret := [][]map[string]interface{}{}
+func ParseSimulcastStreamList(str string) [][]*SimulCastItem {
+
+	ret := [][]*SimulCastItem{}
 
 	streams := bytes.Split([]byte(str), []byte{';'})
 
 	for _, stream := range streams {
 
-		streamFormat := []map[string]interface{}{}
+		streamFormat := []*SimulCastItem{}
 
 		formats := bytes.Split(stream, []byte{','})
 
 		for _, format := range formats {
-			var scid interface{}
+			var scid string
 			paused := false
 
 			if format[0] != '~' {
-				scid = toType(string(format), 'd')
+				scid = string(format)
 			} else {
-				scid = toType(string(format[1:len(format)-1]), 'd')
+				scid = string(format[1:len(format)])
 				paused = true
 			}
 
-			streamFormat = append(streamFormat, map[string]interface{}{
-				"scid":   scid,
-				"paused": paused,
+			streamFormat = append(streamFormat, &SimulCastItem{
+				Scid:   scid,
+				Paused: paused,
 			})
-
 		}
 		ret = append(ret, streamFormat)
 	}

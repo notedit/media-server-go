@@ -67,7 +67,6 @@ type RtcpFbStruct struct {
 type SsrcGroupStruct struct {
 	Semantics string `json:"semantics,omitempty"`
 	Ssrcs     string `json:"ssrcs,omitempty"`
-	SsrcArr   []string
 }
 
 type SsrcStruct struct {
@@ -99,6 +98,17 @@ type RidStruct struct {
 	Params    string `json:"params,omitempty"`
 }
 
+type SimulcastStruct struct {
+	Dir1  string `json:"dir1"`
+	List1 string `json:"list1"`
+	Dir2  string `json:"dir2"`
+	List2 string `json:"list2"`
+}
+
+// todo
+type Simulcast03Struct struct {
+}
+
 type MediaStruct struct {
 	Rtp         []*RtpStruct       `json:"rtp,omitempty"`
 	Fmtp        []*FmtpStruct      `json:"fmtp,omitempty"`
@@ -124,12 +134,13 @@ type MediaStruct struct {
 	Ssrcs       []*SsrcStruct      `json:"ssrcs,omitempty"`
 	Candidates  []*CandidateStruct `json:"candidates,omitempty"`
 	Bandwidth   []*BandwithStruct  `json:"bandwidth,omitempty"`
+	Simulcast   *SimulcastStruct   `json:"simulcast,omitempty"`
 }
 
 type SdpStruct struct {
 	Version      int                 `json:"version"`
-	Origin       *OriginStruct       `json:"origin,omitempty"`
-	Name         string              `json:"name,omitempty"`
+	Origin       *OriginStruct       `json:"origin"`
+	Name         string              `json:"name"`
 	Timing       *TimingStruct       `json:"timing"`
 	Groups       []*GroupStruct      `json:"groups,omitempty"`
 	MsidSemantic *MsidSemanticStruct `json:"msidSemantic,omitempty"`

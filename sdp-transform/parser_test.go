@@ -1,7 +1,6 @@
 package sdptransform
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -29,7 +28,7 @@ a=candidate:0 1 UDP 2113667327 203.0.113.1 55400 typ host
 a=candidate:1 2 UDP 2113667326 203.0.113.1 55401 typ host
 `
 
-var simulcastStr = `a=simulcast:send 1,~4;2;3 recv c`
+var simulcastStr = `1,~4;2;3`
 
 const sdp = "v=0\r\n" +
 	"o=- 4327261771880257373 2 IN IP4 127.0.0.1\r\n" +
@@ -138,6 +137,37 @@ const sdp = "v=0\r\n" +
 	"a=ssrc:1080772241 mslabel:xIKmAwWv4ft4ULxNJGhkHzvPaCkc8EKo4SGj\r\n" +
 	"a=ssrc:1080772241 label:cf093ab0-0b28-4930-8fe1-7ca8d529be25\r\n"
 
+var simulcastSdp = `
+v=0
+o=alice 2362969037 2362969040 IN IP4 192.0.2.156
+s=Simulcast Enabled Client
+t=0 0
+c=IN IP4 192.0.2.156
+m=audio 49200 RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+m=video 49300 RTP/AVP 97 98 99 100
+a=rtpmap:97 H264/90000
+a=rtpmap:98 H264/90000
+a=rtpmap:99 H264/90000
+a=rtpmap:100 VP8/90000
+a=fmtp:97 profile-level-id=42c01f; max-fs=3600; max-mbps=108000
+a=fmtp:98 profile-level-id=42c00b; max-fs=240; max-mbps=3600
+a=fmtp:99 profile-level-id=42c00b; max-fs=120; max-mbps=1800
+a=extmap:1 urn:ietf:params:rtp-hdrext:sdes:RtpStreamId
+a=imageattr:97 send [x=1280,y=720] recv [x=1280,y=720] [x=320,y=180] [x=160,y=90]
+a=imageattr:98 send [x=320,y=180]
+a=imageattr:99 send [x=160,y=90]
+a=imageattr:100 recv [x=1280,y=720] [x=320,y=180] send [x=1280,y=720]
+a=imageattr:* recv *
+a=rid:1 send pt=97;max-width=1280;max-height=720;max-fps=30
+a=rid:2 send pt=98
+a=rid:3 send pt=99
+a=rid:4 send pt=100
+a=rid:c recv pt=97
+a=simulcast:send 1,~4;2;3 recv c
+a=simulcast: send rid=1,4;2;3 paused=4 recv rid=c
+`
+
 func TestParse(t *testing.T) {
 
 	_, err := Parse(sdpStr)
@@ -148,13 +178,39 @@ func TestParse(t *testing.T) {
 
 func TestSimulcast(t *testing.T) {
 
-	ret := ParseSimulcastStreamList(simulcastStr)
+	sdpStruct, err := Parse(simulcastSdp)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if len(sdpStruct.Media) < 2 {
+		t.Error("simulcast sdp media error")
+		t.FailNow()
+	}
+
+	if sdpStruct.Media[1].Simulcast == nil {
+		t.Error("simulcast sdp Simulcast ")
+		t.FailNow()
+	}
+
+	if len(sdpStruct.Media[1].Rids) != 5 {
+		t.Log(sdpStruct.Media[1].Rids)
+		t.Error("simulcast sdp rids error")
+	}
+
+	if sdpStruct.Media[1].Simulcast.List1 != "1,~4;2;3" {
+		t.Error("simulcast sdp  List1 error")
+	}
+
+	ret := ParseSimulcastStreamList(sdpStruct.Media[1].Simulcast.List1)
+	t.Log(ret)
 
 	if len(ret) != 3 {
+
 		t.Error("Simulcast parse error")
 	}
 
-	fmt.Println(ret)
+	// fmt.Println(ret)
 }
 
 func TestStruct(t *testing.T) {
@@ -170,6 +226,4 @@ func TestStruct(t *testing.T) {
 		t.Error("can not parse payload")
 	}
 
-	t.Log("=================")
-	t.Log(sdpStruct.Timing)
 }
