@@ -128,3 +128,8 @@ func (p *Player) SwigIsPlayerListener() {
 func (p *Player) OnEnd() {
 
 }
+
+func (p *Player) DirectorInterface() interface{} {
+
+	return nil
+}

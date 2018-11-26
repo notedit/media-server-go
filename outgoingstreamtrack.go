@@ -1,18 +1,22 @@
 package mediaserver
 
 import (
+	"fmt"
+
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 )
 
 type OutgoingStreamTrack struct {
-	id         string
-	media      string
-	muted      bool
-	sender     RTPSenderFacade
-	source     RTPOutgoingSourceGroup
-	transpoder *Transponder
-	trackInfo  *sdp.TrackInfo
+	id            string
+	media         string
+	muted         bool
+	sender        RTPSenderFacade
+	source        RTPOutgoingSourceGroup
+	transpoder    *Transponder
+	trackInfo     *sdp.TrackInfo
+	interCallback REMBCallback
+	// todo outercallback
 	*emission.Emitter
 }
 
@@ -24,6 +28,33 @@ type OutgoingStats struct {
 	Bitrate        int
 }
 
+type REMBCallback interface {
+	REMBListener
+	deleteREMBListener()
+	IsREMBCallback()
+}
+
+type goREMBCallback struct {
+	REMBListener
+}
+
+func (r *goREMBCallback) deleteREMBListener() {
+	DeleteDirectorREMBListener(r.REMBListener)
+}
+
+// I don't know they must have this method, swig doc say this.
+func (r *goREMBCallback) IsREMBCallback() {
+}
+
+type overwrittenREMBCallback struct {
+	p REMBListener
+}
+
+func (p *overwrittenREMBCallback) OnREMB() {
+
+	fmt.Println("OnREMB ====================")
+}
+
 func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, source RTPOutgoingSourceGroup) *OutgoingStreamTrack {
 
 	track := &OutgoingStreamTrack{}
@@ -33,7 +64,6 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 	track.muted = false
 	track.source = source
 	track.Emitter = emission.NewEmitter()
-
 	track.trackInfo = sdp.NewTrackInfo(id, media)
 
 	track.trackInfo.AddSSRC(source.GetMedia().GetSsrc())
@@ -56,7 +86,12 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 		track.trackInfo.AddSourceGroup(sourceGroup)
 	}
 
-	// todo onremb callback
+	// callback
+	callback := &overwrittenREMBCallback{}
+	p := NewDirectorREMBListener(callback)
+	callback.p = p
+
+	track.interCallback = &goREMBCallback{REMBListener: p}
 
 	return track
 }
@@ -97,9 +132,7 @@ func (o *OutgoingStreamTrack) Mute(muting bool) {
 	}
 
 	if o.muted != muting {
-
 		o.muted = muting
-
 		o.EmitSync("muted", o.muted)
 	}
 }
@@ -110,7 +143,7 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	o.Detach()
 
 	// todo add remblistener
-	transponder := NewRTPStreamTransponderFacade(o.source, o.sender, o)
+	transponder := NewRTPStreamTransponderFacade(o.source, o.sender, o.interCallback)
 
 	o.transpoder = NewTransponder(transponder)
 
@@ -149,6 +182,9 @@ func (o *OutgoingStreamTrack) Stop() {
 		return
 	}
 
+	// swig memory clean
+	o.interCallback.deleteREMBListener()
+
 	o.Detach()
 
 	o.EmitSync("stopped")
@@ -161,17 +197,4 @@ func (o *OutgoingStreamTrack) Stop() {
 func (o *OutgoingStreamTrack) onTransponderStopped() {
 
 	o.transpoder = nil
-}
-
-// add fake OnREMB listender
-func (o *OutgoingStreamTrack) Swigcptr() uintptr {
-	return 0
-}
-
-func (o *OutgoingStreamTrack) SwigIsREMBListener() {
-
-}
-
-func (o *OutgoingStreamTrack) OnREMB() {
-
 }

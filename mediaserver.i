@@ -532,6 +532,13 @@ private:
 
 %}
 
+
+
+%feature("director") PlayerListener;
+%feature("director") REMBListener;
+%feature("director") TargetBitrateListener;
+
+
 %include <typemaps.i>
 %include "stdint.i"
 %include "std_vector.i"
@@ -544,13 +551,6 @@ private:
 %include "mediaserver/include/PCAPTransportEmulator.h"
 %include "mediaserver/include/mp4recorder.h"
 %include "mediaserver/include/rtp/RTPStreamTransponder.h"
-
-
-
-%feature("director") PlayerListener;
-%feature("director") REMBListener;
-%feature("director") TargetBitrateListener;
-
 
 
 struct LayerInfo

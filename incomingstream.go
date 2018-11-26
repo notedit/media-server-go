@@ -165,7 +165,6 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 	} else if track.GetSourceGroup("SIM") != nil {
 		// chrome like simulcast
-
 		SIM := track.GetSourceGroup("SIM")
 
 		ssrcs := SIM.GetSSRCs()
