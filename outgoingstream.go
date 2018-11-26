@@ -52,9 +52,7 @@ func (o *OutgoingStream) Mute(muting bool) {
 	}
 
 	if o.muted != muting {
-
 		o.muted = muting
-
 		o.EmitSync("muted", o.muted)
 	}
 }
