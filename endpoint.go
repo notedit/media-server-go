@@ -33,7 +33,7 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 	var localCandidates []*sdp.CandidateInfo
 
 	if localSdp == nil {
-		localIce = sdp.GenerateICEInfo(true)
+		localIce = sdp.ICEInfoGenerate(true)
 		localDtls = sdp.NewDTLSInfo(remoteSdp.GetDTLS().GetSetup().Reverse(), "sha-256", e.fingerprint)
 		localCandidates = []*sdp.CandidateInfo{e.candidate}
 	} else {
@@ -64,7 +64,7 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 
 func (e *Endpoint) CreateTransportWithRemote(sdpInfo *sdp.SDPInfo, disableSTUNKeepAlive bool) *Transport {
 
-	localIce := sdp.GenerateICEInfo(true)
+	localIce := sdp.ICEInfoGenerate(true)
 	localDtls := sdp.NewDTLSInfo(sdpInfo.GetDTLS().GetSetup().Reverse(), "sha-256", e.fingerprint)
 	localCandidates := []*sdp.CandidateInfo{e.candidate.Clone()}
 

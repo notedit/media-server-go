@@ -221,13 +221,11 @@ func (m *MediaInfo) Answer(supportedMedia *MediaInfo) *MediaInfo {
 		}
 	}
 
-	// todo add simulcast support
 	if supportedMedia.simulcast && m.simulcastInfo != nil {
 
 		simulcast := NewSimulcastInfo()
 
 		sendStreams := m.simulcastInfo.GetSimulcastStreams(SEND)
-
 		if sendStreams != nil && len(sendStreams) > 0 {
 			for _, streams := range sendStreams {
 				alternatives := []*SimulcastStreamInfo{}
@@ -239,7 +237,6 @@ func (m *MediaInfo) Answer(supportedMedia *MediaInfo) *MediaInfo {
 		}
 
 		recvStreams := m.simulcastInfo.GetSimulcastStreams(RECV)
-
 		if recvStreams != nil && len(recvStreams) > 0 {
 			for _, streams := range recvStreams {
 				alternatives := []*SimulcastStreamInfo{}

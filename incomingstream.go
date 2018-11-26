@@ -2,6 +2,8 @@ package mediaserver
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/chuckpreslar/emission"
@@ -115,12 +117,86 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 	encodings := track.GetEncodings()
 
 	if len(encodings) > 0 {
-		// simulcast encoding
-		// we handle it later
-		// todo
+
+		for _, items := range encodings {
+
+			for _, encoding := range items {
+
+				source := NewRTPIncomingSourceGroup(mediaType)
+
+				mid := track.GetMediaID()
+
+				rid := encoding.GetID()
+
+				source.SetRid(NewStringFacade(rid))
+
+				if mid != "" {
+					source.SetMid(NewStringFacade(mid))
+				}
+
+				params := encoding.GetParams()
+
+				if ssrc, ok := params["ssrc"]; ok {
+					ssrcUint, err := strconv.ParseUint(ssrc, 10, 32)
+					if err != nil {
+						fmt.Println("ssrc parse error ", err)
+						continue
+					}
+					source.GetMedia().SetSsrc(uint(ssrcUint))
+					groups := track.GetSourceGroupS()
+					for _, group := range groups {
+						// check if it is from us
+						if group.GetSSRCs() != nil && group.GetSSRCs()[0] == source.GetMedia().GetSsrc() {
+							if group.GetSemantics() == "FID" {
+								source.GetRtx().SetSsrc(group.GetSSRCs()[1])
+							}
+
+							if group.GetSemantics() == "FEC-FR" {
+								source.GetFec().SetSsrc(group.GetSSRCs()[1])
+							}
+						}
+					}
+				}
+
+				i.transport.AddIncomingSourceGroup(source)
+				sources[rid] = source
+			}
+		}
+
 	} else if track.GetSourceGroup("SIM") != nil {
 		// chrome like simulcast
-		// todo
+
+		SIM := track.GetSourceGroup("SIM")
+
+		ssrcs := SIM.GetSSRCs()
+
+		groups := track.GetSourceGroupS()
+
+		for j, ssrc := range ssrcs {
+
+			source := NewRTPIncomingSourceGroup(mediaType)
+
+			source.GetMedia().SetSsrc(ssrc)
+
+			for _, group := range groups {
+
+				if group.GetSSRCs()[0] == ssrc {
+
+					if group.GetSemantics() == "FID" {
+						source.GetRtx().SetSsrc(group.GetSSRCs()[1])
+					}
+
+					if group.GetSemantics() == "FEC-FR" {
+						source.GetFec().SetSsrc(group.GetSSRCs()[1])
+					}
+				}
+			}
+
+			i.transport.AddIncomingSourceGroup(source)
+
+			sources[strconv.Itoa(j)] = source
+		}
+
 	} else {
 		source := NewRTPIncomingSourceGroup(mediaType)
 
