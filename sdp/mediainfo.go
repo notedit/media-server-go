@@ -16,7 +16,6 @@ type MediaInfo struct {
 	bitrate       int
 }
 
-// TODO add simulcast or rtx
 func NewMediaInfo(id string, mtype string) *MediaInfo {
 
 	media := &MediaInfo{
@@ -123,7 +122,6 @@ func (m *MediaInfo) HasRTX() bool {
 			return true
 		}
 	}
-
 	return false
 }
 
@@ -224,13 +222,40 @@ func (m *MediaInfo) Answer(supportedMedia *MediaInfo) *MediaInfo {
 	}
 
 	// todo add simulcast support
-	if supportedMedia.simulcast && m.simulcast && m.simulcastInfo != nil {
-		// simulcast := NewSimulcastInfo()
+	if supportedMedia.simulcast && m.simulcastInfo != nil {
 
-		// send := m.simulcastInfo.GetSimulcastStreams(SEND)
-		// if send != nil {
+		simulcast := NewSimulcastInfo()
 
-		// }
+		sendStreams := m.simulcastInfo.GetSimulcastStreams(SEND)
+
+		if sendStreams != nil && len(sendStreams) > 0 {
+			for _, streams := range sendStreams {
+				alternatives := []*SimulcastStreamInfo{}
+				for _, stream := range streams {
+					alternatives = append(alternatives, stream.Clone())
+				}
+				simulcast.AddSimulcastAlternativeStreams(SEND, alternatives)
+			}
+		}
+
+		recvStreams := m.simulcastInfo.GetSimulcastStreams(RECV)
+
+		if recvStreams != nil && len(recvStreams) > 0 {
+			for _, streams := range recvStreams {
+				alternatives := []*SimulcastStreamInfo{}
+				for _, stream := range streams {
+					alternatives = append(alternatives, stream.Clone())
+				}
+				simulcast.AddSimulcastAlternativeStreams(RECV, alternatives)
+			}
+		}
+
+		for _, rid := range m.rids {
+			reversed := rid.Clone()
+			reversed.SetDirection(rid.GetDirection().Reverse())
+			answer.AddRID(reversed)
+		}
+		answer.SetSimulcastInfo(simulcast)
 	}
 
 	return answer
@@ -277,13 +302,40 @@ func (m *MediaInfo) AnswerCapability(cap *Capability) *MediaInfo {
 		}
 	}
 
-	if cap.Simulcast && m.simulcast && m.simulcastInfo != nil {
-		// simulcast := NewSimulcastInfo()
+	if cap.Simulcast && m.simulcastInfo != nil {
 
-		// send := m.simulcastInfo.GetSimulcastStreams(SEND)
-		// if send != nil {
+		simulcast := NewSimulcastInfo()
 
-		// }
+		sendStreams := m.simulcastInfo.GetSimulcastStreams(SEND)
+
+		if sendStreams != nil && len(sendStreams) > 0 {
+			for _, streams := range sendStreams {
+				alternatives := []*SimulcastStreamInfo{}
+				for _, stream := range streams {
+					alternatives = append(alternatives, stream.Clone())
+				}
+				simulcast.AddSimulcastAlternativeStreams(SEND, alternatives)
+			}
+		}
+
+		recvStreams := m.simulcastInfo.GetSimulcastStreams(RECV)
+
+		if recvStreams != nil && len(recvStreams) > 0 {
+			for _, streams := range recvStreams {
+				alternatives := []*SimulcastStreamInfo{}
+				for _, stream := range streams {
+					alternatives = append(alternatives, stream.Clone())
+				}
+				simulcast.AddSimulcastAlternativeStreams(RECV, alternatives)
+			}
+		}
+
+		for _, rid := range m.rids {
+			reversed := rid.Clone()
+			reversed.SetDirection(rid.GetDirection().Reverse())
+			answer.AddRID(reversed)
+		}
+		answer.SetSimulcastInfo(simulcast)
 	}
 
 	return answer
