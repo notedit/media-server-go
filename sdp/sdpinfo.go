@@ -403,7 +403,83 @@ func (s *SDPInfo) String() string {
 			mediaMap.Rids = append(mediaMap.Rids, rid)
 		}
 
-		// Todo simulcast
+		if media.GetSimulcastInfo() != nil {
+
+			simulcast := media.GetSimulcastInfo()
+
+			index := 1
+
+			mediaMap.Simulcast = &sdptransform.SimulcastStruct{}
+
+			sendStreams := simulcast.GetSimulcastStreams(SEND)
+			recvStreams := simulcast.GetSimulcastStreams(RECV)
+
+			if sendStreams != nil && len(sendStreams) > 0 {
+				list := ""
+				for _, stream := range sendStreams {
+					alternatives := ""
+					for _, item := range stream {
+						if alternatives == "" {
+							if item.IsPaused() {
+								alternatives = alternatives + "~" + item.GetID()
+							} else {
+								alternatives = alternatives + item.GetID()
+							}
+						} else {
+							if item.IsPaused() {
+								alternatives = alternatives + "," + "~" + item.GetID()
+							} else {
+								alternatives = alternatives + "," + item.GetID()
+							}
+						}
+					}
+					if list == "" {
+						list = list + alternatives
+					} else {
+						list = list + ";" + alternatives
+					}
+				}
+				mediaMap.Simulcast.Dir1 = "send"
+				mediaMap.Simulcast.List1 = list
+				index = index + 1
+			}
+
+			if recvStreams != nil && len(recvStreams) > 0 {
+				list := ""
+				for _, stream := range recvStreams {
+					alternatives := ""
+					for _, item := range stream {
+						if alternatives == "" {
+							if item.IsPaused() {
+								alternatives = alternatives + "~" + item.GetID()
+							} else {
+								alternatives = alternatives + item.GetID()
+							}
+						} else {
+							if item.IsPaused() {
+								alternatives = alternatives + "," + "~" + item.GetID()
+							} else {
+								alternatives = alternatives + "," + item.GetID()
+							}
+						}
+					}
+					if list == "" {
+						list = list + alternatives
+					} else {
+						list = list + ";" + alternatives
+					}
+				}
+				if index == 1 {
+					mediaMap.Simulcast.Dir1 = "recv"
+					mediaMap.Simulcast.List1 = list
+				}
+				if index == 2 {
+					mediaMap.Simulcast.Dir2 = "recv"
+					mediaMap.Simulcast.List2 = list
+				}
+			}
+		}
+
 		sdpMap.Media = append(sdpMap.Media, mediaMap)
 	}
 
