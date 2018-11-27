@@ -8,6 +8,27 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
+type targetBitrateCallback interface {
+	TargetBitrateListener
+	deletePlayerListener()
+}
+
+type goTargetBitrateCallback struct {
+	TargetBitrateListener
+}
+
+func (r *goTargetBitrateCallback) deletePlayerListener() {
+	DeleteDirectorTargetBitrateListener(r.TargetBitrateListener)
+}
+
+type overwrittenTargetBitrateCallback struct {
+	p TargetBitrateListener
+}
+
+func (p *overwrittenTargetBitrateCallback) OnBitrate() {
+	fmt.Println("OnBitrate ====================")
+}
+
 type Transport struct {
 	localIce         *sdp.ICEInfo
 	localDtls        *sdp.DTLSInfo

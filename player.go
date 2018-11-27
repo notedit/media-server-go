@@ -1,18 +1,48 @@
 package mediaserver
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type Player struct {
-	player PlayerFacade
-	tracks map[string]*IncomingStreamTrack
+	player      PlayerFacade
+	tracks      map[string]*IncomingStreamTrack
+	endCallback playerEndCallback
+}
+
+type playerEndCallback interface {
+	PlayerListener
+	deletePlayerListener()
+	IsPlayerEndCallback()
+}
+
+type goplayerEndCallback struct {
+	PlayerListener
+}
+
+func (r *goplayerEndCallback) deletePlayerListener() {
+	DeleteDirectorPlayerListener(r.PlayerListener)
+}
+
+func (r *goplayerEndCallback) IsPlayerEndCallback() {
+}
+
+type overwrittenEndCallback struct {
+	p PlayerListener
+}
+
+func (p *overwrittenEndCallback) OnEnd() {
+	fmt.Println("OnEnd ====================")
 }
 
 func NewPlayer(filename string) (*Player, error) {
 	player := &Player{}
-	player.player = NewPlayerFacade(player)
+	player.player = NewPlayerFacade()
 	player.tracks = make(map[string]*IncomingStreamTrack)
 
 	if player.player.Open(filename) == 0 {
+		DeletePlayerFacade(player.player)
 		return nil, errors.New("player can not open filanme:" + filename)
 	}
 
@@ -21,7 +51,6 @@ func NewPlayer(filename string) (*Player, error) {
 		trackID := "video"
 		source := player.player.GetVideoSource()
 
-		// todo  fix source
 		incoming := newIncomingStreamTrack("video", trackID, nil, map[string]RTPIncomingSourceGroup{"": source})
 
 		// todo event
@@ -40,7 +69,13 @@ func NewPlayer(filename string) (*Player, error) {
 
 	}
 
-	// todo OnEnd callback
+	callback := &overwrittenEndCallback{}
+	p := NewDirectorPlayerListener(callback)
+	callback.p = p
+
+	player.endCallback = &goplayerEndCallback{PlayerListener: p}
+
+	player.player.SetPlayEndListener(player.endCallback)
 
 	return player, nil
 }
@@ -107,6 +142,10 @@ func (p *Player) Stop() {
 		return
 	}
 
+	if p.endCallback != nil {
+		p.endCallback.deletePlayerListener()
+	}
+
 	for _, track := range p.tracks {
 		track.Stop()
 	}
@@ -116,20 +155,4 @@ func (p *Player) Stop() {
 	p.player.Close()
 
 	p.player = nil
-}
-
-// add fake interface, make Player can build,  todo
-func (p *Player) Swigcptr() uintptr {
-	return 0
-}
-func (p *Player) SwigIsPlayerListener() {
-
-}
-func (p *Player) OnEnd() {
-
-}
-
-func (p *Player) DirectorInterface() interface{} {
-
-	return nil
 }

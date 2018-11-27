@@ -146,6 +146,10 @@ public:
 				case MediaFrame::Text:
 					codec = (BYTE)-1;
 					break;
+				default:
+					///Ignore
+					codec = (BYTE)-1;
+					break;
 			}
 
 			//Get codec type
@@ -168,8 +172,7 @@ class PlayerFacade :
 	public MP4Streamer::Listener
 {
 public:
-	PlayerFacade(PlayerListener *listener):
-		listener(listener),
+	PlayerFacade():
 		MP4Streamer(this),
 		audio(MediaFrame::Audio),
 		video(MediaFrame::Video)
@@ -179,7 +182,12 @@ public:
 		audio.Start();
 		video.Start();
 	}
-		
+
+	void setPlayEndListener(PlayerListener *listener) 
+	{
+		endlistener = listener;
+	}
+
 	virtual void onRTPPacket(RTPPacket &packet)
 	{
 		switch(packet.GetMedia())
@@ -229,7 +237,7 @@ public:
 	
 private:
 	//TODO: Update to multitrack
-	PlayerListener *listener;
+	PlayerListener *endlistener;
 	RTPIncomingSourceGroup audio;
 	RTPIncomingSourceGroup video;
 };
@@ -756,11 +764,13 @@ public:
 class PlayerFacade
 {
 public:
-	PlayerFacade(PlayerListener *listener);
+	PlayerFacade();
 	RTPIncomingSourceGroup* GetAudioSource();
 	RTPIncomingSourceGroup* GetVideoSource();
 	void Reset();
-	
+
+	void setPlayEndListener(PlayerListener *listener);
+
 	int Open(const char* filename);
 	bool HasAudioTrack();
 	bool HasVideoTrack();
