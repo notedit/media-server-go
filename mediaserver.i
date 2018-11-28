@@ -446,8 +446,7 @@ class SenderSideEstimatorListener :
 	public RemoteRateEstimator::Listener
 {
 public:
-	SenderSideEstimatorListener(TargetBitrateListener *listener)
-		: listener(listener)
+	SenderSideEstimatorListener()
 	{
 		
 	}
@@ -456,8 +455,6 @@ public:
 	{
         // todo make callback
 	}
-private:
-	TargetBitrateListener* listener;
 };
 
 
@@ -544,7 +541,7 @@ private:
 
 %feature("director") PlayerListener;
 %feature("director") REMBListener;
-%feature("director") TargetBitrateListener;
+%feature("director") SenderSideEstimatorListener;
 
 
 %include <typemaps.i>
@@ -794,7 +791,9 @@ class SenderSideEstimatorListener :
 	public RemoteRateEstimator::Listener
 {
 public:
-	SenderSideEstimatorListener(TargetBitrateListener *listener);
+	SenderSideEstimatorListener();
+	virtual ~SenderSideEstimatorListener() {}
+	void onTargetBitrateRequested(DWORD bitrate);
 };
 
 

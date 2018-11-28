@@ -43,15 +43,11 @@ class SwigDirector_REMBListener : public REMBListener
   Swig_memory *swig_mem;
 };
 
-class SwigDirector_TargetBitrateListener : public TargetBitrateListener
+class SwigDirector_SenderSideEstimatorListener : public SenderSideEstimatorListener
 {
  public:
-  SwigDirector_TargetBitrateListener(int swig_p);
-  virtual ~SwigDirector_TargetBitrateListener();
-  void _swig_upcall_onBitrate() {
-    TargetBitrateListener::onBitrate();
-  }
-  virtual void onBitrate();
+  SwigDirector_SenderSideEstimatorListener(int swig_p);
+  virtual ~SwigDirector_SenderSideEstimatorListener();
  private:
   intgo go_val;
   Swig_memory *swig_mem;

@@ -8,39 +8,41 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-type targetBitrateCallback interface {
-	TargetBitrateListener
-	deletePlayerListener()
+type senderSideEstimatorListener interface {
+	SenderSideEstimatorListener
+	deleteSenderSideEstimatorListener()
 }
 
-type goTargetBitrateCallback struct {
-	TargetBitrateListener
+type goSenderSideEstimatorListener struct {
+	SenderSideEstimatorListener
 }
 
-func (r *goTargetBitrateCallback) deletePlayerListener() {
-	DeleteDirectorTargetBitrateListener(r.TargetBitrateListener)
+func (r *goSenderSideEstimatorListener) deleteSenderSideEstimatorListener() {
+	DeleteDirectorSenderSideEstimatorListener(r.SenderSideEstimatorListener)
 }
 
-type overwrittenTargetBitrateCallback struct {
-	p TargetBitrateListener
+type overwrittenSenderSideEstimatorListener struct {
+	p SenderSideEstimatorListener
 }
 
-func (p *overwrittenTargetBitrateCallback) OnBitrate() {
-	fmt.Println("OnBitrate ====================")
+func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrate uint) {
+	fmt.Println("OnTargetBitrateRequested ====================")
+	fmt.Println(bitrate)
 }
 
 type Transport struct {
-	localIce         *sdp.ICEInfo
-	localDtls        *sdp.DTLSInfo
-	localCandidates  []*sdp.CandidateInfo
-	remoteIce        *sdp.ICEInfo
-	remoteDtls       *sdp.DTLSInfo
-	remoteCandidates []*sdp.CandidateInfo
-	bundle           RTPBundleTransport
-	transport        DTLSICETransport
-	username         StringFacade
-	incomingStreams  map[string]*IncomingStream
-	outgoingStreams  map[string]*OutgoingStream
+	localIce           *sdp.ICEInfo
+	localDtls          *sdp.DTLSInfo
+	localCandidates    []*sdp.CandidateInfo
+	remoteIce          *sdp.ICEInfo
+	remoteDtls         *sdp.DTLSInfo
+	remoteCandidates   []*sdp.CandidateInfo
+	bundle             RTPBundleTransport
+	transport          DTLSICETransport
+	username           StringFacade
+	incomingStreams    map[string]*IncomingStream
+	outgoingStreams    map[string]*OutgoingStream
+	senderSideListener senderSideEstimatorListener
 	*emission.Emitter
 }
 
@@ -76,8 +78,12 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	transport.username = NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
 	transport.transport = bundle.AddICETransport(transport.username, properties)
 
-	// todo ontargetbitrate callback
-	// SenderSideEstimatorListener
+	listener := &overwrittenSenderSideEstimatorListener{}
+	p := NewDirectorSenderSideEstimatorListener(listener)
+	listener.p = p
+
+	transport.senderSideListener = &goSenderSideEstimatorListener{SenderSideEstimatorListener: p}
+	transport.transport.SetSenderSideEstimatorListener(transport.senderSideListener)
 
 	var address string
 	var port int
@@ -444,6 +450,10 @@ func (t *Transport) Stop() {
 
 	for _, outgoing := range t.outgoingStreams {
 		outgoing.Stop()
+	}
+
+	if t.senderSideListener != nil {
+		t.senderSideListener.deleteSenderSideEstimatorListener()
 	}
 
 	t.incomingStreams = nil

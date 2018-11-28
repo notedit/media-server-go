@@ -11,11 +11,6 @@ public:
 	virtual void onREMB() {}
 };
 
-class TargetBitrateListener {
-public:
-	virtual ~TargetBitrateListener() {}
-	virtual void onBitrate() {}
-};
 
 
 
