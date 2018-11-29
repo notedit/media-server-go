@@ -535,6 +535,125 @@ private:
 	Mutex mutex;
 };
 
+
+
+class MediaFrameListener :
+	public MediaFrame::Listener
+{
+public:
+	MediaFrameListener()
+	{
+
+	}
+
+	virtual void onMediaFrame(MediaFrame &frame)  {
+
+		// todo 
+	}
+	virtual void onMediaFrame(DWORD ssrc, MediaFrame &frame) {
+
+		onMediaFrame(frame);
+	}
+	
+};
+
+
+class MediaStreamDuplicater :
+	public RTPIncomingSourceGroup::Listener
+{
+public:
+	MediaStreamDuplicater(RTPIncomingSourceGroup* incomingSource)
+	{
+		//Store
+		this->incomingSource = incomingSource;
+		//Add us as RTP listeners
+		this->incomingSource->AddListener(this);
+		//No depkacketixer yet
+		depacketizer = NULL;
+	}
+
+	virtual ~MediaStreamDuplicater()
+	{
+		//JIC
+		Stop();
+		//Check 
+		if (depacketizer)
+			//Delete depacketier
+			delete(depacketizer);
+	}
+
+	virtual void onRTP(RTPIncomingSourceGroup* group,const RTPPacket::shared& packet)
+	{
+		//If depacketizer is not the same codec 
+		if (depacketizer && depacketizer->GetCodec()!=packet->GetCodec())
+		{
+			//Delete it
+			delete(depacketizer);
+			//Create it next
+			depacketizer = NULL;
+		}
+		//If we don't have a depacketized
+		if (!depacketizer)
+			//Create one
+			depacketizer = RTPDepacketizer::Create(packet->GetMedia(),packet->GetCodec());
+		//Ensure we have it
+		if (!depacketizer)
+			//Do nothing
+			return;
+		//Pass the pakcet to the depacketizer
+		 MediaFrame* frame = depacketizer->AddPacket(packet);
+		 
+		 //If we have a new frame
+		 if (frame)
+		 {
+			 //Call all listeners
+			 for (Listeners::const_iterator it = listeners.begin();it!=listeners.end();++it)
+				 //Call listener
+				 (*it)->onMediaFrame(*frame);
+			 //Next
+			 depacketizer->ResetFrame();
+		 }
+	}
+	
+	virtual void onEnded(RTPIncomingSourceGroup* group) 
+	{
+		if (incomingSource==group)
+			incomingSource = nullptr;
+	}
+	
+	void AddMediaListener(MediaFrameListener *listener)
+	{
+		//Add to set
+		listeners.insert(listener);
+	}
+	
+	void RemoveMediaListener(MediaFrameListener *listener)
+	{
+		//Remove from set
+		listeners.erase(listener);
+	}
+	
+	void Stop()
+	{
+		//If already stopped
+		if (!incomingSource)
+			//Done
+			return;
+		
+		//Stop listeneing
+		incomingSource->RemoveListener(this);
+		//Clean it
+		incomingSource = NULL;
+	}
+	
+private:
+	typedef std::set<MediaFrameListener*> Listeners;
+private:
+	Listeners listeners;
+	RTPDepacketizer* depacketizer;
+	RTPIncomingSourceGroup* incomingSource;
+};
+
 %}
 
 
@@ -542,6 +661,7 @@ private:
 %feature("director") PlayerListener;
 %feature("director") REMBListener;
 %feature("director") SenderSideEstimatorListener;
+%feature("director") MediaFrameListener;
 
 
 %include <typemaps.i>
@@ -805,3 +925,23 @@ public:
 	void AddIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 	void RemoveIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 };
+
+
+class MediaFrameListener 
+{
+public:
+	MediaFrameListener();
+	virtual ~MediaFrameListener() {}
+	virtual void onMediaFrame(MediaFrame &frame);
+};
+
+
+class MediaStreamDuplicater
+{
+public:
+	MediaStreamDuplicater(RTPIncomingSourceGroup* incomingSource);
+	void AddMediaListener(MediaFrameListener* listener);
+	void RemoveMediaListener(MediaFrameListener* listener);
+	void Stop();
+};
+

@@ -53,4 +53,18 @@ class SwigDirector_SenderSideEstimatorListener : public SenderSideEstimatorListe
   Swig_memory *swig_mem;
 };
 
+class SwigDirector_MediaFrameListener : public MediaFrameListener
+{
+ public:
+  SwigDirector_MediaFrameListener(int swig_p);
+  virtual ~SwigDirector_MediaFrameListener();
+  void _swig_upcall_onMediaFrame(MediaFrame &frame) {
+    MediaFrameListener::onMediaFrame(frame);
+  }
+  virtual void onMediaFrame(MediaFrame &frame);
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
 #endif
