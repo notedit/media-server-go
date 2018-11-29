@@ -558,11 +558,11 @@ public:
 };
 
 
-class MediaStreamDuplicater :
+class MediaStreamDuplicaterFacade :
 	public RTPIncomingSourceGroup::Listener
 {
 public:
-	MediaStreamDuplicater(RTPIncomingSourceGroup* incomingSource)
+	MediaStreamDuplicaterFacade(RTPIncomingSourceGroup* incomingSource)
 	{
 		//Store
 		this->incomingSource = incomingSource;
@@ -572,7 +572,7 @@ public:
 		depacketizer = NULL;
 	}
 
-	virtual ~MediaStreamDuplicater()
+	virtual ~MediaStreamDuplicaterFacade()
 	{
 		//JIC
 		Stop();
@@ -936,10 +936,10 @@ public:
 };
 
 
-class MediaStreamDuplicater
+class MediaStreamDuplicaterFacade
 {
 public:
-	MediaStreamDuplicater(RTPIncomingSourceGroup* incomingSource);
+	MediaStreamDuplicaterFacade(RTPIncomingSourceGroup* incomingSource);
 	void AddMediaListener(MediaFrameListener* listener);
 	void RemoveMediaListener(MediaFrameListener* listener);
 	void Stop();
