@@ -29,25 +29,20 @@ type OutgoingStats struct {
 }
 
 type REMBCallback interface {
-	REMBListener
+	REMBBitrateListener
 	deleteREMBListener()
-	IsREMBCallback()
 }
 
 type goREMBCallback struct {
-	REMBListener
+	REMBBitrateListener
 }
 
 func (r *goREMBCallback) deleteREMBListener() {
-	DeleteDirectorREMBListener(r.REMBListener)
-}
-
-// I don't know they must have this method, swig doc say this.
-func (r *goREMBCallback) IsREMBCallback() {
+	DeleteDirectorREMBBitrateListener(r.REMBBitrateListener)
 }
 
 type overwrittenREMBCallback struct {
-	p REMBListener
+	p REMBBitrateListener
 }
 
 func (p *overwrittenREMBCallback) OnREMB() {
@@ -88,10 +83,10 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 
 	// callback
 	callback := &overwrittenREMBCallback{}
-	p := NewDirectorREMBListener(callback)
+	p := NewDirectorREMBBitrateListener(callback)
 	callback.p = p
 
-	track.interCallback = &goREMBCallback{REMBListener: p}
+	track.interCallback = &goREMBCallback{REMBBitrateListener: p}
 
 	return track
 }

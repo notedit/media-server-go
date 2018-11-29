@@ -15,34 +15,6 @@
 
 class Swig_memory;
 
-class SwigDirector_PlayerListener : public PlayerListener
-{
- public:
-  SwigDirector_PlayerListener(int swig_p);
-  virtual ~SwigDirector_PlayerListener();
-  void _swig_upcall_onEnd() {
-    PlayerListener::onEnd();
-  }
-  virtual void onEnd();
- private:
-  intgo go_val;
-  Swig_memory *swig_mem;
-};
-
-class SwigDirector_REMBListener : public REMBListener
-{
- public:
-  SwigDirector_REMBListener(int swig_p);
-  virtual ~SwigDirector_REMBListener();
-  void _swig_upcall_onREMB() {
-    REMBListener::onREMB();
-  }
-  virtual void onREMB();
- private:
-  intgo go_val;
-  Swig_memory *swig_mem;
-};
-
 class SwigDirector_SenderSideEstimatorListener : public SenderSideEstimatorListener
 {
  public:
@@ -62,6 +34,34 @@ class SwigDirector_MediaFrameListener : public MediaFrameListener
     MediaFrameListener::onMediaFrame(frame);
   }
   virtual void onMediaFrame(MediaFrame &frame);
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
+class SwigDirector_PlayerEndListener : public PlayerEndListener
+{
+ public:
+  SwigDirector_PlayerEndListener(int swig_p);
+  virtual ~SwigDirector_PlayerEndListener();
+  void _swig_upcall_onEnd() {
+    PlayerEndListener::onEnd();
+  }
+  virtual void onEnd();
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
+class SwigDirector_REMBBitrateListener : public REMBBitrateListener
+{
+ public:
+  SwigDirector_REMBBitrateListener(int swig_p);
+  virtual ~SwigDirector_REMBBitrateListener();
+  void _swig_upcall_onREMB() {
+    REMBBitrateListener::onREMB();
+  }
+  virtual void onREMB();
  private:
   intgo go_val;
   Swig_memory *swig_mem;

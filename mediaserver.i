@@ -4,7 +4,6 @@
 #include <string>
 #include <list>
 #include <functional>
-#include "mediaserver_callback.h"
 #include "mediaserver/include/config.h"	
 #include "mediaserver/include/dtls.h"
 #include "mediaserver/include/OpenSSL.h"
@@ -167,6 +166,38 @@ public:
 	}
 };
 
+
+class PlayerEndListener {
+public:
+	PlayerEndListener()
+	{
+
+	}
+	virtual ~PlayerEndListener() {
+
+	}
+	virtual void onEnd() {
+
+	}
+};
+
+
+class REMBBitrateListener {
+public:
+	REMBBitrateListener()
+	{
+
+	}
+	virtual ~REMBBitrateListener() {
+
+	}
+	virtual void onREMB() {
+
+	}
+};
+
+
+
 class PlayerFacade :
 	public MP4Streamer,
 	public MP4Streamer::Listener
@@ -183,7 +214,7 @@ public:
 		video.Start();
 	}
 
-	void setPlayEndListener(PlayerListener *listener) 
+	void setPlayEndListener(PlayerEndListener *listener) 
 	{
 		endlistener = listener;
 	}
@@ -237,7 +268,7 @@ public:
 	
 private:
 	//TODO: Update to multitrack
-	PlayerListener *endlistener;
+	PlayerEndListener *endlistener;
 	RTPIncomingSourceGroup audio;
 	RTPIncomingSourceGroup video;
 };
@@ -320,7 +351,7 @@ class RTPStreamTransponderFacade :
 	public RTPStreamTransponder
 {
 public:
-	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender, REMBListener* listener) :
+	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender, REMBBitrateListener* listener) :
 		RTPStreamTransponder(outgoing, sender ? sender->get() : NULL),
 		listener(listener)
 	{}
@@ -340,7 +371,7 @@ public:
 private:
 	DWORD period = 1000;
 	QWORD last = 0; 
-	REMBListener* listener;
+	REMBBitrateListener* listener;
 };
 
 class StreamTrackDepacketizer :
@@ -483,7 +514,7 @@ void EvenSource::SendEvent(const char* type,const char* msg,...)
 class LayerSources : public std::vector<LayerSource*>
 {
 public:
-	size_t size() const		{ return std::vector<LayerSource*>::size(); }
+	size_t size() const  { return std::vector<LayerSource*>::size(); }
 	LayerSource* get(size_t i)	{ return  std::vector<LayerSource*>::at(i); }
 };
 
@@ -654,12 +685,14 @@ private:
 	RTPIncomingSourceGroup* incomingSource;
 };
 
+
+
 %}
 
 
 
-%feature("director") PlayerListener;
-%feature("director") REMBListener;
+%feature("director") PlayerEndListener;
+%feature("director") REMBBitrateListener;
 %feature("director") SenderSideEstimatorListener;
 %feature("director") MediaFrameListener;
 
@@ -667,7 +700,6 @@ private:
 %include <typemaps.i>
 %include "stdint.i"
 %include "std_vector.i"
-%include "mediaserver_callback.h"
 %include "mediaserver/include/config.h"	
 %include "mediaserver/include/media.h"
 %include "mediaserver/include/acumulator.h"
@@ -860,7 +892,7 @@ RTPReceiverFacade*	SessionToReceiver(RTPSessionFacade* session);
 class RTPStreamTransponderFacade 
 {
 public:
-	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender,REMBListener *listener);
+	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender,REMBBitrateListener *listener);
 	bool SetIncoming(RTPIncomingSourceGroup* incoming, RTPReceiverFacade* receiver);
 	void SelectLayer(int spatialLayerId,int temporalLayerId);
 	void Mute(bool muting);
@@ -886,7 +918,7 @@ public:
 	RTPIncomingSourceGroup* GetVideoSource();
 	void Reset();
 
-	void setPlayEndListener(PlayerListener *listener);
+	void setPlayEndListener(PlayerEndListener *listener);
 
 	int Open(const char* filename);
 	bool HasAudioTrack();
@@ -944,4 +976,21 @@ public:
 	void RemoveMediaListener(MediaFrameListener* listener);
 	void Stop();
 };
+
+
+class PlayerEndListener {
+public:
+	PlayerEndListener();
+	virtual ~PlayerEndListener() {}
+	virtual void onEnd();
+};
+
+
+class REMBBitrateListener {
+public:
+	REMBBitrateListener();
+	virtual ~REMBBitrateListener() {}
+	virtual void onREMB();
+};
+
 

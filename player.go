@@ -12,24 +12,20 @@ type Player struct {
 }
 
 type playerEndCallback interface {
-	PlayerListener
+	PlayerEndListener
 	deletePlayerListener()
-	IsPlayerEndCallback()
 }
 
 type goplayerEndCallback struct {
-	PlayerListener
+	PlayerEndListener
 }
 
 func (r *goplayerEndCallback) deletePlayerListener() {
-	DeleteDirectorPlayerListener(r.PlayerListener)
-}
-
-func (r *goplayerEndCallback) IsPlayerEndCallback() {
+	DeleteDirectorPlayerEndListener(r.PlayerEndListener)
 }
 
 type overwrittenEndCallback struct {
-	p PlayerListener
+	p PlayerEndListener
 }
 
 func (p *overwrittenEndCallback) OnEnd() {
@@ -70,10 +66,10 @@ func NewPlayer(filename string) (*Player, error) {
 	}
 
 	callback := &overwrittenEndCallback{}
-	p := NewDirectorPlayerListener(callback)
+	p := NewDirectorPlayerEndListener(callback)
 	callback.p = p
 
-	player.endCallback = &goplayerEndCallback{PlayerListener: p}
+	player.endCallback = &goplayerEndCallback{PlayerEndListener: p}
 
 	player.player.SetPlayEndListener(player.endCallback)
 
