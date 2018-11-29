@@ -1,9 +1,5 @@
 package mediaserver
 
-import (
-	"fmt"
-)
-
 type MediaFrameCallback func(frame MediaFrame)
 
 type MediaStreamDuplicater struct {
@@ -27,11 +23,15 @@ func (m *goMediaFrameListener) deleteMediaFrameListener() {
 }
 
 type overwrittenMediaFrameListener struct {
-	p MediaFrameListener
+	p          MediaFrameListener
+	duplicater *MediaStreamDuplicater
 }
 
 func (p *overwrittenMediaFrameListener) OnMediaFrame(frame MediaFrame) {
-	fmt.Println(frame.GetSSRC())
+
+	if p.duplicater != nil {
+		p.duplicater.callback(frame)
+	}
 }
 
 func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCallback) *MediaStreamDuplicater {
@@ -49,7 +49,9 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCal
 
 	duplicater.callback = callback
 
-	listener := &overwrittenMediaFrameListener{}
+	listener := &overwrittenMediaFrameListener{
+		duplicater: duplicater,
+	}
 	p := NewDirectorMediaFrameListener(listener)
 	listener.p = p
 
