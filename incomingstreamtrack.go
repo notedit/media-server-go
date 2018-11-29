@@ -5,6 +5,14 @@ import (
 	"github.com/notedit/media-server-go/sdp"
 )
 
+type Layer struct {
+	SpatialLayerId  byte
+	TemporalLayerId byte
+	TotalBytes      uint
+	NumPackets      uint
+	Bitrate         uint
+}
+
 type Encoding struct {
 	id           string
 	source       RTPIncomingSourceGroup
@@ -35,15 +43,77 @@ type IncomingStreamTrack struct {
 }
 
 type IncomingStats struct {
-	LostPackets    int
-	DropPackets    int
-	NumPackets     int
-	NumRTCPPackets int
-	TotalBytes     int
-	TotalRTCPBytes int
-	TotalPLIs      int
-	TotalNACKs     int
-	Bitrate        int
+	LostPackets    uint
+	DropPackets    uint
+	NumPackets     uint
+	NumRTCPPackets uint
+	TotalBytes     uint
+	TotalRTCPBytes uint
+	TotalPLIs      uint
+	TotalNACKs     uint
+	Bitrate        uint
+	Layers         []*Layer
+}
+
+func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
+
+	stats := &IncomingStats{
+		LostPackets:    source.GetLostPackets(),
+		DropPackets:    source.GetDropPackets(),
+		NumPackets:     source.GetNumPackets(),
+		NumRTCPPackets: source.GetNumRTCPPackets(),
+		TotalBytes:     source.GetTotalBytes(),
+		TotalRTCPBytes: source.GetTotalRTCPBytes(),
+		TotalPLIs:      source.GetTotalPLIs(),
+		TotalNACKs:     source.GetTotalNACKs(),
+		Bitrate:        source.GetBitrate(),
+		Layers:         []*Layer{},
+	}
+
+	layers := source.Layers()
+
+	individual := []*Layer{}
+
+	var i int64
+	for i = 0; i < layers.Size(); i++ {
+		layer := layers.Get(int64(i))
+
+		layerInfo := &Layer{
+			SpatialLayerId:  layer.GetSpatialLayerId(),
+			TemporalLayerId: layer.GetTemporalLayerId(),
+			TotalBytes:      layer.GetTotalBytes(),
+			NumPackets:      layer.GetNumPackets(),
+			Bitrate:         layer.GetBitrate(),
+		}
+
+		individual = append(individual, layerInfo)
+	}
+
+	for _, layer := range individual {
+
+		aggregated := &Layer{
+			SpatialLayerId:  layer.SpatialLayerId,
+			TemporalLayerId: layer.TemporalLayerId,
+			TotalBytes:      0,
+			NumPackets:      0,
+			Bitrate:         0,
+		}
+
+		for _, layer2 := range individual {
+
+			if layer2.SpatialLayerId <= aggregated.SpatialLayerId && layer2.TemporalLayerId <= aggregated.TemporalLayerId {
+
+				aggregated.TotalBytes += layer2.TotalBytes
+				aggregated.NumPackets += layer2.NumPackets
+				aggregated.Bitrate += layer2.Bitrate
+			}
+		}
+
+		stats.Layers = append(stats.Layers, aggregated)
+
+	}
+
+	return stats
 }
 
 func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade, souces map[string]RTPIncomingSourceGroup) *IncomingStreamTrack {
@@ -77,7 +147,6 @@ func (i *IncomingStreamTrack) GetMedia() string {
 }
 
 func (i *IncomingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
-	// todo check trackInfo
 	return i.trackInfo
 }
 
@@ -103,7 +172,6 @@ func (i *IncomingStreamTrack) GetStats() *IncomingStats {
 
 func (i *IncomingStreamTrack) GetActiveLayers() {
 
-	// todo
 }
 
 func (i *IncomingStreamTrack) GetEncodings() map[string]*Encoding {

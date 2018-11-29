@@ -579,7 +579,6 @@ public:
 
 	virtual void onMediaFrame(MediaFrame &frame)  {
 
-		// todo 
 	}
 	virtual void onMediaFrame(DWORD ssrc, MediaFrame &frame) {
 
@@ -615,6 +614,10 @@ public:
 
 	virtual void onRTP(RTPIncomingSourceGroup* group,const RTPPacket::shared& packet)
 	{
+
+		if (listeners.empty()) 
+			return;
+
 		//If depacketizer is not the same codec 
 		if (depacketizer && depacketizer->GetCodec()!=packet->GetCodec())
 		{
@@ -744,9 +747,11 @@ struct RTPSource
 	DWORD bitrate;
 };
 
+
 struct RTPIncomingSource : public RTPSource
 {
 	DWORD lostPackets;
+	DWORD dropPackets;
 	DWORD totalPacketsSinceLastSR;
 	DWORD totalBytesSinceLastSR;
 	DWORD minExtSeqNumSinceLastSR ;
@@ -754,8 +759,10 @@ struct RTPIncomingSource : public RTPSource
 	QWORD lastReceivedSenderNTPTimestamp;
 	QWORD lastReceivedSenderReport;
 	QWORD lastReport;
+	QWORD lastPLI;
 	DWORD totalPLIs;
 	DWORD totalNACKs;
+	QWORD lastNACKed;
 	
 	%extend 
 	{
