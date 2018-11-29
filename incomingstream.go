@@ -48,9 +48,9 @@ func (i *IncomingStream) GetStreamInfo() *sdp.StreamInfo {
 	return info
 }
 
-func (i *IncomingStream) GetStats() map[string]*IncomingStats {
+func (i *IncomingStream) GetStats() map[string]map[string]*IncomingAllStats {
 
-	stats := map[string]*IncomingStats{}
+	stats := map[string]map[string]*IncomingAllStats{}
 
 	for _, track := range i.tracks {
 		stats[track.GetID()] = track.GetStats()

@@ -1,6 +1,9 @@
 package mediaserver
 
 import (
+	"sort"
+	"time"
+
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 )
@@ -11,6 +14,7 @@ type Layer struct {
 	TotalBytes      uint
 	NumPackets      uint
 	Bitrate         uint
+	SimulcastIdx    int
 }
 
 type Encoding struct {
@@ -37,8 +41,8 @@ type IncomingStreamTrack struct {
 	receiver  RTPReceiverFacade
 	counter   int
 	encodings map[string]*Encoding
-	stats     *IncomingStats // buffer the last stats
 	trackInfo *sdp.TrackInfo
+	stats     map[string]*IncomingAllStats
 	*emission.Emitter
 }
 
@@ -53,6 +57,21 @@ type IncomingStats struct {
 	TotalNACKs     uint
 	Bitrate        uint
 	Layers         []*Layer
+}
+
+type IncomingAllStats struct {
+	Rtt          uint
+	MinWaitTime  uint
+	MaxWaitTime  uint
+	AvgWaitTime  float64
+	Media        *IncomingStats
+	Rtx          *IncomingStats
+	Fec          *IncomingStats
+	Bitrate      uint
+	Total        uint
+	Remb         uint
+	SimulcastIdx int
+	timestamp    int64
 }
 
 func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
@@ -164,10 +183,61 @@ func (i *IncomingStreamTrack) GetSSRCs() []map[string]RTPIncomingSource {
 	return ssrcs
 }
 
-func (i *IncomingStreamTrack) GetStats() *IncomingStats {
+func (i *IncomingStreamTrack) GetStats() map[string]*IncomingAllStats {
 
-	// todo
-	return nil
+	if i.stats == nil {
+		i.stats = map[string]*IncomingAllStats{}
+	}
+
+	for id, encoding := range i.encodings {
+		state := i.stats[id]
+		if state == nil || (state != nil && time.Now().UnixNano()-state.timestamp > 200000000) {
+
+			encoding.GetSource().Update()
+
+			media := getStatsFromIncomingSource(encoding.GetSource().GetMedia())
+			fec := getStatsFromIncomingSource(encoding.GetSource().GetFec())
+			rtx := getStatsFromIncomingSource(encoding.GetSource().GetRtx())
+
+			i.stats[id] = &IncomingAllStats{
+				Rtt:         encoding.GetSource().GetRtt(),
+				MinWaitTime: encoding.GetSource().GetMinWaitedTime(),
+				MaxWaitTime: encoding.GetSource().GetMaxWaitedTime(),
+				AvgWaitTime: encoding.GetSource().GetAvgWaitedTime(),
+				Media:       media,
+				Rtx:         rtx,
+				Fec:         fec,
+				Bitrate:     media.Bitrate,
+				Total:       media.Bitrate + fec.Bitrate + rtx.Bitrate,
+				timestamp:   time.Now().UnixNano(),
+			}
+		}
+	}
+
+	simulcastIdx := 0
+
+	stats := []*IncomingAllStats{}
+
+	for _, state := range i.stats {
+		stats = append(stats, state)
+	}
+
+	sort.Slice(stats, func(i, j int) bool { return stats[i].Bitrate > stats[j].Bitrate })
+
+	for _, state := range stats {
+		if state.Bitrate > 0 {
+			simulcastIdx += 1
+			state.SimulcastIdx = simulcastIdx
+		} else {
+			state.SimulcastIdx = -1
+		}
+
+		for _, layer := range state.Media.Layers {
+			layer.SimulcastIdx = state.SimulcastIdx
+		}
+	}
+
+	return i.stats
 }
 
 func (i *IncomingStreamTrack) GetActiveLayers() {
