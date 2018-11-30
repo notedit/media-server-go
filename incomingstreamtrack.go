@@ -9,8 +9,9 @@ import (
 )
 
 type Layer struct {
-	SpatialLayerId  byte
-	TemporalLayerId byte
+	EncodingId      string
+	SpatialLayerId  int
+	TemporalLayerId int
 	TotalBytes      uint
 	NumPackets      uint
 	Bitrate         uint
@@ -74,6 +75,19 @@ type IncomingAllStats struct {
 	timestamp    int64
 }
 
+type ActiveEncoding struct {
+	EncodingId   string
+	SimulcastIdx int
+	Bitrate      uint
+	Layers       []*Layer
+}
+
+type ActiveLayersInfo struct {
+	Active   []*ActiveEncoding
+	Inactive []*ActiveEncoding
+	Layers   []*Layer
+}
+
 func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
 
 	stats := &IncomingStats{
@@ -98,8 +112,8 @@ func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
 		layer := layers.Get(int64(i))
 
 		layerInfo := &Layer{
-			SpatialLayerId:  layer.GetSpatialLayerId(),
-			TemporalLayerId: layer.GetTemporalLayerId(),
+			SpatialLayerId:  int(layer.GetSpatialLayerId()),
+			TemporalLayerId: int(layer.GetTemporalLayerId()),
 			TotalBytes:      layer.GetTotalBytes(),
 			NumPackets:      layer.GetNumPackets(),
 			Bitrate:         layer.GetBitrate(),
@@ -129,7 +143,6 @@ func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
 		}
 
 		stats.Layers = append(stats.Layers, aggregated)
-
 	}
 
 	return stats
@@ -240,7 +253,78 @@ func (i *IncomingStreamTrack) GetStats() map[string]*IncomingAllStats {
 	return i.stats
 }
 
-func (i *IncomingStreamTrack) GetActiveLayers() {
+func (i *IncomingStreamTrack) GetActiveLayers() *ActiveLayersInfo {
+
+	active := []*ActiveEncoding{}
+	inactive := []*ActiveEncoding{}
+	all := []*Layer{}
+
+	stats := i.GetStats()
+
+	for id, state := range stats {
+
+		if state.Bitrate == 0 {
+			inactive = append(inactive, &ActiveEncoding{
+				EncodingId: id,
+			})
+			continue
+		}
+
+		encoding := &ActiveEncoding{
+			EncodingId:   id,
+			SimulcastIdx: state.SimulcastIdx,
+			Bitrate:      state.Bitrate,
+			Layers:       []*Layer{},
+		}
+
+		layers := state.Media.Layers
+
+		for _, layer := range layers {
+			encoding.Layers = append(encoding.Layers, &Layer{
+				SimulcastIdx:    layer.SimulcastIdx,
+				SpatialLayerId:  layer.SpatialLayerId,
+				TemporalLayerId: layer.TemporalLayerId,
+				Bitrate:         layer.Bitrate,
+			})
+
+			all = append(all, &Layer{
+				EncodingId:      id,
+				SimulcastIdx:    layer.SimulcastIdx,
+				SpatialLayerId:  layer.SpatialLayerId,
+				TemporalLayerId: layer.TemporalLayerId,
+				Bitrate:         layer.Bitrate,
+			})
+
+		}
+
+		if len(encoding.Layers) > 0 {
+			sort.Slice(encoding.Layers, func(i, j int) bool { return encoding.Layers[i].Bitrate < encoding.Layers[j].Bitrate })
+		} else {
+
+			all = append(all, &Layer{
+				EncodingId:      encoding.EncodingId,
+				SimulcastIdx:    encoding.SimulcastIdx,
+				SpatialLayerId:  MaxLayerId,
+				TemporalLayerId: MaxLayerId,
+				Bitrate:         encoding.Bitrate,
+			})
+		}
+		active = append(active, encoding)
+	}
+
+	if len(active) > 0 {
+		sort.Slice(active, func(i, j int) bool { return active[i].Bitrate < active[j].Bitrate })
+	}
+
+	if len(all) > 0 {
+		sort.Slice(all, func(i, j int) bool { return all[i].Bitrate < all[j].Bitrate })
+	}
+
+	return &ActiveLayersInfo{
+		Active:   active,
+		Inactive: inactive,
+		Layers:   all,
+	}
 
 }
 
