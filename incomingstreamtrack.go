@@ -378,6 +378,10 @@ func (i *IncomingStreamTrack) Stop() {
 	for _, encoding := range i.encodings {
 		if encoding.depacketizer != nil {
 			encoding.depacketizer.Stop()
+			DeleteStreamTrackDepacketizer(encoding.depacketizer)
+		}
+		if encoding.source != nil {
+			DeleteRTPIncomingSourceGroup(encoding.source)
 		}
 	}
 

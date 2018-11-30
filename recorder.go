@@ -73,6 +73,8 @@ func (r *Recorder) Stop() {
 
 	r.recorder.Close()
 
+	DeleteMP4Recorder(r.recorder)
+
 	r.refresher = nil
 	r.recorder = nil
 }

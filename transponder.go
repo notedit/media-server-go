@@ -96,13 +96,10 @@ func (t *Transponder) IsMuted() bool {
 func (t *Transponder) Mute(muting bool) {
 
 	if t.muted != muting {
-
 		t.muted = muting
-
 		if t.transponder != nil {
 			t.transponder.Mute(muting)
 		}
-
 		t.EmitSync("muted")
 	}
 }
@@ -185,12 +182,13 @@ func (t *Transponder) Stop() {
 	}
 
 	if t.track != nil {
-
 		t.track.Off("stopped", t.onAttachedTrackStopped)
 		t.track.Detached()
 	}
 
 	t.transponder.Close()
+
+	DeleteRTPStreamTransponderFacade(t.transponder)
 
 	t.EmitSync("stopped")
 

@@ -184,6 +184,12 @@ func (o *OutgoingStreamTrack) Stop() {
 
 	o.EmitSync("stopped")
 
+	if o.source != nil {
+		DeleteRTPOutgoingSourceGroup(o.source)
+	}
+
+	o.transpoder.Stop()
+
 	o.source = nil
 
 	o.sender = nil

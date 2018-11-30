@@ -100,6 +100,8 @@ func (s *StreamerSession) Stop() {
 
 	s.session.End()
 
+	DeleteRTPSessionFacade(s.session)
+
 	s.EmitSync("stopped")
 
 	s.session = nil

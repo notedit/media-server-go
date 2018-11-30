@@ -78,6 +78,8 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	transport.username = NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
 	transport.transport = bundle.AddICETransport(transport.username, properties)
 
+	DeleteProperties(properties)
+
 	listener := &overwrittenSenderSideEstimatorListener{}
 	p := NewDirectorSenderSideEstimatorListener(listener)
 	listener.p = p
@@ -462,6 +464,8 @@ func (t *Transport) Stop() {
 	t.bundle.RemoveICETransport(t.username)
 
 	t.Emit("stopped")
+
+	DeleteStringFacade(t.username)
 
 	t.username = nil
 	t.bundle = nil
