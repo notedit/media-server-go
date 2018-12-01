@@ -1,8 +1,6 @@
 package mediaserver
 
 import (
-	"runtime"
-
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 )
@@ -25,7 +23,6 @@ func NewEndpoint(ip string) *Endpoint {
 	endpoint.fingerprint = MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	endpoint.Emitter = emission.NewEmitter()
-	runtime.SetFinalizer(endpoint, endpoint.deleteRTPBundleTransport)
 	return endpoint
 }
 
@@ -37,7 +34,6 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint.fingerprint = MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	endpoint.Emitter = emission.NewEmitter()
-	runtime.SetFinalizer(endpoint, endpoint.deleteRTPBundleTransport)
 	return endpoint
 }
 
@@ -149,13 +145,7 @@ func (e *Endpoint) Stop() {
 
 	e.bundle.End()
 
-	runtime.SetFinalizer(e, nil)
 	DeleteRTPBundleTransport(e.bundle)
 
 	e.bundle = nil
-}
-
-func (e *Endpoint) deleteRTPBundleTransport() {
-
-	DeleteRTPBundleTransport(e.bundle)
 }
