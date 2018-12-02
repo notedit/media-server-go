@@ -73,13 +73,11 @@ public:
 		//Enable log
 		Log("-EnableLog [%d]\n",flag);
 		Logger::EnableLog(flag);
-		Log("-EnableLog [%d]\n",flag);
 	}
 	
 	static void EnableDebug(bool flag)
 	{
 		//Enable debug
-		Log("-EnableDebug [%d]\n",flag);
 		Logger::EnableDebug(flag);
 	}
 	
@@ -567,6 +565,72 @@ private:
 };
 
 
+class RTPPacketListener
+{
+public:
+	RTPPacketListener()
+	{
+
+	}
+	virtual void OnRTP(BYTE* pakcet, DWORD length)
+	{
+
+	}
+};
+
+class RTPPacketDuplicaterFacade :
+	public RTPIncomingSourceGroup::Listener
+{
+public:
+	RTPPacketDuplicaterFacade(RTPIncomingSourceGroup* incomingSource)
+	{
+		this->incomingSource = incomingSource;
+		this->incomingSource->AddListener(this);
+	}
+	virtual ~RTPPacketDuplicaterFacade() 
+	{
+		if (!incomingSource)
+			//Done
+			return;
+		
+		//Stop listeneing
+		incomingSource->RemoveListener(this);
+		//Clean it
+		incomingSource = NULL;
+	}
+	void SetRTPListener(RTPPacketListener* listener)
+	{
+		this->listener = listener;
+	}
+	virtual void onRTP(RTPIncomingSourceGroup* group,const RTPPacket::shared& packet)
+	{
+
+
+		BYTE  data[MTU+200] ALIGNEDTO32;
+		DWORD size = MTU;
+		DWORD length = packet->Serialize(data,size,extMap);
+
+		Log("Packet size===== [%d]\n",length);
+
+		if (listener) {
+			listener->OnRTP(data, length);
+		}
+		
+	}
+	
+	virtual void onEnded(RTPIncomingSourceGroup* group) 
+	{
+		if (incomingSource==group)
+			incomingSource = nullptr;
+	}
+private:
+	const RTPMap extMap;
+	RTPPacketListener* listener;
+	RTPIncomingSourceGroup* incomingSource;
+};
+
+
+
 
 class MediaFrameListener :
 	public MediaFrame::Listener
@@ -618,7 +682,9 @@ public:
 		if (listeners.empty()) 
 			return;
 
+
 		//If depacketizer is not the same codec 
+		/**
 		if (depacketizer && depacketizer->GetCodec()!=packet->GetCodec())
 		{
 			//Delete it
@@ -647,6 +713,7 @@ public:
 			 //Next
 			 depacketizer->ResetFrame();
 		 }
+		 */
 	}
 	
 	virtual void onEnded(RTPIncomingSourceGroup* group) 
@@ -688,8 +755,6 @@ private:
 	RTPIncomingSourceGroup* incomingSource;
 };
 
-
-
 %}
 
 
@@ -698,6 +763,7 @@ private:
 %feature("director") REMBBitrateListener;
 %feature("director") SenderSideEstimatorListener;
 %feature("director") MediaFrameListener;
+%feature("director") RTPPacketListener;
 
 
 %include <typemaps.i>
@@ -963,6 +1029,23 @@ public:
 	void SetMinChangePeriod(uint32_t minChangePeriod);
 	void AddIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 	void RemoveIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
+};
+
+
+class RTPPacketListener
+{
+public:
+	RTPPacketListener();
+	virtual ~RTPPacketListener() {}
+	virtual void OnRTP(BYTE* pakcet, DWORD length);
+};
+
+class RTPPacketDuplicaterFacade
+{
+public:
+	RTPPacketDuplicaterFacade(RTPIncomingSourceGroup* incomingSource);
+	virtual ~RTPPacketDuplicaterFacade() {}
+	void SetRTPListener(RTPPacketListener* listener);
 };
 
 
