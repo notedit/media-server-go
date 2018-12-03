@@ -25,20 +25,6 @@ class SwigDirector_SenderSideEstimatorListener : public SenderSideEstimatorListe
   Swig_memory *swig_mem;
 };
 
-class SwigDirector_RTPPacketListener : public RTPPacketListener
-{
- public:
-  SwigDirector_RTPPacketListener(int swig_p);
-  virtual ~SwigDirector_RTPPacketListener();
-  void _swig_upcall_OnRTP(uint8_t *pakcet, uint32_t length) {
-    RTPPacketListener::OnRTP(pakcet,length);
-  }
-  virtual void OnRTP(uint8_t *pakcet, uint32_t length);
- private:
-  intgo go_val;
-  Swig_memory *swig_mem;
-};
-
 class SwigDirector_MediaFrameListener : public MediaFrameListener
 {
  public:
