@@ -43,7 +43,6 @@ func u32be(b []byte) (i uint32) {
 
 var nalu_prefix = []byte{0, 0, 0, 1}
 
-// Convert AVVC to ANNEXB
 func AnnexbConvert(avc []byte) ([]byte, error) {
 	if len(avc) < 4 {
 		return nil, errors.New("too short")
