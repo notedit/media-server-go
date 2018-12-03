@@ -181,7 +181,7 @@ func (o *OutgoingStreamTrack) Stop() {
 	}
 
 	// swig memory clean
-	o.interCallback.deleteREMBListener()
+	o.interCallback.deleteREMBBitrateListener()
 
 	o.Detach()
 
