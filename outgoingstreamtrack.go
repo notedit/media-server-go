@@ -15,7 +15,7 @@ type OutgoingStreamTrack struct {
 	source        RTPOutgoingSourceGroup
 	transpoder    *Transponder
 	trackInfo     *sdp.TrackInfo
-	interCallback REMBCallback
+	interCallback rembBitrateListener
 	// todo outercallback
 	*emission.Emitter
 }
@@ -28,24 +28,25 @@ type OutgoingStats struct {
 	Bitrate        int
 }
 
-type REMBCallback interface {
+type rembBitrateListener interface {
 	REMBBitrateListener
-	deleteREMBListener()
+	deleteREMBBitrateListener()
 }
 
-type goREMBCallback struct {
+type goREMBBitrateListener struct {
 	REMBBitrateListener
 }
 
-func (r *goREMBCallback) deleteREMBListener() {
+func (r *goREMBBitrateListener) deleteREMBBitrateListener() {
 	DeleteDirectorREMBBitrateListener(r.REMBBitrateListener)
 }
 
-type overwrittenREMBCallback struct {
-	p REMBBitrateListener
+type overwrittenREMBBitrateListener struct {
+	p     REMBBitrateListener
+	track *OutgoingStreamTrack
 }
 
-func (p *overwrittenREMBCallback) OnREMB() {
+func (p *overwrittenREMBBitrateListener) OnREMB() {
 
 	fmt.Println("OnREMB ====================")
 }
@@ -82,11 +83,13 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 	}
 
 	// callback
-	callback := &overwrittenREMBCallback{}
+	callback := &overwrittenREMBBitrateListener{
+		track: track,
+	}
 	p := NewDirectorREMBBitrateListener(callback)
 	callback.p = p
 
-	track.interCallback = &goREMBCallback{REMBBitrateListener: p}
+	track.interCallback = &goREMBBitrateListener{REMBBitrateListener: p}
 
 	return track
 }
