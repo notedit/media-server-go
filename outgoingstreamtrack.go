@@ -1,7 +1,7 @@
 package mediaserver
 
 import (
-	"fmt"
+	"time"
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
@@ -16,16 +16,24 @@ type OutgoingStreamTrack struct {
 	transpoder    *Transponder
 	trackInfo     *sdp.TrackInfo
 	interCallback rembBitrateListener
+	statss        *OutgoingStatss
 	// todo outercallback
 	*emission.Emitter
 }
 
 type OutgoingStats struct {
-	NumPackets     int
-	NumRTCPPackets int
-	TotalBytes     int
-	TotalRTCPBytes int
-	Bitrate        int
+	NumPackets     uint
+	NumRTCPPackets uint
+	TotalBytes     uint
+	TotalRTCPBytes uint
+	Bitrate        uint
+}
+
+type OutgoingStatss struct {
+	Media     *OutgoingStats
+	Rtx       *OutgoingStats
+	Fec       *OutgoingStats
+	timestamp int64
 }
 
 type rembBitrateListener interface {
@@ -48,7 +56,19 @@ type overwrittenREMBBitrateListener struct {
 
 func (p *overwrittenREMBBitrateListener) OnREMB() {
 
-	fmt.Println("OnREMB ====================")
+}
+
+func getStatsFromOutgoingSource(source RTPOutgoingSource) *OutgoingStats {
+
+	stats := &OutgoingStats{
+		NumPackets:     source.GetNumPackets(),
+		NumRTCPPackets: source.GetNumRTCPPackets(),
+		TotalBytes:     source.GetTotalBytes(),
+		TotalRTCPBytes: source.GetTotalRTCPBytes(),
+		Bitrate:        source.GetBitrate(),
+	}
+
+	return stats
 }
 
 func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, source RTPOutgoingSourceGroup) *OutgoingStreamTrack {
@@ -106,7 +126,20 @@ func (o *OutgoingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
 	return o.trackInfo
 }
 
-func (o *OutgoingStreamTrack) GetStats() {
+func (o *OutgoingStreamTrack) GetStats() *OutgoingStatss {
+
+	if o.statss == nil {
+		o.statss = &OutgoingStatss{}
+	}
+
+	if time.Now().UnixNano()-o.statss.timestamp > 200000000 {
+		o.statss.Media = getStatsFromOutgoingSource(o.source.GetMedia())
+		o.statss.Rtx = getStatsFromOutgoingSource(o.source.GetRtx())
+		o.statss.Fec = getStatsFromOutgoingSource(o.source.GetFec())
+		o.statss.timestamp = time.Now().UnixNano()
+	}
+
+	return o.statss
 
 }
 

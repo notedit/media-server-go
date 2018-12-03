@@ -37,8 +37,13 @@ func (o *OutgoingStream) GetID() string {
 	return o.id
 }
 
-func (o *OutgoingStream) GetStats() {
-	// todo
+func (o *OutgoingStream) GetStats() map[string]*OutgoingStatss {
+
+	stats := map[string]*OutgoingStatss{}
+	for _, track := range o.tracks {
+		stats[track.GetID()] = track.GetStats()
+	}
+	return stats
 }
 
 func (o *OutgoingStream) IsMuted() bool {
@@ -59,11 +64,8 @@ func (o *OutgoingStream) Mute(muting bool) {
 
 func (o *OutgoingStream) AttachTo(incomingStream *IncomingStream) []*Transponder {
 
-	// detach first
 	o.Detach()
-
 	transponders := []*Transponder{}
-
 	audios := o.GetAudioTracks()
 	if len(audios) > 0 {
 		index := len(audios)
@@ -86,7 +88,6 @@ func (o *OutgoingStream) AttachTo(incomingStream *IncomingStream) []*Transponder
 		if index < len(tracks) {
 			index = len(tracks)
 		}
-
 		for i, track := range tracks {
 			if i < index {
 				transponders = append(transponders, videos[i].AttachTo(track))
