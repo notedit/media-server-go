@@ -165,6 +165,9 @@ public:
 };
 
 
+
+
+
 class PlayerEndListener {
 public:
 	PlayerEndListener()
@@ -269,6 +272,39 @@ private:
 	PlayerEndListener *endlistener;
 	RTPIncomingSourceGroup audio;
 	RTPIncomingSourceGroup video;
+};
+
+
+
+class RawRTPSessionFacade :
+	public RTPReceiver
+{
+public:
+	RawRTPSessionFacade(MediaFrame::Type media):
+	source(media)
+	{
+		source.Start();
+	}
+	int Init(const Properties &properties)
+	{
+
+
+	}
+	void onRTPPacket(void *buffer, int len) 
+	{
+
+	}
+	RTPIncomingSourceGroup* GetIncomingSourceGroup()
+	{
+		return &source;
+	}
+	int End() 
+	{
+		
+	}
+	virtual int SendPLI(DWORD ssrc) {}
+private:
+	RTPIncomingSourceGroup source;
 };
 
 
@@ -939,6 +975,20 @@ public:
 	QWORD Tell();
 	int Stop();
 	int Close();
+};
+
+
+
+class RawRTPSessionFacade :
+	public RTPReceiver
+{
+public:
+	RawRTPSessionFacade(MediaFrame::Type media);
+	int Init(const Properties &properties);
+	void onRTPPacket(void *buffer, int len);
+	RTPIncomingSourceGroup* GetIncomingSourceGroup();
+	int End();
+	virtual int SendPLI(DWORD ssrc);
 };
 
 
