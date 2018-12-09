@@ -12,7 +12,7 @@ type CodecInfo struct {
 	rtcpfbs []*RTCPFeedbackInfo
 }
 
-func NewCodecInfo(codec string, ctype int, params map[string]string) *CodecInfo {
+func NewCodecInfo(codec string, ctype int) *CodecInfo {
 
 	codecInfo := &CodecInfo{
 		codec:   codec,
@@ -132,7 +132,7 @@ func CodecMapFromNames(names []string, rtx bool, rtcpfbs []*RTCPFeedbackInfo) ma
 			pt = basePt
 		}
 
-		codec := NewCodecInfo(codecName, pt, map[string]string{})
+		codec := NewCodecInfo(codecName, pt)
 
 		if rtx && codecName != "ulpfec" && codecName != "flexfec-03" && codecName != "red" {
 			basePt++

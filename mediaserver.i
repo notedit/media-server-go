@@ -331,7 +331,7 @@ public:
 
 		return 1;
 	}
-	void onRTPPacket(BYTE* data, int size) 
+	void onRTPPacket(uint8_t* data, int size) 
 	{
 		
 		Log("RawRTPSessionFacade  onRTPPacket\n");
@@ -350,6 +350,7 @@ public:
 
 		if (header.extension)
 		{
+			
 			//Parse extension
 			int l = extension.Parse(extMap,data+ini,size-ini);
 			//If not parsed
@@ -1112,7 +1113,7 @@ class RawRTPSessionFacade :
 public:
 	RawRTPSessionFacade(MediaFrame::Type media);
 	int Init(const Properties &properties);
-	void onRTPPacket(BYTE* buffer, int len);
+	void onRTPPacket(uint8_t* buffer, int len);
 	RTPIncomingSourceGroup* GetIncomingSourceGroup();
 	int End();
 	virtual int SendPLI(DWORD ssrc);
