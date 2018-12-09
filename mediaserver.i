@@ -9,6 +9,7 @@
 #include "mediaserver/include/OpenSSL.h"
 #include "mediaserver/include/media.h"
 #include "mediaserver/include/rtp.h"
+#include "mediaserver/include/tools.h"
 #include "mediaserver/include/rtpsession.h"
 #include "mediaserver/include/DTLSICETransport.h"	
 #include "mediaserver/include/RTPBundleTransport.h"
@@ -261,8 +262,14 @@ public:
 		video.media.ssrc = rand();
 	}
 	
-	virtual void onMediaFrame(MediaFrame &frame)  {}
-	virtual void onMediaFrame(DWORD ssrc, MediaFrame &frame) {}
+	virtual void onMediaFrame(MediaFrame &frame)  {
+
+		Log("PlayerFacade onMediaFrame\n");
+	}
+	virtual void onMediaFrame(DWORD ssrc, MediaFrame &frame) {
+		
+		Log("PlayerFacade onMediaFrame\n");
+	}
 
 	RTPIncomingSourceGroup* GetAudioSource() { return &audio; }
 	RTPIncomingSourceGroup* GetVideoSource() { return &video; }
@@ -284,14 +291,128 @@ public:
 	source(media)
 	{
 		source.Start();
+		mediatype = media;
 	}
 	int Init(const Properties &properties)
-	{
+	{	
+		//Get codecs
+		std::vector<Properties> codecs;
+		properties.GetChildrenArray("codecs",codecs);
 
+		//For each codec
+		for (auto it = codecs.begin(); it!=codecs.end(); ++it)
+		{
+			
+			BYTE codec;
+			//Depending on the type
+			switch (mediatype)
+			{
+				case MediaFrame::Audio:
+					codec = (BYTE)AudioCodec::GetCodecForName(it->GetProperty("codec"));
+					break;
+				case MediaFrame::Video:
+					codec = (BYTE)VideoCodec::GetCodecForName(it->GetProperty("codec"));
+					break;
+				default:
+					///Ignore
+					codec = (BYTE)-1;
+					break;
+			}
 
+			//Get codec type
+			BYTE type = it->GetProperty("pt",0);
+			//ADD it
+			rtp[type] = codec;
+		}
+	
+		//Set local 
+		//RTPSession::SetSendingRTPMap(rtp,apt);
+		//RTPSession::SetReceivingRTPMap(rtp,apt);
+
+		return 1;
 	}
-	void onRTPPacket(void *buffer, int len) 
+	void onRTPPacket(BYTE* data, int size) 
 	{
+		
+		Log("RawRTPSessionFacade  onRTPPacket\n");
+
+		RTPHeader header;
+		RTPHeaderExtension extension;
+
+		int ini = header.Parse(data,size);
+
+		if (!ini)
+		{
+			//Debug
+			Debug("-RawRTPSessionFacade::onRTPPacket() | Could not parse RTP header\n");
+			return;
+		}
+
+		if (header.extension)
+		{
+			//Parse extension
+			int l = extension.Parse(extMap,data+ini,size-ini);
+			//If not parsed
+			if (!l)
+			{
+				///Debug
+				Debug("-RawRTPSessionFacade::onRTPPacket() | Could not parse RTP header extension\n");
+				//Exit
+				return;
+			}
+			//Inc ini
+			ini += l;
+		}
+
+		if (header.padding)
+		{
+			//Get last 2 bytes
+			WORD padding = get1(data,size-1);
+			//Ensure we have enought size
+			if (size-ini<padding)
+			{
+				///Debug
+				Debug("-RawRTPSessionFacade::onRTPPacket() | RTP padding is bigger than size\n");
+				return;
+			}
+			//Remove from size
+			size -= padding;
+		}
+
+		DWORD ssrc = header.ssrc;
+		BYTE type  = header.payloadType;
+		//Get initial codec
+		BYTE codec = rtp.GetCodecForType(header.payloadType);
+		
+		//Check codec
+		if (codec==RTPMap::NotFound)
+		{
+			//Exit
+			Error("-RawRTPSessionFacade::onRTPPacket(%s) | RTP packet type unknown [%d]\n",MediaFrame::TypeToString(mediatype),type);
+			//Exit
+			return;
+		}
+
+		auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
+
+		//Set the payload
+		packet->SetPayload(data+ini,size-ini);
+		
+		//Get sec number
+		WORD seq = packet->GetSeqNum();
+
+		WORD cycles = source.media.SetSeqNum(seq);
+
+		packet->SetSeqCycles(cycles);
+
+		if (source.media.ssrc != ssrc) {
+			source.media.Reset();
+			source.media.ssrc = ssrc;
+		}
+
+		source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
+		packet->SetSSRC(source.media.ssrc);
+		source.AddPacket(packet->Clone());
 
 	}
 	RTPIncomingSourceGroup* GetIncomingSourceGroup()
@@ -300,10 +421,17 @@ public:
 	}
 	int End() 
 	{
-		
+		Log("RawRTPSessionFacade End\n");
+		return 1;
 	}
-	virtual int SendPLI(DWORD ssrc) {}
+	virtual int SendPLI(DWORD ssrc) {
+		return 0;
+	}
 private:
+	RTPMap extMap;
+	RTPMap rtp;
+	RTPMap apt;
+	MediaFrame::Type mediatype;
 	RTPIncomingSourceGroup source;
 };
 
@@ -378,7 +506,6 @@ RTPReceiverFacade* SessionToReceiver(RTPSessionFacade* session)
 {
 	return new RTPReceiverFacade(session);
 }
-
 
 
 class RTPStreamTransponderFacade : 
@@ -985,7 +1112,7 @@ class RawRTPSessionFacade :
 public:
 	RawRTPSessionFacade(MediaFrame::Type media);
 	int Init(const Properties &properties);
-	void onRTPPacket(void *buffer, int len);
+	void onRTPPacket(BYTE* buffer, int len);
 	RTPIncomingSourceGroup* GetIncomingSourceGroup();
 	int End();
 	virtual int SendPLI(DWORD ssrc);
