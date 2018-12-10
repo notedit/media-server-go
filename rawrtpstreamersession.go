@@ -8,7 +8,6 @@ import "C"
 import (
 	"fmt"
 	"strings"
-	"unsafe"
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
@@ -68,9 +67,10 @@ func (s *RawRTPStreamerSession) GetIncomingStreamTrack() *IncomingStreamTrack {
 }
 
 func (s *RawRTPStreamerSession) Push(rtp []byte) {
-	b := C.CBytes(rtp)
-	defer C.free(unsafe.Pointer(b))
-	s.session.OnRTPPacket((*byte)(b), len(rtp))
+	// b := C.CBytes(rtp)
+	// defer C.free(unsafe.Pointer(b))
+	// s.session.OnRTPPacket((*byte)(b), len(rtp))
+	s.session.OnRTPPacket(&rtp[0], len(rtp))
 }
 
 func (s *RawRTPStreamerSession) Stop() {
