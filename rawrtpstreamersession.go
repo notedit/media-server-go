@@ -50,7 +50,7 @@ func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
 	session.Init(properties)
 	DeleteProperties(properties)
 	streamerSession.session = session
-	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), nil, map[string]RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
+	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), RTPSessionToReceiver(session), map[string]RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
 
 	streamerSession.incoming.Once("stopped", func() {
 		streamerSession.incoming = nil
