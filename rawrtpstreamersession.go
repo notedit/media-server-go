@@ -2,7 +2,6 @@ package mediaserver
 
 /*
 #include <stdlib.h>
-#include <stdlib.h>
 */
 import "C"
 import (
@@ -30,6 +29,8 @@ func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
 	}
 	session := NewRawRTPSessionFacade(mediaType)
 	streamerSession.id = uuid.Must(uuid.NewV4()).String()
+
+	streamerSession.Emitter = emission.NewEmitter()
 
 	properties := NewProperties()
 	if media != nil {
@@ -67,9 +68,9 @@ func (s *RawRTPStreamerSession) GetIncomingStreamTrack() *IncomingStreamTrack {
 }
 
 func (s *RawRTPStreamerSession) Push(rtp []byte) {
-	// b := C.CBytes(rtp)
-	// defer C.free(unsafe.Pointer(b))
-	// s.session.OnRTPPacket((*byte)(b), len(rtp))
+	if rtp == nil || len(rtp) == 0 {
+		return
+	}
 	s.session.OnRTPPacket(&rtp[0], len(rtp))
 }
 

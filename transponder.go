@@ -63,6 +63,10 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 	// get first encoding
 	encoding := t.track.GetFirstEncoding()
 
+	if encoding == nil {
+		panic("encoding is nil")
+	}
+
 	t.transponder.SetIncoming(encoding.GetSource(), incomingTrack.receiver)
 
 	t.encodingId = encoding.GetID()

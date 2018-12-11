@@ -1,6 +1,7 @@
 package mediaserver
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/chuckpreslar/emission"
@@ -181,6 +182,8 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	if o.muted {
 		o.transpoder.Mute(o.muted)
 	}
+
+	fmt.Println(" incomingTrack", incomingTrack)
 
 	o.transpoder.SetIncomingTrack(incomingTrack)
 
