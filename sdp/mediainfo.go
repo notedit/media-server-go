@@ -8,8 +8,8 @@ type MediaInfo struct {
 	id            string
 	mtype         string // "audio" | "video"
 	direction     Direction
-	extensions    map[int]string        // Add rtp header extension support
-	codecs        map[string]*CodecInfo // key: pt   value:  codec info
+	extensions    map[int]string     // Add rtp header extension support
+	codecs        map[int]*CodecInfo // key: pt   value:  codec info
 	rids          map[string]*RIDInfo
 	simulcast     bool
 	simulcastInfo *SimulcastInfo
@@ -23,7 +23,7 @@ func NewMediaInfo(id string, mtype string) *MediaInfo {
 		mtype:      mtype,
 		direction:  SENDRECV,
 		extensions: map[int]string{},
-		codecs:     map[string]*CodecInfo{},
+		codecs:     map[int]*CodecInfo{},
 		rids:       map[string]*RIDInfo{},
 		bitrate:    0,
 	}
@@ -82,14 +82,15 @@ func (m *MediaInfo) AddRID(ridInfo *RIDInfo) {
 
 func (m *MediaInfo) AddCodec(codecInfo *CodecInfo) {
 
-	m.codecs[codecInfo.GetCodec()] = codecInfo
+	m.codecs[codecInfo.GetType()] = codecInfo
 }
 
-func (m *MediaInfo) SetCodecs(codecs map[string]*CodecInfo) {
+func (m *MediaInfo) SetCodecs(codecs map[int]*CodecInfo) {
 
 	m.codecs = codecs
 }
 
+// GetCodec should return array
 func (m *MediaInfo) GetCodec(codec string) *CodecInfo {
 
 	for _, codecInfo := range m.codecs {
@@ -110,7 +111,7 @@ func (m *MediaInfo) GetCodecForType(pt int) *CodecInfo {
 	return nil
 }
 
-func (m *MediaInfo) GetCodecs() map[string]*CodecInfo {
+func (m *MediaInfo) GetCodecs() map[int]*CodecInfo {
 
 	return m.codecs
 }
@@ -269,9 +270,9 @@ func (m *MediaInfo) AnswerCapability(cap *Capability) *MediaInfo {
 	}
 	codecs := CodecMapFromNames(cap.Codecs, cap.Rtx, rtcpfbs)
 
-	for codecName, codec := range m.codecs {
+	for _, codec := range m.codecs {
 		// If we support this codec
-
+		codecName := codec.GetCodec()
 		lowerCodecName := strings.ToLower(codecName)
 		if codecs[lowerCodecName] != nil {
 
@@ -349,7 +350,9 @@ func MediaInfoCreate(mType string, capability *Capability) *MediaInfo {
 				rtcpfbs = append(rtcpfbs, NewRTCPFeedbackInfo(rtcpfb.ID, rtcpfb.Params))
 			}
 			codecs := CodecMapFromNames(capability.Codecs, capability.Rtx, rtcpfbs)
-			mediaInfo.SetCodecs(codecs)
+			for _, codec := range codecs {
+				mediaInfo.AddCodec(codec)
+			}
 		}
 		for i, extension := range capability.Extensions {
 			mediaInfo.AddExtension(i, extension)

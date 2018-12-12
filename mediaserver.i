@@ -414,6 +414,8 @@ public:
 		source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
 		packet->SetSSRC(source.media.ssrc);
 		source.AddPacket(packet->Clone());
+		
+		Debug("-RawRTPSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
 
 	}
 	RTPIncomingSourceGroup* GetIncomingSourceGroup()
