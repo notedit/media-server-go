@@ -6,6 +6,7 @@ import (
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
+	"github.com/sanity-io/litter"
 )
 
 type Layer struct {
@@ -334,6 +335,8 @@ func (i *IncomingStreamTrack) GetEncodings() map[string]*Encoding {
 }
 
 func (i *IncomingStreamTrack) GetFirstEncoding() *Encoding {
+
+	litter.Dump(i.encodings)
 
 	for _, encoding := range i.encodings {
 		if encoding != nil {

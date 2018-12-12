@@ -267,7 +267,7 @@ func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 
 }
 
-func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingStream {
+func (t *Transport) CreateOutgoingStream2(streamInfo *sdp.StreamInfo) *OutgoingStream {
 
 	info := streamInfo.Clone()
 	outgoingStream := NewOutgoingStream(t.transport, info)
@@ -291,11 +291,26 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 	return outgoingStream
 }
 
-// func (t *Transport) CreateOutgoingStreamWithID(streamID string) *OutgoingStream {
+func (t *Transport) CreateOutgoingStream(streamID string, audio bool, video bool) *OutgoingStream {
 
-// 	fmt.Println(streamID)
-// 	return nil
-// }
+	streamInfo := sdp.NewStreamInfo(streamID)
+	if audio {
+		audioTrack := sdp.NewTrackInfo(uuid.Must(uuid.NewV4()).String(), "audio")
+		ssrc := NextSSRC()
+		audioTrack.AddSSRC(ssrc)
+		streamInfo.AddTrack(audioTrack)
+	}
+
+	if video {
+		videoTrack := sdp.NewTrackInfo(uuid.Must(uuid.NewV4()).String(), "video")
+		ssrc := NextSSRC()
+		videoTrack.AddSSRC(ssrc)
+		streamInfo.AddTrack(videoTrack)
+	}
+
+	stream := t.CreateOutgoingStream2(streamInfo)
+	return stream
+}
 
 func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrcs map[string]uint) *OutgoingStreamTrack {
 

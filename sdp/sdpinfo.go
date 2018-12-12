@@ -752,7 +752,9 @@ func Parse(sdp string) (*SDPInfo, error) {
 					apts[aptint] = payload
 				}
 			} else {
-				mediaInfo.AddCodec(NewCodecInfo(codec, payload, params))
+				codecInfo := NewCodecInfo(codec, payload)
+				codecInfo.AddParams(params)
+				mediaInfo.AddCodec(codecInfo)
 			}
 		}
 

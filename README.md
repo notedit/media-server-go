@@ -1,6 +1,9 @@
 # media-server-go
 WebRTC media server for go
 
+## How to generate swig code  
+
+swig -go -cgo -c++ -intgosize 64 mediaserver.i
 
 
 ## How to build

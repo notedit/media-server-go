@@ -9,6 +9,7 @@
 #include "mediaserver/include/OpenSSL.h"
 #include "mediaserver/include/media.h"
 #include "mediaserver/include/rtp.h"
+#include "mediaserver/include/tools.h"
 #include "mediaserver/include/rtpsession.h"
 #include "mediaserver/include/DTLSICETransport.h"	
 #include "mediaserver/include/RTPBundleTransport.h"
@@ -165,6 +166,9 @@ public:
 };
 
 
+
+
+
 class PlayerEndListener {
 public:
 	PlayerEndListener()
@@ -258,8 +262,14 @@ public:
 		video.media.ssrc = rand();
 	}
 	
-	virtual void onMediaFrame(MediaFrame &frame)  {}
-	virtual void onMediaFrame(DWORD ssrc, MediaFrame &frame) {}
+	virtual void onMediaFrame(MediaFrame &frame)  {
+
+		Log("PlayerFacade onMediaFrame\n");
+	}
+	virtual void onMediaFrame(DWORD ssrc, MediaFrame &frame) {
+		
+		Log("PlayerFacade onMediaFrame\n");
+	}
 
 	RTPIncomingSourceGroup* GetAudioSource() { return &audio; }
 	RTPIncomingSourceGroup* GetVideoSource() { return &video; }
@@ -269,6 +279,163 @@ private:
 	PlayerEndListener *endlistener;
 	RTPIncomingSourceGroup audio;
 	RTPIncomingSourceGroup video;
+};
+
+
+
+class RawRTPSessionFacade :
+	public RTPReceiver
+{
+public:
+	RawRTPSessionFacade(MediaFrame::Type media):
+	source(media)
+	{
+		source.Start();
+		mediatype = media;
+	}
+	int Init(const Properties &properties)
+	{	
+		//Get codecs
+		std::vector<Properties> codecs;
+		properties.GetChildrenArray("codecs",codecs);
+
+		//For each codec
+		for (auto it = codecs.begin(); it!=codecs.end(); ++it)
+		{
+			
+			BYTE codec;
+			//Depending on the type
+			switch (mediatype)
+			{
+				case MediaFrame::Audio:
+					codec = (BYTE)AudioCodec::GetCodecForName(it->GetProperty("codec"));
+					break;
+				case MediaFrame::Video:
+					codec = (BYTE)VideoCodec::GetCodecForName(it->GetProperty("codec"));
+					break;
+				default:
+					///Ignore
+					codec = (BYTE)-1;
+					break;
+			}
+
+			//Get codec type
+			BYTE type = it->GetProperty("pt",0);
+			//ADD it
+			rtp[type] = codec;
+		}
+	
+		//Set local 
+		//RTPSession::SetSendingRTPMap(rtp,apt);
+		//RTPSession::SetReceivingRTPMap(rtp,apt);
+
+		return 1;
+	}
+	void onRTPPacket(uint8_t* data, int size) 
+	{
+		
+		Log("RawRTPSessionFacade  onRTPPacket\n");
+
+		RTPHeader header;
+		RTPHeaderExtension extension;
+
+		int ini = header.Parse(data,size);
+
+		if (!ini)
+		{
+			//Debug
+			Debug("-RawRTPSessionFacade::onRTPPacket() | Could not parse RTP header\n");
+			return;
+		}
+
+		if (header.extension)
+		{
+			
+			//Parse extension
+			int l = extension.Parse(extMap,data+ini,size-ini);
+			//If not parsed
+			if (!l)
+			{
+				///Debug
+				Debug("-RawRTPSessionFacade::onRTPPacket() | Could not parse RTP header extension\n");
+				//Exit
+				return;
+			}
+			//Inc ini
+			ini += l;
+		}
+
+		if (header.padding)
+		{
+			//Get last 2 bytes
+			WORD padding = get1(data,size-1);
+			//Ensure we have enought size
+			if (size-ini<padding)
+			{
+				///Debug
+				Debug("-RawRTPSessionFacade::onRTPPacket() | RTP padding is bigger than size\n");
+				return;
+			}
+			//Remove from size
+			size -= padding;
+		}
+
+		DWORD ssrc = header.ssrc;
+		BYTE type  = header.payloadType;
+		//Get initial codec
+		BYTE codec = rtp.GetCodecForType(header.payloadType);
+		
+		//Check codec
+		if (codec==RTPMap::NotFound)
+		{
+			//Exit
+			Error("-RawRTPSessionFacade::onRTPPacket(%s) | RTP packet type unknown [%d]\n",MediaFrame::TypeToString(mediatype),type);
+			//Exit
+			return;
+		}
+
+		auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
+
+		//Set the payload
+		packet->SetPayload(data+ini,size-ini);
+		
+		//Get sec number
+		WORD seq = packet->GetSeqNum();
+
+		WORD cycles = source.media.SetSeqNum(seq);
+
+		packet->SetSeqCycles(cycles);
+
+		if (source.media.ssrc != ssrc) {
+			source.media.Reset();
+			source.media.ssrc = ssrc;
+		}
+
+		source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
+		packet->SetSSRC(source.media.ssrc);
+		source.AddPacket(packet->Clone());
+		
+		Debug("-RawRTPSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
+
+	}
+	RTPIncomingSourceGroup* GetIncomingSourceGroup()
+	{
+		return &source;
+	}
+	int End() 
+	{
+		Log("RawRTPSessionFacade End\n");
+		return 1;
+	}
+	virtual int SendPLI(DWORD ssrc) {
+		return 0;
+	}
+private:
+	RTPMap extMap;
+	RTPMap rtp;
+	RTPMap apt;
+	MediaFrame::Type mediatype;
+	RTPIncomingSourceGroup source;
 };
 
 
@@ -303,11 +470,18 @@ public:
 	{
 		receiver = session;
 	}
+
+	RTPReceiverFacade(RawRTPSessionFacade* session)
+	{
+		receiver = session;
+	}
 	
 	RTPReceiverFacade(PCAPTransportEmulator *transport)
 	{
 		receiver = transport;
 	}
+
+
 	
 	int SendPLI(DWORD ssrc)
 	{
@@ -338,7 +512,13 @@ RTPSenderFacade* SessionToSender(RTPSessionFacade* session)
 {
 	return new RTPSenderFacade(session);	
 }
+
 RTPReceiverFacade* SessionToReceiver(RTPSessionFacade* session)
+{
+	return new RTPReceiverFacade(session);
+}
+
+RTPReceiverFacade* RTPSessionToReceiver(RawRTPSessionFacade* session)
 {
 	return new RTPReceiverFacade(session);
 }
@@ -888,7 +1068,7 @@ RTPReceiverFacade*	TransportToReceiver(DTLSICETransport* transport);
 RTPReceiverFacade*	PCAPTransportEmulatorToReceiver(PCAPTransportEmulator* transport);
 RTPSenderFacade*	SessionToSender(RTPSessionFacade* session);
 RTPReceiverFacade*	SessionToReceiver(RTPSessionFacade* session);
-
+RTPReceiverFacade*  RTPSessionToReceiver(RawRTPSessionFacade* session);
 
 
 
@@ -939,6 +1119,20 @@ public:
 	QWORD Tell();
 	int Stop();
 	int Close();
+};
+
+
+
+class RawRTPSessionFacade :
+	public RTPReceiver
+{
+public:
+	RawRTPSessionFacade(MediaFrame::Type media);
+	int Init(const Properties &properties);
+	void onRTPPacket(uint8_t* buffer, int len);
+	RTPIncomingSourceGroup* GetIncomingSourceGroup();
+	int End();
+	virtual int SendPLI(DWORD ssrc);
 };
 
 
