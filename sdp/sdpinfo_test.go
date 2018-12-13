@@ -191,6 +191,12 @@ func Test_Parse(t *testing.T) {
 	if track.GetMedia() != "audio" {
 		t.Error("track can not get media")
 	}
+
+	trackClone := track.Clone()
+
+	if trackClone.GetID() != track.GetID() {
+		t.Error("track clone error")
+	}
 }
 
 func Test_SDPTOString(t *testing.T) {

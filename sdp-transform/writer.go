@@ -112,10 +112,6 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 
 	var format string
 
-	if otype == 't' {
-		litter.Dump(rule)
-	}
-
 	if len(rule.Format) == 0 {
 		if rule.FormatFunc != nil {
 			var container *gabs.Container
@@ -167,7 +163,7 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 		} else if x == "%d" {
 			argInt, ok := arg.(float64)
 			if !ok {
-				fmt.Println("interface cast to int error, realtype is ", reflect.TypeOf(arg).String())
+				fmt.Println("interface cast to int error, realtype is ", reflect.TypeOf(arg).String(), "value is", arg)
 			}
 			argStr := strconv.Itoa(int(argInt))
 			return argStr
@@ -177,8 +173,6 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 
 		return ""
 	})
-
-	litter.Dump(string(line) + formatStr)
 
 	return string(line) + formatStr
 }

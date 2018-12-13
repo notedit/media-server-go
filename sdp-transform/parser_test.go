@@ -6,7 +6,7 @@ import (
 
 var sdpStr = `v=0
 o=- 20518 0 IN IP4 203.0.113.1
-t=0 0
+t=100 200
 c=IN IP4 203.0.113.1
 a=ice-ufrag:F7gI
 a=ice-pwd:x9cml/YzichV2+XlhiMu8g
@@ -33,7 +33,7 @@ var simulcastStr = `1,~4;2;3`
 const sdp = "v=0\r\n" +
 	"o=- 4327261771880257373 2 IN IP4 127.0.0.1\r\n" +
 	"s=-\r\n" +
-	"t=0 0\r\n" +
+	"t=100 300\r\n" +
 	"a=group:BUNDLE audio video\r\n" +
 	"a=msid-semantic: WMS xIKmAwWv4ft4ULxNJGhkHzvPaCkc8EKo4SGj\r\n" +
 	"m=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126\r\n" +

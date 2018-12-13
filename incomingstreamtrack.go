@@ -2,6 +2,7 @@ package mediaserver
 
 import (
 	"sort"
+	"strconv"
 	"time"
 
 	"github.com/chuckpreslar/emission"
@@ -149,7 +150,7 @@ func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
 	return stats
 }
 
-func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade, souces map[string]RTPIncomingSourceGroup) *IncomingStreamTrack {
+func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade, sources map[string]RTPIncomingSourceGroup) *IncomingStreamTrack {
 	track := &IncomingStreamTrack{}
 
 	track.id = id
@@ -159,13 +160,52 @@ func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade,
 	track.encodings = make(map[string]*Encoding)
 	track.Emitter = emission.NewEmitter()
 
-	for k, source := range souces {
+	track.trackInfo = sdp.NewTrackInfo(id, media)
+
+	for k, source := range sources {
 		encoding := &Encoding{
 			id:           k,
 			source:       source,
 			depacketizer: NewStreamTrackDepacketizer(source),
 		}
+
 		track.encodings[k] = encoding
+
+		//Add ssrcs to track info
+		if source.GetMedia().GetSsrc() > 0 {
+			track.trackInfo.AddSSRC(source.GetMedia().GetSsrc())
+		}
+
+		if source.GetRtx().GetSsrc() > 0 {
+			track.trackInfo.AddSSRC(source.GetRtx().GetSsrc())
+		}
+
+		if source.GetFec().GetSsrc() > 0 {
+			track.trackInfo.AddSSRC(source.GetFec().GetSsrc())
+		}
+
+		//Add RTX and FEC groups
+		if source.GetRtx().GetSsrc() > 0 {
+			sourceGroup := sdp.NewSourceGroupInfo("FID", []uint{source.GetMedia().GetSsrc(), source.GetRtx().GetSsrc()})
+			track.trackInfo.AddSourceGroup(sourceGroup)
+		}
+
+		if source.GetFec().GetSsrc() > 0 {
+			sourceGroup := sdp.NewSourceGroupInfo("FEC-FR", []uint{source.GetMedia().GetSsrc(), source.GetFec().GetSsrc()})
+			track.trackInfo.AddSourceGroup(sourceGroup)
+		}
+
+		// if simulcast
+		if len(k) > 0 {
+			// make soure the pasused
+			encodingInfo := sdp.NewTrackEncodingInfo(k, false)
+			if source.GetMedia().GetSsrc() > 0 {
+				ssrc := strconv.FormatUint(uint64(source.GetMedia().GetSsrc()), 10)
+				encodingInfo.AddParam("ssrc", ssrc)
+			}
+			track.trackInfo.AddEncoding(encodingInfo)
+		}
+
 	}
 
 	return track
