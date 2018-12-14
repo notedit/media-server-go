@@ -312,6 +312,27 @@ func (t *Transport) CreateOutgoingStream(streamID string, audio bool, video bool
 	return stream
 }
 
+func (t *Transport) CreateOutgoingStreamWithID(streamID string, audio bool, video bool) *OutgoingStream {
+
+	streamInfo := sdp.NewStreamInfo(streamID)
+	if audio {
+		audioTrack := sdp.NewTrackInfo(uuid.Must(uuid.NewV4()).String(), "audio")
+		ssrc := NextSSRC()
+		audioTrack.AddSSRC(ssrc)
+		streamInfo.AddTrack(audioTrack)
+	}
+
+	if video {
+		videoTrack := sdp.NewTrackInfo(uuid.Must(uuid.NewV4()).String(), "video")
+		ssrc := NextSSRC()
+		videoTrack.AddSSRC(ssrc)
+		streamInfo.AddTrack(videoTrack)
+	}
+
+	stream := t.CreateOutgoingStream2(streamInfo)
+	return stream
+}
+
 func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrcs map[string]uint) *OutgoingStreamTrack {
 
 	var mediaType MediaFrameType = 0

@@ -33,9 +33,10 @@ func (r *Refresher) Add(incom *IncomingStreamTrack) {
 	if r.ticker == nil {
 		r.ticker = time.NewTicker(time.Duration(r.period) * time.Millisecond)
 		go func() {
-			<-r.ticker.C
-			for _, track := range r.tracks {
-				track.Refresh()
+			for _ = range r.ticker.C {
+				for _, track := range r.tracks {
+					track.Refresh()
+				}
 			}
 		}()
 	}
