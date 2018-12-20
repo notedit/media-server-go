@@ -46,6 +46,10 @@ func (s *StreamInfo) RemoveTrack(track *TrackInfo) {
 	delete(s.tracks, track.GetID())
 }
 
+func (s *StreamInfo) RemoveTrackById(trackId string) {
+	delete(s.tracks, trackId)
+}
+
 func (s *StreamInfo) GetFirstTrack(media string) *TrackInfo {
 
 	for _, trak := range s.tracks {
@@ -68,7 +72,6 @@ func (s *StreamInfo) RemoveAllTracks() {
 	for trackId, _ := range s.tracks {
 		delete(s.tracks, trackId)
 	}
-
 }
 
 func (s *StreamInfo) GetTrack(trackID string) *TrackInfo {

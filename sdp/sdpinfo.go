@@ -504,6 +504,11 @@ func (s *SDPInfo) String() string {
 								Attribute: "cname",
 								Value:     stream.GetID(),
 							})
+							md.Ssrcs = append(md.Ssrcs, &sdptransform.SsrcStruct{
+								Id:        ssrc,
+								Attribute: "msid",
+								Value:     stream.GetID() + " " + track.GetID(),
+							})
 						}
 						md.Msid = stream.GetID() + " " + track.GetID()
 						break
