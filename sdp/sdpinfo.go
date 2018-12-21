@@ -50,6 +50,24 @@ func (s *SDPInfo) GetMedia(mtype string) *MediaInfo {
 	return nil
 }
 
+func (s *SDPInfo) GetAudioMedia() *MediaInfo {
+	for _, media := range s.medias {
+		if strings.ToLower(media.GetType()) == "audio" {
+			return media
+		}
+	}
+	return nil
+}
+
+func (s *SDPInfo) GetVideoMedia() *MediaInfo {
+	for _, media := range s.medias {
+		if strings.ToLower(media.GetType()) == "video" {
+			return media
+		}
+	}
+	return nil
+}
+
 func (s *SDPInfo) GetMediasByType(mtype string) []*MediaInfo {
 
 	medias := []*MediaInfo{}
@@ -149,21 +167,34 @@ func (s *SDPInfo) GetFirstStream() *StreamInfo {
 }
 
 func (s *SDPInfo) AddStream(stream *StreamInfo) {
-
 	s.streams[stream.GetID()] = stream
 }
 
 func (s *SDPInfo) RemoveStream(stream *StreamInfo) {
-
 	delete(s.streams, stream.GetID())
 }
 
-func (s *SDPInfo) GetTrackByMediaID(mid string) *TrackInfo {
+func (s *SDPInfo) RemoveAllStreams() {
+	s.streams = make(map[string]*StreamInfo)
+}
 
+func (s *SDPInfo) GetTrackByMediaID(mid string) *TrackInfo {
 	for _, stream := range s.streams {
 		for _, track := range stream.GetTracks() {
 			if track.GetMediaID() == mid {
 				return track
+			}
+		}
+	}
+	return nil
+}
+
+func (s *SDPInfo) GetStreamByMediaID(mid string) *StreamInfo {
+
+	for _, stream := range s.streams {
+		for _, track := range stream.GetTracks() {
+			if track.GetMediaID() == mid {
+				return stream
 			}
 		}
 	}
