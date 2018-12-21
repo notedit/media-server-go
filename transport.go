@@ -109,14 +109,14 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	return transport
 }
 
-func (t *Transport) SetBandwidthProbing() {
+func (t *Transport) SetBandwidthProbing(probe bool) {
 
-	// todo
+	t.transport.SetBandwidthProbing(probe)
 }
 
-func (t *Transport) SetMaxProbingBitrate() {
+func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
 
-	// todo
+	t.transport.SetMaxProbingBitrate(bitrate)
 }
 
 func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
