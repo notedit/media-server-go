@@ -128,6 +128,11 @@ func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sd
 	return sdp.Create(ice, dtls, candidates, capabilities)
 }
 
+func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string]*sdp.Capability) SDPManager {
+
+	return nil
+}
+
 // Stop  stop this endpoint
 func (e *Endpoint) Stop() {
 

@@ -120,9 +120,7 @@ func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
 }
 
 func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
-
 	properties := NewProperties()
-
 	if audio != nil {
 		num := 0
 		for _, codec := range audio.GetCodecs() {
