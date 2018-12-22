@@ -1,10 +1,14 @@
 package mediaserver
 
+import (
+	"github.com/notedit/media-server-go/sdp"
+)
+
 type RenegotiationCallback func(transport *Transport)
 
 type SDPManager interface {
 	GetState() string
 	GetTransport() *Transport
-	CreateLocalDescription() string
-	ProcessRemoteDescription() string
+	CreateLocalDescription() (*sdp.SDPInfo, error)
+	ProcessRemoteDescription(sdp string) (*sdp.SDPInfo, error)
 }
