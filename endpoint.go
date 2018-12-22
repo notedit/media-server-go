@@ -130,6 +130,11 @@ func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sd
 
 func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string]*sdp.Capability) SDPManager {
 
+	if sdpSemantics == "plan-b" {
+		return NewSDPManagerPlanb(e, capabilities)
+	} else if sdpSemantics == "unified-plan" {
+		return NewSDPManagerUnified(e, capabilities)
+	}
 	return nil
 }
 
