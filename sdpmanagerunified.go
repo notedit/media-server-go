@@ -43,6 +43,10 @@ func NewSDPManagerUnified(endpoint *Endpoint, capabilities map[string]*sdp.Capab
 	sdpManager.capabilities = capabilities
 	sdpManager.state = "initial"
 
+	sdpManager.pending = []*outmediatrack{}
+	sdpManager.removed = []*OutgoingStreamTrack{}
+	sdpManager.transceivers = []*rtctransceiver{}
+
 	return sdpManager
 }
 
@@ -223,7 +227,7 @@ func (s *SDPManagerUnified) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInf
 		if i+1 <= len(s.transceivers) {
 			transceiver = s.transceivers[i]
 		}
-		if transceiver != nil {
+		if transceiver == nil {
 			transceiver = &rtctransceiver{
 				mid:    mid,
 				remote: &inmediatrack{},
@@ -248,7 +252,10 @@ func (s *SDPManagerUnified) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInf
 			if track != nil {
 				track.Stop()
 			}
-			transceiver.remote.track = nil
+			if transceiver.remote.track != nil {
+				transceiver.remote.track = nil
+			}
+
 			break
 		}
 	}

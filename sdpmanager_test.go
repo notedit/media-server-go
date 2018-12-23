@@ -42,4 +42,42 @@ var Capabilities = map[string]*sdp.Capability{
 
 func TestSDPManagerCreate(t *testing.T) {
 
+	endpoint := NewEndpoint("127.0.0.1")
+	sdpManager := endpoint.CreateSDPManager("unified-plan", Capabilities)
+	if sdpManager.GetState() != "initial" {
+		t.Error("sdpmanager create error")
+	}
+}
+
+func TestSDPManagerOfferAnswer(t *testing.T) {
+
+	endpoint1 := NewEndpoint("127.0.0.1")
+	endpoint2 := NewEndpoint("127.0.0.1")
+
+	sdpmanager1 := endpoint1.CreateSDPManager("unified-plan", Capabilities)
+	sdpmanager2 := endpoint2.CreateSDPManager("unified-plan", Capabilities)
+
+	offer, _ := sdpmanager1.CreateLocalDescription()
+
+	if sdpmanager1.GetState() != "local-offer" {
+		t.Error("create local sdp error")
+	}
+
+	sdpmanager2.ProcessRemoteDescription(offer.String())
+
+	if sdpmanager2.GetState() != "remote-offer" {
+		t.Error("process remote sdp error")
+	}
+
+	answer, _ := sdpmanager2.CreateLocalDescription()
+
+	if sdpmanager2.GetState() != "stable" {
+		t.Error("state error ")
+	}
+
+	sdpmanager1.ProcessRemoteDescription(answer.String())
+
+	if sdpmanager1.GetState() != "stable" {
+		t.Error("process remote sdp error")
+	}
 }
