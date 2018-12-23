@@ -1,10 +1,7 @@
 package sdp
 
 import (
-	"fmt"
 	"strings"
-
-	"github.com/sanity-io/litter"
 )
 
 type TrackInfo struct {
@@ -30,10 +27,6 @@ func NewTrackInfo(id, media string) *TrackInfo {
 }
 
 func (t *TrackInfo) Clone() *TrackInfo {
-
-	litter.Dump("trackinfo", t)
-
-	fmt.Println("encodings ==", t.encodings)
 
 	cloned := &TrackInfo{
 		id:        t.id,
