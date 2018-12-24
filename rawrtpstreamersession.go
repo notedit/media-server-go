@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/chuckpreslar/emission"
+	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
-	"github.com/satori/go.uuid"
 )
 
 type RawRTPStreamerSession struct {

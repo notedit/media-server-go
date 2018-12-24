@@ -16,5 +16,5 @@ openssl/
 mediaserver/
 
 # disable go module for now
-go.sum
-go.mod
+#go.sum
+#go.mod

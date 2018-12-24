@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/satori/go.uuid"
-
 	"github.com/chuckpreslar/emission"
+	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
 )
 

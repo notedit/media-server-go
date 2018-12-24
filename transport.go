@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/chuckpreslar/emission"
+	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
-	uuid "github.com/satori/go.uuid"
 )
 
 type senderSideEstimatorListener interface {
@@ -26,7 +26,7 @@ type overwrittenSenderSideEstimatorListener struct {
 }
 
 func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrate uint) {
-	fmt.Println("OnTargetBitrateRequested ====================")
+
 	fmt.Println(bitrate)
 }
 
