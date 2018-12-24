@@ -141,13 +141,14 @@ public:
 				case MediaFrame::Video:
 					codec = (BYTE)VideoCodec::GetCodecForName(it->GetProperty("codec"));
 					break;
-				case MediaFrame::Text:
-					codec = (BYTE)-1;
-					break;
 				default:
-					///Ignore
-					codec = (BYTE)-1;
-					break;
+					//skip 
+					continue;
+					
+			}
+
+			if (codec == (BYTE)-1) {
+				continue;
 			}
 
 			//Get codec type
