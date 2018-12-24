@@ -4,21 +4,21 @@
 #include <string>
 #include <list>
 #include <functional>
-#include "mediaserver/include/config.h"	
-#include "mediaserver/include/dtls.h"
-#include "mediaserver/include/OpenSSL.h"
-#include "mediaserver/include/media.h"
-#include "mediaserver/include/rtp.h"
-#include "mediaserver/include/tools.h"
-#include "mediaserver/include/rtpsession.h"
-#include "mediaserver/include/DTLSICETransport.h"	
-#include "mediaserver/include/RTPBundleTransport.h"
-#include "mediaserver/include/PCAPTransportEmulator.h"	
-#include "mediaserver/include/mp4recorder.h"
-#include "mediaserver/include/mp4streamer.h"
-#include "mediaserver/src/vp9/VP9LayerSelector.h"
-#include "mediaserver/include/rtp/RTPStreamTransponder.h"
-#include "mediaserver/include/ActiveSpeakerDetector.h"
+#include "include/mediaserver/include/config.h"	
+#include "include/mediaserver/include/dtls.h"
+#include "include/mediaserver/include/OpenSSL.h"
+#include "include/mediaserver/include/media.h"
+#include "include/mediaserver/include/rtp.h"
+#include "include/mediaserver/include/tools.h"
+#include "include/mediaserver/include/rtpsession.h"
+#include "include/mediaserver/include/DTLSICETransport.h"	
+#include "include/mediaserver/include/RTPBundleTransport.h"
+#include "include/mediaserver/include/PCAPTransportEmulator.h"	
+#include "include/mediaserver/include/mp4recorder.h"
+#include "include/mediaserver/include/mp4streamer.h"
+#include "include/mediaserver/src/vp9/VP9LayerSelector.h"
+#include "include/mediaserver/include/rtp/RTPStreamTransponder.h"
+#include "include/mediaserver/include/ActiveSpeakerDetector.h"
 
 
 class StringFacade : private std::string
@@ -880,14 +880,14 @@ private:
 %include <typemaps.i>
 %include "stdint.i"
 %include "std_vector.i"
-%include "mediaserver/include/config.h"	
-%include "mediaserver/include/media.h"
-%include "mediaserver/include/acumulator.h"
-%include "mediaserver/include/DTLSICETransport.h"
-%include "mediaserver/include/RTPBundleTransport.h"
-%include "mediaserver/include/PCAPTransportEmulator.h"
-%include "mediaserver/include/mp4recorder.h"
-%include "mediaserver/include/rtp/RTPStreamTransponder.h"
+%include "include/mediaserver/include/config.h"	
+%include "include/mediaserver/include/media.h"
+%include "include/mediaserver/include/acumulator.h"
+%include "include/mediaserver/include/DTLSICETransport.h"
+%include "include/mediaserver/include/RTPBundleTransport.h"
+%include "include/mediaserver/include/PCAPTransportEmulator.h"
+%include "include/mediaserver/include/mp4recorder.h"
+%include "include/mediaserver/include/rtp/RTPStreamTransponder.h"
 
 
 struct LayerInfo
