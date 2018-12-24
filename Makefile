@@ -6,7 +6,7 @@ all:OPENSSL SRTP MP4V2 MEDIASERVER_STATIC
 	echo $(ROOT_DIR)
 
 OPENSSL:
-	cd ${OPENSSL_DIR} && make clean && ./Configure darwin64-x86_64-cc && make 
+	cd ${OPENSSL_DIR} &&  export KERNEL_BITS=64 && ./config && make 
 	cd $(ROOT_DIR)
 
 SRTP:

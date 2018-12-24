@@ -14,3 +14,7 @@
 mp4v2/
 openssl/
 mediaserver/
+
+# disable go module for now
+go.sum
+go.mod
