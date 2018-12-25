@@ -1,0 +1,16 @@
+#################################
+# Config file
+##################################
+LOG		= yes
+DEBUG 		= yes
+STATIC		= no
+SANITIZE        = yes
+VADWEBRTC	= no
+IMAGEMAGICK	= yes
+STATIC_OPENSSL  = yes
+OPENSSL_DIR     = /usr/local/src/openssl
+CEF             = yes
+CEF_DIR         = /usr/local/src/cef
+SRCDIR		= /root/src/mcumediaserver/trunk/mcu
+TARGET		= /usr/local
+
