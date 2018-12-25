@@ -1,6 +1,13 @@
 # media-server-go
 WebRTC media server for go
 
+
+
+|         | x86 | x64 |
+|:------- |:--- |:--- |
+| Linux   | -   | ✔︎   | 
+| macOS   | -   | ✔︎   | 
+
 ## How to generate swig code  
 
 swig -go -cgo -c++ -intgosize 64 mediaserver.i
