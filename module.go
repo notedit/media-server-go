@@ -5,11 +5,7 @@ package mediaserver
 #cgo CPPFLAGS: -I${SRCDIR}/external/openssl/include
 #cgo CPPFLAGS: -I${SRCDIR}/external/mp4v2/include
 #cgo CPPFLAGS: -I${SRCDIR}/media-server/include
-#cgo LDFLAGS: -L${SRCDIR}/media-server/bin/release/ -lmediaserver-${GOOS}-${GOARCH}
-#cgo LDFLAGS: -L${SRCDIR}/external/libsrtp -lsrtp2-${GOOS}-${GOARCH}
-#cgo LDFLAGS: -L${SRCDIR}/external/openssl -lcrypto-${GOOS}-${GOARCH}
-#cgo LDFLAGS: -L${SRCDIR}/external/openssl -lssl-${GOOS}-${GOARCH}
-#cgo LDFLAGS: -L${SRCDIR}/external/mp4v2/.libs -lmp4v2-${GOOS}-${GOARCH}
+#cgo darwin,amd64 LDFLAGS: -L${SRCDIR}/lib -lmediaserver-darwin-amd64  -lsrtp2-darwin-amd64  -lcrypto-darwin-amd64 -lssl-darwin-amd64 -lmp4v2-darwin-amd64
 */
 import "C"
 
