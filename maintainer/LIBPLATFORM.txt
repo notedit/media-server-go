@@ -1,0 +1,35 @@
+libplatform Notes
+*****************
+
+libplatform is a private library used by this project for portability
+across platforms. Simple file access, getting system time, parsing
+command-line arguments, endian byte-swap macros, are examples of
+things that belong in this convenience library.
+
+The implementation means to support the following platforms:
+
+    - posix (the default)
+    - win32 (Windows 2000 or newer)
+
+
+All symbols in libplatform reside in private namespace mp4v2::platform
+and must never be made visible through public interfaces. In general,
+implementation .h and .cpp files are free to include this library.
+
+Both libmp4v2 and various executables created by this project rely on
+libplatform and this creates a bit of a dilemma in that libmp4v2 must
+ship as a stand-alone library. Thus, when creating libmp4v2 we must always
+embed the needed bits from libplatform. In turn, the executables then
+link against both libmp4v2 and the remaining bits of libplatform.
+
+This approach requires advanced linking which is available using
+several different methods, varying by platforms. And to complicate
+matters further, libtool (even version 2.2.6) makes this impossible.
+So the simple solution is to add libplatform symbols to libmp4v2.
+The only problem with this is libmp4v2 becomes a little fatter than
+it needs to be, but since all the symbols are in a private namespace
+and we use set default symbol visibility to hidden, we protect our
+clients from inadvertantly becoming dependents.
+
+If libplatform ever becomes bulky we can revisit this issue, but at
+this time using advanced linking would only save ~10KB of binary size.

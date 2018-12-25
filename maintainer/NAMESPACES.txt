@@ -1,0 +1,42 @@
+Maintainer C++ Namespace Notes
+******************************
+
+Namespaces have been employed to help organize source and push all private
+symbols (those which are not part of the public C API) to a location
+that is unlikely to be accidentally used by anyone. It also virtually
+eliminates any chance that private impl symbols will cause symbol collisions
+at compile or link-time.
+
+The global namespace is used by C API which generally prefixes all
+of its symobls with MP4 to avoid collisions. This space is used by
+src/mp4.cpp and include/mp4v2/mp4v2.h . A few exceptions may exist where
+additional API is exported from some differently-implemented code.
+
+The rest of the codebase is tucked into various child-namespaces of
+the project's top-level 'mp4v2' namespace. The top-level namespace
+is reserved for this project, and unless someone branches our codebase
+and ignores their moral responsibility to rename their root namespace,
+we should neatly avoid symbol collisions. Code external to the project
+should never use any symbols which reside in mp4v2.
+
+The namespace 'mp4v2::platform' is private and used for code which abstracts
+various plaform differences or implements missing features.
+
+The namespace 'mp4v2::impl' is a private namespace for the main
+implementation of libmp4v2. This namespace generally depends on
+mp4v2::platform .
+
+The namespace 'mp4v2::util' is a private namespace which adds
+functionality for use with libutil and util/ command-line tools. The
+positioning is a little more complicated in that it has symbols which
+are exported from libmp4v2, which needs full access to mp4v2::impl
+hidden symbols. Then libutil itself adds to the same namespace, but
+because libutil does not require direct access to mp4v2::impl hidden
+symbols it is a separate static library. And finally, the util/ tools
+themselves use the namespace for implementation convenience.
+
+Nested (child) namespaces of those listed above are used for further
+organization when applicable.
+
+Further documentation is available in the API Reference;
+see Namespaces section.

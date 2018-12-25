@@ -1,0 +1,15 @@
+@section Boostrap (Autotools)
+
+The following command causes forces Autotools to regenerate all files and install helper scripts needed at configure-time and to regenerate all files.
+
+@example
+@COMMAND.bootstrap{}
+@end example
+
+If you are a project member and preparing for a release, it is important to note that the versions of Autotools available in your path will directly effect files added to the bundle. At the time of writing, the following versions of Autotools are recommended; in some cases a minimum is hard-coded and warnings will be issued if in violation:
+
+@itemize
+@item GNU autoconf 2.61 or higher (lower versions might work)
+@item GNU automake 1.10 or higher (lower versions might work)
+@item GNU libtool 1.5.26 or higher (lower versions might work)
+@end itemize

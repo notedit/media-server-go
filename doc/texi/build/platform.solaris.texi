@@ -1,0 +1,16 @@
+@section @value{OS.solaris}
+Building on @value{OS.solaris} is supported. The following are the recommended specifications for this platform; but is not necessarily the only configuration that is possible:
+
+@itemize @bullet
+@item Intel 32-bit or 64-bit hardware
+@item @value{OS.solaris} 10u6, gcc 3.4.3
+@item gcc 3.4.0 or higher is reported to work
+@end itemize
+
+@include build/platform.common.bundled.texi
+@quotation Note
+@value{OS.solaris} does not (yet) really bundle a compiler. The recommendation is to use the companion-disk compiler for maximum C++ runtime compatibility. It is usually found in @file{/usr/sfw/bin}.
+@end quotation
+
+@include build/platform.common.conf.default.texi
+@include build/platform.common.conf.bi.texi

@@ -1,0 +1,134 @@
+Maintainer Release Instructions
+*******************************
+
+Official releases are made by creating a dist-bundle as supported by
+the autotools framework. This is not a normal target for users building
+the library to use, and as such it may introduce extra tool requirements.
+For example, 'makeinfo' is required to generate some documentation before
+a bundle can be created.
+
+
+Official Releases
+=================
+
+Releases use a version tuple of pattern MAJOR.MINOR.POINT and changing
+the version is accomplished by editing the corresponding values in:
+
+    project/project.m4sugar
+
+And all releases follow this repository URL convention:
+
+    https://mp4v2.googlecode.com/svn/releases/MAJOR.MINOR.POINT
+
+Thus, releases will produce dist bundles of this pattern:
+
+    mp4v2-MAJOR.MINOR.POINT.tar.bz2
+
+MAJOR-RELEASE. This kind of release has a major impact to the public
+interface and/or other aspects of the project. You must increment
+MAJOR and reset MINOR and reset POINT. Typically used when API
+components are modified or removed.
+
+MINOR-RELEASE. This kind of release has some minor but significant
+changes to the public interface. You must increment MINOR and
+reset POINT. Typically used when API components are added.
+
+POINT-RELEASE. This kind of release is usually for bugfix/maintenance
+purposes and does not adversely effect the public interface. You
+must increment POINT.
+
+A release is branched from either the trunk or an earlier release.
+If branched from the trunk, it will naturally be the "chase-version"
+which the trunk has been developing. For example, on a new project
+trunk might work towards a 1.0.0 release. When that project is
+deemed ready, trunk is branched to 1.0.0. Any final changes are
+then applied on the new branch, while trunk continues development,
+chasing it's next release, which might be 1.1.0.
+
+
+WORKFLOW - MINOR-RELEASE
+------------------------
+
+    # branch release from trunk (head)
+    svn cp -m "BRANCHED: RELEASE 1.0.0" \
+        https://mp4v2.googlecode.com/svn/trunk \
+        https://mp4v2.googlecode.com/svn/releases/1.0.0
+
+    # cd to your favorite work area for mp4v2
+    cd /work/mp4v2/
+    
+    # checkout release, local workdir 1.0.0 default is good
+    svn co https://mp4v2.googlecode.com/svn/releases/1.0.0
+    cd 1.0.0/
+
+    # if needed, edit version, checkin, update, autoreconf.
+    vi project/project.m4sugar
+    svn ci
+    svn update
+    autoreconf -fiv
+
+    # clean-room discipline
+    #   at this point there should be no pending changes in working dir
+    #   if there are, you're probably just working out kinks in the
+    #   autotool system but in the final run, all files should be
+    #   checked in at this point.
+    #
+    # make distcheck || make dist (the latter if you're in a hurry)
+    rm -fr build/
+    mkdir build/
+    cd build/
+    ../configure
+    make distcheck
+
+    # upload bundle somewhere
+    mkdir -p ~/OUTGOING
+    cp mp4v2-1.0.0.tar.bz2 ~/OUTGOING/.
+
+    # FINISHED - CLOSED: https://mp4v2.googlecode.com/svn/releases/1.0.0
+    # Once the bundle is published, no more changes allowed!
+
+    # TRUNK - now go back to trunk, edit version, checkin, update, autoreconf.
+    # note that we bump trunk automatically to the next anticpated
+    # major-release or minor-release, as point-releases do not belong here.
+    cd /work/mp4v2/
+    svn co https://mp4v2.googlecode.com/svn/trunk/
+    cd trunk/
+    vi project/project.m4sugar # bump version to 1.1.0
+    svn ci -m "BUMP: TRUNK 1.1.0"
+    svn update
+    autoreconf -fiv
+
+
+WORKFLOW - POINT-RELEASE
+------------------------
+
+If a point release such as 1.0.1 needs to be done, then it is important
+to branch from 1.0.0 (not trunk!). Here is an example 1.0.1 point-release.
+
+    svn cp -m "BRANCHED: RELEASE 1.0.1" \
+        https://mp4v2.googlecode.com/svn/releases/1.0.0 \
+        https://mp4v2.googlecode.com/svn/releases/1.0.1
+    svn co https://mp4v2.googlecode.com/svn/releases/1.0.1
+    cd 1.0.1/
+    vi project/project.m4sugar # bump version to 1.0.1
+    svn ci
+    svn update
+    autoreconf -fiv
+    .
+    .
+    .
+    # *** APPLY CODE CHANGES ***
+    # *** TEST ***
+    .
+    .
+    .
+    svn ci
+    svn update
+    autoreconf -fiv
+    rm -fr build/
+    mkdir build/
+    cd build/
+    ../configure
+    make distcheck
+    cp mp4v2-1.0.1.tar.bz2 ~/OUTGOING/.
+    # FINISHED - CLOSED: https://mp4v2.googlecode.com/svn/releases/1.0.1

@@ -1,0 +1,3 @@
+The documented and supported method to build @value{PROJECT.name} uses the GNU build system (also known as the Autotools). You must first obtain the sources by either downloading and extracting the @value{TERM.srcdist} bundle or working directly @value{PROJECT.name}'s Subversion repository. We have build documents for both methods, but unless you are a member of the @value{PROJECT.name} project, you are @b{strongly encouraged} to use the @value{TERM.srcdist} method.
+
+On other supported platforms which lack Autotools we provide an alternative method for building the software. Please see the appropriate platform section.

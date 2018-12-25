@@ -1,0 +1,98 @@
+Maintainer C++ Formatting Suggestions
+*************************************
+
+Some consistency and readability to C++ source code in the MP4v2 project
+is desired. Every coder has different styles, uses different tools, but
+we need to find some common ground when possible. So please consider this
+document when creating and editing code.
+
+When in doubt, general suggestions are as follows:
+
+    - format for good readability.
+    - format in a similar fashion as the file you are editing.
+    - format code generally no wider than 119 columns.
+    - format code with 4-space indents (no hard-tabs!)
+    - the wider an identifier's scope is, the more descriptive it's name
+      should be (and generally longer). Short identifiers for local scopes
+      and loops are perfectly acceptable.
+    - make liberal use of TODO comments as necessary. Following the
+      pattern of marking *who* placed the TODO with a hyphen followed
+      by your initials or shortname. ie: TODO-XY; note this does not
+      imply the person who marked takes responsibility for the task.
+    - move pointer 'astericks' and reference 'ampersands' towards type
+
+
+EXAMPLE IF/ELSE
+---------------
+
+if( true )
+    doit();
+
+if( (a == 1) && (b == 2) ) {
+    doit();
+    doit();
+}
+else if( true && /* really long multi-line stuff
+    another long line
+    another line */ )
+{
+    doit();
+}
+
+
+EXAMPLE FUNCTION DELCARATIONS
+-----------------------------
+
+void processFoo( );
+bool processFoo( const char* name = 0 );
+bool processFoo( const string& name );
+
+
+EXAMPLE FUNCTION DEFINITIONS
+-----------------------------
+
+void
+processFoo()
+{
+    doit();
+}
+
+bool
+processFoo( const char* name = 0 )
+{
+    doit();
+    return thing != true; // no need for parenthesis
+}
+
+bool
+processFoo( const string& name )
+{
+    doit();
+    return (thing != true) || (another == false); // parens help readability
+}
+
+
+EXAMPLE CLASS DECL
+------------------
+
+class Foo
+{
+public:
+    Foo( int value );
+    virtual ~Foo();
+
+    int  get( );
+    void set( int value );
+
+protected:
+    virtual void doit() = 0;
+
+private:
+    int _value;
+
+public:
+    const int defaultValue;
+
+public:
+    static void foo();
+};

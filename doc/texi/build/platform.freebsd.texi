@@ -1,0 +1,12 @@
+@section @value{OS.freebsd}
+Building on @value{OS.freebsd} is supported. The following are the recommended specifications for this platform; but is not necessarily the only configuration that is possible:
+
+@itemize @bullet
+@item Intel 32-bit or 64-bit hardware
+@item @value{OS.freebsd} 7.0 Release, gcc 4.2.1
+@item gcc 3.4.0 or higher is reported to work
+@end itemize
+
+@include build/platform.common.bundled.texi
+@include build/platform.common.conf.default.texi
+@include build/platform.common.conf.bi.texi

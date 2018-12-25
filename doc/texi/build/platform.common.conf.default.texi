@@ -1,0 +1,20 @@
+@subsection Default Binaries
+The preferred method to produce default binaries is to run configure without any options which will compile with debug+optimize and produce static+shared libraries and dynamic executables. 
+
+@example
+../configure
+@end example
+
+@subsection Release Binaries
+The preferred method to produce binaries suitable for releases, (ie. which does not contain debug information) is to pass the following to configure:
+
+@example
+../configure --disable-debug
+@end example
+
+@subsection Developer Binaries
+The preferred method to produce binaries suitable for development is to pass the following to configure.  Default Binaries will work, however for the best debugging experience we recommend no optimize and no static libraries.
+
+@example
+../configure --disable-optimize --disable-static
+@end example

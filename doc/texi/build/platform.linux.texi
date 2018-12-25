@@ -1,0 +1,12 @@
+@section @value{OS.linux}
+Building on @value{OS.linux} is well supported as it is used by maintainers of this project. The following are the recommended specifications for this platform; but is not necessarily the only configuration that is possible:
+
+@itemize @bullet
+@item Intel 32-bit or 64-bit hardware
+@item Fedora 10, gcc 4.3.2
+@item gcc 3.4.0 or higher is reported to work
+@end itemize
+
+@include build/platform.common.bundled.texi
+@include build/platform.common.conf.default.texi
+@include build/platform.common.conf.bi.texi

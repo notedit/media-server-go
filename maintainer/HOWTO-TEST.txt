@@ -1,0 +1,63 @@
+Maintainer Automated Testing Instructions
+*****************************************
+
+Automated testing is available for the project. It can be used to write tests
+for batched and interactive command-line utilities. DejaGNU is the framework
+used. Testing is not a mandatory requirement when building, however it is
+strongly encouraged.
+
+Tests may be run after building the project with the following command:
+
+    make check
+
+And the quick-and-dirty method to see if all tests passed is to look at the
+last line of output which indicates the number of expected passes and
+failures. Any 'unexpected' results are the ones to be concerned about.
+Assuming there are 50 tests for a project, the ideal output might be:
+
+    === <TESTSUITE_NAME> Summary ===
+    # of expected passes    24
+
+Test output is available in testlog/ with *.log and *.sum for log and
+summary files, respectively.
+
+
+Requirements
+------------
+
+The testsuite is fairly new so the requirements may or may not be strict.
+Listed here are the versions used to by maintainers; be aware that
+this testing framework is generally a unix solution only.
+
+    expect 5.43.0
+    Tcl 8.5
+    DejaGNU 1.4.4
+
+
+DejaGNU Framework
+-----------------
+
+The framework is relatively thin; basically a wrapper around things which
+can be made to work relatively easily with Autotools. The underlying
+tests are actually written using expect/tcl. However, since this project
+does not have any interactive command-line tools, the interactive nature
+of expect is not leveraged. Thus, most tests have so far been written
+using more or less Tcl with the DejaGNU framework.
+
+
+File Locations
+--------------
+
+All tests are stored in testsuite/ and generally any C/C++ code require
+for testing should reside therein. However, sometimes a test utility proves
+to be quite useful on its own and may be moved outside of testsuite/ .
+
+In the future we can for example create tests which might test certain
+aspects of the API; here are some useful examples:
+
+    - assert public C API header compiles
+    - assert private symbols are not available to public compile/linking
+    - assert contents of MP4Dump output are sane
+    - etc...
+
+Hopefully as new tests are added they will serve as good examples.

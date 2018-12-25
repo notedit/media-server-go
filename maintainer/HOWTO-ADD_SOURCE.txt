@@ -1,0 +1,26 @@
+Maintainer Add Source Files
+***************************
+
+Almost any new .cpp or .h files will have to be added to GNUmakefile.am .
+It is trivial to add hand-written source files. Just add them to the list
+for the particular library or program which already exists. For example,
+to add a source file to libmp4v2:
+
+    libmp4v2_la_SOURCES = ...
+
+In the rare situation that you desire to add a header file to be installed
+during 'make install' and used by the public API (such as mp4v2.h) then it
+should be taken out of libmp4v2_la_SOURCES and added to:
+
+    mp4v2inc_HEADERS = ...
+
+Once done, autotool files such as configure will need to be regenerated.
+This is usually done automatically for you by the generated makefile,
+but the following command is always an excellent way to make sure
+everything is regenerated properly:
+
+    autoreconf -fiv
+
+Don't be alarmed at the number of files created by autoreconf. These
+files will be part of any dist-bundle created but do not add them to the
+repository -- they are dist-only files.

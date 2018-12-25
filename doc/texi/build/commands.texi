@@ -1,0 +1,33 @@
+@macro COMMAND.checkout{}
+svn checkout @value{PROJECT.repo.url} @value{PROJECT.name.lower}
+cd @value{PROJECT.name.lower}
+@end macro
+
+@macro COMMAND.bootstrap{}
+autoreconf -fiv
+@end macro
+
+@macro COMMAND.extract{}
+tar xf @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.bz2
+cd @value{PROJECT.name.lower}-@value{PROJECT.version}/
+@end macro
+
+@macro COMMAND.configure{}
+rm -fr build/
+mkdir build/
+cd build/
+../configure 
+@end macro
+
+@macro COMMAND.build{}
+make
+@end macro
+
+@macro COMMAND.install{}
+make install
+make install-man
+@end macro
+
+@macro COMMAND.dist{}
+make dist
+@end macro

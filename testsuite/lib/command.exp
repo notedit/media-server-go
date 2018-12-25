@@ -1,0 +1,172 @@
+namespace eval ::command {
+    namespace export test_standardUsage
+
+    variable _action  "undefined"
+    variable _subject "undefined"
+    variable _test    "undefined"
+}
+
+###############################################################################
+
+proc ::command::beginAction { args } {
+    variable _section
+
+    set _action  [lindex $args 0]
+    set _subject [lrange $args 1 end]
+
+    clone_output "++ $_action: $_subject"
+}
+
+proc ::command::beginTest { args } {
+    variable _test
+    set _test [lindex $args 0]
+}
+
+###############################################################################
+
+proc ::command::exec { args } {
+    set status [lindex $args 0]
+    set exe    [lindex $args 1]
+    set xargs  [lrange $args 2 end]
+
+    if { [llength $xargs] == 0 } {
+        beginAction "EXECUTE" $exe
+        set rv [catch {::exec $::objdir/$exe} output]
+    } else {
+        beginAction "EXECUTE" $exe [join $xargs]
+        set rv [catch {::exec $::objdir/$exe [join $xargs]} output]
+    }
+
+    set output [split $output "\n"]
+
+    beginTest "exit=$status"
+    if { $rv } {
+        set errg [lindex $::errorCode 0]
+        set errc [lindex $::errorCode 2]
+        if { $errg == "CHILDSTATUS" && $errc == $status } {
+            pass
+            return [list 0 $output]
+        } else {
+            fail "exit=$errc"
+            return [list 1 $output]
+        }
+    } else {
+        if { $status == 0 } {
+            pass
+            return [list 0 $output]
+        } else {
+            fail "exit=0"
+            return [list 1 $output]
+        }
+    }
+}
+
+###############################################################################
+
+proc ::command::fail { args } {
+    variable _test
+
+    set text  [lindex $args 0]
+    set input [lindex $args 1]
+
+    set max [llength $input]
+
+    ::fail $_test
+    if { $max == 0 } {
+        send_user -- "-- $text\n"
+        return
+    }
+
+    if { $max == 1 } {
+        send_user -- "-- $text (1 line of match text follows)\n"
+    } else {
+        send_user -- "-- $text ($max lines of match text follows)\n"
+    }
+
+    for { set i 0 } { $i < $max } { incr i } {
+        set line [lindex $input $i]
+        send_user -- "-- | $line\n"
+    }
+}
+
+proc ::command::pass { args } {
+    variable _test
+    ::pass $_test
+}
+
+###############################################################################
+
+proc ::command::matchListAny { args } {
+    set rx    [lindex $args 0]
+    set lines [lindex $args 1]
+
+    beginTest "match: $rx"
+    set max [llength $lines]
+    for { set i 0 } { $i < $max } { incr i } {
+        set line [lindex $lines $i]
+
+        if { [regexp $rx $line] } {
+            pass
+            return
+        }
+    }
+
+    fail "no match" $lines
+}
+
+proc ::command::matchListLine { args } {
+    set rx    [lindex $args 0]
+    set lines [lindex $args 1]
+    set idx   [lindex $args 2]
+
+    set line [lindex $lines $idx]
+
+    beginTest "match: $rx"
+    if { [regexp $rx $line] } {
+        pass
+    } else {
+        fail "no match" [list $line]
+    }
+}
+
+###############################################################################
+
+proc ::command::test_standardUsage { args } {
+    set exe [lindex $args 0]
+
+    # noargs
+    set rv [exec 1 $exe]
+    matchListLine {^Usage: \S+} [lindex $rv 1] 0
+    matchListLine {^Try.*-h.*--help} [lindex $rv 1] 1
+
+    # -h
+    set rv [exec 0 $exe -h]
+    matchListLine {^Usage: \S+} [lindex $rv 1] 0
+    matchListAny  {\s+--help}    [lindex $rv 1]
+    matchListAny  {\s+--version} [lindex $rv 1]
+
+    # --help
+    set rv [exec 0 $exe --help]
+    matchListLine {^Usage: \S+} [lindex $rv 1] 0
+    matchListAny  {\s+--help}       [lindex $rv 1]
+    matchListAny  {\s+--version}    [lindex $rv 1]
+    matchListAny  {^VERBOSE LEVELS} [lindex $rv 1]
+
+    # --version
+    set rv [exec 0 $exe --version]
+    matchListLine {^\S+\s-\s\S+} [lindex $rv 1] 0
+
+    # --versionx
+    set rv [exec 0 $exe --versionx]
+    matchListAny  {^utility:\s+\S+} [lindex $rv 1]
+    matchListAny  {^product:\s+\S+} [lindex $rv 1]
+    matchListAny  {^version:\s+\S+} [lindex $rv 1]
+
+    # bogus short-option
+    set rv [exec 1 $exe "-*" ]
+    matchListLine {invalid} [lindex $rv 1] 0
+
+    # bogus long-option
+    set rv [exec 1 $exe --bogusLongOption ]
+    matchListLine {unrecognized} [lindex $rv 1] 0
+}

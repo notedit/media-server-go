@@ -1,0 +1,8 @@
+@anchor{Install}
+@section Install
+
+The following command will install @value{PROJECT.name}.
+
+@example
+@COMMAND.install{}
+@end example

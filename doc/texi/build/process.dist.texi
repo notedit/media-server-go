@@ -1,0 +1,17 @@
+@section Create Distribution
+
+The following command will create a @value{PROJECT.name} source distribution. It is during this step that shipped documentation is generated.
+
+@example
+@COMMAND.dist{}
+@end example
+
+This step in the build process introduces additional requirements to the host system. While most of the following utilities are generally available, @command{help2man} is used to generate man-pages; however if this command is not available the man-pages will be empty. This is acceptable for non-release builds but for full quality builds this command is required.
+
+@itemize
+@item GNU help2man 1.36 or higher (lower versions should work)
+@item GNU tar 1.15.1 or higher (lower versions should work)
+@item GNU gzip 1.3.10 or higher (lower versions should work)
+@item bzip2 1.0.4 or higher (lower versions should work)
+@item Info-ZIP zip 2.32 or higher (lower versions should work)
+@end itemize
