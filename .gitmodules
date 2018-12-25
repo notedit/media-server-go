@@ -1,6 +1,3 @@
 [submodule "mediaserver"]
 	path = mediaserver
 	url = https://github.com/notedit/media-server.git
-[submodule "external/libsrtp"]
-	path = external/libsrtp
-	url = https://github.com/cisco/libsrtp.git
