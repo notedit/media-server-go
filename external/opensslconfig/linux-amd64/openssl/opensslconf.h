@@ -5,9 +5,6 @@
 extern "C" {
 #endif
 /* OpenSSL was configured with the following options: */
-#ifndef OPENSSL_SYSNAME_MACOSX
-# define OPENSSL_SYSNAME_MACOSX
-#endif
 #ifndef OPENSSL_DOING_MAKEDEPEND
 
 
