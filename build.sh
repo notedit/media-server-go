@@ -8,6 +8,8 @@ ROOT_DIR=$(pwd)
 
 make 
 
+cp external/openssl/include/openssl/opensslconf.h  external/opensslconfig/$OS-$ARCH/openssl/opensslconf.h
+
 cp media-server/bin/release/libmediaserver.a lib/libmediaserver-$OS-$ARCH.a
 cp external/libsrtp/libsrtp2.a lib/libsrtp2-$OS-$ARCH.a
 cp external/openssl/libcrypto.a lib/libcrypto-$OS-$ARCH.a
