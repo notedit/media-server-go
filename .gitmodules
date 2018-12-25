@@ -1,3 +1,0 @@
-[submodule "mediaserver"]
-	path = mediaserver
-	url = https://github.com/notedit/media-server.git

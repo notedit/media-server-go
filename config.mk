@@ -14,6 +14,6 @@ OPENSSL_DIR		= ${ROOT_DIR}/external/openssl
 LIBSRTP_DIR		= ${ROOT_DIR}/external/libsrtp
 LIBMP4_DIR		= ${ROOT_DIR}/external/mp4v2
 VADWEBRTC		= yes
-SRCDIR			= ${ROOT_DIR}/mediaserver
+SRCDIR			= ${ROOT_DIR}/media-server
 IMAGEMAGICK		= no
 
