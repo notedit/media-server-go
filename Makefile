@@ -18,7 +18,7 @@ MP4V2:
 	cd $(ROOT_DIR)
 
 MEDIASERVER_STATIC:
-	cp config.mk  ./mediaserver/ && make -C mediaserver libmediaserver.a 
+	cp config.mk  ./media-server/ && make -C media-server libmediaserver.a 
 	echo ${ROOT_DIR}
 
 ECHO:
