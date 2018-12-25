@@ -1,0 +1,24 @@
+@section Post Site and API Documentation to project website.
+
+This step is for project maintainers and can be used to update Site and API documentation. The following components are updated:
+
+@itemize
+@item Featured Wiki article: BuildRepository
+@item Featured Wiki article: BuildSource
+@item MP4v2 (trunk) docs (includes Release Notes and other articles, and API docs).
+@end itemize
+
+This procedure may only be run from a *nix platform and has only been tested on @value{OS.osx}.
+
+@table @samp
+
+@item make google.clean
+Clean any local working copy of google changeset.
+
+@item make google.post
+Generate required docs, sparse-checkout google tree, remove files which are no longer generated, add new files which are generated, and update existing files.
+
+@item svn ci -m "-refreshed GoogleCode site+api docs." google/.
+Check-in changes. This might take several minutes, especially if your upstream bandwidth is limited.
+
+@end table

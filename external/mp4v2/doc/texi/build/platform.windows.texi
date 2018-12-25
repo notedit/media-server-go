@@ -1,0 +1,18 @@
+@section @value{OS.windows}
+Native builds on @value{OS.windows} is supported via Microsoft's Visual Studio package. Both the commercial version and free version (express) are known to work. The following are the recommended specifications for this platform; but is not necessarily the only configuration that is possible:
+
+@itemize @bullet
+@item Intel 32-bit or 64-bit hardware
+@item @value{OS.windows} 2000 or higher, Visual Studio 9.0 (aka. Visual Studio 2008)
+@item Visual Studio 9.0 Express is reported to work
+@end itemize
+
+Only 32-bit binaries are targeted, and win32-API is set to @value{OS.windows} 2000 or higher. Older versions of @value{OS.windows}, or win32-API are not supported.
+
+@value{PROJECT.name} has directory @file{vstudio9.0/} which contains the necessary solution+project files to produce a basic build of libmp4v2's DLL and several command-line executables. Enabling things such as debugging, optimization, etc, are all left as an exercise to the user.
+
+@quotation Warning
+Project meta-data is stored in header @file{project.h}. A proper source distribution is built using autotools and generates @file{TOP/include/mp4v2/project.h} correctly, which is then bundled with our source distribution. This is adequate for building on the @value{OS.windows} platform.
+
+However, if you are building from the repository, be warned that there is no method to automatically generate @file{project.h} on Windows. Instead, we periodically checkin a copy of this file (generated using autotools) as @file{vstudio9.0/include/mp4v2/project.h} which may from time to time get out of date. If it is significantly out of date, you should find the latest source distribution and copy the @file{project.h} from there.
+@end quotation

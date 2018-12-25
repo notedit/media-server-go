@@ -1,0 +1,339 @@
+change log for logging branch
+
+$Revision$
+$Date$
+
+-------------------
+
+(31-jan-11, dbyron)
+
+- fix ASSERTs in win32 implementation of
+StandardFileProvider to check against _INVALID_FILE_HANDLE
+instead of NULL since that's what the constructor and close
+method use
+
+- merge r440, r441, r442, r443, r444 from trunk
+
+- fix return value of win32 implementation of
+StandardFileProvider::close
+
+- merge r439 from trunk
+
+(18-jan-11, dbyron)
+
+- add __FUNCTION__, filename to warning messages
+
+- add warning to MP4File::Modify when failing because the
+file has no moov atom
+
+- add __FUNCTION__, filename to error messages
+
+- add filename to verbose log messages in mp4descriptor.cpp
+
+- remove __FUNCTION__ from verbose log messages in
+mp4atom.cpp since it makes the dump output hard to read
+
+- add filename to descriptions passed to Log::dump
+
+- change log messages with Warning: to use Log::warningf
+
+- fix Log::hexdump to make sure output begins with format
+string/varargs instead of overwriting with ascii-hex
+
+(17-jan-11, dbyron)
+
+- change the MP4RtpData, MP4RtpNullData,
+MP4RtpImmediateData, MP4RtpSampleData,
+MP4RtpSampleDescriptionData, MP4RtpPacket, MP4RtpHint and
+MP4Track to take references instead of pointers, with
+accessors changed appropriately.
+
+(14-jan-11, dbyron)
+
+- change the MP4Descriptor constructor (and the constructors
+of all its child classes) to take a (MP4Atom &) and remove
+MP4Descriptor::SetParentAtom to remove the chance to
+dereference a NULL pointer.  Similarly for MP4Property and
+all its children.  Declare default and copy constructors and
+assignment operator private to prevent using
+compiler-generated routines.
+
+- change all Read and Write methods that took (MP4File *) to
+take a (MP4File &).
+
+- change the MP4Track, MP4RtpHintTrack constructors to take a
+(MP4File &).  Corresponding changes to MP4Track::GetFile.
+
+(13-jan-11, dbyron)
+
+- change the MP4Atom constructor to take an (MP4File &), remove
+MP4Atom::SetFile and change MP4Atom::GetFile to return an
+(MP4File &).  Change the internal member variable to an
+(MP4File &) as well.  Corresponding changes to
+MP4Atom::ReadAtom, CreateAtom, factory and child class
+constructors.  This makes it impossible to dereference a
+NULL pointer by accident.
+
+- convert messages with warning in the text to use
+Log::warningf
+
+- include __FUNCTION__ and filename in log messages in
+mp4atom.cpp
+
+(11-jan-11, dbyron)
+
+- declare Log copy constructor and assignment operator
+private but don't implement them to prohibit copies
+
+(6-jan-11, dbyron)
+
+- add mp4subtitle.vcproj to build on windows
+
+(3-jan-11, dbyron)
+
+- declare MP4File copy constructor and assignment operator
+private but don't implement them to prohibit copies
+
+- remove MP4HexDump and Indent from mp4util since they're
+not used anymore
+
+- change Log::hexDump to dump printable bytes as well as the
+hex values
+
+- remove error_msg_func_t, lib_message_func_t and
+MP4SetLibFunc from general.h since they're not used and
+don't really make sense now that MP4SetLogCallback exists
+
+- add MP4TagsHasMetadata to indicate whether a file contains
+any metadata at all
+
+(31-dec-10, dbyron)
+
+- add MP4GetFilename so the filename associated with a
+MP4FileHandle is available.  Add MP4File::GetFilename to
+support it.
+
+(27-dec-10, dbyron)
+
+- remove m_tempFileName from MP4File since it's not used
+
+- throw an exception from the win32 implementation of
+FileSystem::exists, FileSystem::isDirectory and
+FileSystem::isFile if there's an error
+
+- add logging to win32 FileSystem
+
+- add Utf8ToFilename::GetUTF8 to get the UTF-8
+representation of the filename actually used
+
+- add Utf8ToFilename::IsUTF16Valid so users of the class can
+detect errors
+
+- rename Utf8ToWideChar to Utf8ToFilename to more accurately
+reflect what the class does
+
+- replace MultiByteToWideChar with custom code to remove
+differences across versions of windows and for improved
+error detection and illegal character handling
+
+- add long filename support to Utf8ToWideChar
+
+(21-dec-10, dbyron)
+
+- add logging to win32 StandardFileProvider
+
+(20-dec-10, dbyron)
+
+- make try/catch blocks more granular in MP4Read,
+MP4ReadProvider, MP4Create, MP4CreateEx, MP4Modify,
+MP4Optimize, MP4Make3GPCompliant, MP4MakeIsmaCompliant,
+MP4MakeIsmaSdpIod so it's easier to figure out the cause of
+failure based on the log message.
+
+- log more specific messages, clean up leak if there's an
+error adding the IpodUUID atom in MP4AddIPodUUID
+
+- remove MP4_DETAILS_* as it was only used in a few internal
+places where an MP4_LOG_* replacement is fine until the
+verbosity-altering code disappears.  For some reason
+MP4File::MakeIsmaCompliant alters the verbosity before
+calling MP4GetVideoProfileLevel, MP4IsIsmaCrypMediaTrack
+does the same before calling MP4File::IsIsmaCrypMediaTrack,
+as does MP4CloneTrack before calling
+MP4GetTrackESConfiguration.
+
+- change command line programs to map debug levels as
+follows:
+  0: MP4_LOG_NONE
+  1: MP4_LOG_ERROR
+  2, 3: MP4_LOG_VERBOSE2
+  4: MP4_LOG_VERBOSE4
+
+- change MP4NormalizeTrackType (an internal function) to
+always use MP4_LOG_VERBOSE1.
+
+- another fix to Log::hexDump so that it now actually dumps
+all the bytes it was asked to dump
+
+- MP4File is no longer a child of Log.  Use the global log
+object everywhere.
+
+- remove the verbosity argument to MP4Read, MP4ReadProvider,
+MP4Create and MP4CreateEx, MP4Modify, MP4Optimize,
+MP4MakeIsmaCompliant, MP4MakeIsmaSdpIod, MP4Make3GPCompliant
+and MP4NormalizeTrackType.  Remove MP4GetVerbosity,
+MP4SetVerbosity and MP4Atom::GetVerbosity.  Use
+MP4LogSetLevel to change the global log level instead.
+There is no more file-specific verbosity since it is more
+complicated than one global log level and it's not clear
+anyone needs the added complexity.
+
+- remove the MP4FileHandle argument to MP4LogSetLevel and
+MP4LogGetLevel and move them to general.h/log.cpp since
+they're no longer file-specific.  The default log level is
+MP4_LOG_WARNING without any call to MP4LogSetLevel.
+
+- change MP4BytesProperty::Dump to use Log::hexDump for
+large (> 16) byte hex output
+
+- remove the FILE* argument from MP4Dump, the internal Dump
+methods (e.g. MP4File::Dump, MP4Atom::Dump,
+MP4Property::Dump, etc.).  Use Log::dump instead.
+
+- remove Indent from mp4util since it may pollute
+stdout/stderr
+
+- add Log::dump, Log::vdump to support dumping with a
+particular indent
+
+- fix Log::hexDump to print the correct ascii-hex info
+
+(17-dec-10, dbyron)
+
+- remove C_ASSERT from mp4util.h since it's not used
+
+- remove MP4Printf to keep from writing to stdout when
+logging
+
+(7-jun-09, dbyron)
+
+- add MP4LogGetLevel, MP4LogSetLevel
+
+(5-jun-09, dbyron)
+
+- change return value of MP4DeleteTrack,
+MP4SetTrackTimeScale, MP4GetTrackH264SeqPictHeaders from
+void to bool
+
+- change MP4AddIPodUUID to return bool, check for valid
+hFile and catch exceptions
+
+- check for NULL existingFileName, newFileName in
+MP4Optimize
+
+- check for NULL fileName in MP4ReadProvider, MP4CreateEx,
+MP4Modify, MP4Make3GPCompliant, MP4MakeIsmaCompliant
+
+- properly handle NULL pFile when catching Exception
+
+- check for NULL parameters in genericAddItem,
+genericSetItem, genericRemoveItem
+
+- change signature of C wrappers to return bool and check
+for NULL parameters:
+  - MP4TagsAddArtwork
+  - MP4TagsFetch
+  - MP4TagsRemoveArtwork
+  - MP4TagsSetArtwork
+  - MP4TagsStore
+  - MP4TagsSetName
+  - MP4TagsSetArtist
+  - MP4TagsSetAlbumArtist
+  - MP4TagsSetAlbum
+  - MP4TagsSetGrouping
+  - MP4TagsSetComposer(
+  - MP4TagsSetComments
+  - MP4TagsSetGenre
+  - MP4TagsSetGenreType
+  - MP4TagsSetReleaseDate
+  - MP4TagsSetTrack
+  - MP4TagsSetDisk
+  - MP4TagsSetTempo
+  - MP4TagsSetCompilation
+  - MP4TagsSetTVShow
+  - MP4TagsSetTVNetwork
+  - MP4TagsSetTVEpisodeID
+  - MP4TagsSetTVSeason
+  - MP4TagsSetTVEpisode
+  - MP4TagsSetSortName
+  - MP4TagsSetSortArtist
+  - MP4TagsSetSortAlbumArtist
+  - MP4TagsSetSortAlbum
+  - MP4TagsSetSortComposer
+  - MP4TagsSetSortTVShow
+  - MP4TagsSetDescription
+  - MP4TagsSetLongDescription
+  - MP4TagsSetLyrics
+  - MP4TagsSetCopyright
+  - MP4TagsSetEncodingTool
+  - MP4TagsSetEncodedBy
+  - MP4TagsSetPurchaseDate
+  - MP4TagsSetPodcast
+  - MP4TagsSetKeywords
+  - MP4TagsSetCategory
+  - MP4TagsSetHDVideo
+  - MP4TagsSetMediaType
+  - MP4TagsSetContentRating
+  - MP4TagsSetGapless
+  - MP4TagsSetITunesAccount
+  - MP4TagsSetITunesAccountType
+  - MP4TagsSetITunesCountry
+  - MP4TagsSetCNID
+  - MP4TagsSetATID
+  - MP4TagsSetPLID
+  - MP4TagsSetGEID
+
+- add catch( ... ) blocks to C wrapper functions
+
+- add static void errorf ( Log            *olog,
+                           const char     *format,
+                           ... ) MP4V2_WFORMAT_PRINTF(3,4);
+
+- add static void errorf ( Log                    *olog,
+                           const Exception        &x );
+- remove MP4Exception, replace with Exception
+
+- change MP4File::ProtectWriteOperation to take file, line,
+function instead of one "where" string.
+
+- change exception catching code to call Log::errorf();
+
+- remove VERBOSE, VERBOSE_ERROR from mp4util.h
+
+- remove MP4Error, replace with Exception, PlatformException
+as appropriate
+
+- add Exception class and Log::errorf( const Exception &x );
+
+(16-feb-09, dbyron)
+
+- First pass of actually using the Log class:
+
+  - MP4LogNone --> MP4_LOG_NONE
+  - add global log object (log, declared in log.h)
+  - change MP4File to inherit from Log
+    - remove m_verbosity member variable
+    - remove MP4File::GetVerbosity, SetVerbosity methods
+  - change MP4NormalizeTrackType to take MP4LogLevel
+  - replace VERBOSE_* with corresponding Log method calls
+  (VERBOSE_ERROR remains until exception handling gets
+  revisited)
+  - change WARNING macro to take a Log object as the first
+  argument
+  - add Log::hexDump to mostly replace MP4HexDump (though
+  MP4HexDump is still called if there's no logging callback)
+  - fix MP4_DETAILS_ALL handling in Log::detailsToLevel
+  - add uint32_t Log::getVerbosity() const
+  - add Log::hexDump
+  - add uint32_t Log::getVerbosity
+  - add Log::verbose3f, verbose4f

@@ -1,0 +1,9 @@
+@section Build
+
+The following command will build @value{PROJECT.name}.
+
+@example
+@COMMAND.build{}
+@end example
+
+On some platforms @code{make} refers to a BSD-flavor of make which is not compatible with this project. Check if @code{gmake} is installed, and if it is, substitute @code{gmake} wherever you may see @code{make} in this document. Otherwise you will need to install GNU make package version 3.81 or higher. Lower versions might work.

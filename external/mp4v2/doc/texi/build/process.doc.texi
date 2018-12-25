@@ -1,0 +1,64 @@
+@section Build Documentation
+
+This step in the build process introduces some significant requirements to the host system:
+
+@itemize
+@item GNU texinfo 4.8 or higher (lower versions should work)
+@item Doxygen 1.5.7 or higher (lower versions should work)
+@end itemize
+
+Documentation that is shipped with @value{TERM.srcdist} is generated as part of the @ref{Build Process} step. This section documents builds all of the supported methods to build documentation. There are three kinds of documentation in this project; man-pages, articles and API. @b{Documentation must be build from the repository}.
+
+Man-pages are automatically generated for command-line utilities by using @command{html2man} which invokes standard options @command{--help} and @command{--version} and gleans the information, generating a man-page in @b{nroff} script. Note that the utilities will first be built as they are depdendencies of man-page generation.
+
+Artcles are usually hand-written and authored in Texinfo format which permits macro-expansions, simple formatting and conversion to several popular formats using the GNU @command{makeinfo}. A Texinfo @url{http://www.gnu.org/software/texinfo,manual} is available.
+
+API is documented inline to C and C++ source files, usually headers using Doxygen comment-formatting. Doxygen is then used to post-process these files and generate documentation in various formats. A Doxygen manual is available at it's main @url{http://www.doxygen.org,site} .
+
+The project's goal is to document as thoroughly as possible the public API in @value{PROJECT.name}. Since we never have enough time to document everything, we try to set some priorities in this regard. Generally the public API is the highest priority to document. Next most important is probably underlying utility code which is shared by many developers; for example @b{libplatform}.
+
+If you need examples of how to document C-compatible source see @file{include/mp4v2/mp4v2.h} and for C++-only source
+see @file{libplatform/io/File.h} .
+
+The following table describes the various make targets available for building docs. Note you must first have completed the @ref{Configure} step.
+
+@table @samp
+
+@item make man
+Generate man-pages for command-line utilities.
+
+@item make html
+Generate articles in HTML format from @file{texi} files.
+
+@item make txt
+Generate articles in plaintext format from @file{texi} files.
+
+@item make wiki
+Generate articles in Google Code Wiki format from @file{texi} files.
+
+@item make xml
+Generate articles in (Texinfo) XML format from @file{texi} files.
+
+@item make api
+Generate API in HTML format from header files.
+
+@item make articles
+Convenience; the equivalent of @command{make html txt wiki xml} .
+
+@item make doc
+Convenience; the equivalent of @command{make man articles api} .
+
+@end table
+
+And finally all of the document targets have a corresponding @b{clean} target which cleans up generated files. Simply prefix as follows:
+
+@example
+make manclean
+make htmlclean
+make txtclean
+make wikiclean
+make xmlclean
+make apiclean
+make articlesclean
+make docclean
+@end example

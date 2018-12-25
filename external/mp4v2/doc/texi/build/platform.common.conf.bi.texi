@@ -1,0 +1,10 @@
+@subsection Bi-arch compilation
+The preferred method to produce a bi-arch binary is to specify the target (eg. 32-bit) with the following option to configure. This example will produce a 32-bit binary if compiling on a platform which defaults to producing 64-bit binaries. The inverse is also possible.
+
+@example
+../configure --enable-bi=32
+@end example
+
+@quotation Warning
+Currently bi-arch cross-compilation is not supported due to a bug with libtool which fails miserably during linking.
+@end quotation

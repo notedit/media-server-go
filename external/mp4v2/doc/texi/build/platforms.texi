@@ -1,0 +1,11 @@
+@chapter Platform Notes
+@value{PROJECT.name} builds on many unix-style platforms, also commonly referred to as posix-style systems. Building on @value{OS.osx}, @value{OS.linux}, @value{OS.freebsd}, @value{OS.solaris}, @value{OS.cygwin}, @value{OS.windows} are known to work.
+
+Similar platforms should also work. Please see the following platform specific notes for instructions on commonly used options for various platforms.
+
+@include build/platform.osx.texi
+@include build/platform.linux.texi
+@include build/platform.freebsd.texi
+@include build/platform.solaris.texi
+@include build/platform.cygwin.texi
+@include build/platform.windows.texi

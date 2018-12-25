@@ -1,0 +1,40 @@
+@anchor{Configure}
+@section Configure
+The following command configures the project for a build.  It is highly recommended that you invoke configure from an empty directory.
+
+@example
+@COMMAND.configure{}
+@end example
+
+Please see @file{INSTALL} for details on configure usage, and standard options. Additionally, the following custom options have been added to @file{configure}:
+
+@table @samp
+
+@item --disable-debug
+Do not generate debug information.  Do not direct compiler to generate debugging information. By default the compiler will generate debug information if the platform supports it.
+
+@item --disable-optimize
+Do not optimize. Do not direct compiler to optimize code. By default compiler optimization is enabled if the platform supports it.
+
+@item --disable-fvisibility
+Do not set default ELF symbol visibility. By default configure attempts to detect if the compiler supports this feature. However on some platforms detecting incompatibilty of this feature might not be accurate in which case this option should be given.
+
+@item --disable-gch
+By default certain platforms are marked to use GCC precompiled headers. Generally this greatly decrease build times but may require more diligence for iterative development; that is to say dependencies may not properly be tracked and more frequent @command{make clean} may be required when headers are changed. Use this option to disable GCC precompiled headers.
+
+@item --disable-largefile
+On some 32-bit platforms or configurations it might be desirable to build without largefile (LFS) support. By default configure attempts to detect formal LFS support and enables it if found.
+
+@item --disable-util
+Do not build/install utilities. This is convenience option for users who desire to skip building the utilities (eg. command-line executables) which are enabled by default.
+
+@item --enable-bi=ARCH
+On bi-arch capable platforms it is possible to generate 32 or 64 bit code. This is supported by adding arguments @samp{-m32} or @samp{-m64}, respectively, when compiling or linking. Use this option to override the platform-specific default.
+
+@item --enable-ub[=ARCHS]
+On OSX systems it is possible to generate universal binaries. This is supported by adding one or more argument patterns @samp{-arch ARCH} when compiling or linking. Use this option to either target an architecture different from the platform default, or to produce universal binaries.
+
+@item --enable-dependency-tracking
+Enable automatic dependency tracking for include-files. By default this feature is disabled.
+
+@end table

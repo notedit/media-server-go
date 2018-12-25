@@ -1,0 +1,22 @@
+@section Extract
+Extract sources from a @value{TERM.srcdist} bundle. Releases are available from @url{@value{PROJECT.url.website}} in the @url{@value{PROJECT.url.downloads},downloads} section.
+
+@example
+@COMMAND.extract{}
+@end example
+
+Older versions of @code{tar} may not automatically uncompress the bundle, so you might have to either enter additional flags manually, or first decompress the bundle before extracting. Some possible command variations for uncompressing a @file{bz2} file:
+
+@example
+tar xjf @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.bz2
+bunzip2 -c @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.bz2 | tar xf -
+bzcat @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.bz2 | tar xf -
+@end example
+
+And for a @file{gz} file:
+
+@example
+tar xzf @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.gz
+gunzip -c @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.gz | tar xf -
+gzcat @value{PROJECT.name.lower}-@value{PROJECT.version}.tar.gz | tar xf -
+@end example
