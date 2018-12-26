@@ -81,6 +81,6 @@ func Test_TransportStop(t *testing.T) {
 		t.Log("transport stopped")
 	})
 
-	endpoint.Stop()
+	//endpoint.Stop()
 
 }
