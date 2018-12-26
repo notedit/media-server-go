@@ -3,8 +3,10 @@ language: go
 go:
   - "1.x" # use the latest Go release
 
+dist: xenial
+
 install:
   - go get -t -d ./...
-  
+
 script:
   - go test -v
