@@ -8,13 +8,16 @@ ROOT_DIR=$(pwd)
 
 make 
 
-cp -rf external/openssl/include/openssl  external/opensslinclude/$OS-$ARCH/
+cp -rf external/openssl/build/include/openssl  include/openssl/$OS-$ARCH/
+cp -rf external/libsrtp/build/include/srtp2   include/srtp/
+cp -rf external/mp4v2/build/include/mp4v2  include/mp4v2/
+
 
 cp media-server/bin/release/libmediaserver.a lib/libmediaserver-$OS-$ARCH.a
-cp external/libsrtp/libsrtp2.a lib/libsrtp2-$OS-$ARCH.a
-cp external/openssl/libcrypto.a lib/libcrypto-$OS-$ARCH.a
-cp external/openssl/libssl.a lib/libssl-$OS-$ARCH.a
-cp external/mp4v2/.libs/libmp4v2.a lib/libmp4v2-$OS-$ARCH.a
+cp external/libsrtp/build/lib/libsrtp2.a lib/libsrtp2-$OS-$ARCH.a
+cp external/openssl/build/lib/libcrypto.a lib/libcrypto-$OS-$ARCH.a
+cp external/openssl/build/lib/libssl.a lib/libssl-$OS-$ARCH.a
+cp external/mp4v2/build/lib/libmp4v2.a lib/libmp4v2-$OS-$ARCH.a
 
 
 
