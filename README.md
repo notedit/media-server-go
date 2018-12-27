@@ -22,6 +22,21 @@ go get github.com/notedit/media-server-go
 
 ## How to build manually 
 
+you should install `libtool` and `autoconf`
+
+
+ubuntu
+```
+apt install autoconf
+apt install libtool
+```
+macOS
+```
+brew install libtool
+brew install autoconf
+```
+
+
 1,  clone the code
 
 2,  bash build.sh

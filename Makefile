@@ -10,7 +10,7 @@ OPENSSL:
 	cd $(ROOT_DIR)
 
 SRTP:
-	cd ${LIBSRTP_DIR} && ./configure --prefix=${LIBSRTP_DIR}/build && make && make install  
+	cd ${LIBSRTP_DIR} && ./configure --prefix=${LIBSRTP_DIR}/build && make && make install && && cp -rf ${LIBSRTP_DIR}/build/include/* ${LIBSRTP_DIR}/include/
 	cd $(ROOT_DIR) 
 
 MP4V2:
