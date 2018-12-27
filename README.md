@@ -36,6 +36,7 @@ go get github.com/notedit/media-server-go
 you should install `libtool` and `autoconf` before you build 
 
 ubuntu
+
 ```
 apt install autoconf
 apt install libtool
@@ -47,8 +48,8 @@ brew install autoconf
 ```
 
 
-- clone the code
+0, clone the code
 
-- bash build.sh
+1, bash build.sh
 
-- go build 
+2, go build 
