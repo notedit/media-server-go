@@ -8,9 +8,10 @@ WebRTC media server for go
 
 only support Linux x64 and macOS x64 for now
 
-## How to generate swig code  
 
-swig -go -cgo -c++ -intgosize 64 mediaserver.i
+## How to use 
+
+Yon can see the demos from here [Demos](https://github.com/notedit/media-server-go-demo)
 
 
 ## Install 
@@ -20,10 +21,16 @@ go get github.com/notedit/media-server-go
 ```
 
 
+## Thanks 
+
+ - [Media Server](https://github.com/medooze/media-server)
+ - [Media Server for Node.js](https://github.com/medooze/media-server-node)
+
+
+
 ## How to build manually 
 
-you should install `libtool` and `autoconf`
-
+you should install `libtool` and `autoconf` before you build 
 
 ubuntu
 ```
@@ -37,8 +44,8 @@ brew install autoconf
 ```
 
 
-1,  clone the code
+- clone the code
 
-2,  bash build.sh
+- bash build.sh
 
-3,  go build 
+- go build 
