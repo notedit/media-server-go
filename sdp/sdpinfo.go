@@ -1,12 +1,11 @@
 package sdp
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/notedit/media-server-go/sdp-transform"
+	sdptransform "github.com/notedit/media-server-go/sdp-transform"
 )
 
 type SDPInfo struct {
@@ -253,6 +252,11 @@ func (s *SDPInfo) String() string {
 
 	if s.GetICE().IsLite() {
 		sdpMap.Icelite = "ice-lite"
+	}
+
+	sdpMap.Timing = &sdptransform.TimingStruct{
+		Start: 0,
+		Stop:  0,
 	}
 
 	sdpMap.MsidSemantic = &sdptransform.MsidSemanticStruct{
@@ -578,7 +582,6 @@ func (s *SDPInfo) String() string {
 
 	sdpStr, err := sdptransform.Write(sdpMap)
 	if err != nil {
-		fmt.Println(sdpStr)
 		println(err)
 	}
 
@@ -774,7 +777,6 @@ func Parse(sdp string) (*SDPInfo, error) {
 					for _, kv := range list {
 						param := strings.Split(kv, "=")
 						if len(param) < 2 {
-							println("param too shot", param)
 							continue
 						}
 						params[param[0]] = param[1]

@@ -1,7 +1,6 @@
 package sdp
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -37,7 +36,6 @@ func (s *StreamInfo) GetID() string {
 
 func (s *StreamInfo) AddTrack(track *TrackInfo) {
 
-	fmt.Println("AaddTrack ", track.GetID())
 	s.tracks[track.GetID()] = track
 }
 

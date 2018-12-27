@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/Jeffail/gabs"
-	"github.com/sanity-io/litter"
 )
 
 var outerOrder = []byte{'v', 'o', 's', 'i', 'u', 'e', 'p', 'c', 'b', 't', 'r', 'z', 'a'}
@@ -25,8 +24,6 @@ func Write(sdpStruct *SdpStruct) (string, error) {
 		return "", err
 	}
 	session, err := gabs.ParseJSON(sdpBuffer)
-
-	litter.Dump(string(session.Bytes()))
 
 	if err != nil {
 		return "", err
@@ -130,6 +127,7 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 
 	if len(rule.Names) > 0 {
 		for _, name := range rule.Names {
+
 			if len(rule.Name) > 0 && location.Exists(rule.Name) && location.Exists(rule.Name, name) {
 				args = append(args, location.Search(rule.Name, name).Data())
 			} else if location.Exists(name) {
@@ -163,6 +161,7 @@ func makeLine(otype byte, rule *Rule, location *gabs.Container) string {
 		} else if x == "%d" {
 			argInt, ok := arg.(float64)
 			if !ok {
+				fmt.Println(format)
 				fmt.Println("interface cast to int error, realtype is ", reflect.TypeOf(arg).String(), "value is", arg)
 			}
 			argStr := strconv.Itoa(int(argInt))

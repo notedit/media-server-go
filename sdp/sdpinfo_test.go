@@ -7,7 +7,7 @@ import (
 const sdpstr = "v=1\r\n" +
 	"o=- 4327261771880257373 2 IN IP4 127.0.0.1\r\n" +
 	"s=-\r\n" +
-	"t=0 0\r\n" +
+	"t=1 1\r\n" +
 	"a=group:BUNDLE audio video\r\n" +
 	"a=msid-semantic: WMS xIKmAwWv4ft4ULxNJGhkHzvPaCkc8EKo4SGj\r\n" +
 	"m=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126\r\n" +

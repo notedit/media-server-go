@@ -1,12 +1,12 @@
 package sdptransform
 
 type OriginStruct struct {
-	Username       string `json:"username,omitempty"`
-	SessionId      string `json:"sessionId,omitempty"`
-	SessionVersion int    `json:"sessionVersion,omitempty"`
-	NetType        string `json:"netType,omitempty"`
-	IpVer          int    `json:"ipVer,omitempty"`
-	Address        string `json:"address,omitempty"`
+	Username       string `json:"username"`
+	SessionId      string `json:"sessionId"`
+	SessionVersion int    `json:"sessionVersion"`
+	NetType        string `json:"netType"`
+	IpVer          int    `json:"ipVer"`
+	Address        string `json:"address"`
 }
 
 type GroupStruct struct {
@@ -141,7 +141,7 @@ type SdpStruct struct {
 	Version      int                 `json:"version"`
 	Origin       *OriginStruct       `json:"origin"`
 	Name         string              `json:"name"`
-	Timing       *TimingStruct       `json:"timing"`
+	Timing       *TimingStruct       `json:"timing,omitempty"`
 	Groups       []*GroupStruct      `json:"groups,omitempty"`
 	MsidSemantic *MsidSemanticStruct `json:"msidSemantic,omitempty"`
 	Media        []*MediaStruct      `json:"media,omitempty"`
