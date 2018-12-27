@@ -1,4 +1,7 @@
 # media-server-go
+
+[![Build Status](https://travis-ci.com/notedit/media-server-go.svg?branch=master)](https://travis-ci.com/notedit/media-server-go)
+
 WebRTC media server for go
 
 |         | x86 | x64 |
