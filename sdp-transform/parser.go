@@ -69,6 +69,7 @@ func Parse(sdp string) (sdpStruct *SdpStruct, err error) {
 	return
 }
 
+//ParseParams Parses fmtp.config and others such as rid.params and returns an object with all the params in a key/value fashion
 func ParseParams(str string) map[string]string {
 
 	ret := map[string]string{}
@@ -151,6 +152,7 @@ type SimulCastItem struct {
 	Paused bool
 }
 
+// ParseSimulcastStreamList Parses simulcast streams/formats. Must be provided with the attrs1 or attrs2 string of the a=simulcast line.
 func ParseSimulcastStreamList(str string) [][]*SimulCastItem {
 
 	ret := [][]*SimulCastItem{}
