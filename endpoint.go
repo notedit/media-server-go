@@ -3,11 +3,12 @@ package mediaserver
 import (
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type Endpoint struct {
 	ip          string
-	bundle      RTPBundleTransport
+	bundle      native.RTPBundleTransport
 	transports  map[string]*Transport
 	candidate   *sdp.CandidateInfo
 	fingerprint string
@@ -17,10 +18,10 @@ type Endpoint struct {
 // NewEndpoint create a endpoint
 func NewEndpoint(ip string) *Endpoint {
 	endpoint := &Endpoint{}
-	endpoint.bundle = NewRTPBundleTransport()
+	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init()
 	endpoint.transports = make(map[string]*Transport)
-	endpoint.fingerprint = MediaServerGetFingerprint().ToString()
+	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	endpoint.Emitter = emission.NewEmitter()
 	return endpoint
@@ -28,10 +29,10 @@ func NewEndpoint(ip string) *Endpoint {
 
 func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint := &Endpoint{}
-	endpoint.bundle = NewRTPBundleTransport()
+	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init(port)
 	endpoint.transports = make(map[string]*Transport)
-	endpoint.fingerprint = MediaServerGetFingerprint().ToString()
+	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	endpoint.Emitter = emission.NewEmitter()
 	return endpoint
@@ -155,7 +156,6 @@ func (e *Endpoint) Stop() {
 
 	e.bundle.End()
 
-	DeleteRTPBundleTransport(e.bundle)
+	native.DeleteRTPBundleTransport(e.bundle)
 
-	e.bundle = nil
 }

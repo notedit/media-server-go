@@ -8,18 +8,19 @@ import (
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type IncomingStream struct {
 	id        string
 	info      *sdp.StreamInfo
-	transport DTLSICETransport
-	receiver  RTPReceiverFacade
+	transport native.DTLSICETransport
+	receiver  native.RTPReceiverFacade
 	tracks    map[string]*IncomingStreamTrack
 	*emission.Emitter
 }
 
-func newIncomingStream(transport DTLSICETransport, receiver RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
+func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
 	stream := &IncomingStream{}
 	stream.id = info.GetID()
 	stream.transport = transport
@@ -107,12 +108,12 @@ func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 
 func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack {
 
-	var mediaType MediaFrameType = 0
+	var mediaType native.MediaFrameType = 0
 	if track.GetMedia() == "video" {
 		mediaType = 1
 	}
 
-	sources := map[string]RTPIncomingSourceGroup{}
+	sources := map[string]native.RTPIncomingSourceGroup{}
 
 	encodings := track.GetEncodings()
 
@@ -122,16 +123,16 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 			for _, encoding := range items {
 
-				source := NewRTPIncomingSourceGroup(mediaType)
+				source := native.NewRTPIncomingSourceGroup(mediaType)
 
 				mid := track.GetMediaID()
 
 				rid := encoding.GetID()
 
-				source.SetRid(NewStringFacade(rid))
+				source.SetRid(native.NewStringFacade(rid))
 
 				if mid != "" {
-					source.SetMid(NewStringFacade(mid))
+					source.SetMid(native.NewStringFacade(mid))
 				}
 
 				params := encoding.GetParams()
@@ -173,7 +174,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 		for j, ssrc := range ssrcs {
 
-			source := NewRTPIncomingSourceGroup(mediaType)
+			source := native.NewRTPIncomingSourceGroup(mediaType)
 
 			source.GetMedia().SetSsrc(ssrc)
 
@@ -197,7 +198,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 		}
 
 	} else {
-		source := NewRTPIncomingSourceGroup(mediaType)
+		source := native.NewRTPIncomingSourceGroup(mediaType)
 
 		source.GetMedia().SetSsrc(track.GetSSRCS()[0])
 

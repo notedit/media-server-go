@@ -6,14 +6,15 @@ import (
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type OutgoingStreamTrack struct {
 	id            string
 	media         string
 	muted         bool
-	sender        RTPSenderFacade
-	source        RTPOutgoingSourceGroup
+	sender        native.RTPSenderFacade
+	source        native.RTPOutgoingSourceGroup
 	transpoder    *Transponder
 	trackInfo     *sdp.TrackInfo
 	interCallback rembBitrateListener
@@ -38,20 +39,20 @@ type OutgoingStatss struct {
 }
 
 type rembBitrateListener interface {
-	REMBBitrateListener
+	native.REMBBitrateListener
 	deleteREMBBitrateListener()
 }
 
 type goREMBBitrateListener struct {
-	REMBBitrateListener
+	native.REMBBitrateListener
 }
 
 func (r *goREMBBitrateListener) deleteREMBBitrateListener() {
-	DeleteDirectorREMBBitrateListener(r.REMBBitrateListener)
+	native.DeleteDirectorREMBBitrateListener(r.REMBBitrateListener)
 }
 
 type overwrittenREMBBitrateListener struct {
-	p     REMBBitrateListener
+	p     native.REMBBitrateListener
 	track *OutgoingStreamTrack
 }
 
@@ -59,7 +60,7 @@ func (p *overwrittenREMBBitrateListener) OnREMB() {
 
 }
 
-func getStatsFromOutgoingSource(source RTPOutgoingSource) *OutgoingStats {
+func getStatsFromOutgoingSource(source native.RTPOutgoingSource) *OutgoingStats {
 
 	stats := &OutgoingStats{
 		NumPackets:     source.GetNumPackets(),
@@ -72,7 +73,7 @@ func getStatsFromOutgoingSource(source RTPOutgoingSource) *OutgoingStats {
 	return stats
 }
 
-func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, source RTPOutgoingSourceGroup) *OutgoingStreamTrack {
+func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFacade, source native.RTPOutgoingSourceGroup) *OutgoingStreamTrack {
 
 	track := &OutgoingStreamTrack{}
 	track.id = id
@@ -107,7 +108,7 @@ func newOutgoingStreamTrack(media string, id string, sender RTPSenderFacade, sou
 	callback := &overwrittenREMBBitrateListener{
 		track: track,
 	}
-	p := NewDirectorREMBBitrateListener(callback)
+	p := native.NewDirectorREMBBitrateListener(callback)
 	callback.p = p
 
 	track.interCallback = &goREMBBitrateListener{REMBBitrateListener: p}
@@ -144,9 +145,9 @@ func (o *OutgoingStreamTrack) GetStats() *OutgoingStatss {
 
 }
 
-func (o *OutgoingStreamTrack) GetSSRCs() map[string]RTPOutgoingSource {
+func (o *OutgoingStreamTrack) GetSSRCs() map[string]native.RTPOutgoingSource {
 
-	return map[string]RTPOutgoingSource{
+	return map[string]native.RTPOutgoingSource{
 		"media": o.source.GetMedia(),
 		"rtx":   o.source.GetRtx(),
 		"fec":   o.source.GetFec(),
@@ -175,7 +176,7 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	o.Detach()
 
 	// todo add remblistener
-	transponder := NewRTPStreamTransponderFacade(o.source, o.sender, o.interCallback)
+	transponder := native.NewRTPStreamTransponderFacade(o.source, o.sender, o.interCallback)
 
 	o.transpoder = NewTransponder(transponder)
 
@@ -224,7 +225,7 @@ func (o *OutgoingStreamTrack) Stop() {
 	o.EmitSync("stopped")
 
 	if o.source != nil {
-		DeleteRTPOutgoingSourceGroup(o.source)
+		native.DeleteRTPOutgoingSourceGroup(o.source)
 	}
 
 	o.transpoder.Stop()

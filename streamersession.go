@@ -7,6 +7,8 @@ import (
 	"github.com/chuckpreslar/emission"
 	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
+
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type StreamerSession struct {
@@ -16,18 +18,18 @@ type StreamerSession struct {
 	ip       string
 	incoming *IncomingStreamTrack
 	outgoing *OutgoingStreamTrack
-	session  RTPSessionFacade
+	session  native.RTPSessionFacade
 	*emission.Emitter
 }
 
 func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *StreamerSession {
 
 	streamerSession := &StreamerSession{}
-	var mediaType MediaFrameType = 0
+	var mediaType native.MediaFrameType = 0
 	if strings.ToLower(media.GetType()) == "video" {
 		mediaType = 1
 	}
-	session := NewRTPSessionFacade(mediaType)
+	session := native.NewRTPSessionFacade(mediaType)
 	if local {
 		session.SetLocalPort(port)
 	} else {
@@ -36,7 +38,7 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 
 	streamerSession.id = uuid.Must(uuid.NewV4()).String()
 
-	properties := NewProperties()
+	properties := native.NewProperties()
 
 	if media != nil {
 		num := 0
@@ -54,15 +56,15 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 
 	session.Init(properties)
 
-	DeleteProperties(properties)
+	native.DeleteProperties(properties)
 
 	streamerSession.session = session
 
 	streamerSession.Emitter = emission.NewEmitter()
 
-	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), SessionToReceiver(session), map[string]RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
+	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), native.SessionToReceiver(session), map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
 
-	streamerSession.outgoing = newOutgoingStreamTrack(media.GetType(), media.GetType(), SessionToSender(session), session.GetOutgoingSourceGroup())
+	streamerSession.outgoing = newOutgoingStreamTrack(media.GetType(), media.GetType(), native.SessionToSender(session), session.GetOutgoingSourceGroup())
 
 	streamerSession.incoming.Once("stopped", func() {
 		streamerSession.incoming = nil
@@ -103,7 +105,7 @@ func (s *StreamerSession) Stop() {
 
 	s.session.End()
 
-	DeleteRTPSessionFacade(s.session)
+	native.DeleteRTPSessionFacade(s.session)
 
 	s.EmitSync("stopped")
 

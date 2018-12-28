@@ -1,33 +1,37 @@
 package mediaserver
 
-type MediaFrameCallback func(frame MediaFrame)
+import (
+	native "github.com/notedit/media-server-go/wrapper"
+)
+
+type MediaFrameCallback func(frame native.MediaFrame)
 
 type MediaStreamDuplicater struct {
 	track      *IncomingStreamTrack
-	duplicater MediaStreamDuplicaterFacade
+	duplicater native.MediaStreamDuplicaterFacade
 	callback   MediaFrameCallback
 	listener   mediaframeListener
 }
 
 type mediaframeListener interface {
-	MediaFrameListener
+	native.MediaFrameListener
 	deleteMediaFrameListener()
 }
 
 type goMediaFrameListener struct {
-	MediaFrameListener
+	native.MediaFrameListener
 }
 
 func (m *goMediaFrameListener) deleteMediaFrameListener() {
-	DeleteDirectorMediaFrameListener(m.MediaFrameListener)
+	native.DeleteDirectorMediaFrameListener(m.MediaFrameListener)
 }
 
 type overwrittenMediaFrameListener struct {
-	p          MediaFrameListener
+	p          native.MediaFrameListener
 	duplicater *MediaStreamDuplicater
 }
 
-func (p *overwrittenMediaFrameListener) OnMediaFrame(frame MediaFrame) {
+func (p *overwrittenMediaFrameListener) OnMediaFrame(frame native.MediaFrame) {
 
 	if p.duplicater != nil {
 		p.duplicater.callback(frame)
@@ -41,7 +45,7 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCal
 
 	// We should make sure this source is the main source
 	source := track.GetFirstEncoding().GetSource()
-	duplicater.duplicater = NewMediaStreamDuplicaterFacade(source)
+	duplicater.duplicater = native.NewMediaStreamDuplicaterFacade(source)
 
 	track.On("stopped", func() {
 		duplicater.Stop()
@@ -52,7 +56,7 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCal
 	listener := &overwrittenMediaFrameListener{
 		duplicater: duplicater,
 	}
-	p := NewDirectorMediaFrameListener(listener)
+	p := native.NewDirectorMediaFrameListener(listener)
 	listener.p = p
 
 	duplicater.listener = &goMediaFrameListener{MediaFrameListener: p}

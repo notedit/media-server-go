@@ -6,18 +6,19 @@ import (
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type OutgoingStream struct {
 	id        string
-	transport DTLSICETransport
+	transport native.DTLSICETransport
 	info      *sdp.StreamInfo
 	muted     bool
 	tracks    map[string]*OutgoingStreamTrack
 	*emission.Emitter
 }
 
-func NewOutgoingStream(transport DTLSICETransport, info *sdp.StreamInfo) *OutgoingStream {
+func NewOutgoingStream(transport native.DTLSICETransport, info *sdp.StreamInfo) *OutgoingStream {
 	stream := new(OutgoingStream)
 
 	stream.id = info.GetID()
@@ -159,12 +160,12 @@ func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) error {
 
 func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack {
 
-	var mediaType MediaFrameType = 0
+	var mediaType native.MediaFrameType = 0
 	if track.GetMedia() == "video" {
 		mediaType = 1
 	}
 
-	source := NewRTPOutgoingSourceGroup(mediaType)
+	source := native.NewRTPOutgoingSourceGroup(mediaType)
 
 	source.GetMedia().SetSsrc(track.GetSSRCS()[0])
 
@@ -185,7 +186,7 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 
 	o.transport.AddOutgoingSourceGroup(source)
 
-	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), TransportToSender(o.transport), source)
+	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)
 
 	outgoingTrack.Once("stopped", func() {
 		delete(o.tracks, outgoingTrack.GetID())

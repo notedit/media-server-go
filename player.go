@@ -3,29 +3,31 @@ package mediaserver
 import (
 	"errors"
 	"fmt"
+
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type Player struct {
-	player      PlayerFacade
+	player      native.PlayerFacade
 	tracks      map[string]*IncomingStreamTrack
 	endCallback playerEndCallback
 }
 
 type playerEndCallback interface {
-	PlayerEndListener
+	native.PlayerEndListener
 	deletePlayerListener()
 }
 
 type goplayerEndCallback struct {
-	PlayerEndListener
+	native.PlayerEndListener
 }
 
 func (r *goplayerEndCallback) deletePlayerListener() {
-	DeleteDirectorPlayerEndListener(r.PlayerEndListener)
+	native.DeleteDirectorPlayerEndListener(r.PlayerEndListener)
 }
 
 type overwrittenEndCallback struct {
-	p PlayerEndListener
+	p native.PlayerEndListener
 }
 
 func (p *overwrittenEndCallback) OnEnd() {
@@ -34,11 +36,11 @@ func (p *overwrittenEndCallback) OnEnd() {
 
 func NewPlayer(filename string) (*Player, error) {
 	player := &Player{}
-	player.player = NewPlayerFacade()
+	player.player = native.NewPlayerFacade()
 	player.tracks = make(map[string]*IncomingStreamTrack)
 
 	if player.player.Open(filename) == 0 {
-		DeletePlayerFacade(player.player)
+		native.DeletePlayerFacade(player.player)
 		return nil, errors.New("player can not open filanme:" + filename)
 	}
 
@@ -47,7 +49,7 @@ func NewPlayer(filename string) (*Player, error) {
 		trackID := "video"
 		source := player.player.GetVideoSource()
 
-		incoming := newIncomingStreamTrack("video", trackID, nil, map[string]RTPIncomingSourceGroup{"": source})
+		incoming := newIncomingStreamTrack("video", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
 
 		// todo event
 		player.tracks[trackID] = incoming
@@ -58,7 +60,7 @@ func NewPlayer(filename string) (*Player, error) {
 		trackID := "audio"
 		source := player.player.GetAudioSource()
 
-		incoming := newIncomingStreamTrack("audio", trackID, nil, map[string]RTPIncomingSourceGroup{"": source})
+		incoming := newIncomingStreamTrack("audio", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
 
 		// todo
 		player.tracks[trackID] = incoming
@@ -66,7 +68,7 @@ func NewPlayer(filename string) (*Player, error) {
 	}
 
 	callback := &overwrittenEndCallback{}
-	p := NewDirectorPlayerEndListener(callback)
+	p := native.NewDirectorPlayerEndListener(callback)
 	callback.p = p
 
 	player.endCallback = &goplayerEndCallback{PlayerEndListener: p}

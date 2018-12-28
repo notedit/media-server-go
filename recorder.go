@@ -3,11 +3,13 @@ package mediaserver
 import (
 	"strconv"
 	"time"
+
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type Recorder struct {
 	tracks     map[string]*RecorderTrack
-	recorder   MP4Recorder
+	recorder   native.MP4Recorder
 	ticker     *time.Ticker
 	refresher  *Refresher
 	maxTrackId int
@@ -15,7 +17,7 @@ type Recorder struct {
 
 func NewRecorder(filename string, waitForIntra bool, refresh int) *Recorder {
 	recorder := &Recorder{}
-	recorder.recorder = NewMP4Recorder()
+	recorder.recorder = native.NewMP4Recorder()
 	recorder.recorder.Create(filename)
 	recorder.recorder.Record(waitForIntra)
 	recorder.tracks = map[string]*RecorderTrack{}
@@ -73,7 +75,7 @@ func (r *Recorder) Stop() {
 
 	r.recorder.Close()
 
-	DeleteMP4Recorder(r.recorder)
+	native.DeleteMP4Recorder(r.recorder)
 
 	r.refresher = nil
 	r.recorder = nil
