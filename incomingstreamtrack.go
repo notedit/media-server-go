@@ -7,6 +7,7 @@ import (
 
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
+	native "github.com/notedit/media-server-go/wrapper"
 	"github.com/sanity-io/litter"
 )
 
@@ -22,26 +23,26 @@ type Layer struct {
 
 type Encoding struct {
 	id           string
-	source       RTPIncomingSourceGroup
-	depacketizer StreamTrackDepacketizer
+	source       native.RTPIncomingSourceGroup
+	depacketizer native.StreamTrackDepacketizer
 }
 
 func (e *Encoding) GetID() string {
 	return e.id
 }
 
-func (e *Encoding) GetSource() RTPIncomingSourceGroup {
+func (e *Encoding) GetSource() native.RTPIncomingSourceGroup {
 	return e.source
 }
 
-func (e *Encoding) GetDepacketizer() StreamTrackDepacketizer {
+func (e *Encoding) GetDepacketizer() native.StreamTrackDepacketizer {
 	return e.depacketizer
 }
 
 type IncomingStreamTrack struct {
 	id        string
 	media     string
-	receiver  RTPReceiverFacade
+	receiver  native.RTPReceiverFacade
 	counter   int
 	encodings map[string]*Encoding
 	trackInfo *sdp.TrackInfo
@@ -90,7 +91,7 @@ type ActiveLayersInfo struct {
 	Layers   []*Layer
 }
 
-func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
+func getStatsFromIncomingSource(source native.RTPIncomingSource) *IncomingStats {
 
 	stats := &IncomingStats{
 		LostPackets:    source.GetLostPackets(),
@@ -150,7 +151,7 @@ func getStatsFromIncomingSource(source RTPIncomingSource) *IncomingStats {
 	return stats
 }
 
-func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade, sources map[string]RTPIncomingSourceGroup) *IncomingStreamTrack {
+func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiverFacade, sources map[string]native.RTPIncomingSourceGroup) *IncomingStreamTrack {
 	track := &IncomingStreamTrack{}
 
 	track.id = id
@@ -166,7 +167,7 @@ func newIncomingStreamTrack(media string, id string, receiver RTPReceiverFacade,
 		encoding := &Encoding{
 			id:           k,
 			source:       source,
-			depacketizer: NewStreamTrackDepacketizer(source),
+			depacketizer: native.NewStreamTrackDepacketizer(source),
 		}
 
 		track.encodings[k] = encoding
@@ -223,12 +224,12 @@ func (i *IncomingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
 	return i.trackInfo
 }
 
-func (i *IncomingStreamTrack) GetSSRCs() []map[string]RTPIncomingSource {
+func (i *IncomingStreamTrack) GetSSRCs() []map[string]native.RTPIncomingSource {
 
-	ssrcs := make([]map[string]RTPIncomingSource, 0)
+	ssrcs := make([]map[string]native.RTPIncomingSource, 0)
 
 	for _, encoding := range i.encodings {
-		ssrcs = append(ssrcs, map[string]RTPIncomingSource{
+		ssrcs = append(ssrcs, map[string]native.RTPIncomingSource{
 			"media": encoding.source.GetMedia(),
 			"rtx":   encoding.source.GetRtx(),
 			"fec":   encoding.source.GetFec(),
@@ -421,10 +422,10 @@ func (i *IncomingStreamTrack) Stop() {
 	for _, encoding := range i.encodings {
 		if encoding.depacketizer != nil {
 			encoding.depacketizer.Stop()
-			DeleteStreamTrackDepacketizer(encoding.depacketizer)
+			native.DeleteStreamTrackDepacketizer(encoding.depacketizer)
 		}
 		if encoding.source != nil {
-			DeleteRTPIncomingSourceGroup(encoding.source)
+			native.DeleteRTPIncomingSourceGroup(encoding.source)
 		}
 	}
 

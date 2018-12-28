@@ -10,8 +10,8 @@
 
 // source: mediaserver.i
 
-#ifndef SWIG_mediaserver_WRAP_H_
-#define SWIG_mediaserver_WRAP_H_
+#ifndef SWIG_native_WRAP_H_
+#define SWIG_native_WRAP_H_
 
 class Swig_memory;
 

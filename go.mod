@@ -6,3 +6,5 @@ require (
 	github.com/gofrs/uuid v3.1.0+incompatible
 	github.com/sanity-io/litter v1.1.0
 )
+
+replace github.com/notedit/media-server-go/wrapper => ./wrapper

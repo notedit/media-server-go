@@ -4,6 +4,8 @@ import (
 	"errors"
 
 	"github.com/chuckpreslar/emission"
+
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type BitrateTraversal string
@@ -18,7 +20,7 @@ const (
 type Transponder struct {
 	muted              bool
 	track              *IncomingStreamTrack
-	transponder        RTPStreamTransponderFacade
+	transponder        native.RTPStreamTransponderFacade
 	encodingId         string
 	spatialLayerId     int
 	temporalLayerId    int
@@ -27,7 +29,7 @@ type Transponder struct {
 	*emission.Emitter
 }
 
-func NewTransponder(transponderFacade RTPStreamTransponderFacade) *Transponder {
+func NewTransponder(transponderFacade native.RTPStreamTransponderFacade) *Transponder {
 	transponder := new(Transponder)
 	transponder.muted = false
 
@@ -192,7 +194,7 @@ func (t *Transponder) Stop() {
 
 	t.transponder.Close()
 
-	DeleteRTPStreamTransponderFacade(t.transponder)
+	native.DeleteRTPStreamTransponderFacade(t.transponder)
 
 	t.EmitSync("stopped")
 

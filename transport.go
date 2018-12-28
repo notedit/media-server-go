@@ -6,23 +6,24 @@ import (
 	"github.com/chuckpreslar/emission"
 	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
+	native "github.com/notedit/media-server-go/wrapper"
 )
 
 type senderSideEstimatorListener interface {
-	SenderSideEstimatorListener
+	native.SenderSideEstimatorListener
 	deleteSenderSideEstimatorListener()
 }
 
 type goSenderSideEstimatorListener struct {
-	SenderSideEstimatorListener
+	native.SenderSideEstimatorListener
 }
 
 func (r *goSenderSideEstimatorListener) deleteSenderSideEstimatorListener() {
-	DeleteDirectorSenderSideEstimatorListener(r.SenderSideEstimatorListener)
+	native.DeleteDirectorSenderSideEstimatorListener(r.SenderSideEstimatorListener)
 }
 
 type overwrittenSenderSideEstimatorListener struct {
-	p SenderSideEstimatorListener
+	p native.SenderSideEstimatorListener
 }
 
 func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrate uint) {
@@ -37,16 +38,16 @@ type Transport struct {
 	remoteIce          *sdp.ICEInfo
 	remoteDtls         *sdp.DTLSInfo
 	remoteCandidates   []*sdp.CandidateInfo
-	bundle             RTPBundleTransport
-	transport          DTLSICETransport
-	username           StringFacade
+	bundle             native.RTPBundleTransport
+	transport          native.DTLSICETransport
+	username           native.StringFacade
 	incomingStreams    map[string]*IncomingStream
 	outgoingStreams    map[string]*OutgoingStream
 	senderSideListener senderSideEstimatorListener
 	*emission.Emitter
 }
 
-func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo, remoteCandidates []*sdp.CandidateInfo,
+func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo, remoteCandidates []*sdp.CandidateInfo,
 	localIce *sdp.ICEInfo, localDtls *sdp.DTLSInfo, localCandidates []*sdp.CandidateInfo, disableSTUNKeepAlive bool) *Transport {
 
 	transport := new(Transport)
@@ -57,7 +58,7 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 	transport.bundle = bundle
 	transport.Emitter = emission.NewEmitter()
 
-	properties := NewProperties()
+	properties := native.NewProperties()
 
 	properties.SetProperty("ice.localUsername", localIce.GetUfrag())
 	properties.SetProperty("ice.localPassword", localIce.GetPassword())
@@ -75,13 +76,13 @@ func NewTransport(bundle RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls 
 
 	properties.SetProperty("disableSTUNKeepAlive", stunKeepAlive)
 
-	transport.username = NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
+	transport.username = native.NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
 	transport.transport = bundle.AddICETransport(transport.username, properties)
 
-	DeleteProperties(properties)
+	native.DeleteProperties(properties)
 
 	listener := &overwrittenSenderSideEstimatorListener{}
-	p := NewDirectorSenderSideEstimatorListener(listener)
+	p := native.NewDirectorSenderSideEstimatorListener(listener)
 	listener.p = p
 
 	transport.senderSideListener = &goSenderSideEstimatorListener{SenderSideEstimatorListener: p}
@@ -120,7 +121,7 @@ func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
 }
 
 func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
-	properties := NewProperties()
+	properties := native.NewProperties()
 	if audio != nil {
 		num := 0
 		for _, codec := range audio.GetCodecs() {
@@ -169,12 +170,12 @@ func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaIn
 
 	t.transport.SetRemoteProperties(properties)
 
-	DeleteProperties(properties)
+	native.DeleteProperties(properties)
 }
 
 func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
 
-	properties := NewProperties()
+	properties := native.NewProperties()
 
 	if audio != nil {
 		num := 0
@@ -222,7 +223,7 @@ func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInf
 
 	t.transport.SetLocalProperties(properties)
 
-	DeleteProperties(properties)
+	native.DeleteProperties(properties)
 
 }
 
@@ -333,7 +334,7 @@ func (t *Transport) CreateOutgoingStreamWithID(streamID string, audio bool, vide
 
 func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrcs map[string]uint) *OutgoingStreamTrack {
 
-	var mediaType MediaFrameType = 0
+	var mediaType native.MediaFrameType = 0
 	if media == "video" {
 		mediaType = 1
 	}
@@ -342,7 +343,7 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 		trackId = uuid.Must(uuid.NewV4()).String()
 	}
 
-	source := NewRTPOutgoingSourceGroup(mediaType)
+	source := native.NewRTPOutgoingSourceGroup(mediaType)
 
 	if ssrc, ok := ssrcs["media"]; ok {
 		source.GetMedia().SetSsrc(ssrc)
@@ -365,7 +366,7 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 	// todo error handle
 	t.transport.AddOutgoingSourceGroup(source)
 
-	outgoingTrack := newOutgoingStreamTrack(media, trackId, TransportToSender(t.transport), source)
+	outgoingTrack := newOutgoingStreamTrack(media, trackId, native.TransportToSender(t.transport), source)
 
 	outgoingTrack.Once("stopped", func() {
 		t.transport.RemoveOutgoingSourceGroup(source)
@@ -378,7 +379,7 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 
 func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingStream {
 
-	incomingStream := newIncomingStream(t.transport, TransportToReceiver(t.transport), streamInfo)
+	incomingStream := newIncomingStream(t.transport, native.TransportToReceiver(t.transport), streamInfo)
 
 	t.incomingStreams[incomingStream.GetID()] = incomingStream
 
@@ -401,7 +402,7 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 
 func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrcs map[string]uint) *IncomingStreamTrack {
 
-	var mediaType MediaFrameType = 0
+	var mediaType native.MediaFrameType = 0
 	if media == "video" {
 		mediaType = 1
 	}
@@ -410,7 +411,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 		trackId = uuid.Must(uuid.NewV4()).String()
 	}
 
-	source := NewRTPIncomingSourceGroup(mediaType)
+	source := native.NewRTPIncomingSourceGroup(mediaType)
 
 	if ssrc, ok := ssrcs["media"]; ok {
 		source.GetMedia().SetSsrc(ssrc)
@@ -432,9 +433,9 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 
 	t.transport.AddIncomingSourceGroup(source)
 
-	sources := map[string]RTPIncomingSourceGroup{"": source}
+	sources := map[string]native.RTPIncomingSourceGroup{"": source}
 
-	incomingTrack := newIncomingStreamTrack(media, trackId, TransportToReceiver(t.transport), sources)
+	incomingTrack := newIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
 
 	incomingTrack.Once("stopped", func() {
 		for _, item := range sources {
@@ -499,7 +500,7 @@ func (t *Transport) Stop() {
 
 	t.Emit("stopped")
 
-	DeleteStringFacade(t.username)
+	native.DeleteStringFacade(t.username)
 
 	t.username = nil
 	t.bundle = nil
