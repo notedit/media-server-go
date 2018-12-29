@@ -5,8 +5,8 @@
 </h1>
 <h4 align="center">WebRTC media server for go</h4>
 
-[![Build Status](https://travis-ci.com/notedit/media-server-go.svg?branch=master)](https://travis-ci.com/notedit/media-server-go)
-
+<br>
+<br>
 
 |         | x86 | x64 |
 |:------- |:--- |:--- |
