@@ -2,6 +2,8 @@ package mediaserver
 
 import (
 	"errors"
+	"math"
+	"sort"
 
 	"github.com/chuckpreslar/emission"
 
@@ -13,6 +15,7 @@ type BitrateTraversal string
 const (
 	TraversalDefault               BitrateTraversal = "default"
 	TraversalSpatialTemporal       BitrateTraversal = "spatial-temporal"
+	TraversalTemporalSpatial       BitrateTraversal = "temporal-spatial"
 	TraversalZigZagSpatialTemporal BitrateTraversal = "zig-zag-spatial-temporal"
 	TraversalZigZagTemporalSpatial BitrateTraversal = "zig-zag-temporal-spatial"
 )
@@ -64,7 +67,6 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 	// todo check
 	// get first encoding
 	encoding := t.track.GetFirstEncoding()
-
 	if encoding == nil {
 		panic("encoding is nil")
 	}
@@ -90,12 +92,14 @@ func (t *Transponder) GetIncomingTrack() *IncomingStreamTrack {
 }
 
 // GetAvailableLayers   Get available encodings and layers
-func (t *Transponder) GetAvailableLayers() {
-	// todo
+func (t *Transponder) GetAvailableLayers() *ActiveLayersInfo {
+	if t.track != nil {
+		return t.track.GetActiveLayers()
+	}
+	return nil
 }
 
 func (t *Transponder) IsMuted() bool {
-
 	return t.muted
 }
 
@@ -110,33 +114,148 @@ func (t *Transponder) Mute(muting bool) {
 	}
 }
 
-func (t *Transponder) SetTargetBitrate(bitrate int, traversal BitrateTraversal, strict bool) int {
+func getSpatialLayerId(layer *Layer) int {
+	if layer.SpatialLayerId != MaxLayerId {
+		return layer.SpatialLayerId
+	}
+	return layer.SimulcastIdx
+}
+
+func (t *Transponder) SetTargetBitrate(bitrate uint, traversal BitrateTraversal, strict bool) uint {
 
 	if t.track == nil {
 		return 0
 	}
 
-	// current := -1
-	// encodingId := 0
-	// spatialLayerId := MaxLayerId
-	// temporalLayerId := MaxLayerId
+	var current uint
+	var encodingId string
+	var encodingIdMin string
 
-	// min := math.MaxInt32
-	// encodingIdMin := 0
+	spatialLayerId := MaxLayerId
+	temporalLayerId := MaxLayerId
 
-	// spatialLayerIdMin := MaxLayerId
-	// temporalLayerIdMin := MaxLayerId
+	min := uint(math.MaxInt32)
 
-	// ordering := false
+	spatialLayerIdMin := MaxLayerId
+	temporalLayerIdMin := MaxLayerId
 
-	// todo
+	var orderfunc func(i int, j int) bool
+	layers := t.track.GetActiveLayers().Layers
 
-	return 0
+	if len(layers) == 0 {
+		t.Mute(false)
+		return 0
+	}
+
+	switch traversal {
+	case TraversalSpatialTemporal:
+		orderfunc = func(i, j int) bool {
+			a := layers[i]
+			b := layers[j]
+
+			ret1 := getSpatialLayerId(b)*MaxLayerId + b.TemporalLayerId
+			ret2 := getSpatialLayerId(a)*MaxLayerId + a.TemporalLayerId
+			if ret1-ret2 < 0 {
+				return true
+			}
+			return false
+		}
+		break
+	case TraversalZigZagSpatialTemporal:
+		orderfunc = func(i, j int) bool {
+			a := layers[i]
+			b := layers[j]
+
+			ret1 := (getSpatialLayerId(b)+b.TemporalLayerId+1)*MaxLayerId - b.TemporalLayerId
+			ret2 := (getSpatialLayerId(a)+a.TemporalLayerId+1)*MaxLayerId - a.TemporalLayerId
+			if ret1-ret2 < 0 {
+				return true
+			}
+			return false
+		}
+		break
+	case TraversalTemporalSpatial:
+		orderfunc = func(i, j int) bool {
+			a := layers[i]
+			b := layers[j]
+
+			ret1 := b.TemporalLayerId*MaxLayerId + getSpatialLayerId(b)
+			ret2 := a.TemporalLayerId*MaxLayerId + getSpatialLayerId(a)
+			if ret1-ret2 < 0 {
+				return true
+			}
+			return false
+		}
+		break
+	case TraversalZigZagTemporalSpatial:
+		orderfunc = func(i, j int) bool {
+			a := layers[i]
+			b := layers[j]
+
+			ret1 := (getSpatialLayerId(b)+b.TemporalLayerId+1)*MaxLayerId - getSpatialLayerId(b)
+			ret2 := (getSpatialLayerId(a)+a.TemporalLayerId+1)*MaxLayerId - getSpatialLayerId(a)
+			if ret1-ret2 < 0 {
+				return true
+			}
+			return false
+		}
+		break
+	default:
+		break
+	}
+
+	if orderfunc != nil {
+		sort.SliceStable(layers, orderfunc)
+	}
+
+	for _, layer := range layers {
+
+		if layer.Bitrate <= bitrate && layer.Bitrate > current && t.maxSpatialLayerId >= layer.SpatialLayerId && t.maxSpatialLayerId >= layer.TemporalLayerId {
+			encodingId = layer.EncodingId
+			spatialLayerId = layer.SpatialLayerId
+			temporalLayerId = layer.TemporalLayerId
+			current = layer.Bitrate
+			break
+		}
+
+		if layer.Bitrate > 0 && layer.Bitrate < min && t.maxSpatialLayerId >= layer.SpatialLayerId {
+			encodingIdMin = layer.EncodingId
+			spatialLayerIdMin = layer.SpatialLayerId
+			temporalLayerIdMin = layer.TemporalLayerId
+			min = layer.Bitrate
+		}
+	}
+
+	// Check if we have been able to find a layer that matched the target bitrate
+	if current <= 0 {
+
+		if strict == false {
+			t.Mute(false)
+			t.SelectEncoding(encodingIdMin)
+			t.SelectLayer(spatialLayerIdMin, temporalLayerIdMin)
+			return min
+		} else {
+			t.Mute(true)
+			return 0
+		}
+	}
+	t.Mute(false)
+	t.SelectEncoding(encodingId)
+	t.SelectLayer(spatialLayerId, temporalLayerId)
+	return current
 }
 
-func (t *Transponder) SelectEncoding() {
+func (t *Transponder) SelectEncoding(encodingId string) {
 
-	// todo
+	if t.encodingId == encodingId {
+		return
+	}
+	encoding := t.track.encodings[encodingId]
+	if encoding == nil {
+		return
+	}
+	t.transponder.SetIncoming(encoding.GetSource(), t.track.receiver)
+	t.encodingId = encodingId
 }
 
 func (t *Transponder) GetSelectedEncoding() string {

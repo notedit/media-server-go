@@ -15,10 +15,10 @@ type Layer struct {
 	EncodingId      string
 	SpatialLayerId  int
 	TemporalLayerId int
+	SimulcastIdx    int
 	TotalBytes      uint
 	NumPackets      uint
 	Bitrate         uint
-	SimulcastIdx    int
 }
 
 type Encoding struct {
