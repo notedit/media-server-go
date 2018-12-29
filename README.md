@@ -1,8 +1,12 @@
-# media-server-go
+<h1 align="center">
+  <br>
+  media-server-go
+  <br>
+</h1>
+<h4 align="center">WebRTC media server for go</h4>
 
 [![Build Status](https://travis-ci.com/notedit/media-server-go.svg?branch=master)](https://travis-ci.com/notedit/media-server-go)
 
-WebRTC media server for go
 
 |         | x86 | x64 |
 |:------- |:--- |:--- |
