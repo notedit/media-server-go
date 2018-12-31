@@ -110,6 +110,15 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	return transport
 }
 
+func (t *Transport) Dump(filename string, incoming bool, outgoing bool, rtcp bool) bool {
+
+	ret := t.transport.Dump(filename, incoming, outgoing, rtcp)
+	if ret == 0 {
+		return false
+	}
+	return true
+}
+
 func (t *Transport) SetBandwidthProbing(probe bool) {
 
 	t.transport.SetBandwidthProbing(probe)
@@ -222,9 +231,7 @@ func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInf
 	}
 
 	t.transport.SetLocalProperties(properties)
-
 	native.DeleteProperties(properties)
-
 }
 
 func (t *Transport) GetLocalDTLSInfo() *sdp.DTLSInfo {
