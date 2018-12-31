@@ -14,10 +14,15 @@ import (
 type IncomingStream struct {
 	id        string
 	info      *sdp.StreamInfo
-	transport native.DTLSICETransport
+	transport TransportWrapper
 	receiver  native.RTPReceiverFacade
 	tracks    map[string]*IncomingStreamTrack
 	*emission.Emitter
+}
+
+type TransportWrapper interface {
+	AddIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
+	RemoveIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
 }
 
 func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
@@ -31,7 +36,20 @@ func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPRec
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
 	}
+	return stream
+}
 
+func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulator, receiver native.RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
+	stream := &IncomingStream{}
+	stream.id = info.GetID()
+	stream.transport = transport
+	stream.receiver = receiver
+	stream.tracks = make(map[string]*IncomingStreamTrack)
+	stream.Emitter = emission.NewEmitter()
+
+	for _, track := range info.GetTracks() {
+		stream.CreateTrack(track)
+	}
 	return stream
 }
 

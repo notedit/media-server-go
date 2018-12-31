@@ -493,8 +493,8 @@ func (t *Transport) Stop() {
 		t.senderSideListener.deleteSenderSideEstimatorListener()
 	}
 
-	t.incomingStreams = nil
-	t.outgoingStreams = nil
+	t.incomingStreams = map[string]*IncomingStream{}
+	t.outgoingStreams = map[string]*OutgoingStream{}
 
 	t.bundle.RemoveICETransport(t.username)
 
