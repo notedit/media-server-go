@@ -11,20 +11,24 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// IncomingStream The incoming streams represent the recived media stream from a remote peer.
 type IncomingStream struct {
 	id        string
 	info      *sdp.StreamInfo
-	transport TransportWrapper
+	transport transportWrapper
 	receiver  native.RTPReceiverFacade
 	tracks    map[string]*IncomingStreamTrack
 	*emission.Emitter
 }
 
-type TransportWrapper interface {
+// internal use
+type transportWrapper interface {
 	AddIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
 	RemoveIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
 }
 
+// NewIncomingStream  Create new incoming stream
+// TODO: make this public
 func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
 	stream := &IncomingStream{}
 	stream.id = info.GetID()
@@ -39,6 +43,7 @@ func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPRec
 	return stream
 }
 
+// NewIncomingStreamWithEmulatedTransport Create new incoming stream through PCAPTransportEmulator
 func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulator, receiver native.RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
 	stream := &IncomingStream{}
 	stream.id = info.GetID()
@@ -53,10 +58,12 @@ func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulat
 	return stream
 }
 
+// GetID get id
 func (i *IncomingStream) GetID() string {
 	return i.id
 }
 
+// GetStreamInfo get stream info
 func (i *IncomingStream) GetStreamInfo() *sdp.StreamInfo {
 
 	info := sdp.NewStreamInfo(i.id)
@@ -67,6 +74,7 @@ func (i *IncomingStream) GetStreamInfo() *sdp.StreamInfo {
 	return info
 }
 
+// GetStats Get statistics for all tracks in the stream
 func (i *IncomingStream) GetStats() map[string]map[string]*IncomingAllStats {
 
 	stats := map[string]map[string]*IncomingAllStats{}
@@ -78,10 +86,12 @@ func (i *IncomingStream) GetStats() map[string]map[string]*IncomingAllStats {
 	return stats
 }
 
+// GetTrack Get track by id
 func (i *IncomingStream) GetTrack(trackID string) *IncomingStreamTrack {
 	return i.tracks[trackID]
 }
 
+// GetTracks Get all tracks in this stream
 func (i *IncomingStream) GetTracks() []*IncomingStreamTrack {
 	tracks := []*IncomingStreamTrack{}
 	for _, track := range i.tracks {
@@ -90,6 +100,7 @@ func (i *IncomingStream) GetTracks() []*IncomingStreamTrack {
 	return tracks
 }
 
+// GetAudioTracks get all audio tracks
 func (i *IncomingStream) GetAudioTracks() []*IncomingStreamTrack {
 	audioTracks := []*IncomingStreamTrack{}
 	for _, track := range i.tracks {
@@ -100,6 +111,7 @@ func (i *IncomingStream) GetAudioTracks() []*IncomingStreamTrack {
 	return audioTracks
 }
 
+// GetVideoTracks get all video tracks
 func (i *IncomingStream) GetVideoTracks() []*IncomingStreamTrack {
 	videoTracks := []*IncomingStreamTrack{}
 	for _, track := range i.tracks {
@@ -110,6 +122,7 @@ func (i *IncomingStream) GetVideoTracks() []*IncomingStreamTrack {
 	return videoTracks
 }
 
+// AddTrack Adds an incoming stream track created using the Transpocnder.CreateIncomingStreamTrack to this stream
 func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 
 	if _, ok := i.tracks[track.GetID()]; ok {
@@ -124,6 +137,7 @@ func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 	return nil
 }
 
+// CreateTrack Create new track from a TrackInfo object and add it to this stream
 func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack {
 
 	var mediaType native.MediaFrameType = 0
@@ -259,6 +273,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 	return incomingTrack
 }
 
+// Stop Removes the media strem from the transport and also detaches from any attached incoming stream
 func (i *IncomingStream) Stop() {
 
 	if i.transport == nil {

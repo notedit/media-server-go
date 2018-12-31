@@ -8,37 +8,49 @@ import (
 	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
-	"github.com/sanity-io/litter"
 )
 
+// Layer info
 type Layer struct {
-	EncodingId      string
-	SpatialLayerId  int
+	// EncodingId str
+	EncodingId string
+	// SpatialLayerId int
+	SpatialLayerId int
+	// TemporalLayerId  int
 	TemporalLayerId int
-	SimulcastIdx    int
-	TotalBytes      uint
-	NumPackets      uint
-	Bitrate         uint
+	// SimulcastIdx int
+	SimulcastIdx int
+	// TotalBytes uint
+	TotalBytes uint
+	// NumPackets uint
+	NumPackets uint
+	// Bitrate  uint
+	Bitrate uint
 }
 
+// Encoding info
 type Encoding struct {
 	id           string
 	source       native.RTPIncomingSourceGroup
 	depacketizer native.StreamTrackDepacketizer
 }
 
+// GetID encoding id
 func (e *Encoding) GetID() string {
 	return e.id
 }
 
+// GetSource  get native RTPIncomingSourceGroup
 func (e *Encoding) GetSource() native.RTPIncomingSourceGroup {
 	return e.source
 }
 
+// GetDepacketizer  get native StreamTrackDepacketizer
 func (e *Encoding) GetDepacketizer() native.StreamTrackDepacketizer {
 	return e.depacketizer
 }
 
+// IncomingStreamTrack Audio or Video track of a remote media stream
 type IncomingStreamTrack struct {
 	id        string
 	media     string
@@ -50,6 +62,7 @@ type IncomingStreamTrack struct {
 	*emission.Emitter
 }
 
+// IncomingStats info
 type IncomingStats struct {
 	LostPackets    uint
 	DropPackets    uint
@@ -63,6 +76,7 @@ type IncomingStats struct {
 	Layers         []*Layer
 }
 
+// IncomingAllStats info
 type IncomingAllStats struct {
 	Rtt          uint
 	MinWaitTime  uint
@@ -78,6 +92,7 @@ type IncomingAllStats struct {
 	timestamp    int64
 }
 
+// ActiveEncoding info
 type ActiveEncoding struct {
 	EncodingId   string
 	SimulcastIdx int
@@ -85,6 +100,7 @@ type ActiveEncoding struct {
 	Layers       []*Layer
 }
 
+// ActiveLayersInfo info
 type ActiveLayersInfo struct {
 	Active   []*ActiveEncoding
 	Inactive []*ActiveEncoding
@@ -151,6 +167,8 @@ func getStatsFromIncomingSource(source native.RTPIncomingSource) *IncomingStats 
 	return stats
 }
 
+// NewIncomingStreamTrack Create incoming audio/video track
+// TODO: make this public
 func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiverFacade, sources map[string]native.RTPIncomingSourceGroup) *IncomingStreamTrack {
 	track := &IncomingStreamTrack{}
 
@@ -212,18 +230,22 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 	return track
 }
 
+// GetID get track id
 func (i *IncomingStreamTrack) GetID() string {
 	return i.id
 }
 
+// GetMedia get track media type "video" or "audio"
 func (i *IncomingStreamTrack) GetMedia() string {
 	return i.media
 }
 
+// GetTrackInfo get track info
 func (i *IncomingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
 	return i.trackInfo
 }
 
+// GetSSRCs get all RTPIncomingSource include "media" "rtx" "fec"
 func (i *IncomingStreamTrack) GetSSRCs() []map[string]native.RTPIncomingSource {
 
 	ssrcs := make([]map[string]native.RTPIncomingSource, 0)
@@ -238,6 +260,7 @@ func (i *IncomingStreamTrack) GetSSRCs() []map[string]native.RTPIncomingSource {
 	return ssrcs
 }
 
+// GetStats Get stats for all encodings
 func (i *IncomingStreamTrack) GetStats() map[string]*IncomingAllStats {
 
 	if i.stats == nil {
@@ -295,6 +318,7 @@ func (i *IncomingStreamTrack) GetStats() map[string]*IncomingAllStats {
 	return i.stats
 }
 
+// GetActiveLayers Get active encodings and layers ordered by bitrate
 func (i *IncomingStreamTrack) GetActiveLayers() *ActiveLayersInfo {
 
 	active := []*ActiveEncoding{}
@@ -340,7 +364,7 @@ func (i *IncomingStreamTrack) GetActiveLayers() *ActiveLayersInfo {
 		}
 
 		if len(encoding.Layers) > 0 {
-			sort.Slice(encoding.Layers, func(i, j int) bool { return encoding.Layers[i].Bitrate < encoding.Layers[j].Bitrate })
+			sort.SliceStable(encoding.Layers, func(i, j int) bool { return encoding.Layers[i].Bitrate < encoding.Layers[j].Bitrate })
 		} else {
 
 			all = append(all, &Layer{
@@ -370,14 +394,14 @@ func (i *IncomingStreamTrack) GetActiveLayers() *ActiveLayersInfo {
 
 }
 
+// GetEncodings  get all encodings
 func (i *IncomingStreamTrack) GetEncodings() map[string]*Encoding {
 
 	return i.encodings
 }
 
+// GetFirstEncoding get the first Encoding
 func (i *IncomingStreamTrack) GetFirstEncoding() *Encoding {
-
-	litter.Dump(i.encodings)
 
 	for _, encoding := range i.encodings {
 		if encoding != nil {
@@ -387,6 +411,7 @@ func (i *IncomingStreamTrack) GetFirstEncoding() *Encoding {
 	return nil
 }
 
+// Attached Signal that this track has been attached.
 func (i *IncomingStreamTrack) Attached() {
 
 	i.counter = i.counter + 1
@@ -396,6 +421,7 @@ func (i *IncomingStreamTrack) Attached() {
 	}
 }
 
+// Refresh Request an intra refres
 func (i *IncomingStreamTrack) Refresh() {
 
 	for _, encoding := range i.encodings {
@@ -404,6 +430,7 @@ func (i *IncomingStreamTrack) Refresh() {
 	}
 }
 
+// Detached Signal that this track has been detached.
 func (i *IncomingStreamTrack) Detached() {
 
 	i.counter = i.counter - 1
@@ -413,6 +440,7 @@ func (i *IncomingStreamTrack) Detached() {
 	}
 }
 
+// Stop Removes the track from the incoming stream and also detaches any attached outgoing track or recorder
 func (i *IncomingStreamTrack) Stop() {
 
 	if i.receiver == nil {
