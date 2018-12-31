@@ -27,10 +27,10 @@ type overwrittenSenderSideEstimatorListener struct {
 }
 
 func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrate uint) {
-
 	fmt.Println(bitrate)
 }
 
+// Transport represent a connection between a local ICE candidate and a remote set of ICE candidates over a single DTLS session
 type Transport struct {
 	localIce           *sdp.ICEInfo
 	localDtls          *sdp.DTLSInfo
@@ -47,6 +47,7 @@ type Transport struct {
 	*emission.Emitter
 }
 
+// NewTransport create a new transport
 func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remoteDtls *sdp.DTLSInfo, remoteCandidates []*sdp.CandidateInfo,
 	localIce *sdp.ICEInfo, localDtls *sdp.DTLSInfo, localCandidates []*sdp.CandidateInfo, disableSTUNKeepAlive bool) *Transport {
 
@@ -110,6 +111,7 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	return transport
 }
 
+// Dump  dump incoming and outgoint rtp and rtcp packets into a pcap file
 func (t *Transport) Dump(filename string, incoming bool, outgoing bool, rtcp bool) bool {
 
 	ret := t.transport.Dump(filename, incoming, outgoing, rtcp)
@@ -119,16 +121,21 @@ func (t *Transport) Dump(filename string, incoming bool, outgoing bool, rtcp boo
 	return true
 }
 
+// SetBandwidthProbing Enable/Disable bitrate probing
+// This will send padding only RTX packets to allow bandwidth estimation algortithm to probe bitrate beyonf current sent values.
+// The ammoung of probing bitrate would be limited by the sender bitrate estimation and the limit set on the setMaxProbing Bitrate.
 func (t *Transport) SetBandwidthProbing(probe bool) {
 
 	t.transport.SetBandwidthProbing(probe)
 }
 
+// SetMaxProbingBitrate Set the maximum bitrate to be used if probing is enabled.
 func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
 
 	t.transport.SetMaxProbingBitrate(bitrate)
 }
 
+// SetRemoteProperties  Set remote RTP properties
 func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
 	properties := native.NewProperties()
 	if audio != nil {
@@ -182,6 +189,7 @@ func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaIn
 	native.DeleteProperties(properties)
 }
 
+// SetLocalProperties Set local RTP properties
 func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
 
 	properties := native.NewProperties()
@@ -234,26 +242,30 @@ func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInf
 	native.DeleteProperties(properties)
 }
 
+// GetLocalDTLSInfo Get transport local DTLS info
 func (t *Transport) GetLocalDTLSInfo() *sdp.DTLSInfo {
 
 	return t.localDtls
 }
 
+// GetLocalICEInfo Get transport local ICE info
 func (t *Transport) GetLocalICEInfo() *sdp.ICEInfo {
 
 	return t.localIce
 }
 
+// GetLocalCandidates Get local ICE candidates for this transport
 func (t *Transport) GetLocalCandidates() []*sdp.CandidateInfo {
 
 	return t.localCandidates
 }
 
+// GetRemoteCandidates Get remote ICE candidates for this transport
 func (t *Transport) GetRemoteCandidates() []*sdp.CandidateInfo {
-
 	return t.remoteCandidates
 }
 
+// AddRemoteCandidate register a remote candidate info. Only needed for ice-lite to ice-lite endpoints
 func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 
 	var address string
@@ -268,11 +280,10 @@ func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 	}
 
 	t.bundle.AddRemoteCandidate(t.username, address, uint16(port))
-
 	t.remoteCandidates = append(t.remoteCandidates, candidate)
-
 }
 
+// CreateOutgoingStream2 Create new outgoing stream in this transport using StreamInfo
 func (t *Transport) CreateOutgoingStream2(streamInfo *sdp.StreamInfo) *OutgoingStream {
 
 	info := streamInfo.Clone()
@@ -293,10 +304,10 @@ func (t *Transport) CreateOutgoingStream2(streamInfo *sdp.StreamInfo) *OutgoingS
 
 		t.EmitSync("outgoingtrack", track, outgoingStream)
 	}
-
 	return outgoingStream
 }
 
+// CreateOutgoingStream Create new outgoing stream in this transport with given streamId
 func (t *Transport) CreateOutgoingStream(streamID string, audio bool, video bool) *OutgoingStream {
 
 	streamInfo := sdp.NewStreamInfo(streamID)
@@ -318,6 +329,7 @@ func (t *Transport) CreateOutgoingStream(streamID string, audio bool, video bool
 	return stream
 }
 
+// CreateOutgoingStreamWithID  alias CreateOutgoingStream
 func (t *Transport) CreateOutgoingStreamWithID(streamID string, audio bool, video bool) *OutgoingStream {
 
 	streamInfo := sdp.NewStreamInfo(streamID)
@@ -339,6 +351,7 @@ func (t *Transport) CreateOutgoingStreamWithID(streamID string, audio bool, vide
 	return stream
 }
 
+// CreateOutgoingStreamTrack Create new outgoing track in this transport
 func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrcs map[string]uint) *OutgoingStreamTrack {
 
 	var mediaType native.MediaFrameType = 0
@@ -384,6 +397,7 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 	return outgoingTrack
 }
 
+// CreateIncomingStream Create an incoming stream object from the media stream info objet
 func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingStream {
 
 	incomingStream := newIncomingStream(t.transport, native.TransportToReceiver(t.transport), streamInfo)
@@ -407,6 +421,8 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 	return incomingStream
 }
 
+// CreateIncomingStreamTrack Create new incoming stream in this transport. TODO: Simulcast is still not supported
+// You can use IncomingStream's CreateTrack
 func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrcs map[string]uint) *IncomingStreamTrack {
 
 	var mediaType native.MediaFrameType = 0
@@ -455,8 +471,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 	return incomingTrack
 }
 
-// todo create simple outgoing stream
-
+// GetIncomingStreams get all incoming streams
 func (t *Transport) GetIncomingStreams() []*IncomingStream {
 	incomings := []*IncomingStream{}
 	for _, stream := range t.incomingStreams {
@@ -465,10 +480,12 @@ func (t *Transport) GetIncomingStreams() []*IncomingStream {
 	return incomings
 }
 
+// GetIncomingStream  get one incoming stream
 func (t *Transport) GetIncomingStream(streamId string) *IncomingStream {
 	return t.incomingStreams[streamId]
 }
 
+// GetOutgoingStreams get all outgoing streams
 func (t *Transport) GetOutgoingStreams() []*OutgoingStream {
 	outgoings := []*OutgoingStream{}
 	for _, stream := range t.outgoingStreams {
@@ -477,6 +494,7 @@ func (t *Transport) GetOutgoingStreams() []*OutgoingStream {
 	return outgoings
 }
 
+// GetOutgoingStream get one outgoing stream
 func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
 	return t.outgoingStreams[streamId]
 }
