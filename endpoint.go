@@ -6,6 +6,9 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// Endpoint is an endpoint represent an UDP server socket.
+// The endpoint will process STUN requests in order to be able to associate the remote ip:port with the registered transport and forward any further data comming from that transport.
+// Being a server it is ICE-lite.
 type Endpoint struct {
 	ip          string
 	bundle      native.RTPBundleTransport
@@ -15,7 +18,7 @@ type Endpoint struct {
 	*emission.Emitter
 }
 
-// NewEndpoint create a endpoint
+// NewEndpoint create a new endpoint with given ip
 func NewEndpoint(ip string) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
@@ -27,6 +30,7 @@ func NewEndpoint(ip string) *Endpoint {
 	return endpoint
 }
 
+// NewEndpointWithPort create a new endpint with given ip and port
 func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
@@ -38,6 +42,8 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	return endpoint
 }
 
+// CreateTransport create a new transport object and register it with the remote ICE username and password
+// disableSTUNKeepAlive - Disable ICE/STUN keep alives, required for server to server transports, set this to false if you do not how to use it
 func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo, disableSTUNKeepAlive bool) *Transport {
 
 	var localIce *sdp.ICEInfo
@@ -71,9 +77,10 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 	})
 
 	return transport
-
 }
 
+// CreateTransportWithRemote create a new transport object and register it with the remote ICE username and password
+// This is used when you do not have local sdp info yet.
 func (e *Endpoint) CreateTransportWithRemote(sdpInfo *sdp.SDPInfo, disableSTUNKeepAlive bool) *Transport {
 
 	localIce := sdp.ICEInfoGenerate(true)
@@ -99,15 +106,18 @@ func (e *Endpoint) CreateTransportWithRemote(sdpInfo *sdp.SDPInfo, disableSTUNKe
 	return transport
 }
 
+// GetLocalCandidates Get local ICE candidates for this endpoint. It will be shared by all the transport associated to this endpoint.
 func (e *Endpoint) GetLocalCandidates() []*sdp.CandidateInfo {
 	return []*sdp.CandidateInfo{e.candidate}
 }
 
+// GetDTLSFingerprint Get local DTLS fingerprint for this endpoint. It will be shared by all the transport associated to this endpoint
 func (e *Endpoint) GetDTLSFingerprint() string {
 	return e.fingerprint
 }
 
 // CreateOffer  create offer based on audio and video capability
+// It generates a random ICE username and password and gets endpoint fingerprint
 func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sdp.SDPInfo {
 
 	dtls := sdp.NewDTLSInfo(sdp.SETUPACTPASS, "sha-256", e.fingerprint)
@@ -129,6 +139,7 @@ func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sd
 	return sdp.Create(ice, dtls, candidates, capabilities)
 }
 
+// CreateSDPManager Create new SDP manager, this object will manage the SDP O/A for you and produce a suitable trasnport.
 func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string]*sdp.Capability) SDPManager {
 
 	if sdpSemantics == "plan-b" {
@@ -139,7 +150,7 @@ func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string
 	return nil
 }
 
-// Stop  stop this endpoint
+// Stop stop the endpoint UDP server and terminate any associated transport
 func (e *Endpoint) Stop() {
 
 	if e.bundle == nil {
