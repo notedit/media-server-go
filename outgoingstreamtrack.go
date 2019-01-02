@@ -9,6 +9,7 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// OutgoingStreamTrack Audio or Video track of a media stream sent to a remote peer
 type OutgoingStreamTrack struct {
 	id            string
 	media         string
@@ -23,6 +24,7 @@ type OutgoingStreamTrack struct {
 	*emission.Emitter
 }
 
+// OutgoingStats stats info
 type OutgoingStats struct {
 	NumPackets     uint
 	NumRTCPPackets uint
@@ -31,6 +33,7 @@ type OutgoingStats struct {
 	Bitrate        uint
 }
 
+// OutgoingStatss stats info
 type OutgoingStatss struct {
 	Media     *OutgoingStats
 	Rtx       *OutgoingStats
@@ -73,6 +76,7 @@ func getStatsFromOutgoingSource(source native.RTPOutgoingSource) *OutgoingStats 
 	return stats
 }
 
+// NewOutgoingStreamTrack create outgoing stream track
 func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFacade, source native.RTPOutgoingSourceGroup) *OutgoingStreamTrack {
 
 	track := &OutgoingStreamTrack{}
@@ -116,18 +120,22 @@ func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFaca
 	return track
 }
 
+// GetID  get track id
 func (o *OutgoingStreamTrack) GetID() string {
 	return o.id
 }
 
+// GetMedia get media type
 func (o *OutgoingStreamTrack) GetMedia() string {
 	return o.media
 }
 
+// GetTrackInfo get track info
 func (o *OutgoingStreamTrack) GetTrackInfo() *sdp.TrackInfo {
 	return o.trackInfo
 }
 
+// GetStats get stats info
 func (o *OutgoingStreamTrack) GetStats() *OutgoingStatss {
 
 	if o.statss == nil {
@@ -142,9 +150,9 @@ func (o *OutgoingStreamTrack) GetStats() *OutgoingStatss {
 	}
 
 	return o.statss
-
 }
 
+// GetSSRCs get ssrcs map
 func (o *OutgoingStreamTrack) GetSSRCs() map[string]native.RTPOutgoingSource {
 
 	return map[string]native.RTPOutgoingSource{
@@ -154,10 +162,12 @@ func (o *OutgoingStreamTrack) GetSSRCs() map[string]native.RTPOutgoingSource {
 	}
 }
 
+// IsMuted Check if the track is muted or not
 func (o *OutgoingStreamTrack) IsMuted() bool {
 	return o.muted
 }
 
+// Mute Mute/Unmute the track
 func (o *OutgoingStreamTrack) Mute(muting bool) {
 
 	if o.transpoder != nil {
@@ -170,6 +180,7 @@ func (o *OutgoingStreamTrack) Mute(muting bool) {
 	}
 }
 
+// AttachTo Listen media from the incoming stream track and send it to the remote peer of the associated transport
 func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Transponder {
 
 	// detach first
@@ -193,6 +204,7 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	return o.transpoder
 }
 
+// Detach Stop forwarding any previous attached track
 func (o *OutgoingStreamTrack) Detach() {
 
 	if o.transpoder == nil {
@@ -206,11 +218,13 @@ func (o *OutgoingStreamTrack) Detach() {
 	o.transpoder = nil
 }
 
+// GetTransponder Get attached transpoder for this track
 func (o *OutgoingStreamTrack) GetTransponder() *Transponder {
 
 	return o.transpoder
 }
 
+// Stop Removes the track from the outgoing stream and also detaches from any attached incoming track
 func (o *OutgoingStreamTrack) Stop() {
 
 	if o.sender == nil {
