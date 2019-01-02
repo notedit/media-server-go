@@ -1,7 +1,6 @@
 package mediaserver
 
 import (
-	"errors"
 	"strings"
 
 	"github.com/chuckpreslar/emission"
@@ -9,6 +8,7 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// OutgoingStream  represent the media stream sent to a remote peer
 type OutgoingStream struct {
 	id        string
 	transport native.DTLSICETransport
@@ -18,6 +18,7 @@ type OutgoingStream struct {
 	*emission.Emitter
 }
 
+// NewOutgoingStream create outgoing stream
 func NewOutgoingStream(transport native.DTLSICETransport, info *sdp.StreamInfo) *OutgoingStream {
 	stream := new(OutgoingStream)
 
@@ -34,10 +35,12 @@ func NewOutgoingStream(transport native.DTLSICETransport, info *sdp.StreamInfo) 
 	return stream
 }
 
+// GetID get id
 func (o *OutgoingStream) GetID() string {
 	return o.id
 }
 
+// GetStats Get statistics for all tracks in the stream
 func (o *OutgoingStream) GetStats() map[string]*OutgoingStatss {
 
 	stats := map[string]*OutgoingStatss{}
@@ -47,10 +50,12 @@ func (o *OutgoingStream) GetStats() map[string]*OutgoingStatss {
 	return stats
 }
 
+// IsMuted Check if the stream is muted or not
 func (o *OutgoingStream) IsMuted() bool {
 	return o.muted
 }
 
+// Mute Mute/Unmute this stream and all the tracks in it
 func (o *OutgoingStream) Mute(muting bool) {
 
 	for _, track := range o.tracks {
@@ -63,6 +68,7 @@ func (o *OutgoingStream) Mute(muting bool) {
 	}
 }
 
+// AttachTo Listen media from the incoming stream and send it to the remote peer of the associated transport
 func (o *OutgoingStream) AttachTo(incomingStream *IncomingStream) []*Transponder {
 
 	o.Detach()
@@ -99,6 +105,7 @@ func (o *OutgoingStream) AttachTo(incomingStream *IncomingStream) []*Transponder
 	return transponders
 }
 
+// Detach Stop listening for media
 func (o *OutgoingStream) Detach() {
 
 	for _, track := range o.tracks {
@@ -106,15 +113,18 @@ func (o *OutgoingStream) Detach() {
 	}
 }
 
+// GetStreamInfo get the stream info
 func (o *OutgoingStream) GetStreamInfo() *sdp.StreamInfo {
 
 	return o.info
 }
 
+// GetTrack get one track
 func (o *OutgoingStream) GetTrack(trackID string) *OutgoingStreamTrack {
 	return o.tracks[trackID]
 }
 
+// GetTracks get all the tracks
 func (o *OutgoingStream) GetTracks() []*OutgoingStreamTrack {
 	tracks := []*OutgoingStreamTrack{}
 	for _, track := range o.tracks {
@@ -123,6 +133,7 @@ func (o *OutgoingStream) GetTracks() []*OutgoingStreamTrack {
 	return tracks
 }
 
+// GetAudioTracks Get an array of the media stream audio tracks
 func (o *OutgoingStream) GetAudioTracks() []*OutgoingStreamTrack {
 	audioTracks := []*OutgoingStreamTrack{}
 	for _, track := range o.tracks {
@@ -133,6 +144,7 @@ func (o *OutgoingStream) GetAudioTracks() []*OutgoingStreamTrack {
 	return audioTracks
 }
 
+// GetVideoTracks Get an array of the media stream video tracks
 func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
 	videoTracks := []*OutgoingStreamTrack{}
 	for _, track := range o.tracks {
@@ -143,10 +155,11 @@ func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
 	return videoTracks
 }
 
-func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) error {
+// AddTrack add one outgoing track
+func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) {
 
 	if _, ok := o.tracks[track.GetID()]; ok {
-		return errors.New("Track id already present in stream")
+		return
 	}
 
 	track.Once("stopped", func() {
@@ -154,10 +167,9 @@ func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) error {
 	})
 
 	o.tracks[track.GetID()] = track
-
-	return nil
 }
 
+// CreateTrack Create new track from a TrackInfo object and add it to this stream
 func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack {
 
 	var mediaType native.MediaFrameType = 0
@@ -200,6 +212,7 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 	return outgoingTrack
 }
 
+// Stop stop the remote stream
 func (o *OutgoingStream) Stop() {
 
 	if o.transport == nil {
