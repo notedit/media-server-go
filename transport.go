@@ -113,7 +113,6 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 // Dump  dump incoming and outgoint rtp and rtcp packets into a pcap file
 func (t *Transport) Dump(filename string, incoming bool, outgoing bool, rtcp bool) bool {
-
 	ret := t.transport.Dump(filename, incoming, outgoing, rtcp)
 	if ret == 0 {
 		return false
