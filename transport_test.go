@@ -16,7 +16,7 @@ func Test_TransportCreate(t *testing.T) {
 	sdpInfo := sdp.NewSDPInfo()
 	sdpInfo.SetICE(iceInfo)
 	sdpInfo.SetDTLS(dtlsInfo)
-	transport := endpoint.CreateTransportWithRemote(sdpInfo, false)
+	transport := endpoint.CreateTransport(sdpInfo, nil)
 
 	if transport == nil {
 		t.Error("can not create transport")
@@ -33,7 +33,7 @@ func Test_CreateIncomingTrack(t *testing.T) {
 	sdpInfo.SetICE(iceInfo)
 	sdpInfo.SetDTLS(dtlsInfo)
 
-	transport := endpoint.CreateTransportWithRemote(sdpInfo, false)
+	transport := endpoint.CreateTransport(sdpInfo, nil)
 
 	incomingTrack := transport.CreateIncomingStreamTrack("audio", "audiotrack", map[string]uint{})
 
@@ -52,7 +52,7 @@ func Test_CreateOutgoingTrack(t *testing.T) {
 	sdpInfo.SetICE(iceInfo)
 	sdpInfo.SetDTLS(dtlsInfo)
 
-	transport := endpoint.CreateTransportWithRemote(sdpInfo, false)
+	transport := endpoint.CreateTransport(sdpInfo, nil)
 	outgoingTrack := transport.CreateOutgoingStreamTrack("video", "videotrack", map[string]uint{})
 
 	if outgoingTrack.GetID() != "videotrack" {
@@ -71,7 +71,8 @@ func Test_TransportStop(t *testing.T) {
 	sdpInfo.SetICE(iceInfo)
 	sdpInfo.SetDTLS(dtlsInfo)
 
-	transport := endpoint.CreateTransportWithRemote(sdpInfo, false)
+	transport := endpoint.CreateTransport(sdpInfo, nil)
+
 	transport.Once("stopped", func() {
 		t.Log("transport stopped")
 	})
