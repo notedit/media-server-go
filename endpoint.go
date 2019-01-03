@@ -44,7 +44,7 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 
 // CreateTransport create a new transport object and register it with the remote ICE username and password
 // disableSTUNKeepAlive - Disable ICE/STUN keep alives, required for server to server transports, set this to false if you do not how to use it
-func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo, disableSTUNKeepAlive bool) *Transport {
+func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo, options ...bool) *Transport {
 
 	var localIce *sdp.ICEInfo
 	var localDtls *sdp.DTLSInfo
@@ -67,35 +67,14 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 	localIce.SetLite(true)
 	localIce.SetEndOfCandidate(true)
 
-	transport := NewTransport(e.bundle, remoteIce, remoteDtls, remoteCandidates,
-		localIce, localDtls, localCandidates, disableSTUNKeepAlive)
+	disableSTUNKeepAlive := false
 
-	e.transports[transport.username.ToString()] = transport
-
-	transport.Once("stopped", func() {
-		delete(e.transports, transport.username.ToString())
-	})
-
-	return transport
-}
-
-// CreateTransportWithRemote create a new transport object and register it with the remote ICE username and password
-// This is used when you do not have local sdp info yet.
-func (e *Endpoint) CreateTransportWithRemote(sdpInfo *sdp.SDPInfo, disableSTUNKeepAlive bool) *Transport {
-
-	localIce := sdp.ICEInfoGenerate(true)
-	localDtls := sdp.NewDTLSInfo(sdpInfo.GetDTLS().GetSetup().Reverse(), "sha-256", e.fingerprint)
-	localCandidates := []*sdp.CandidateInfo{e.candidate.Clone()}
-
-	remoteCandidatesClone := []*sdp.CandidateInfo{}
-	for _, candidate := range sdpInfo.GetCandidates() {
-		remoteCandidatesClone = append(remoteCandidatesClone, candidate.Clone())
+	if len(options) > 0 {
+		disableSTUNKeepAlive = options[0]
 	}
 
-	remoteIceClone := sdpInfo.GetICE().Clone()
-	remoteDtlsClone := sdpInfo.GetDTLS().Clone()
-
-	transport := NewTransport(e.bundle, remoteIceClone, remoteDtlsClone, remoteCandidatesClone, localIce, localDtls, localCandidates, disableSTUNKeepAlive)
+	transport := NewTransport(e.bundle, remoteIce, remoteDtls, remoteCandidates,
+		localIce, localDtls, localCandidates, disableSTUNKeepAlive)
 
 	e.transports[transport.username.ToString()] = transport
 

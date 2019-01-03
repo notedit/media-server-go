@@ -34,7 +34,7 @@ With that information, you can create an ICE+DTLS transport on the `Endpoint`.
 offer, err := sdp.Parse(offerStr)
 
 //Create an DTLS ICE transport in that enpoint
-transport = endpoint.CreateTransportWithRemote(offer, false)
+transport = endpoint.CreateTransport(offer, nil)
 
 ```
 
