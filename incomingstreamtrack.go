@@ -50,15 +50,19 @@ func (e *Encoding) GetDepacketizer() native.StreamTrackDepacketizer {
 	return e.depacketizer
 }
 
+// IncomingTrackStopListener stop listener
+type IncomingTrackStopListener func(*IncomingStreamTrack)
+
 // IncomingStreamTrack Audio or Video track of a remote media stream
 type IncomingStreamTrack struct {
-	id        string
-	media     string
-	receiver  native.RTPReceiverFacade
-	counter   int
-	encodings map[string]*Encoding
-	trackInfo *sdp.TrackInfo
-	stats     map[string]*IncomingAllStats
+	id                   string
+	media                string
+	receiver             native.RTPReceiverFacade
+	counter              int
+	encodings            map[string]*Encoding
+	trackInfo            *sdp.TrackInfo
+	stats                map[string]*IncomingAllStats
+	onTrackStopListeners []IncomingTrackStopListener
 	*emission.Emitter
 }
 
@@ -224,9 +228,9 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 			}
 			track.trackInfo.AddEncoding(encodingInfo)
 		}
-
 	}
 
+	track.onTrackStopListeners = make([]IncomingTrackStopListener, 0)
 	return track
 }
 
@@ -440,6 +444,12 @@ func (i *IncomingStreamTrack) Detached() {
 	}
 }
 
+// OnStop register stop callback
+func (i *IncomingStreamTrack) OnStop(stop IncomingTrackStopListener) {
+
+	i.onTrackStopListeners = append(i.onTrackStopListeners, stop)
+}
+
 // Stop Removes the track from the incoming stream and also detaches any attached outgoing track or recorder
 func (i *IncomingStreamTrack) Stop() {
 
@@ -455,6 +465,10 @@ func (i *IncomingStreamTrack) Stop() {
 		if encoding.source != nil {
 			native.DeleteRTPIncomingSourceGroup(encoding.source)
 		}
+	}
+
+	for _, stopFunc := range i.onTrackStopListeners {
+		stopFunc(i)
 	}
 
 	i.EmitSync("stopped")
