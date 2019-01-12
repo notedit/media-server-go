@@ -282,8 +282,8 @@ func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 	t.remoteCandidates = append(t.remoteCandidates, candidate)
 }
 
-// CreateOutgoingStream2 Create new outgoing stream in this transport using StreamInfo
-func (t *Transport) CreateOutgoingStream2(streamInfo *sdp.StreamInfo) *OutgoingStream {
+// CreateOutgoingStream Create new outgoing stream in this transport using StreamInfo
+func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingStream {
 
 	info := streamInfo.Clone()
 	outgoingStream := NewOutgoingStream(t.transport, info)
@@ -306,28 +306,6 @@ func (t *Transport) CreateOutgoingStream2(streamInfo *sdp.StreamInfo) *OutgoingS
 	return outgoingStream
 }
 
-// CreateOutgoingStream Create new outgoing stream in this transport with given streamId
-func (t *Transport) CreateOutgoingStream(streamID string, audio bool, video bool) *OutgoingStream {
-
-	streamInfo := sdp.NewStreamInfo(streamID)
-	if audio {
-		audioTrack := sdp.NewTrackInfo(uuid.Must(uuid.NewV4()).String(), "audio")
-		ssrc := NextSSRC()
-		audioTrack.AddSSRC(ssrc)
-		streamInfo.AddTrack(audioTrack)
-	}
-
-	if video {
-		videoTrack := sdp.NewTrackInfo(uuid.Must(uuid.NewV4()).String(), "video")
-		ssrc := NextSSRC()
-		videoTrack.AddSSRC(ssrc)
-		streamInfo.AddTrack(videoTrack)
-	}
-
-	stream := t.CreateOutgoingStream2(streamInfo)
-	return stream
-}
-
 // CreateOutgoingStreamWithID  alias CreateOutgoingStream
 func (t *Transport) CreateOutgoingStreamWithID(streamID string, audio bool, video bool) *OutgoingStream {
 
@@ -346,7 +324,7 @@ func (t *Transport) CreateOutgoingStreamWithID(streamID string, audio bool, vide
 		streamInfo.AddTrack(videoTrack)
 	}
 
-	stream := t.CreateOutgoingStream2(streamInfo)
+	stream := t.CreateOutgoingStream(streamInfo)
 	return stream
 }
 
