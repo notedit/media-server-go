@@ -8,13 +8,17 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// OutgoingStreamStopListener stop listener
+type OutgoingStreamStopListener func(*OutgoingStream)
+
 // OutgoingStream  represent the media stream sent to a remote peer
 type OutgoingStream struct {
-	id        string
-	transport native.DTLSICETransport
-	info      *sdp.StreamInfo
-	muted     bool
-	tracks    map[string]*OutgoingStreamTrack
+	id              string
+	transport       native.DTLSICETransport
+	info            *sdp.StreamInfo
+	muted           bool
+	tracks          map[string]*OutgoingStreamTrack
+	onStopListeners []OutgoingStreamStopListener
 	*emission.Emitter
 }
 
@@ -31,6 +35,8 @@ func NewOutgoingStream(transport native.DTLSICETransport, info *sdp.StreamInfo) 
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
 	}
+
+	stream.onStopListeners = make([]OutgoingStreamStopListener, 0)
 
 	return stream
 }
@@ -212,6 +218,10 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 	return outgoingTrack
 }
 
+func (o *OutgoingStream) OnStop(stop OutgoingStreamStopListener) {
+	o.onStopListeners = append(o.onStopListeners, stop)
+}
+
 // Stop stop the remote stream
 func (o *OutgoingStream) Stop() {
 
@@ -223,7 +233,11 @@ func (o *OutgoingStream) Stop() {
 		track.Stop()
 	}
 
-	o.tracks = nil
+	for _, stopFunc := range o.onStopListeners {
+		stopFunc(o)
+	}
+
+	o.tracks = make(map[string]*OutgoingStreamTrack, 0)
 
 	o.EmitSync("stopped")
 

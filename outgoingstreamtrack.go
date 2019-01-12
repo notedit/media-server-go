@@ -9,17 +9,20 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+type OutgoingTrackStopListener func(*OutgoingStreamTrack)
+
 // OutgoingStreamTrack Audio or Video track of a media stream sent to a remote peer
 type OutgoingStreamTrack struct {
-	id            string
-	media         string
-	muted         bool
-	sender        native.RTPSenderFacade
-	source        native.RTPOutgoingSourceGroup
-	transpoder    *Transponder
-	trackInfo     *sdp.TrackInfo
-	interCallback rembBitrateListener
-	statss        *OutgoingStatss
+	id              string
+	media           string
+	muted           bool
+	sender          native.RTPSenderFacade
+	source          native.RTPOutgoingSourceGroup
+	transpoder      *Transponder
+	trackInfo       *sdp.TrackInfo
+	interCallback   rembBitrateListener
+	statss          *OutgoingStatss
+	onStopListeners []OutgoingTrackStopListener
 	// todo outercallback
 	*emission.Emitter
 }
@@ -116,6 +119,8 @@ func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFaca
 	callback.p = p
 
 	track.interCallback = &goREMBBitrateListener{REMBBitrateListener: p}
+
+	track.onStopListeners = make([]OutgoingTrackStopListener, 0)
 
 	return track
 }
@@ -224,6 +229,10 @@ func (o *OutgoingStreamTrack) GetTransponder() *Transponder {
 	return o.transpoder
 }
 
+func (o *OutgoingStreamTrack) OnStop(stop OutgoingTrackStopListener) {
+	o.onStopListeners = append(o.onStopListeners, stop)
+}
+
 // Stop Removes the track from the outgoing stream and also detaches from any attached incoming track
 func (o *OutgoingStreamTrack) Stop() {
 
@@ -235,6 +244,10 @@ func (o *OutgoingStreamTrack) Stop() {
 	o.interCallback.deleteREMBBitrateListener()
 
 	o.Detach()
+
+	for _, stopFunc := range o.onStopListeners {
+		stopFunc(o)
+	}
 
 	o.EmitSync("stopped")
 

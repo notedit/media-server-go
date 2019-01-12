@@ -11,13 +11,17 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// IncomingStreamStopListener stop listener
+type IncomingStreamStopListener func(*IncomingStream)
+
 // IncomingStream The incoming streams represent the recived media stream from a remote peer.
 type IncomingStream struct {
-	id        string
-	info      *sdp.StreamInfo
-	transport transportWrapper
-	receiver  native.RTPReceiverFacade
-	tracks    map[string]*IncomingStreamTrack
+	id              string
+	info            *sdp.StreamInfo
+	transport       transportWrapper
+	receiver        native.RTPReceiverFacade
+	tracks          map[string]*IncomingStreamTrack
+	onStopListeners []IncomingStreamStopListener
 	*emission.Emitter
 }
 
@@ -51,6 +55,8 @@ func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulat
 	stream.receiver = receiver
 	stream.tracks = make(map[string]*IncomingStreamTrack)
 	stream.Emitter = emission.NewEmitter()
+
+	stream.onStopListeners = make([]IncomingStreamStopListener, 0)
 
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
@@ -273,6 +279,10 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 	return incomingTrack
 }
 
+func (i *IncomingStream) OnStop(stop IncomingStreamStopListener) {
+	i.onStopListeners = append(i.onStopListeners, stop)
+}
+
 // Stop Removes the media strem from the transport and also detaches from any attached incoming stream
 func (i *IncomingStream) Stop() {
 
@@ -283,6 +293,10 @@ func (i *IncomingStream) Stop() {
 	for k, track := range i.tracks {
 		track.Stop()
 		delete(i.tracks, k)
+	}
+
+	for _, stopFunc := range i.onStopListeners {
+		stopFunc(i)
 	}
 
 	i.Emit("stopped")
