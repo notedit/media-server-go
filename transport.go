@@ -30,20 +30,23 @@ func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrat
 	fmt.Println(bitrate)
 }
 
+type TransportStopListener func(*Transport)
+
 // Transport represent a connection between a local ICE candidate and a remote set of ICE candidates over a single DTLS session
 type Transport struct {
-	localIce           *sdp.ICEInfo
-	localDtls          *sdp.DTLSInfo
-	localCandidates    []*sdp.CandidateInfo
-	remoteIce          *sdp.ICEInfo
-	remoteDtls         *sdp.DTLSInfo
-	remoteCandidates   []*sdp.CandidateInfo
-	bundle             native.RTPBundleTransport
-	transport          native.DTLSICETransport
-	username           native.StringFacade
-	incomingStreams    map[string]*IncomingStream
-	outgoingStreams    map[string]*OutgoingStream
-	senderSideListener senderSideEstimatorListener
+	localIce                 *sdp.ICEInfo
+	localDtls                *sdp.DTLSInfo
+	localCandidates          []*sdp.CandidateInfo
+	remoteIce                *sdp.ICEInfo
+	remoteDtls               *sdp.DTLSInfo
+	remoteCandidates         []*sdp.CandidateInfo
+	bundle                   native.RTPBundleTransport
+	transport                native.DTLSICETransport
+	username                 native.StringFacade
+	incomingStreams          map[string]*IncomingStream
+	outgoingStreams          map[string]*OutgoingStream
+	senderSideListener       senderSideEstimatorListener
+	onTransportStopListeners []TransportStopListener
 	*emission.Emitter
 }
 
@@ -107,6 +110,8 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	transport.incomingStreams = make(map[string]*IncomingStream)
 	transport.outgoingStreams = make(map[string]*OutgoingStream)
+
+	transport.onTransportStopListeners = make([]TransportStopListener, 0)
 
 	return transport
 }
@@ -476,6 +481,11 @@ func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
 	return t.outgoingStreams[streamId]
 }
 
+// OnStop register a stop listener
+func (t *Transport) OnStop(stop TransportStopListener) {
+	t.onTransportStopListeners = append(t.onTransportStopListeners, stop)
+}
+
 // Stop stop this transport
 func (t *Transport) Stop() {
 
@@ -499,6 +509,10 @@ func (t *Transport) Stop() {
 	t.outgoingStreams = map[string]*OutgoingStream{}
 
 	t.bundle.RemoveICETransport(t.username)
+
+	for _, stopFunc := range t.onTransportStopListeners {
+		stopFunc(t)
+	}
 
 	t.Emit("stopped")
 

@@ -55,14 +55,14 @@ type IncomingTrackStopListener func(*IncomingStreamTrack)
 
 // IncomingStreamTrack Audio or Video track of a remote media stream
 type IncomingStreamTrack struct {
-	id                   string
-	media                string
-	receiver             native.RTPReceiverFacade
-	counter              int
-	encodings            map[string]*Encoding
-	trackInfo            *sdp.TrackInfo
-	stats                map[string]*IncomingAllStats
-	onTrackStopListeners []IncomingTrackStopListener
+	id              string
+	media           string
+	receiver        native.RTPReceiverFacade
+	counter         int
+	encodings       map[string]*Encoding
+	trackInfo       *sdp.TrackInfo
+	stats           map[string]*IncomingAllStats
+	onStopListeners []IncomingTrackStopListener
 	*emission.Emitter
 }
 
@@ -230,7 +230,7 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 		}
 	}
 
-	track.onTrackStopListeners = make([]IncomingTrackStopListener, 0)
+	track.onStopListeners = make([]IncomingTrackStopListener, 0)
 	return track
 }
 
@@ -447,7 +447,7 @@ func (i *IncomingStreamTrack) Detached() {
 // OnStop register stop callback
 func (i *IncomingStreamTrack) OnStop(stop IncomingTrackStopListener) {
 
-	i.onTrackStopListeners = append(i.onTrackStopListeners, stop)
+	i.onStopListeners = append(i.onStopListeners, stop)
 }
 
 // Stop Removes the track from the incoming stream and also detaches any attached outgoing track or recorder
@@ -467,7 +467,7 @@ func (i *IncomingStreamTrack) Stop() {
 		}
 	}
 
-	for _, stopFunc := range i.onTrackStopListeners {
+	for _, stopFunc := range i.onStopListeners {
 		stopFunc(i)
 	}
 
