@@ -2,16 +2,20 @@ package mediaserver
 
 import (
 	"errors"
-	"fmt"
 
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// Player can player the file as webrtc source
 type Player struct {
 	player      native.PlayerFacade
 	tracks      map[string]*IncomingStreamTrack
 	endCallback playerEndCallback
+	endListener PlayerEndListener
 }
+
+// PlayerEndListener end listener
+type PlayerEndListener func()
 
 type playerEndCallback interface {
 	native.PlayerEndListener
@@ -27,14 +31,18 @@ func (r *goplayerEndCallback) deletePlayerListener() {
 }
 
 type overwrittenEndCallback struct {
-	p native.PlayerEndListener
+	p      native.PlayerEndListener
+	player *Player
 }
 
 func (p *overwrittenEndCallback) OnEnd() {
-	fmt.Println("OnEnd ====================")
+	if p.player != nil && p.player.endListener != nil {
+		p.player.endListener()
+	}
 }
 
-func NewPlayer(filename string) (*Player, error) {
+// NewPlayer create new file player
+func NewPlayer(filename string, listener PlayerEndListener) (*Player, error) {
 	player := &Player{}
 	player.player = native.NewPlayerFacade()
 	player.tracks = make(map[string]*IncomingStreamTrack)
@@ -51,7 +59,6 @@ func NewPlayer(filename string) (*Player, error) {
 
 		incoming := newIncomingStreamTrack("video", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
 
-		// todo event
 		player.tracks[trackID] = incoming
 	}
 
@@ -62,22 +69,26 @@ func NewPlayer(filename string) (*Player, error) {
 
 		incoming := newIncomingStreamTrack("audio", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
 
-		// todo
 		player.tracks[trackID] = incoming
 
 	}
 
-	callback := &overwrittenEndCallback{}
+	callback := &overwrittenEndCallback{
+		player: player,
+	}
 	p := native.NewDirectorPlayerEndListener(callback)
 	callback.p = p
 
 	player.endCallback = &goplayerEndCallback{PlayerEndListener: p}
+
+	player.endListener = listener
 
 	player.player.SetPlayEndListener(player.endCallback)
 
 	return player, nil
 }
 
+// GetTracks tracks this file contains
 func (p *Player) GetTracks() []*IncomingStreamTrack {
 	tracks := []*IncomingStreamTrack{}
 	for _, track := range p.tracks {
@@ -86,6 +97,7 @@ func (p *Player) GetTracks() []*IncomingStreamTrack {
 	return tracks
 }
 
+// GetAudioTracks audio tracks this file contains
 func (p *Player) GetAudioTracks() []*IncomingStreamTrack {
 	tracks := []*IncomingStreamTrack{}
 	for _, track := range p.tracks {
@@ -96,6 +108,7 @@ func (p *Player) GetAudioTracks() []*IncomingStreamTrack {
 	return tracks
 }
 
+// GetVideoTracks video tracks this file contains
 func (p *Player) GetVideoTracks() []*IncomingStreamTrack {
 	tracks := []*IncomingStreamTrack{}
 	for _, track := range p.tracks {
@@ -106,13 +119,14 @@ func (p *Player) GetVideoTracks() []*IncomingStreamTrack {
 	return tracks
 }
 
+// Play start
 func (p *Player) Play() {
-
 	if p.player != nil {
 		p.player.Play()
 	}
 }
 
+// Resume play
 func (p *Player) Resume() {
 
 	if p.player != nil {
@@ -120,6 +134,7 @@ func (p *Player) Resume() {
 	}
 }
 
+// Pause  play
 func (p *Player) Pause() {
 
 	if p.player != nil {
@@ -127,6 +142,7 @@ func (p *Player) Pause() {
 	}
 }
 
+// Seek seek to
 func (p *Player) Seek(time uint64) {
 
 	if p.player != nil {
@@ -134,6 +150,7 @@ func (p *Player) Seek(time uint64) {
 	}
 }
 
+// Stop  stop play
 func (p *Player) Stop() {
 
 	if p.player == nil {

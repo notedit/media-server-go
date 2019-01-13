@@ -4,6 +4,7 @@ import (
 	"github.com/notedit/media-server-go/sdp"
 )
 
+// SDPManagerPlanb  planb manager
 type SDPManagerPlanb struct {
 	state           string
 	endpoint        *Endpoint
@@ -22,6 +23,7 @@ func NewSDPManagerPlanb(endpoint *Endpoint, capabilities map[string]*sdp.Capabil
 
 	return sdpManager
 }
+
 func (s *SDPManagerPlanb) GetState() string {
 	return s.state
 }
@@ -71,14 +73,13 @@ func (s *SDPManagerPlanb) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInfo,
 		s.transport.SetLocalProperties(s.localInfo.GetAudioMedia(), s.localInfo.GetVideoMedia())
 		s.transport.SetRemoteProperties(s.remoteInfo.GetAudioMedia(), s.remoteInfo.GetVideoMedia())
 
-		// todo change to callback
-		s.transport.On("outgoingtrack", func(track *OutgoingStreamTrack, stream *OutgoingStream) {
-
+		s.transport.OnOutgoingTrack(func(track *OutgoingStreamTrack, stream *OutgoingStream) {
 			track.Once("stopped", func() {
 				s.renegotiate()
 			})
 			s.renegotiate()
 		})
+
 	}
 
 	if s.state != "local-offer" {

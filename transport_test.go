@@ -73,8 +73,7 @@ func Test_TransportStop(t *testing.T) {
 
 	transport := endpoint.CreateTransport(sdpInfo, nil)
 
-	transport.Once("stopped", func() {
+	transport.OnStop(func() {
 		t.Log("transport stopped")
 	})
-
 }

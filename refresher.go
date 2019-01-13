@@ -2,22 +2,18 @@ package mediaserver
 
 import (
 	"time"
-
-	"github.com/chuckpreslar/emission"
 )
 
 type Refresher struct {
 	period int
 	tracks map[string]*IncomingStreamTrack
 	ticker *time.Ticker
-	*emission.Emitter
 }
 
 func NewRefresher(period int) *Refresher {
 	refresher := &Refresher{}
 	refresher.tracks = map[string]*IncomingStreamTrack{}
 	refresher.period = period
-	refresher.Emitter = emission.NewEmitter()
 
 	return refresher
 }
@@ -27,7 +23,9 @@ func (r *Refresher) Add(incom *IncomingStreamTrack) {
 	if incom.GetMedia() == "video" {
 		r.tracks[incom.GetID()] = incom
 
-		incom.Once("stopped", r.refresherOntrackStopped)
+		incom.OnStop(func() {
+			delete(r.tracks, incom.GetID())
+		})
 	}
 
 	if r.ticker == nil {
@@ -57,11 +55,6 @@ func (r *Refresher) Stop() {
 		r.ticker.Stop()
 		r.ticker = nil
 	}
-
-	for _, track := range r.tracks {
-		track.Off("stopped", r.refresherOntrackStopped)
-	}
-
 	r.tracks = nil
 }
 

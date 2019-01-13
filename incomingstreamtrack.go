@@ -51,7 +51,7 @@ func (e *Encoding) GetDepacketizer() native.StreamTrackDepacketizer {
 }
 
 // IncomingTrackStopListener stop listener
-type IncomingTrackStopListener func(*IncomingStreamTrack)
+type IncomingTrackStopListener func()
 
 // IncomingStreamTrack Audio or Video track of a remote media stream
 type IncomingStreamTrack struct {
@@ -468,7 +468,7 @@ func (i *IncomingStreamTrack) Stop() {
 	}
 
 	for _, stopFunc := range i.onStopListeners {
-		stopFunc(i)
+		stopFunc()
 	}
 
 	i.EmitSync("stopped")
