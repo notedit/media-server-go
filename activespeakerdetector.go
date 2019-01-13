@@ -4,27 +4,92 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
-type ActiveSpeakerDetector struct {
-	tracks   map[uint]*IncomingStreamTrack
-	detector native.ActiveSpeakerDetectorFacade
+// type senderSideEstimatorListener interface {
+// 	native.SenderSideEstimatorListener
+// 	deleteSenderSideEstimatorListener()
+// }
+
+// type goSenderSideEstimatorListener struct {
+// 	native.SenderSideEstimatorListener
+// }
+
+// func (r *goSenderSideEstimatorListener) deleteSenderSideEstimatorListener() {
+// 	native.DeleteDirectorSenderSideEstimatorListener(r.SenderSideEstimatorListener)
+// }
+
+// type overwrittenSenderSideEstimatorListener struct {
+// 	p native.SenderSideEstimatorListener
+// }
+
+// func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrate uint) {
+// 	fmt.Println(bitrate)
+// }
+
+type activeTrackListener interface {
+	native.ActiveTrackListener
+	deleteActiveTrackListener()
 }
 
-// TODO, add active callback
+type goActiveTrackListener struct {
+	native.ActiveTrackListener
+}
 
-func NewActiveSpeakerDetector() *ActiveSpeakerDetector {
+func (a *goActiveTrackListener) deleteActiveTrackListener() {
+	native.DeleteDirectorActiveTrackListener(a.ActiveTrackListener)
+}
+
+type overwrittenActiveTrackListener struct {
+	p        native.ActiveTrackListener
+	detector *ActiveSpeakerDetector
+}
+
+func (p *overwrittenActiveTrackListener) OnActiveTrackchanged(ssrc uint) {
+	if p.detector != nil && p.detector.listener != nil {
+		//p.detector.listener(ssrc)
+		if p.detector.tracks[ssrc] != nil {
+			p.detector.listener(p.detector.tracks[ssrc])
+		}
+	}
+}
+
+// ActiveSpeakerDetector detector the spkeaking track
+type ActiveSpeakerDetector struct {
+	tracks              map[uint]*IncomingStreamTrack
+	detector            native.ActiveSpeakerDetectorFacade
+	listener            ActiveDetectorListener
+	activeTrackListener *goActiveTrackListener
+}
+
+// ActiveDetectorListener listener
+type ActiveDetectorListener func(*IncomingStreamTrack)
+
+// NewActiveSpeakerDetector  create new  active speaker detector
+func NewActiveSpeakerDetector(listener ActiveDetectorListener) *ActiveSpeakerDetector {
 
 	detector := &ActiveSpeakerDetector{}
 	detector.tracks = map[uint]*IncomingStreamTrack{}
-	detector.detector = native.NewActiveSpeakerDetectorFacade()
+
+	activeTrackListener := &overwrittenActiveTrackListener{
+		detector: detector,
+	}
+	p := native.NewDirectorActiveTrackListener(activeTrackListener)
+	activeTrackListener.p = p
+
+	detector.activeTrackListener = &goActiveTrackListener{ActiveTrackListener: p}
+	detector.detector = native.NewActiveSpeakerDetectorFacade(detector.activeTrackListener)
+
+	detector.listener = listener
 
 	return detector
 }
 
+// SetMinChangePeriod  set min  period change callback  in ms
 func (a *ActiveSpeakerDetector) SetMinChangePeriod(minChangePeriod uint) {
 	a.detector.SetMinChangePeriod(minChangePeriod)
 }
 
-func (a *ActiveSpeakerDetector) AddSpeaker(track *IncomingStreamTrack) {
+// AddTrack  add incoming track into detector
+func (a *ActiveSpeakerDetector) AddTrack(track *IncomingStreamTrack) {
 
 	// We should make sure this source is the main source
 	source := track.GetFirstEncoding().GetSource()
@@ -36,7 +101,8 @@ func (a *ActiveSpeakerDetector) AddSpeaker(track *IncomingStreamTrack) {
 	a.detector.AddIncomingSourceGroup(source)
 }
 
-func (a *ActiveSpeakerDetector) RemoveSpeaker(track *IncomingStreamTrack) {
+// RemoveTrack  remove incoming track from detector
+func (a *ActiveSpeakerDetector) RemoveTrack(track *IncomingStreamTrack) {
 	source := track.GetFirstEncoding().GetSource()
 	if source == nil {
 		return
@@ -45,11 +111,16 @@ func (a *ActiveSpeakerDetector) RemoveSpeaker(track *IncomingStreamTrack) {
 	a.detector.RemoveIncomingSourceGroup(source)
 }
 
+// Stop stop the detector
 func (a *ActiveSpeakerDetector) Stop() {
 
 	for _, track := range a.tracks {
 		source := track.GetFirstEncoding().GetSource()
 		a.detector.RemoveIncomingSourceGroup(source)
+	}
+
+	if a.activeTrackListener != nil {
+		a.activeTrackListener.deleteActiveTrackListener()
 	}
 
 	a.tracks = map[uint]*IncomingStreamTrack{}
