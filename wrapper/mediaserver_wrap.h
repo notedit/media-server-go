@@ -67,4 +67,18 @@ class SwigDirector_REMBBitrateListener : public REMBBitrateListener
   Swig_memory *swig_mem;
 };
 
+class SwigDirector_ActiveTrackListener : public ActiveTrackListener
+{
+ public:
+  SwigDirector_ActiveTrackListener(int swig_p);
+  virtual ~SwigDirector_ActiveTrackListener();
+  void _swig_upcall_onActiveTrackchanged(uint32_t id) {
+    ActiveTrackListener::onActiveTrackchanged(id);
+  }
+  virtual void onActiveTrackchanged(uint32_t id);
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
 #endif

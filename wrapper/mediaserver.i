@@ -200,6 +200,21 @@ public:
 };
 
 
+class ActiveTrackListener {
+public:
+	ActiveTrackListener()
+	{
+
+	}
+	virtual ~ActiveTrackListener() {
+
+	}
+	virtual void onActiveTrackchanged(uint32_t id){
+
+	}
+};
+
+
 
 class PlayerFacade :
 	public MP4Streamer,
@@ -703,13 +718,19 @@ class ActiveSpeakerDetectorFacade :
 	public RTPIncomingSourceGroup::Listener
 {
 public:	
-	ActiveSpeakerDetectorFacade() :
-		ActiveSpeakerDetector(this)
+	ActiveSpeakerDetectorFacade(ActiveTrackListener* listener) :
+		ActiveSpeakerDetector(this),
+		listener(listener)
 	{};
 		
 	virtual void onActiveSpeakerChanded(uint32_t id) override
 	{
         // todo make callback
+
+		if (listener) 
+		{
+			listener->onActiveTrackchanged(id);
+		}
 	}
 	
 	void AddIncomingSourceGroup(RTPIncomingSourceGroup* incoming)
@@ -743,6 +764,7 @@ public:
 	}
 private:
 	Mutex mutex;
+	ActiveTrackListener* listener;
 };
 
 
@@ -875,6 +897,8 @@ private:
 %feature("director") REMBBitrateListener;
 %feature("director") SenderSideEstimatorListener;
 %feature("director") MediaFrameListener;
+%feature("director") ActiveTrackListener;
+
 
 
 %include <typemaps.i>
@@ -1150,7 +1174,7 @@ public:
 class ActiveSpeakerDetectorFacade
 {
 public:	
-	ActiveSpeakerDetectorFacade();
+	ActiveSpeakerDetectorFacade(ActiveTrackListener* listener);
 	void SetMinChangePeriod(uint32_t minChangePeriod);
 	void AddIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
 	void RemoveIncomingSourceGroup(RTPIncomingSourceGroup* incoming);
@@ -1190,5 +1214,15 @@ public:
 	virtual ~REMBBitrateListener() {}
 	virtual void onREMB();
 };
+
+
+class ActiveTrackListener {
+public:
+	ActiveTrackListener();
+	virtual ~ActiveTrackListener() {}
+	virtual void onActiveTrackchanged(uint32_t id);
+};
+
+
 
 
