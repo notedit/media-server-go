@@ -6,6 +6,7 @@ import (
 
 type RenegotiationCallback func(transport *Transport)
 
+// SDPManager interface
 type SDPManager interface {
 	GetState() string
 	GetTransport() *Transport

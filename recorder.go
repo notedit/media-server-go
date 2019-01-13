@@ -7,6 +7,7 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// Recorder represent a file recorder
 type Recorder struct {
 	tracks     map[string]*RecorderTrack
 	recorder   native.MP4Recorder
@@ -38,12 +39,11 @@ func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 		r.maxTrackId += 1
 		recorderTrack := NewRecorderTrack(strconv.Itoa(r.maxTrackId), incoming, encoding)
 
-		recorderTrack.Once("stopped", func() {
-
+		recorderTrack.OnStop(func() {
 			recorderTrack.encoding.depacketizer.RemoveMediaListener(r.recorder)
-
 			delete(r.tracks, recorderTrack.GetID())
 		})
+
 		r.tracks[recorderTrack.GetID()] = recorderTrack
 	}
 

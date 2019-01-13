@@ -1,7 +1,6 @@
 package mediaserver
 
 import (
-	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
 )
@@ -15,7 +14,6 @@ type Endpoint struct {
 	transports  map[string]*Transport
 	candidate   *sdp.CandidateInfo
 	fingerprint string
-	*emission.Emitter
 }
 
 // NewEndpoint create a new endpoint with given ip
@@ -26,7 +24,6 @@ func NewEndpoint(ip string) *Endpoint {
 	endpoint.transports = make(map[string]*Transport)
 	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
-	endpoint.Emitter = emission.NewEmitter()
 	return endpoint
 }
 
@@ -38,7 +35,6 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint.transports = make(map[string]*Transport)
 	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
-	endpoint.Emitter = emission.NewEmitter()
 	return endpoint
 }
 
@@ -78,7 +74,7 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 
 	e.transports[transport.username.ToString()] = transport
 
-	transport.Once("stopped", func() {
+	transport.OnStop(func() {
 		delete(e.transports, transport.username.ToString())
 	})
 
@@ -141,8 +137,6 @@ func (e *Endpoint) Stop() {
 	}
 
 	e.transports = nil
-
-	e.EmitSync("stopped")
 
 	e.bundle.End()
 

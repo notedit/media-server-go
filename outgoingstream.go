@@ -9,7 +9,7 @@ import (
 )
 
 // OutgoingStreamStopListener stop listener
-type OutgoingStreamStopListener func(*OutgoingStream)
+type OutgoingStreamStopListener func()
 
 // OutgoingStream  represent the media stream sent to a remote peer
 type OutgoingStream struct {
@@ -234,7 +234,7 @@ func (o *OutgoingStream) Stop() {
 	}
 
 	for _, stopFunc := range o.onStopListeners {
-		stopFunc(o)
+		stopFunc()
 	}
 
 	o.tracks = make(map[string]*OutgoingStreamTrack, 0)

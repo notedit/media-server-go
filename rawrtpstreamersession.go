@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
@@ -18,7 +17,6 @@ type RawRTPStreamerSession struct {
 	id       string
 	incoming *IncomingStreamTrack
 	session  native.RawRTPSessionFacade
-	*emission.Emitter
 }
 
 func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
@@ -30,8 +28,6 @@ func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
 	}
 	session := native.NewRawRTPSessionFacade(mediaType)
 	streamerSession.id = uuid.Must(uuid.NewV4()).String()
-
-	streamerSession.Emitter = emission.NewEmitter()
 
 	properties := native.NewProperties()
 	if media != nil {
@@ -53,7 +49,7 @@ func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
 	streamerSession.session = session
 	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), native.RTPSessionToReceiver(session), map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
 
-	streamerSession.incoming.Once("stopped", func() {
+	streamerSession.incoming.OnStop(func() {
 		streamerSession.incoming = nil
 	})
 
@@ -89,6 +85,5 @@ func (s *RawRTPStreamerSession) Stop() {
 
 	native.DeleteRawRTPSessionFacade(s.session)
 
-	s.EmitSync("stopped")
-
+	s.session = nil
 }

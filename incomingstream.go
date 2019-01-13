@@ -12,7 +12,7 @@ import (
 )
 
 // IncomingStreamStopListener stop listener
-type IncomingStreamStopListener func(*IncomingStream)
+type IncomingStreamStopListener func()
 
 // IncomingStream The incoming streams represent the recived media stream from a remote peer.
 type IncomingStream struct {
@@ -296,7 +296,7 @@ func (i *IncomingStream) Stop() {
 	}
 
 	for _, stopFunc := range i.onStopListeners {
-		stopFunc(i)
+		stopFunc()
 	}
 
 	i.Emit("stopped")

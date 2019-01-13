@@ -3,7 +3,6 @@ package mediaserver
 import (
 	"fmt"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
@@ -30,7 +29,14 @@ func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrat
 	fmt.Println(bitrate)
 }
 
-type TransportStopListener func(*Transport)
+type (
+	// TransportStopListener listener
+	TransportStopListener func()
+	// IncomingTrackListener new track listener
+	IncomingTrackListener func(*IncomingStreamTrack, *IncomingStream)
+	// OutgoingTrackListener new track listener
+	OutgoingTrackListener func(*OutgoingStreamTrack, *OutgoingStream)
+)
 
 // Transport represent a connection between a local ICE candidate and a remote set of ICE candidates over a single DTLS session
 type Transport struct {
@@ -47,7 +53,8 @@ type Transport struct {
 	outgoingStreams          map[string]*OutgoingStream
 	senderSideListener       senderSideEstimatorListener
 	onTransportStopListeners []TransportStopListener
-	*emission.Emitter
+	onIncomingTrackListeners []IncomingTrackListener
+	onOutgoingTrackListeners []OutgoingTrackListener
 }
 
 // NewTransport create a new transport
@@ -60,7 +67,6 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	transport.localIce = localIce
 	transport.localDtls = localDtls
 	transport.bundle = bundle
-	transport.Emitter = emission.NewEmitter()
 
 	properties := native.NewProperties()
 
@@ -113,6 +119,9 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	transport.onTransportStopListeners = make([]TransportStopListener, 0)
 
+	transport.onIncomingTrackListeners = make([]IncomingTrackListener, 0)
+	transport.onOutgoingTrackListeners = make([]OutgoingTrackListener, 0)
+
 	return transport
 }
 
@@ -129,13 +138,11 @@ func (t *Transport) Dump(filename string, incoming bool, outgoing bool, rtcp boo
 // This will send padding only RTX packets to allow bandwidth estimation algortithm to probe bitrate beyonf current sent values.
 // The ammoung of probing bitrate would be limited by the sender bitrate estimation and the limit set on the setMaxProbing Bitrate.
 func (t *Transport) SetBandwidthProbing(probe bool) {
-
 	t.transport.SetBandwidthProbing(probe)
 }
 
 // SetMaxProbingBitrate Set the maximum bitrate to be used if probing is enabled.
 func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
-
 	t.transport.SetMaxProbingBitrate(bitrate)
 }
 
@@ -293,21 +300,24 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 	info := streamInfo.Clone()
 	outgoingStream := NewOutgoingStream(t.transport, info)
 
-	outgoingStream.Once("stopped", func() {
+	outgoingStream.OnStop(func() {
 		delete(t.outgoingStreams, outgoingStream.GetID())
 	})
 
 	t.outgoingStreams[outgoingStream.GetID()] = outgoingStream
 
 	outgoingStream.On("track", func(track *OutgoingStreamTrack) {
-
-		t.EmitSync("outgoingtrack", track, outgoingStream)
+		for _, trackFunc := range t.onOutgoingTrackListeners {
+			trackFunc(track, outgoingStream)
+		}
 	})
 
 	for _, track := range outgoingStream.GetTracks() {
-
-		t.EmitSync("outgoingtrack", track, outgoingStream)
+		for _, trackFunc := range t.onOutgoingTrackListeners {
+			trackFunc(track, outgoingStream)
+		}
 	}
+
 	return outgoingStream
 }
 
@@ -370,11 +380,13 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 
 	outgoingTrack := newOutgoingStreamTrack(media, trackId, native.TransportToSender(t.transport), source)
 
-	outgoingTrack.Once("stopped", func() {
+	outgoingTrack.OnStop(func() {
 		t.transport.RemoveOutgoingSourceGroup(source)
 	})
 
-	t.EmitSync("outgoingtrack", outgoingTrack)
+	for _, trackFunc := range t.onOutgoingTrackListeners {
+		trackFunc(outgoingTrack, nil)
+	}
 
 	return outgoingTrack
 }
@@ -391,13 +403,16 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 	})
 
 	incomingStream.On("track", func(track *IncomingStreamTrack) {
-
-		t.EmitSync("incomingtrack", track, incomingStream)
+		for _, trackFunc := range t.onIncomingTrackListeners {
+			trackFunc(track, incomingStream)
+		}
 	})
 
 	for _, track := range incomingStream.GetTracks() {
 
-		t.EmitSync("incomingtrack", track, incomingStream)
+		for _, trackFunc := range t.onIncomingTrackListeners {
+			trackFunc(track, incomingStream)
+		}
 	}
 
 	return incomingStream
@@ -448,7 +463,9 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 		}
 	})
 
-	t.EmitSync("incomingtrack", incomingTrack, nil)
+	for _, trackFunc := range t.onIncomingTrackListeners {
+		trackFunc(incomingTrack, nil)
+	}
 
 	return incomingTrack
 }
@@ -486,6 +503,16 @@ func (t *Transport) OnStop(stop TransportStopListener) {
 	t.onTransportStopListeners = append(t.onTransportStopListeners, stop)
 }
 
+// OnIncomingTrack register incoming track
+func (t *Transport) OnIncomingTrack(listener IncomingTrackListener) {
+	t.onIncomingTrackListeners = append(t.onIncomingTrackListeners, listener)
+}
+
+// OnOutgoingTrack register outgoing track
+func (t *Transport) OnOutgoingTrack(listener OutgoingTrackListener) {
+	t.onOutgoingTrackListeners = append(t.onOutgoingTrackListeners, listener)
+}
+
 // Stop stop this transport
 func (t *Transport) Stop() {
 
@@ -511,10 +538,8 @@ func (t *Transport) Stop() {
 	t.bundle.RemoveICETransport(t.username)
 
 	for _, stopFunc := range t.onTransportStopListeners {
-		stopFunc(t)
+		stopFunc()
 	}
-
-	t.Emit("stopped")
 
 	native.DeleteStringFacade(t.username)
 

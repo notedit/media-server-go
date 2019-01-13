@@ -23,6 +23,7 @@ type rtctransceiver struct {
 	local  *outmediatrack
 }
 
+// SDPManagerUnified unified plan manager
 type SDPManagerUnified struct {
 	state               string
 	endpoint            *Endpoint
@@ -37,6 +38,7 @@ type SDPManagerUnified struct {
 	OnRenegotiation     RenegotiationCallback
 }
 
+// NewSDPManagerUnified create SDPUnified manager
 func NewSDPManagerUnified(endpoint *Endpoint, capabilities map[string]*sdp.Capability) *SDPManagerUnified {
 	sdpManager := &SDPManagerUnified{}
 	sdpManager.endpoint = endpoint
@@ -180,9 +182,7 @@ func (s *SDPManagerUnified) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInf
 		s.transport.SetLocalProperties(s.localInfo.GetAudioMedia(), s.localInfo.GetVideoMedia())
 		s.transport.SetRemoteProperties(s.remoteInfo.GetAudioMedia(), s.remoteInfo.GetVideoMedia())
 
-		// todo change to callback
-		s.transport.On("outgoingtrack", func(track *OutgoingStreamTrack, stream *OutgoingStream) {
-
+		s.transport.OnOutgoingTrack(func(track *OutgoingStreamTrack, stream *OutgoingStream) {
 			s.pending = append(s.pending, &outmediatrack{
 				track:  track,
 				stream: stream,

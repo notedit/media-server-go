@@ -9,7 +9,7 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
-type OutgoingTrackStopListener func(*OutgoingStreamTrack)
+type OutgoingTrackStopListener func()
 
 // OutgoingStreamTrack Audio or Video track of a media stream sent to a remote peer
 type OutgoingStreamTrack struct {
@@ -246,7 +246,7 @@ func (o *OutgoingStreamTrack) Stop() {
 	o.Detach()
 
 	for _, stopFunc := range o.onStopListeners {
-		stopFunc(o)
+		stopFunc()
 	}
 
 	o.EmitSync("stopped")
