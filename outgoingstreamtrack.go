@@ -204,7 +204,7 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 
 	o.transpoder.SetIncomingTrack(incomingTrack)
 
-	o.transpoder.Once("stopped", o.onTransponderStopped)
+	o.transpoder.OnStop(o.onTransponderStopped)
 
 	return o.transpoder
 }
@@ -215,8 +215,6 @@ func (o *OutgoingStreamTrack) Detach() {
 	if o.transpoder == nil {
 		return
 	}
-
-	o.transpoder.Off("stopped", o.onTransponderStopped)
 
 	o.transpoder.Stop()
 

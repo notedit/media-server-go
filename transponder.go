@@ -5,8 +5,6 @@ import (
 	"math"
 	"sort"
 
-	"github.com/chuckpreslar/emission"
-
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
@@ -20,6 +18,7 @@ const (
 	TraversalZigZagTemporalSpatial BitrateTraversal = "zig-zag-temporal-spatial"
 )
 
+// Transponder
 type Transponder struct {
 	muted              bool
 	track              *IncomingStreamTrack
@@ -29,7 +28,8 @@ type Transponder struct {
 	temporalLayerId    int
 	maxSpatialLayerId  int
 	maxTemporalLayerId int
-	*emission.Emitter
+	onMuteListeners    []func(bool)
+	onStopListeners    []func()
 }
 
 func NewTransponder(transponderFacade native.RTPStreamTransponderFacade) *Transponder {
@@ -41,7 +41,9 @@ func NewTransponder(transponderFacade native.RTPStreamTransponderFacade) *Transp
 	transponder.temporalLayerId = MaxLayerId
 	transponder.maxSpatialLayerId = MaxLayerId
 	transponder.maxTemporalLayerId = MaxLayerId
-	transponder.Emitter = emission.NewEmitter()
+
+	transponder.onMuteListeners = make([]func(bool), 0)
+	transponder.onStopListeners = make([]func(), 0)
 
 	return transponder
 }
@@ -57,7 +59,6 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 	}
 
 	if t.track != nil {
-		t.track.Off("stopped", t.onAttachedTrackStopped)
 		t.track.Detached()
 	}
 
@@ -80,7 +81,7 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 	t.maxSpatialLayerId = MaxLayerId
 	t.maxTemporalLayerId = MaxLayerId
 
-	t.track.Once("stopped", t.onAttachedTrackStopped)
+	t.track.OnStop(t.onAttachedTrackStopped)
 
 	t.track.Attached()
 
@@ -110,7 +111,10 @@ func (t *Transponder) Mute(muting bool) {
 		if t.transponder != nil {
 			t.transponder.Mute(muting)
 		}
-		t.EmitSync("muted")
+
+		for _, mutefunc := range t.onMuteListeners {
+			mutefunc(muting)
+		}
 	}
 }
 
@@ -297,9 +301,19 @@ func (t *Transponder) SetMaximumLayers(maxSpatialLayerId, maxTemporalLayerId int
 
 	t.maxSpatialLayerId = maxSpatialLayerId
 	t.maxTemporalLayerId = maxTemporalLayerId
-
 }
 
+// OnMute register mute listener
+func (t *Transponder) OnMute(listener func(bool)) {
+	t.onMuteListeners = append(t.onMuteListeners, listener)
+}
+
+// OnStop register stop listener
+func (t *Transponder) OnStop(stop func()) {
+	t.onStopListeners = append(t.onStopListeners, stop)
+}
+
+// Stop stop this transponder
 func (t *Transponder) Stop() {
 
 	if t.transponder == nil {
@@ -307,7 +321,6 @@ func (t *Transponder) Stop() {
 	}
 
 	if t.track != nil {
-		t.track.Off("stopped", t.onAttachedTrackStopped)
 		t.track.Detached()
 	}
 
@@ -315,7 +328,9 @@ func (t *Transponder) Stop() {
 
 	native.DeleteRTPStreamTransponderFacade(t.transponder)
 
-	t.EmitSync("stopped")
+	for _, stopFunc := range t.onStopListeners {
+		stopFunc()
+	}
 
 	t.transponder = nil
 
