@@ -107,24 +107,29 @@ func (e *EmulatedTransport) OnIncomingTrack(listener IncomingTrackListener) {
 	e.onIncomingTrackListeners = append(e.onIncomingTrackListeners, listener)
 }
 
+// Play play at start time
 func (e *EmulatedTransport) Play(time uint64) bool {
 	e.transport.Seek(time)
 	return e.transport.Play()
 }
 
+// Resume resume to play
 func (e *EmulatedTransport) Resume() bool {
 	return e.transport.Play()
 }
 
+// Pause  pause
 func (e *EmulatedTransport) Pause() bool {
 	return e.transport.Stop()
 }
 
+// Seek to some time
 func (e *EmulatedTransport) Seek(time uint64) bool {
 	e.transport.Seek(time)
 	return e.transport.Play()
 }
 
+// Stop stop this transport
 func (e *EmulatedTransport) Stop() {
 
 	if e.transport == nil {
@@ -135,11 +140,10 @@ func (e *EmulatedTransport) Stop() {
 		stream.Stop()
 	}
 
-	e.streams = map[string]*IncomingStream{}
-
 	e.transport.Stop()
-
 	native.DeletePCAPTransportEmulator(e.transport)
+
+	e.streams = nil
 	e.transport = nil
 
 }
