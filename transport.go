@@ -290,7 +290,10 @@ func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 		port = candidate.GetPort()
 	}
 
-	t.bundle.AddRemoteCandidate(t.username, address, uint16(port))
+	if t.bundle.AddRemoteCandidate(t.username, address, uint16(port)) != 0 {
+		return
+	}
+
 	t.remoteCandidates = append(t.remoteCandidates, candidate)
 }
 
