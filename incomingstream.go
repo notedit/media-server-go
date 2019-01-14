@@ -14,14 +14,18 @@ import (
 // IncomingStreamStopListener stop listener
 type IncomingStreamStopListener func()
 
+// StreamAddIncomingTrackListener Stream add incoming track listener
+type StreamAddIncomingTrackListener func(*IncomingStreamTrack)
+
 // IncomingStream The incoming streams represent the recived media stream from a remote peer.
 type IncomingStream struct {
-	id              string
-	info            *sdp.StreamInfo
-	transport       transportWrapper
-	receiver        native.RTPReceiverFacade
-	tracks          map[string]*IncomingStreamTrack
-	onStopListeners []IncomingStreamStopListener
+	id                                string
+	info                              *sdp.StreamInfo
+	transport                         transportWrapper
+	receiver                          native.RTPReceiverFacade
+	tracks                            map[string]*IncomingStreamTrack
+	onStopListeners                   []IncomingStreamStopListener
+	onStreamAddIncomingTrackListeners []StreamAddIncomingTrackListener
 	*emission.Emitter
 }
 
@@ -41,6 +45,9 @@ func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPRec
 	stream.tracks = make(map[string]*IncomingStreamTrack)
 	stream.Emitter = emission.NewEmitter()
 
+	stream.onStopListeners = make([]IncomingStreamStopListener, 0)
+	stream.onStreamAddIncomingTrackListeners = make([]StreamAddIncomingTrackListener, 0)
+
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
 	}
@@ -57,6 +64,7 @@ func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulat
 	stream.Emitter = emission.NewEmitter()
 
 	stream.onStopListeners = make([]IncomingStreamStopListener, 0)
+	stream.onStreamAddIncomingTrackListeners = make([]StreamAddIncomingTrackListener, 0)
 
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
@@ -279,6 +287,12 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 	return incomingTrack
 }
 
+// OnAddTrack register addtrack listener
+func (i *IncomingStream) OnAddTrack(ontrack StreamAddIncomingTrackListener) {
+	i.onStreamAddIncomingTrackListeners = append(i.onStreamAddIncomingTrackListeners, ontrack)
+}
+
+// OnStop register stop  listener
 func (i *IncomingStream) OnStop(stop IncomingStreamStopListener) {
 	i.onStopListeners = append(i.onStopListeners, stop)
 }

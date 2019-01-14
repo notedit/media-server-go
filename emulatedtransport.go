@@ -3,23 +3,24 @@ package mediaserver
 import (
 	"fmt"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
+// EmulatedTransport pcap file as a transport
 type EmulatedTransport struct {
-	transport native.PCAPTransportEmulator
-	streams   map[string]*IncomingStream
-	*emission.Emitter
+	transport                native.PCAPTransportEmulator
+	streams                  map[string]*IncomingStream
+	onIncomingTrackListeners []IncomingTrackListener
 }
 
+// NewEmulatedTransport create a transport by pcap file
 func NewEmulatedTransport(pcap string) *EmulatedTransport {
 	transport := &EmulatedTransport{}
 	transport.transport = native.NewPCAPTransportEmulator()
 	transport.streams = map[string]*IncomingStream{}
-	transport.Emitter = emission.NewEmitter()
 	transport.transport.Open(pcap)
+	transport.onIncomingTrackListeners = make([]IncomingTrackListener, 0)
 	return transport
 }
 
@@ -76,25 +77,34 @@ func (e *EmulatedTransport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp
 	native.DeleteProperties(properties)
 }
 
+// CreateIncomingStream create incoming stream base on streaminfo
 func (e *EmulatedTransport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingStream {
 
 	incomingStream := NewIncomingStreamWithEmulatedTransport(e.transport, native.PCAPTransportEmulatorToReceiver(e.transport), streamInfo)
 
 	e.streams[incomingStream.GetID()] = incomingStream
 
-	incomingStream.Once("stopped", func() {
+	incomingStream.OnStop(func() {
 		delete(e.streams, incomingStream.GetID())
 	})
 
-	incomingStream.On("track", func(track *IncomingStreamTrack) {
-		e.EmitSync("incomingtrack", track, incomingStream)
+	incomingStream.OnAddTrack(func(track *IncomingStreamTrack) {
+		for _, addTrackFunc := range e.onIncomingTrackListeners {
+			addTrackFunc(track, incomingStream)
+		}
 	})
 
 	for _, track := range incomingStream.GetTracks() {
-		e.EmitSync("incomingtrack", track, incomingStream)
+		for _, addTrackFunc := range e.onIncomingTrackListeners {
+			addTrackFunc(track, incomingStream)
+		}
 	}
-
 	return incomingStream
+}
+
+// OnIncomingTrack register incoming track
+func (e *EmulatedTransport) OnIncomingTrack(listener IncomingTrackListener) {
+	e.onIncomingTrackListeners = append(e.onIncomingTrackListeners, listener)
 }
 
 func (e *EmulatedTransport) Play(time uint64) bool {
