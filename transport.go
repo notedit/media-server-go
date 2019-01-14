@@ -309,7 +309,7 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 
 	t.outgoingStreams[outgoingStream.GetID()] = outgoingStream
 
-	outgoingStream.On("track", func(track *OutgoingStreamTrack) {
+	outgoingStream.OnTrack(func(track *OutgoingStreamTrack) {
 		for _, trackFunc := range t.onOutgoingTrackListeners {
 			trackFunc(track, outgoingStream)
 		}
