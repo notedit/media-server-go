@@ -3,23 +3,20 @@ package mediaserver
 import (
 	"strings"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
-// OutgoingStreamStopListener stop listener
-type OutgoingStreamStopListener func()
-
 // OutgoingStream  represent the media stream sent to a remote peer
 type OutgoingStream struct {
-	id              string
-	transport       native.DTLSICETransport
-	info            *sdp.StreamInfo
-	muted           bool
-	tracks          map[string]*OutgoingStreamTrack
-	onStopListeners []OutgoingStreamStopListener
-	*emission.Emitter
+	id                  string
+	transport           native.DTLSICETransport
+	info                *sdp.StreamInfo
+	muted               bool
+	tracks              map[string]*OutgoingStreamTrack
+	onStopListeners     []func()
+	onMuteListeners     []func(bool)
+	onAddTrackListeners []func(*OutgoingStreamTrack)
 }
 
 // NewOutgoingStream create outgoing stream
@@ -30,13 +27,14 @@ func NewOutgoingStream(transport native.DTLSICETransport, info *sdp.StreamInfo) 
 	stream.transport = transport
 	stream.info = info
 	stream.tracks = make(map[string]*OutgoingStreamTrack)
-	stream.Emitter = emission.NewEmitter()
 
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
 	}
 
-	stream.onStopListeners = make([]OutgoingStreamStopListener, 0)
+	stream.onStopListeners = make([]func(), 0)
+	stream.onMuteListeners = make([]func(bool), 0)
+	stream.onAddTrackListeners = make([]func(*OutgoingStreamTrack), 0)
 
 	return stream
 }
@@ -70,7 +68,9 @@ func (o *OutgoingStream) Mute(muting bool) {
 
 	if o.muted != muting {
 		o.muted = muting
-		o.EmitSync("muted", o.muted)
+		for _, muteFunc := range o.onMuteListeners {
+			muteFunc(muting)
+		}
 	}
 }
 
@@ -168,7 +168,7 @@ func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) {
 		return
 	}
 
-	track.Once("stopped", func() {
+	track.OnStop(func() {
 		delete(o.tracks, track.GetID())
 	})
 
@@ -206,20 +206,33 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 
 	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)
 
-	outgoingTrack.Once("stopped", func() {
+	outgoingTrack.OnStop(func() {
 		delete(o.tracks, outgoingTrack.GetID())
 		o.transport.RemoveOutgoingSourceGroup(source)
 	})
 
 	o.tracks[outgoingTrack.GetID()] = outgoingTrack
 
-	o.EmitSync("track", outgoingTrack)
+	for _, addTrackFunc := range o.onAddTrackListeners {
+		addTrackFunc(outgoingTrack)
+	}
 
 	return outgoingTrack
 }
 
-func (o *OutgoingStream) OnStop(stop OutgoingStreamStopListener) {
-	o.onStopListeners = append(o.onStopListeners, stop)
+// OnTrack new outgoing track listener
+func (o *OutgoingStream) OnTrack(listener func(*OutgoingStreamTrack)) {
+	o.onAddTrackListeners = append(o.onAddTrackListeners, listener)
+}
+
+// OnMute register onmute listener
+func (o *OutgoingStream) OnMute(listener func(bool)) {
+	o.onMuteListeners = append(o.onMuteListeners, listener)
+}
+
+// OnStop register onstop listener
+func (o *OutgoingStream) OnStop(listener func()) {
+	o.onStopListeners = append(o.onStopListeners, listener)
 }
 
 // Stop stop the remote stream
@@ -238,8 +251,6 @@ func (o *OutgoingStream) Stop() {
 	}
 
 	o.tracks = make(map[string]*OutgoingStreamTrack, 0)
-
-	o.EmitSync("stopped")
 
 	o.transport = nil
 }
