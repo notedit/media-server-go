@@ -18,7 +18,7 @@ func (s *Streamer) CreateSession(local bool, ip string, port int, media *sdp.Med
 
 	session := NewStreamerSession(local, ip, port, media)
 
-	session.Once("stopped", func() {
+	session.OnStop(func() {
 		delete(s.sessions, session.GetID())
 	})
 
