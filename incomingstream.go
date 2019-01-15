@@ -6,16 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
 )
-
-// IncomingStreamStopListener stop listener
-type IncomingStreamStopListener func()
-
-// StreamAddIncomingTrackListener Stream add incoming track listener
-type StreamAddIncomingTrackListener func(*IncomingStreamTrack)
 
 // IncomingStream The incoming streams represent the recived media stream from a remote peer.
 type IncomingStream struct {
@@ -24,9 +17,8 @@ type IncomingStream struct {
 	transport                         transportWrapper
 	receiver                          native.RTPReceiverFacade
 	tracks                            map[string]*IncomingStreamTrack
-	onStopListeners                   []IncomingStreamStopListener
-	onStreamAddIncomingTrackListeners []StreamAddIncomingTrackListener
-	*emission.Emitter
+	onStopListeners                   []func()
+	onStreamAddIncomingTrackListeners []func(*IncomingStreamTrack)
 }
 
 // internal use
@@ -43,10 +35,9 @@ func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPRec
 	stream.transport = transport
 	stream.receiver = receiver
 	stream.tracks = make(map[string]*IncomingStreamTrack)
-	stream.Emitter = emission.NewEmitter()
 
-	stream.onStopListeners = make([]IncomingStreamStopListener, 0)
-	stream.onStreamAddIncomingTrackListeners = make([]StreamAddIncomingTrackListener, 0)
+	stream.onStopListeners = make([]func(), 0)
+	stream.onStreamAddIncomingTrackListeners = make([]func(*IncomingStreamTrack), 0)
 
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
@@ -61,10 +52,9 @@ func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulat
 	stream.transport = transport
 	stream.receiver = receiver
 	stream.tracks = make(map[string]*IncomingStreamTrack)
-	stream.Emitter = emission.NewEmitter()
 
-	stream.onStopListeners = make([]IncomingStreamStopListener, 0)
-	stream.onStreamAddIncomingTrackListeners = make([]StreamAddIncomingTrackListener, 0)
+	stream.onStopListeners = make([]func(), 0)
+	stream.onStreamAddIncomingTrackListeners = make([]func(*IncomingStreamTrack), 0)
 
 	for _, track := range info.GetTracks() {
 		stream.CreateTrack(track)
@@ -143,7 +133,7 @@ func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 		return errors.New("Track id already present in stream")
 	}
 
-	track.Once("stopped", func() {
+	track.OnStop(func() {
 		delete(i.tracks, track.GetID())
 	})
 
@@ -271,7 +261,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 	incomingTrack := newIncomingStreamTrack(track.GetMedia(), track.GetID(), i.receiver, sources)
 
-	incomingTrack.Once("stopped", func() {
+	incomingTrack.OnStop(func() {
 
 		delete(i.tracks, incomingTrack.GetID())
 
@@ -282,18 +272,20 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 	i.tracks[track.GetID()] = incomingTrack
 
-	i.EmitSync("track", incomingTrack)
+	for _, ontrack := range i.onStreamAddIncomingTrackListeners {
+		ontrack(incomingTrack)
+	}
 
 	return incomingTrack
 }
 
-// OnAddTrack register addtrack listener
-func (i *IncomingStream) OnAddTrack(ontrack StreamAddIncomingTrackListener) {
+// OnTrack register addtrack listener
+func (i *IncomingStream) OnTrack(ontrack func(*IncomingStreamTrack)) {
 	i.onStreamAddIncomingTrackListeners = append(i.onStreamAddIncomingTrackListeners, ontrack)
 }
 
 // OnStop register stop  listener
-func (i *IncomingStream) OnStop(stop IncomingStreamStopListener) {
+func (i *IncomingStream) OnStop(stop func()) {
 	i.onStopListeners = append(i.onStopListeners, stop)
 }
 
@@ -312,8 +304,6 @@ func (i *IncomingStream) Stop() {
 	for _, stopFunc := range i.onStopListeners {
 		stopFunc()
 	}
-
-	i.Emit("stopped")
 
 	i.transport = nil
 }

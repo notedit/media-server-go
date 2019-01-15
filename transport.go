@@ -401,18 +401,17 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 
 	t.incomingStreams[incomingStream.GetID()] = incomingStream
 
-	incomingStream.Once("stopped", func() {
+	incomingStream.OnStop(func() {
 		delete(t.incomingStreams, incomingStream.GetID())
 	})
 
-	incomingStream.On("track", func(track *IncomingStreamTrack) {
+	incomingStream.OnTrack(func(track *IncomingStreamTrack) {
 		for _, trackFunc := range t.onIncomingTrackListeners {
 			trackFunc(track, incomingStream)
 		}
 	})
 
 	for _, track := range incomingStream.GetTracks() {
-
 		for _, trackFunc := range t.onIncomingTrackListeners {
 			trackFunc(track, incomingStream)
 		}
