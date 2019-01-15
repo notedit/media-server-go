@@ -62,7 +62,7 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCal
 	source := track.GetFirstEncoding().GetSource()
 	duplicater.duplicater = native.NewMediaStreamDuplicaterFacade(source)
 
-	track.On("stopped", func() {
+	track.OnStop(func() {
 		duplicater.Stop()
 	})
 

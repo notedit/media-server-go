@@ -5,7 +5,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
 )
@@ -55,15 +54,16 @@ type IncomingTrackStopListener func()
 
 // IncomingStreamTrack Audio or Video track of a remote media stream
 type IncomingStreamTrack struct {
-	id              string
-	media           string
-	receiver        native.RTPReceiverFacade
-	counter         int
-	encodings       map[string]*Encoding
-	trackInfo       *sdp.TrackInfo
-	stats           map[string]*IncomingAllStats
-	onStopListeners []IncomingTrackStopListener
-	*emission.Emitter
+	id                  string
+	media               string
+	receiver            native.RTPReceiverFacade
+	counter             int
+	encodings           map[string]*Encoding
+	trackInfo           *sdp.TrackInfo
+	stats               map[string]*IncomingAllStats
+	onStopListeners     []func()
+	onAttachedListeners []func()
+	onDetachedListeners []func()
 }
 
 // IncomingStats info
@@ -181,7 +181,6 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 	track.receiver = receiver
 	track.counter = 0
 	track.encodings = make(map[string]*Encoding)
-	track.Emitter = emission.NewEmitter()
 
 	track.trackInfo = sdp.NewTrackInfo(id, media)
 
@@ -230,7 +229,7 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 		}
 	}
 
-	track.onStopListeners = make([]IncomingTrackStopListener, 0)
+	track.onStopListeners = make([]func(), 0)
 	return track
 }
 
@@ -421,7 +420,9 @@ func (i *IncomingStreamTrack) Attached() {
 	i.counter = i.counter + 1
 
 	if i.counter == 1 {
-		i.EmitSync("attached")
+		for _, attach := range i.onAttachedListeners {
+			attach()
+		}
 	}
 }
 
@@ -440,13 +441,24 @@ func (i *IncomingStreamTrack) Detached() {
 	i.counter = i.counter - 1
 
 	if i.counter == 0 {
-		i.EmitSync("detached")
+		for _, detach := range i.onDetachedListeners {
+			detach()
+		}
 	}
 }
 
-// OnStop register stop callback
-func (i *IncomingStreamTrack) OnStop(stop IncomingTrackStopListener) {
+// OnDetach
+func (i *IncomingStreamTrack) OnDetach(detach func()) {
+	i.onDetachedListeners = append(i.onDetachedListeners, detach)
+}
 
+// OnAttach
+func (i *IncomingStreamTrack) OnAttach(attach func()) {
+	i.onAttachedListeners = append(i.onAttachedListeners, attach)
+}
+
+// OnStop register stop callback
+func (i *IncomingStreamTrack) OnStop(stop func()) {
 	i.onStopListeners = append(i.onStopListeners, stop)
 }
 
@@ -470,8 +482,6 @@ func (i *IncomingStreamTrack) Stop() {
 	for _, stopFunc := range i.onStopListeners {
 		stopFunc()
 	}
-
-	i.EmitSync("stopped")
 
 	i.encodings = nil
 

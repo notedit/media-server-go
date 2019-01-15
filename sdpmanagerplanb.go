@@ -74,7 +74,7 @@ func (s *SDPManagerPlanb) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInfo,
 		s.transport.SetRemoteProperties(s.remoteInfo.GetAudioMedia(), s.remoteInfo.GetVideoMedia())
 
 		s.transport.OnOutgoingTrack(func(track *OutgoingStreamTrack, stream *OutgoingStream) {
-			track.Once("stopped", func() {
+			track.OnStop(func() {
 				s.renegotiate()
 			})
 			s.renegotiate()
