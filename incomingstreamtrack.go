@@ -1,6 +1,7 @@
 package mediaserver
 
 import (
+	"fmt"
 	"sort"
 	"strconv"
 	"time"
@@ -58,7 +59,7 @@ type IncomingStreamTrack struct {
 	media               string
 	receiver            native.RTPReceiverFacade
 	counter             int
-	encodings           map[string]*Encoding
+	encodings           []*Encoding
 	trackInfo           *sdp.TrackInfo
 	stats               map[string]*IncomingAllStats
 	onStopListeners     []func()
@@ -180,7 +181,7 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 	track.media = media
 	track.receiver = receiver
 	track.counter = 0
-	track.encodings = make(map[string]*Encoding)
+	track.encodings = make([]*Encoding, 0)
 
 	track.trackInfo = sdp.NewTrackInfo(id, media)
 
@@ -191,7 +192,7 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 			depacketizer: native.NewStreamTrackDepacketizer(source),
 		}
 
-		track.encodings[k] = encoding
+		track.encodings = append(track.encodings, encoding)
 
 		//Add ssrcs to track info
 		if source.GetMedia().GetSsrc() > 0 {
@@ -229,7 +230,16 @@ func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 		}
 	}
 
+	track.onAttachedListeners = make([]func(), 0)
+	track.onDetachedListeners = make([]func(), 0)
 	track.onStopListeners = make([]func(), 0)
+
+	sort.SliceStable(track.encodings, func(i, j int) bool {
+		return track.encodings[i].id < track.encodings[j].id
+	})
+
+	fmt.Println(track.encodings)
+
 	return track
 }
 
@@ -270,8 +280,8 @@ func (i *IncomingStreamTrack) GetStats() map[string]*IncomingAllStats {
 		i.stats = map[string]*IncomingAllStats{}
 	}
 
-	for id, encoding := range i.encodings {
-		state := i.stats[id]
+	for _, encoding := range i.encodings {
+		state := i.stats[encoding.id]
 		if state == nil || (state != nil && time.Now().UnixNano()-state.timestamp > 200000000) {
 
 			encoding.GetSource().Update()
@@ -280,7 +290,7 @@ func (i *IncomingStreamTrack) GetStats() map[string]*IncomingAllStats {
 			fec := getStatsFromIncomingSource(encoding.GetSource().GetFec())
 			rtx := getStatsFromIncomingSource(encoding.GetSource().GetRtx())
 
-			i.stats[id] = &IncomingAllStats{
+			i.stats[encoding.id] = &IncomingAllStats{
 				Rtt:         encoding.GetSource().GetRtt(),
 				MinWaitTime: encoding.GetSource().GetMinWaitedTime(),
 				MaxWaitTime: encoding.GetSource().GetMaxWaitedTime(),
@@ -398,7 +408,7 @@ func (i *IncomingStreamTrack) GetActiveLayers() *ActiveLayersInfo {
 }
 
 // GetEncodings  get all encodings
-func (i *IncomingStreamTrack) GetEncodings() map[string]*Encoding {
+func (i *IncomingStreamTrack) GetEncodings() []*Encoding {
 
 	return i.encodings
 }
@@ -408,6 +418,17 @@ func (i *IncomingStreamTrack) GetFirstEncoding() *Encoding {
 
 	for _, encoding := range i.encodings {
 		if encoding != nil {
+			return encoding
+		}
+	}
+	return nil
+}
+
+// GetEncoding get Encoding by id
+func (i *IncomingStreamTrack) GetEncoding(encodingID string) *Encoding {
+
+	for _, encoding := range i.encodings {
+		if encoding.id == encodingID {
 			return encoding
 		}
 	}

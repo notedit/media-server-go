@@ -249,12 +249,13 @@ func (t *Transponder) SetTargetBitrate(bitrate uint, traversal BitrateTraversal,
 	return current
 }
 
+// SelectEncoding by id
 func (t *Transponder) SelectEncoding(encodingId string) {
 
 	if t.encodingId == encodingId {
 		return
 	}
-	encoding := t.track.encodings[encodingId]
+	encoding := t.track.GetEncoding(encodingId)
 	if encoding == nil {
 		return
 	}
@@ -262,18 +263,18 @@ func (t *Transponder) SelectEncoding(encodingId string) {
 	t.encodingId = encodingId
 }
 
+// GetSelectedEncoding get selected encoding id
 func (t *Transponder) GetSelectedEncoding() string {
-
 	return t.encodingId
 }
 
+// GetSelectedSpatialLayerId  return int
 func (t *Transponder) GetSelectedSpatialLayerId() int {
-
 	return t.spatialLayerId
 }
 
+// GetSelectedTemporalLayerId  return int
 func (t *Transponder) GetSelectedTemporalLayerId() int {
-
 	return t.temporalLayerId
 }
 
