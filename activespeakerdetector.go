@@ -4,27 +4,6 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
-// type senderSideEstimatorListener interface {
-// 	native.SenderSideEstimatorListener
-// 	deleteSenderSideEstimatorListener()
-// }
-
-// type goSenderSideEstimatorListener struct {
-// 	native.SenderSideEstimatorListener
-// }
-
-// func (r *goSenderSideEstimatorListener) deleteSenderSideEstimatorListener() {
-// 	native.DeleteDirectorSenderSideEstimatorListener(r.SenderSideEstimatorListener)
-// }
-
-// type overwrittenSenderSideEstimatorListener struct {
-// 	p native.SenderSideEstimatorListener
-// }
-
-// func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrate uint) {
-// 	fmt.Println(bitrate)
-// }
-
 type activeTrackListener interface {
 	native.ActiveTrackListener
 	deleteActiveTrackListener()
