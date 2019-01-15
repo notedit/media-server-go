@@ -459,7 +459,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 
 	incomingTrack := newIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
 
-	incomingTrack.Once("stopped", func() {
+	incomingTrack.OnStop(func() {
 		for _, item := range sources {
 			t.transport.RemoveIncomingSourceGroup(item)
 		}

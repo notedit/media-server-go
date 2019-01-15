@@ -1,15 +1,11 @@
 package mediaserver
 
 import (
-	"fmt"
 	"time"
 
-	"github.com/chuckpreslar/emission"
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
 )
-
-type OutgoingTrackStopListener func()
 
 // OutgoingStreamTrack Audio or Video track of a media stream sent to a remote peer
 type OutgoingStreamTrack struct {
@@ -22,9 +18,9 @@ type OutgoingStreamTrack struct {
 	trackInfo       *sdp.TrackInfo
 	interCallback   rembBitrateListener
 	statss          *OutgoingStatss
-	onStopListeners []OutgoingTrackStopListener
+	onMuteListeners []func(bool)
+	onStopListeners []func()
 	// todo outercallback
-	*emission.Emitter
 }
 
 // OutgoingStats stats info
@@ -88,7 +84,6 @@ func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFaca
 	track.sender = sender
 	track.muted = false
 	track.source = source
-	track.Emitter = emission.NewEmitter()
 	track.trackInfo = sdp.NewTrackInfo(id, media)
 
 	track.trackInfo.AddSSRC(source.GetMedia().GetSsrc())
@@ -120,7 +115,8 @@ func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFaca
 
 	track.interCallback = &goREMBBitrateListener{REMBBitrateListener: p}
 
-	track.onStopListeners = make([]OutgoingTrackStopListener, 0)
+	track.onMuteListeners = make([]func(bool), 0)
+	track.onStopListeners = make([]func(), 0)
 
 	return track
 }
@@ -181,7 +177,10 @@ func (o *OutgoingStreamTrack) Mute(muting bool) {
 
 	if o.muted != muting {
 		o.muted = muting
-		o.EmitSync("muted", o.muted)
+
+		for _, mutefunc := range o.onMuteListeners {
+			mutefunc(muting)
+		}
 	}
 }
 
@@ -199,8 +198,6 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	if o.muted {
 		o.transpoder.Mute(o.muted)
 	}
-
-	fmt.Println(" incomingTrack", incomingTrack)
 
 	o.transpoder.SetIncomingTrack(incomingTrack)
 
@@ -223,11 +220,15 @@ func (o *OutgoingStreamTrack) Detach() {
 
 // GetTransponder Get attached transpoder for this track
 func (o *OutgoingStreamTrack) GetTransponder() *Transponder {
-
 	return o.transpoder
 }
 
-func (o *OutgoingStreamTrack) OnStop(stop OutgoingTrackStopListener) {
+func (o *OutgoingStreamTrack) OnMute(mute func(bool)) {
+	o.onMuteListeners = append(o.onMuteListeners, mute)
+}
+
+// OnStop
+func (o *OutgoingStreamTrack) OnStop(stop func()) {
 	o.onStopListeners = append(o.onStopListeners, stop)
 }
 
@@ -246,8 +247,6 @@ func (o *OutgoingStreamTrack) Stop() {
 	for _, stopFunc := range o.onStopListeners {
 		stopFunc()
 	}
-
-	o.EmitSync("stopped")
 
 	if o.source != nil {
 		native.DeleteRTPOutgoingSourceGroup(o.source)
