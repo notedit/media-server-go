@@ -7,15 +7,12 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
-// MediaFrameCallback callback function
-type MediaFrameCallback func(frame []byte, duration uint, timestamp uint)
-
 // MediaStreamDuplicater we can make a copy of the incoming stream and callback the mediaframe data
 type MediaStreamDuplicater struct {
-	track      *IncomingStreamTrack
-	duplicater native.MediaStreamDuplicaterFacade
-	callback   MediaFrameCallback
-	listener   mediaframeListener
+	MediaFrames chan []byte
+	track       *IncomingStreamTrack
+	duplicater  native.MediaStreamDuplicaterFacade
+	listener    mediaframeListener
 }
 
 type mediaframeListener interface {
@@ -43,17 +40,17 @@ func (p *overwrittenMediaFrameListener) OnMediaFrame(frame native.MediaFrame) {
 		if frame.GetType() == native.MediaFrameVideo {
 			data, err := annexbConvert(buffer)
 			if err == nil {
-				p.duplicater.callback(data, frame.GetDuration(), frame.GetTimeStamp())
+				p.duplicater.MediaFrames <- data
 			}
 		} else {
-			p.duplicater.callback(buffer, frame.GetDuration(), frame.GetTimeStamp())
+			p.duplicater.MediaFrames <- buffer
 		}
 
 	}
 }
 
 // NewMediaStreamDuplicater duplicate this IncomingStreamTrack and callback the mediaframe
-func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCallback) *MediaStreamDuplicater {
+func NewMediaStreamDuplicater(track *IncomingStreamTrack) *MediaStreamDuplicater {
 
 	duplicater := &MediaStreamDuplicater{}
 	duplicater.track = track
@@ -66,8 +63,6 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCal
 		duplicater.Stop()
 	})
 
-	duplicater.callback = callback
-
 	listener := &overwrittenMediaFrameListener{
 		duplicater: duplicater,
 	}
@@ -78,6 +73,7 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack, callback MediaFrameCal
 
 	duplicater.duplicater.AddMediaListener(duplicater.listener)
 
+	duplicater.MediaFrames = make(chan []byte, 5)
 	return duplicater
 }
 
