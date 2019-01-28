@@ -31,7 +31,14 @@ We intend to implement support the following features:
 - [x] [PERC double encryption] (https://tools.ietf.org/html/draft-ietf-perc-double-03)
 - [x] Plain RTP broadcasting/streaming
 - [ ] [Layer Refresh Request (LRR) RTCP Feedback Message] (https://datatracker.ietf.org/doc/html/draft-ietf-avtext-lrr-04)
+- [x] Raw MediaFrame callback
+- [x] Raw RTP Data input
 
+
+## IN Plan
+
+- [ ] RTMP support
+- [ ] Cluster support
 
 ## How to use 
 
