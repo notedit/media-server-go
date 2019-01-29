@@ -2,6 +2,7 @@ package mediaserver
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/gofrs/uuid"
 	"github.com/notedit/media-server-go/sdp"
@@ -55,6 +56,7 @@ type Transport struct {
 	onTransportStopListeners []TransportStopListener
 	onIncomingTrackListeners []IncomingTrackListener
 	onOutgoingTrackListeners []OutgoingTrackListener
+	sync.Mutex
 }
 
 // NewTransport create a new transport
@@ -304,10 +306,14 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 	outgoingStream := NewOutgoingStream(t.transport, info)
 
 	outgoingStream.OnStop(func() {
+		t.Lock()
 		delete(t.outgoingStreams, outgoingStream.GetID())
+		t.Unlock()
 	})
 
+	t.Lock()
 	t.outgoingStreams[outgoingStream.GetID()] = outgoingStream
+	t.Unlock()
 
 	outgoingStream.OnTrack(func(track *OutgoingStreamTrack) {
 		for _, trackFunc := range t.onOutgoingTrackListeners {
@@ -399,10 +405,14 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 
 	incomingStream := newIncomingStream(t.transport, native.TransportToReceiver(t.transport), streamInfo)
 
+	t.Lock()
 	t.incomingStreams[incomingStream.GetID()] = incomingStream
+	t.Unlock()
 
 	incomingStream.OnStop(func() {
+		t.Lock()
 		delete(t.incomingStreams, incomingStream.GetID())
+		t.Unlock()
 	})
 
 	incomingStream.OnTrack(func(track *IncomingStreamTrack) {
@@ -483,6 +493,8 @@ func (t *Transport) GetIncomingStreams() []*IncomingStream {
 
 // GetIncomingStream  get one incoming stream
 func (t *Transport) GetIncomingStream(streamId string) *IncomingStream {
+	t.Lock()
+	defer  t.Unlock()
 	return t.incomingStreams[streamId]
 }
 
@@ -497,6 +509,8 @@ func (t *Transport) GetOutgoingStreams() []*OutgoingStream {
 
 // GetOutgoingStream get one outgoing stream
 func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
+	t.Lock()
+	defer  t.Unlock()
 	return t.outgoingStreams[streamId]
 }
 
