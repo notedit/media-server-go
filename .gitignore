@@ -17,4 +17,4 @@ openssl/
 media-server/
 
 .vscode/
-
+.idea/
