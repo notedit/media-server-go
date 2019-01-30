@@ -2,6 +2,7 @@ package mediaserver
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
@@ -12,6 +13,7 @@ type EmulatedTransport struct {
 	transport                native.PCAPTransportEmulator
 	streams                  map[string]*IncomingStream
 	onIncomingTrackListeners []IncomingTrackListener
+	sync.Mutex
 }
 
 // NewEmulatedTransport create a transport by pcap file
@@ -82,10 +84,14 @@ func (e *EmulatedTransport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *In
 
 	incomingStream := NewIncomingStreamWithEmulatedTransport(e.transport, native.PCAPTransportEmulatorToReceiver(e.transport), streamInfo)
 
+	e.Lock()
 	e.streams[incomingStream.GetID()] = incomingStream
+	e.Unlock()
 
 	incomingStream.OnStop(func() {
+		e.Lock()
 		delete(e.streams, incomingStream.GetID())
+		e.Unlock()
 	})
 
 	incomingStream.OnTrack(func(track *IncomingStreamTrack) {

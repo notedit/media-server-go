@@ -1,6 +1,7 @@
 package mediaserver
 
 import (
+	"sync"
 	"time"
 )
 
@@ -8,6 +9,7 @@ type Refresher struct {
 	period int
 	tracks map[string]*IncomingStreamTrack
 	ticker *time.Ticker
+	sync.Mutex
 }
 
 func NewRefresher(period int) *Refresher {
@@ -21,10 +23,15 @@ func NewRefresher(period int) *Refresher {
 func (r *Refresher) Add(incom *IncomingStreamTrack) {
 
 	if incom.GetMedia() == "video" {
+
+		r.Lock()
 		r.tracks[incom.GetID()] = incom
+		r.Unlock()
 
 		incom.OnStop(func() {
+			r.Lock()
 			delete(r.tracks, incom.GetID())
+			r.Unlock()
 		})
 	}
 
@@ -58,7 +65,3 @@ func (r *Refresher) Stop() {
 	r.tracks = nil
 }
 
-func (r *Refresher) refresherOntrackStopped(track *IncomingStreamTrack) {
-
-	delete(r.tracks, track.GetID())
-}

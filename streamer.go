@@ -2,10 +2,12 @@ package mediaserver
 
 import (
 	"github.com/notedit/media-server-go/sdp"
+	"sync"
 )
 
 type Streamer struct {
 	sessions map[string]*StreamerSession
+	sync.Mutex
 }
 
 func NewStreamer() *Streamer {
@@ -19,10 +21,15 @@ func (s *Streamer) CreateSession(local bool, ip string, port int, media *sdp.Med
 	session := NewStreamerSession(local, ip, port, media)
 
 	session.OnStop(func() {
+		s.Lock()
 		delete(s.sessions, session.GetID())
+		s.Unlock()
 	})
 
+	s.Lock()
 	s.sessions[session.id] = session
+	s.Unlock()
+
 	return session
 }
 

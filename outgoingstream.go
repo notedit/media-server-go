@@ -2,6 +2,7 @@ package mediaserver
 
 import (
 	"strings"
+	"sync"
 
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
@@ -17,6 +18,7 @@ type OutgoingStream struct {
 	onStopListeners     []func()
 	onMuteListeners     []func(bool)
 	onAddTrackListeners []func(*OutgoingStreamTrack)
+	sync.Mutex
 }
 
 // NewOutgoingStream create outgoing stream
@@ -127,6 +129,8 @@ func (o *OutgoingStream) GetStreamInfo() *sdp.StreamInfo {
 
 // GetTrack get one track
 func (o *OutgoingStream) GetTrack(trackID string) *OutgoingStreamTrack {
+	o.Lock()
+	defer o.Unlock()
 	return o.tracks[trackID]
 }
 
@@ -163,6 +167,9 @@ func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
 
 // AddTrack add one outgoing track
 func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) {
+
+	o.Lock()
+	defer o.Unlock()
 
 	if _, ok := o.tracks[track.GetID()]; ok {
 		return
@@ -207,11 +214,15 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)
 
 	outgoingTrack.OnStop(func() {
+		o.Lock()
 		delete(o.tracks, outgoingTrack.GetID())
+		o.Unlock()
 		o.transport.RemoveOutgoingSourceGroup(source)
 	})
 
+	o.Lock()
 	o.tracks[outgoingTrack.GetID()] = outgoingTrack
+	o.Unlock()
 
 	for _, addTrackFunc := range o.onAddTrackListeners {
 		addTrackFunc(outgoingTrack)

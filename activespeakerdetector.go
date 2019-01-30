@@ -2,6 +2,7 @@ package mediaserver
 
 import (
 	native "github.com/notedit/media-server-go/wrapper"
+	"sync"
 )
 
 type activeTrackListener interface {
@@ -37,6 +38,7 @@ type ActiveSpeakerDetector struct {
 	detector            native.ActiveSpeakerDetectorFacade
 	listener            ActiveDetectorListener
 	activeTrackListener *goActiveTrackListener
+	sync.Mutex
 }
 
 // ActiveDetectorListener listener
@@ -76,7 +78,11 @@ func (a *ActiveSpeakerDetector) AddTrack(track *IncomingStreamTrack) {
 		return
 	}
 	ssrc := source.GetMedia().GetSsrc()
+
+	a.Lock()
 	a.tracks[ssrc] = track
+	a.Unlock()
+
 	a.detector.AddIncomingSourceGroup(source)
 }
 
@@ -86,7 +92,9 @@ func (a *ActiveSpeakerDetector) RemoveTrack(track *IncomingStreamTrack) {
 	if source == nil {
 		return
 	}
+	a.Lock()
 	delete(a.tracks, source.GetMedia().GetSsrc())
+	a.Unlock()
 	a.detector.RemoveIncomingSourceGroup(source)
 }
 
