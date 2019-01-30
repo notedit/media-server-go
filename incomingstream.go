@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
@@ -19,6 +20,7 @@ type IncomingStream struct {
 	tracks                            map[string]*IncomingStreamTrack
 	onStopListeners                   []func()
 	onStreamAddIncomingTrackListeners []func(*IncomingStreamTrack)
+	sync.Mutex
 }
 
 // internal use
@@ -92,6 +94,8 @@ func (i *IncomingStream) GetStats() map[string]map[string]*IncomingAllStats {
 
 // GetTrack Get track by id
 func (i *IncomingStream) GetTrack(trackID string) *IncomingStreamTrack {
+	i.Lock()
+	defer i.Unlock()
 	return i.tracks[trackID]
 }
 
@@ -129,6 +133,8 @@ func (i *IncomingStream) GetVideoTracks() []*IncomingStreamTrack {
 // AddTrack Adds an incoming stream track created using the Transpocnder.CreateIncomingStreamTrack to this stream
 func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 
+	i.Lock()
+	defer i.Unlock()
 	if _, ok := i.tracks[track.GetID()]; ok {
 		return errors.New("Track id already present in stream")
 	}
@@ -263,14 +269,18 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 	incomingTrack.OnStop(func() {
 
+		i.Lock()
 		delete(i.tracks, incomingTrack.GetID())
+		i.Unlock()
 
 		for _, source := range sources {
 			i.transport.RemoveIncomingSourceGroup(source)
 		}
 	})
 
+	i.Lock()
 	i.tracks[track.GetID()] = incomingTrack
+	i.Unlock()
 
 	for _, ontrack := range i.onStreamAddIncomingTrackListeners {
 		ontrack(incomingTrack)
