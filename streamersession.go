@@ -65,14 +65,6 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 
 	streamerSession.outgoing = newOutgoingStreamTrack(media.GetType(), media.GetType(), native.SessionToSender(session), session.GetOutgoingSourceGroup())
 
-	streamerSession.incoming.OnStop(func() {
-		streamerSession.incoming = nil
-	})
-
-	streamerSession.outgoing.OnStop(func() {
-		streamerSession.outgoing = nil
-	})
-
 	streamerSession.onStopListeners = make([]func(), 0)
 
 	return streamerSession
@@ -83,12 +75,12 @@ func (s *StreamerSession) GetID() string {
 	return s.id
 }
 
-// GetIncomingStreamTrack get asso incoming track
+// GetIncomingStreamTrack get asso incoming track,
 func (s *StreamerSession) GetIncomingStreamTrack() *IncomingStreamTrack {
 	return s.incoming
 }
 
-// GetOutgoingStreamTrack get asso outgoing track
+// GetOutgoingStreamTrack get asso outgoing track,
 func (s *StreamerSession) GetOutgoingStreamTrack() *OutgoingStreamTrack {
 	return s.outgoing
 }
