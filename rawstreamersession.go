@@ -13,15 +13,15 @@ import (
 	native "github.com/notedit/media-server-go/wrapper"
 )
 
-type RawRTPStreamerSession struct {
+type RawStreamerSession struct {
 	id       string
 	incoming *IncomingStreamTrack
 	session  native.RawRTPSessionFacade
 }
 
-func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
+func NewRawStreamerSession(media *sdp.MediaInfo) *RawStreamerSession {
 
-	streamerSession := &RawRTPStreamerSession{}
+	streamerSession := &RawStreamerSession{}
 	var mediaType native.MediaFrameType = 0
 	if strings.ToLower(media.GetType()) == "video" {
 		mediaType = 1
@@ -56,22 +56,22 @@ func NewRawRTPStreamerSession(media *sdp.MediaInfo) *RawRTPStreamerSession {
 	return streamerSession
 }
 
-func (s *RawRTPStreamerSession) GetID() string {
+func (s *RawStreamerSession) GetID() string {
 	return s.id
 }
 
-func (s *RawRTPStreamerSession) GetIncomingStreamTrack() *IncomingStreamTrack {
+func (s *RawStreamerSession) GetIncomingStreamTrack() *IncomingStreamTrack {
 	return s.incoming
 }
 
-func (s *RawRTPStreamerSession) Push(rtp []byte) {
+func (s *RawStreamerSession) Push(rtp []byte) {
 	if rtp == nil || len(rtp) == 0 {
 		return
 	}
 	s.session.OnRTPPacket(&rtp[0], len(rtp))
 }
 
-func (s *RawRTPStreamerSession) Stop() {
+func (s *RawStreamerSession) Stop() {
 
 	if s.session == nil {
 		return
