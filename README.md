@@ -69,12 +69,14 @@ ubuntu
 ```
 apt install autoconf
 apt install libtool
+apt install automake
 ```
 macOS
 
 ```
 brew install libtool
 brew install autoconf
+brew install automake
 ```
 
 
