@@ -467,7 +467,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 
 	sources := map[string]native.RTPIncomingSourceGroup{"": source}
 
-	incomingTrack := newIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
+	incomingTrack := NewIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
 
 	incomingTrack.OnStop(func() {
 		for _, item := range sources {
@@ -494,7 +494,7 @@ func (t *Transport) GetIncomingStreams() []*IncomingStream {
 // GetIncomingStream  get one incoming stream
 func (t *Transport) GetIncomingStream(streamId string) *IncomingStream {
 	t.Lock()
-	defer  t.Unlock()
+	defer t.Unlock()
 	return t.incomingStreams[streamId]
 }
 
@@ -510,7 +510,7 @@ func (t *Transport) GetOutgoingStreams() []*OutgoingStream {
 // GetOutgoingStream get one outgoing stream
 func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
 	t.Lock()
-	defer  t.Unlock()
+	defer t.Unlock()
 	return t.outgoingStreams[streamId]
 }
 

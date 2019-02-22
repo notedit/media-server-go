@@ -173,8 +173,7 @@ func getStatsFromIncomingSource(source native.RTPIncomingSource) *IncomingStats 
 }
 
 // NewIncomingStreamTrack Create incoming audio/video track
-// TODO: make this public
-func newIncomingStreamTrack(media string, id string, receiver native.RTPReceiverFacade, sources map[string]native.RTPIncomingSourceGroup) *IncomingStreamTrack {
+func NewIncomingStreamTrack(media string, id string, receiver native.RTPReceiverFacade, sources map[string]native.RTPIncomingSourceGroup) *IncomingStreamTrack {
 	track := &IncomingStreamTrack{}
 
 	track.id = id
