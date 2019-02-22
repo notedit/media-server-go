@@ -57,7 +57,7 @@ func NewPlayer(filename string, listener PlayerEndListener) (*Player, error) {
 		trackID := "video"
 		source := player.player.GetVideoSource()
 
-		incoming := newIncomingStreamTrack("video", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
+		incoming := NewIncomingStreamTrack("video", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
 
 		player.tracks[trackID] = incoming
 	}
@@ -67,7 +67,7 @@ func NewPlayer(filename string, listener PlayerEndListener) (*Player, error) {
 		trackID := "audio"
 		source := player.player.GetAudioSource()
 
-		incoming := newIncomingStreamTrack("audio", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
+		incoming := NewIncomingStreamTrack("audio", trackID, nil, map[string]native.RTPIncomingSourceGroup{"": source})
 
 		player.tracks[trackID] = incoming
 

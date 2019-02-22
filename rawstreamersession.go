@@ -47,7 +47,7 @@ func NewRawStreamerSession(media *sdp.MediaInfo) *RawStreamerSession {
 	session.Init(properties)
 	native.DeleteProperties(properties)
 	streamerSession.session = session
-	streamerSession.incoming = newIncomingStreamTrack(media.GetType(), media.GetType(), native.RTPSessionToReceiver(session), map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
+	streamerSession.incoming = NewIncomingStreamTrack(media.GetType(), media.GetType(), native.RTPSessionToReceiver(session), map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
 
 	streamerSession.incoming.OnStop(func() {
 		streamerSession.incoming = nil
