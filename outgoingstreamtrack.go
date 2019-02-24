@@ -242,7 +242,7 @@ func (o *OutgoingStreamTrack) Stop() {
 	// swig memory clean
 	o.interCallback.deleteREMBBitrateListener()
 
-	o.Detach()
+	o.transpoder.Stop()
 
 	for _, stopFunc := range o.onStopListeners {
 		stopFunc()
@@ -251,8 +251,6 @@ func (o *OutgoingStreamTrack) Stop() {
 	if o.source != nil {
 		native.DeleteRTPOutgoingSourceGroup(o.source)
 	}
-
-	o.transpoder.Stop()
 
 	o.source = nil
 
