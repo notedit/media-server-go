@@ -2,6 +2,7 @@ package mediaserver
 
 import "C"
 import (
+	"fmt"
 	"unsafe"
 
 	native "github.com/notedit/media-server-go/wrapper"
@@ -9,10 +10,11 @@ import (
 
 // MediaStreamDuplicater we can make a copy of the incoming stream and callback the mediaframe data
 type MediaStreamDuplicater struct {
-	MediaFrames chan []byte
-	track       *IncomingStreamTrack
-	duplicater  native.MediaStreamDuplicaterFacade
-	listener    mediaframeListener
+	track      *IncomingStreamTrack
+	duplicater native.MediaStreamDuplicaterFacade
+	listener   mediaframeListener // used for native wrapper, see swig's doc
+
+	mediaframeListener func([]byte, uint) // used for outside
 }
 
 type mediaframeListener interface {
@@ -35,15 +37,17 @@ type overwrittenMediaFrameListener struct {
 
 func (p *overwrittenMediaFrameListener) OnMediaFrame(frame native.MediaFrame) {
 
-	if p.duplicater != nil {
+	if p.duplicater != nil && p.duplicater.mediaframeListener != nil {
 		buffer := C.GoBytes(unsafe.Pointer(frame.GetData()), C.int(frame.GetLength()))
 		if frame.GetType() == native.MediaFrameVideo {
 			data, err := annexbConvert(buffer)
 			if err == nil {
-				p.duplicater.MediaFrames <- data
+				p.duplicater.mediaframeListener(data, frame.GetTimeStamp())
+			} else {
+				fmt.Println(err)
 			}
 		} else {
-			p.duplicater.MediaFrames <- buffer
+			p.duplicater.mediaframeListener(buffer, frame.GetTimeStamp())
 		}
 
 	}
@@ -59,10 +63,6 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack) *MediaStreamDuplicater
 	source := track.GetFirstEncoding().GetSource()
 	duplicater.duplicater = native.NewMediaStreamDuplicaterFacade(source)
 
-	track.OnStop(func() {
-		duplicater.Stop()
-	})
-
 	listener := &overwrittenMediaFrameListener{
 		duplicater: duplicater,
 	}
@@ -73,8 +73,12 @@ func NewMediaStreamDuplicater(track *IncomingStreamTrack) *MediaStreamDuplicater
 
 	duplicater.duplicater.AddMediaListener(duplicater.listener)
 
-	duplicater.MediaFrames = make(chan []byte, 5)
 	return duplicater
+}
+
+// SetMediaFrameListener set outside mediaframe listener
+func (d *MediaStreamDuplicater) SetMediaFrameListener(listener func([]byte, uint)) {
+	d.mediaframeListener = listener
 }
 
 // Stop stop this

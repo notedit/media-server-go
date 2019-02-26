@@ -55,16 +55,17 @@ type IncomingTrackStopListener func()
 
 // IncomingStreamTrack Audio or Video track of a remote media stream
 type IncomingStreamTrack struct {
-	id                  string
-	media               string
-	receiver            native.RTPReceiverFacade
-	counter             int
-	encodings           []*Encoding
-	trackInfo           *sdp.TrackInfo
-	stats               map[string]*IncomingAllStats
-	onStopListeners     []func()
-	onAttachedListeners []func()
-	onDetachedListeners []func()
+	id                    string
+	media                 string
+	receiver              native.RTPReceiverFacade
+	counter               int
+	encodings             []*Encoding
+	trackInfo             *sdp.TrackInfo
+	stats                 map[string]*IncomingAllStats
+	mediaStreamDuplicater *MediaStreamDuplicater
+	onStopListeners       []func()
+	onAttachedListeners   []func()
+	onDetachedListeners   []func()
 }
 
 // IncomingStats info
@@ -482,6 +483,15 @@ func (i *IncomingStreamTrack) OnStop(stop func()) {
 	i.onStopListeners = append(i.onStopListeners, stop)
 }
 
+func (i *IncomingStreamTrack) OnMediaFrame(listener func([]byte, uint)) {
+
+	if i.mediaStreamDuplicater == nil {
+		i.mediaStreamDuplicater = NewMediaStreamDuplicater(i)
+	}
+
+	i.mediaStreamDuplicater.SetMediaFrameListener(listener)
+}
+
 // Stop Removes the track from the incoming stream and also detaches any attached outgoing track or recorder
 func (i *IncomingStreamTrack) Stop() {
 
@@ -497,6 +507,11 @@ func (i *IncomingStreamTrack) Stop() {
 		if encoding.source != nil {
 			native.DeleteRTPIncomingSourceGroup(encoding.source)
 		}
+	}
+
+	if i.mediaStreamDuplicater != nil {
+		i.mediaStreamDuplicater.Stop()
+		i.mediaStreamDuplicater = nil
 	}
 
 	for _, stopFunc := range i.onStopListeners {
