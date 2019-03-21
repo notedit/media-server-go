@@ -150,6 +150,10 @@ func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 // CreateTrack Create new track from a TrackInfo object and add it to this stream
 func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack {
 
+	if _, ok := i.tracks[track.GetID()]; ok {
+		return nil
+	}
+
 	var mediaType native.MediaFrameType = 0
 	if track.GetMedia() == "video" {
 		mediaType = 1
