@@ -1,9 +1,19 @@
+branches:
+  only:
+  - master
+
+
 language: go
 
 go:
   - "1.11" # use the latest Go release
 
 dist: xenial
+
+before_install:
+  - apt install autoconf libtool automake
+  - git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git 
+  - cd  media-server-go-native && make
 
 install:
   - go get -t -d ./...
