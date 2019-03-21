@@ -27,6 +27,7 @@ type IncomingStream struct {
 type transportWrapper interface {
 	AddIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
 	RemoveIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
+	GetTimeService() native.TimeService
 }
 
 // NewIncomingStream  Create new incoming stream
@@ -169,7 +170,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 			for _, encoding := range items {
 
-				source := native.NewRTPIncomingSourceGroup(mediaType)
+				source := native.NewRTPIncomingSourceGroup(mediaType, i.transport.GetTimeService())
 
 				mid := track.GetMediaID()
 
@@ -220,7 +221,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 		for j, ssrc := range ssrcs {
 
-			source := native.NewRTPIncomingSourceGroup(mediaType)
+			source := native.NewRTPIncomingSourceGroup(mediaType, i.transport.GetTimeService())
 
 			source.GetMedia().SetSsrc(ssrc)
 
@@ -244,7 +245,7 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 		}
 
 	} else {
-		source := native.NewRTPIncomingSourceGroup(mediaType)
+		source := native.NewRTPIncomingSourceGroup(mediaType, i.transport.GetTimeService())
 
 		source.GetMedia().SetSsrc(track.GetSSRCS()[0])
 

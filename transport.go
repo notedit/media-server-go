@@ -456,7 +456,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 		trackId = uuid.Must(uuid.NewV4()).String()
 	}
 
-	source := native.NewRTPIncomingSourceGroup(mediaType)
+	source := native.NewRTPIncomingSourceGroup(mediaType, t.transport.GetTimeService())
 
 	if ssrc, ok := ssrcs["media"]; ok {
 		source.GetMedia().SetSsrc(ssrc)

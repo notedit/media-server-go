@@ -209,7 +209,7 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 		source.GetFec().SetSsrc(0)
 	}
 
-	if _, ok := o.tracks[track.GetId()]; ok {
+	if _, ok := o.tracks[track.GetID()]; ok {
 		return nil
 	}
 
