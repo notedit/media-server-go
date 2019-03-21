@@ -2,7 +2,7 @@ package native
 
 /*
 #cgo CXXFLAGS: -std=c++1z
-#cgo CPPFLAGS: -I/usr/local/include:/usr/local/ssl/include/
+#cgo CPPFLAGS: -I/usr/local/include
 #cgo CPPFLAGS: -I${SRCDIR}/../include/crc32c/include/
 #cgo CPPFLAGS: -I${SRCDIR}/../include/libdatachannels/
 #cgo CPPFLAGS: -I${SRCDIR}/../include/libdatachannels/internal/
