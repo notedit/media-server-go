@@ -4,17 +4,10 @@
 
 WebRTC media server for go
 
-<br>
-
-|         | x86 | x64 |
-|:------- |:--- |:--- |
-| Linux   | -   | ✔︎   | 
-| macOS   | -   | ✔︎   | 
-
-only support Linux x64 and macOS x64 for now
 
 
 ## Functionality
+
 We intend to implement support the following features:
 
 - [x] MP4 multitrack recording support for all WebRTC codecs: H264,VP8,VP9, OPUS and PCMU/A.
@@ -35,21 +28,49 @@ We intend to implement support the following features:
 - [x] Raw RTP Data input
 
 
-## IN Plan
-
-- [ ] RTMP support
-- [ ] Cluster support
 
 ## How to use 
 
+[Read the Tutorial](https://github.com/notedit/media-server-go/blob/master/manual.md)
+
+
 Yon can see the demos from here [Demos](https://github.com/notedit/media-server-go-demo)
 
-[Tutorial](https://github.com/notedit/media-server-go/blob/master/manual.md)
+
 
 ## Install 
 
+you should install `libtool` and `autoconf` `automake` before you build 
+
+ubuntu
+```
+apt install autoconf
+apt install libtool
+apt install automake
+```
+macOS
+```
+brew install libtool
+brew install autoconf
+brew install automake
+```
+
+
+Build the native c/c++ code,  it will install `openssl`/`libsrtp/mp4v2`/`libmediaserver` into  `/usr/local`
+
+```
+git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git  
+
+cd media-server-go-native
+
+make
+```
+
+Install mediaserver go lib
+
 ```
 go get github.com/notedit/media-server-go
+
 ```
 
 
@@ -58,32 +79,9 @@ go get github.com/notedit/media-server-go
  - [Media Server](https://github.com/medooze/media-server)
  - [Media Server for Node.js](https://github.com/medooze/media-server-node)
  - [Murillo](https://github.com/murillo128)
- 
-
-## How to build manually 
-
-you should install `libtool` and `autoconf` before you build 
-
-ubuntu
-
-```
-apt install autoconf
-apt install libtool
-apt install automake
-```
-macOS
-
-```
-brew install libtool
-brew install autoconf
-brew install automake
-```
 
 
-0, clone the code
 
-1, bash build.sh
 
-2, go build 
 
 
