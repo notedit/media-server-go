@@ -209,6 +209,10 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 		source.GetFec().SetSsrc(0)
 	}
 
+	if _, ok := o.tracks[track.GetId()]; ok {
+		return nil
+	}
+
 	o.transport.AddOutgoingSourceGroup(source)
 
 	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)

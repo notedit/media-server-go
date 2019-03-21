@@ -52,6 +52,8 @@ type Transport struct {
 	username                 native.StringFacade
 	incomingStreams          map[string]*IncomingStream
 	outgoingStreams          map[string]*OutgoingStream
+	incomingStreamTracks     map[string]*IncomingStreamTrack
+	outgoingStreamTracks     map[string]*OutgoingStreamTrack
 	senderSideListener       senderSideEstimatorListener
 	onTransportStopListeners []TransportStopListener
 	onIncomingTrackListeners []IncomingTrackListener
@@ -118,6 +120,9 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	transport.incomingStreams = make(map[string]*IncomingStream)
 	transport.outgoingStreams = make(map[string]*OutgoingStream)
+
+	transport.incomingStreamTracks = make(map[string]*IncomingStreamTrack)
+	transport.outgoingStreamTracks = make(map[string]*OutgoingStreamTrack)
 
 	transport.onTransportStopListeners = make([]TransportStopListener, 0)
 
@@ -302,6 +307,10 @@ func (t *Transport) AddRemoteCandidate(candidate *sdp.CandidateInfo) {
 // CreateOutgoingStream Create new outgoing stream in this transport using StreamInfo
 func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingStream {
 
+	if _, ok := t.outgoingStreams[streamInfo.GetID()]; ok {
+		return nil
+	}
+
 	info := streamInfo.Clone()
 	outgoingStream := NewOutgoingStream(t.transport, info)
 
@@ -402,6 +411,10 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 
 // CreateIncomingStream Create an incoming stream object from the media stream info objet
 func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingStream {
+
+	if _, ok := t.incomingStreams[streamInfo.GetID()]; ok {
+		return nil
+	}
 
 	incomingStream := newIncomingStream(t.transport, native.TransportToReceiver(t.transport), streamInfo)
 

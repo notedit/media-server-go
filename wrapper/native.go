@@ -63,43 +63,43 @@ typedef long long swig_type_32;
 typedef long long swig_type_33;
 typedef long long swig_type_34;
 typedef long long swig_type_35;
-typedef _gostring_ swig_type_36;
-typedef _gostring_ swig_type_37;
-typedef _gostring_ swig_type_38;
-typedef _gostring_ swig_type_39;
-typedef _gostring_ swig_type_40;
-typedef _gostring_ swig_type_41;
-typedef _gostring_ swig_type_42;
-typedef _gostring_ swig_type_43;
-typedef _gostring_ swig_type_44;
-typedef _gostring_ swig_type_45;
-typedef _gostring_ swig_type_46;
-typedef _gostring_ swig_type_47;
-typedef _gostring_ swig_type_48;
-typedef _gostring_ swig_type_49;
-typedef _gostring_ swig_type_50;
-typedef _gostring_ swig_type_51;
-typedef _gostring_ swig_type_52;
-typedef long long swig_type_53;
-typedef long long swig_type_54;
+typedef long long swig_type_36;
+typedef long long swig_type_37;
+typedef long long swig_type_38;
+typedef long long swig_type_39;
+typedef long long swig_type_40;
+typedef long long swig_type_41;
+typedef long long swig_type_42;
+typedef long long swig_type_43;
+typedef long long swig_type_44;
+typedef long long swig_type_45;
+typedef long long swig_type_46;
+typedef long long swig_type_47;
+typedef long long swig_type_48;
+typedef long long swig_type_49;
+typedef long long swig_type_50;
+typedef long long swig_type_51;
+typedef long long swig_type_52;
+typedef _gostring_ swig_type_53;
+typedef _gostring_ swig_type_54;
 typedef _gostring_ swig_type_55;
-typedef long long swig_type_56;
-typedef long long swig_type_57;
-typedef long long swig_type_58;
-typedef long long swig_type_59;
-typedef long long swig_type_60;
+typedef _gostring_ swig_type_56;
+typedef _gostring_ swig_type_57;
+typedef _gostring_ swig_type_58;
+typedef _gostring_ swig_type_59;
+typedef _gostring_ swig_type_60;
 typedef long long swig_type_61;
 typedef long long swig_type_62;
-typedef long long swig_type_63;
-typedef long long swig_type_64;
-typedef long long swig_type_65;
-typedef long long swig_type_66;
-typedef long long swig_type_67;
-typedef long long swig_type_68;
-typedef long long swig_type_69;
-typedef long long swig_type_70;
-typedef long long swig_type_71;
-typedef long long swig_type_72;
+typedef _gostring_ swig_type_63;
+typedef _gostring_ swig_type_64;
+typedef _gostring_ swig_type_65;
+typedef _gostring_ swig_type_66;
+typedef _gostring_ swig_type_67;
+typedef _gostring_ swig_type_68;
+typedef _gostring_ swig_type_69;
+typedef _gostring_ swig_type_70;
+typedef _gostring_ swig_type_71;
+typedef _gostring_ swig_type_72;
 typedef _gostring_ swig_type_73;
 typedef _gostring_ swig_type_74;
 typedef _gostring_ swig_type_75;
@@ -112,458 +112,445 @@ typedef long long swig_type_81;
 typedef long long swig_type_82;
 typedef long long swig_type_83;
 typedef long long swig_type_84;
-extern void _wrap_Swig_free_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_Swig_malloc_native_6d81daf083c332b5(swig_intgo arg1);
-extern swig_intgo _wrap_GetWidth_native_6d81daf083c332b5(swig_intgo arg1);
-extern swig_intgo _wrap_GetHeight_native_6d81daf083c332b5(swig_intgo arg1);
-extern _Bool _wrap_Properties_HasProperty_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_Properties_SetProperty__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, swig_type_1 arg2, swig_intgo arg3);
-extern void _wrap_Properties_SetProperty__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_type_2 arg2, swig_type_3 arg3);
-extern void _wrap_Properties_SetProperty__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern void _wrap_Properties_GetChildren__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern void _wrap_Properties_GetChildren__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_type_4 arg2, uintptr_t arg3);
-extern uintptr_t _wrap_Properties_GetChildren__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_Properties_GetChildren__SWIG_3_native_6d81daf083c332b5(uintptr_t arg1, swig_type_5 arg2);
-extern void _wrap_Properties_GetChildrenArray_native_6d81daf083c332b5(uintptr_t arg1, swig_type_6 arg2, uintptr_t arg3);
-extern swig_type_7 _wrap_Properties_GetProperty__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, swig_type_8 arg2);
-extern uintptr_t _wrap_Properties_GetProperty__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_type_9 arg2, uintptr_t arg3);
-extern uintptr_t _wrap_Properties_GetProperty__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern swig_type_10 _wrap_Properties_GetProperty__SWIG_3_native_6d81daf083c332b5(uintptr_t arg1, swig_type_11 arg2, swig_type_12 arg3);
-extern swig_type_13 _wrap_Properties_GetProperty__SWIG_4_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_type_14 arg3);
-extern swig_intgo _wrap_Properties_GetProperty__SWIG_5_native_6d81daf083c332b5(uintptr_t arg1, swig_type_15 arg2, swig_intgo arg3);
-extern swig_intgo _wrap_Properties_GetProperty__SWIG_6_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3);
-extern swig_type_16 _wrap_Properties_GetProperty__SWIG_7_native_6d81daf083c332b5(uintptr_t arg1, swig_type_17 arg2, swig_type_18 arg3);
-extern swig_type_19 _wrap_Properties_GetProperty__SWIG_8_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_type_20 arg3);
-extern _Bool _wrap_Properties_GetProperty__SWIG_9_native_6d81daf083c332b5(uintptr_t arg1, swig_type_21 arg2, _Bool arg3);
-extern _Bool _wrap_Properties_GetProperty__SWIG_10_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, _Bool arg3);
-extern uintptr_t _wrap_new_Properties_native_6d81daf083c332b5(void);
-extern void _wrap_delete_Properties_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_malloc32_native_6d81daf083c332b5(swig_type_22 arg1);
-extern uintptr_t _wrap_new_ByteBuffer__SWIG_0_native_6d81daf083c332b5(void);
-extern uintptr_t _wrap_new_ByteBuffer__SWIG_1_native_6d81daf083c332b5(swig_intgo arg1);
-extern uintptr_t _wrap_new_ByteBuffer__SWIG_2_native_6d81daf083c332b5(swig_voidp arg1, swig_intgo arg2);
-extern uintptr_t _wrap_new_ByteBuffer__SWIG_3_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_ByteBuffer__SWIG_4_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_ByteBuffer_Clone_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_ByteBuffer_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_ByteBuffer_Alloc_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_ByteBuffer_Set_native_6d81daf083c332b5(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
-extern swig_intgo _wrap_ByteBuffer_Append_native_6d81daf083c332b5(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
-extern swig_voidp _wrap_ByteBuffer_GetData_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_ByteBuffer_GetSize_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_ByteBuffer_GetLength_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_Audio_MediaFrame_native_6d81daf083c332b5(void);
-extern swig_intgo _wrap_Video_MediaFrame_native_6d81daf083c332b5(void);
-extern swig_intgo _wrap_Text_MediaFrame_native_6d81daf083c332b5(void);
-extern swig_intgo _wrap_Unknown_MediaFrame_native_6d81daf083c332b5(void);
-extern swig_type_23 _wrap_MediaFrame_TypeToString_native_6d81daf083c332b5(swig_intgo arg1);
-extern void _wrap_delete_MediaFrame_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_ClearRTPPacketizationInfo_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_AddRtpPacket_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2, swig_intgo arg3, swig_voidp arg4, swig_intgo arg5);
-extern swig_intgo _wrap_MediaFrame_GetType_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_MediaFrame_GetTimeStamp_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_SetTimestamp_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_type_24 _wrap_MediaFrame_GetTime_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_SetTime_native_6d81daf083c332b5(uintptr_t arg1, swig_type_25 arg2);
-extern swig_intgo _wrap_MediaFrame_GetSSRC_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_SetSSRC_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern _Bool _wrap_MediaFrame_HasRtpPacketizationInfo_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_MediaFrame_GetRtpPacketizationInfo_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_MediaFrame_Clone_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_MediaFrame_GetDuration_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_SetDuration_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_voidp _wrap_MediaFrame_GetData_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_MediaFrame_GetLength_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_MediaFrame_GetMaxMediaLength_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrame_SetLength_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_MediaFrame_Alloc_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_MediaFrame_SetMedia_native_6d81daf083c332b5(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
-extern swig_intgo _wrap_MediaFrame_AppendMedia_native_6d81daf083c332b5(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
-extern uintptr_t _wrap_new_Acumulator_native_6d81daf083c332b5(swig_intgo arg1);
-extern swig_type_26 _wrap_Acumulator_GetAcumulated_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_27 _wrap_Acumulator_GetDiff_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_28 _wrap_Acumulator_GetInstant_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_29 _wrap_Acumulator_GetMin_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_30 _wrap_Acumulator_GetMax_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_Acumulator_GetWindow_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_Acumulator_IsInWindow_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_Acumulator_IsInMinMaxWindow_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_Acumulator_GetInstantMedia_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_Acumulator_GetInstantAvg_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_Acumulator_GetAverage_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_Acumulator_GetMinAvg_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_Acumulator_GetMaxAvg_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_Acumulator_ResetMinMax_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_Acumulator_Reset_native_6d81daf083c332b5(uintptr_t arg1, swig_type_31 arg2);
-extern swig_type_32 _wrap_Acumulator_Update__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, swig_type_33 arg2, swig_intgo arg3);
-extern swig_type_34 _wrap_Acumulator_Update__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_type_35 arg2);
-extern swig_intgo _wrap_Acumulator_GetMinValueInWindow_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_Acumulator_GetMaxValueInWindow_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_Acumulator_GetCount_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_Acumulator_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_DTLSICETransport_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_DTLSICETransport_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_DTLSICETransport_Start_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_DTLSICETransport_Stop_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_DTLSICETransport_SetRemoteProperties_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_DTLSICETransport_SetLocalProperties_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_DTLSICETransport_SendPLI_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_DTLSICETransport_Enqueue_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, swig_type_36 arg2, _Bool arg3, _Bool arg4, _Bool arg5);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_type_37 arg2, _Bool arg3, _Bool arg4);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1, swig_type_38 arg2, _Bool arg3);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_3_native_6d81daf083c332b5(uintptr_t arg1, swig_type_39 arg2);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_4_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, _Bool arg3, _Bool arg4, _Bool arg5);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_5_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, _Bool arg3, _Bool arg4);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_6_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, _Bool arg3);
-extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_7_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_DTLSICETransport_Reset_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_DTLSICETransport_ActivateRemoteCandidate_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, _Bool arg3, swig_intgo arg4);
-extern swig_intgo _wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_6d81daf083c332b5(uintptr_t arg1, swig_type_40 arg2, swig_type_41 arg3, swig_type_42 arg4);
-extern swig_intgo _wrap_DTLSICETransport_SetLocalSTUNCredentials_native_6d81daf083c332b5(uintptr_t arg1, swig_type_43 arg2, swig_type_44 arg3);
-extern swig_intgo _wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_6d81daf083c332b5(uintptr_t arg1, swig_type_45 arg2, swig_type_46 arg3);
-extern _Bool _wrap_DTLSICETransport_AddOutgoingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_DTLSICETransport_AddIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_DTLSICETransport_SetBandwidthProbing_native_6d81daf083c332b5(uintptr_t arg1, _Bool arg2);
-extern void _wrap_DTLSICETransport_SetMaxProbingBitrate_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_type_47 _wrap_DTLSICETransport_GetRemoteUsername_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_48 _wrap_DTLSICETransport_GetRemotePwd_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_49 _wrap_DTLSICETransport_GetLocalUsername_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_50 _wrap_DTLSICETransport_GetLocalPwd_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_DTLSICETransport_onDTLSSetup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_voidp arg3, swig_intgo arg4, swig_voidp arg5, swig_intgo arg6);
-extern swig_intgo _wrap_DTLSICETransport_onData_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_voidp arg3, swig_intgo arg4);
-extern swig_intgo _wrap_DTLSICETransport_GetRTT_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPBundleTransport_native_6d81daf083c332b5(void);
-extern void _wrap_delete_RTPBundleTransport_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPBundleTransport_Init__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPBundleTransport_Init__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern uintptr_t _wrap_RTPBundleTransport_AddICETransport_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern swig_intgo _wrap_RTPBundleTransport_RemoveICETransport_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_RTPBundleTransport_End_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPBundleTransport_GetLocalPort_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPBundleTransport_AddRemoteCandidate_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_type_51 arg3, short arg4);
-extern swig_intgo _wrap_RTPBundleTransport_Send_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_voidp arg3, swig_intgo arg4);
-extern uintptr_t _wrap_new_PCAPTransportEmulator_native_6d81daf083c332b5(void);
-extern void _wrap_delete_PCAPTransportEmulator_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_PCAPTransportEmulator_SetRemoteProperties_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_PCAPTransportEmulator_Open_native_6d81daf083c332b5(uintptr_t arg1, swig_type_52 arg2);
-extern _Bool _wrap_PCAPTransportEmulator_SetReader_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern _Bool _wrap_PCAPTransportEmulator_Play_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_53 _wrap_PCAPTransportEmulator_Seek_native_6d81daf083c332b5(uintptr_t arg1, swig_type_54 arg2);
-extern _Bool _wrap_PCAPTransportEmulator_Stop_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_PCAPTransportEmulator_Close_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PCAPTransportEmulator_SendPLI_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern uintptr_t _wrap_new_mp4track_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_mp4track_CreateAudioTrack_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3);
-extern swig_intgo _wrap_mp4track_CreateVideoTrack_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3, swig_intgo arg4);
-extern swig_intgo _wrap_mp4track_CreateTextTrack_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_mp4track_WriteAudioFrame_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_mp4track_WriteVideoFrame_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_mp4track_WriteTextFrame_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_mp4track_Close_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_mp4track_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_MP4Recorder_native_6d81daf083c332b5(void);
-extern void _wrap_delete_MP4Recorder_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_MP4Recorder_Create_native_6d81daf083c332b5(uintptr_t arg1, swig_type_55 arg2);
-extern _Bool _wrap_MP4Recorder_Record__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_MP4Recorder_Record__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, _Bool arg2);
-extern _Bool _wrap_MP4Recorder_Stop_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_MP4Recorder_Close__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_MP4Recorder_Close__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, _Bool arg2);
-extern uintptr_t _wrap_MP4Recorder_GetType_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MP4Recorder_onMediaFrame__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_MP4Recorder_onMediaFrame__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2, uintptr_t arg3);
-extern void _wrap_MP4Recorder_onMediaFrame__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2, uintptr_t arg3, swig_type_56 arg4);
-extern uintptr_t _wrap_new_RTPStreamTransponder_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_delete_RTPStreamTransponder_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_RTPStreamTransponder_SetIncoming_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern void _wrap_RTPStreamTransponder_Close_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPStreamTransponder_onRTP_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern void _wrap_RTPStreamTransponder_onEnded_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_RTPStreamTransponder_onPLIRequest_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3);
-extern void _wrap_RTPStreamTransponder_onREMB_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3, swig_intgo arg4);
-extern void _wrap_RTPStreamTransponder_SelectLayer_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2, swig_intgo arg3);
-extern void _wrap_RTPStreamTransponder_Mute_native_6d81daf083c332b5(uintptr_t arg1, _Bool arg2);
-extern void _wrap_LayerInfo_MaxLayerId_set_native_6d81daf083c332b5(char arg1);
-extern char _wrap_LayerInfo_MaxLayerId_get_native_6d81daf083c332b5(void);
-extern void _wrap_LayerInfo_temporalLayerId_set_native_6d81daf083c332b5(uintptr_t arg1, char arg2);
-extern char _wrap_LayerInfo_temporalLayerId_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_LayerInfo_spatialLayerId_set_native_6d81daf083c332b5(uintptr_t arg1, char arg2);
-extern char _wrap_LayerInfo_spatialLayerId_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_LayerInfo_native_6d81daf083c332b5(void);
-extern void _wrap_delete_LayerInfo_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_LayerSource_numPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_LayerSource_numPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_LayerSource_totalBytes_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_LayerSource_totalBytes_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_LayerSource_bitrate_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_LayerSource_bitrate_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_LayerSource_native_6d81daf083c332b5(void);
-extern void _wrap_delete_LayerSource_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_SetLayerSource_TemporalLayerId_native_6d81daf083c332b5(uintptr_t _swig_base, char arg1);
-extern char _wrap_GetLayerSource_TemporalLayerId_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetLayerSource_SpatialLayerId_native_6d81daf083c332b5(uintptr_t _swig_base, char arg1);
-extern char _wrap_GetLayerSource_SpatialLayerId_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern swig_type_57 _wrap_LayerSources_size_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_LayerSources_get_native_6d81daf083c332b5(uintptr_t arg1, swig_type_58 arg2);
-extern uintptr_t _wrap_new_LayerSources_native_6d81daf083c332b5(void);
-extern void _wrap_delete_LayerSources_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_ssrc_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_ssrc_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_extSeqNum_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_extSeqNum_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_cycles_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_cycles_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_jitter_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_jitter_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_numPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_numPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_numRTCPPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_numRTCPPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_totalBytes_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_totalBytes_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_totalRTCPBytes_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_totalRTCPBytes_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPSource_bitrate_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSource_bitrate_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPSource_native_6d81daf083c332b5(void);
-extern void _wrap_delete_RTPSource_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lostPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_lostPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_dropPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_dropPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_59 arg2);
-extern swig_type_60 _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_61 arg2);
-extern swig_type_62 _wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lastReport_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_63 arg2);
-extern swig_type_64 _wrap_RTPIncomingSource_lastReport_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lastPLI_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_65 arg2);
-extern swig_type_66 _wrap_RTPIncomingSource_lastPLI_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_totalPLIs_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_totalPLIs_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_totalNACKs_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSource_totalNACKs_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSource_lastNACKed_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_67 arg2);
-extern swig_type_68 _wrap_RTPIncomingSource_lastNACKed_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_RTPIncomingSource_layers_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPIncomingSource_native_6d81daf083c332b5(void);
-extern void _wrap_delete_RTPIncomingSource_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_SetRTPIncomingSource_Ssrc_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_Ssrc_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_ExtSeqNum_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_ExtSeqNum_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_Cycles_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_Cycles_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_Jitter_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_Jitter_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_NumPackets_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_NumPackets_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_NumRTCPPackets_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_NumRTCPPackets_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_TotalBytes_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_TotalBytes_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_TotalRTCPBytes_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_TotalRTCPBytes_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPIncomingSource_Bitrate_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPIncomingSource_Bitrate_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_RTPOutgoingSource_time_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSource_time_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_lastTime_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSource_lastTime_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_numPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSource_numPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_numRTCPPackets_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSource_numRTCPPackets_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_totalBytes_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSource_totalBytes_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_totalRTCPBytes_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSource_totalRTCPBytes_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_lastSenderReport_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_69 arg2);
-extern swig_type_70 _wrap_RTPOutgoingSource_lastSenderReport_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_6d81daf083c332b5(uintptr_t arg1, swig_type_71 arg2);
-extern swig_type_72 _wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPOutgoingSource_native_6d81daf083c332b5(void);
-extern void _wrap_delete_RTPOutgoingSource_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_SetRTPOutgoingSource_Ssrc_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPOutgoingSource_Ssrc_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPOutgoingSource_ExtSeqNum_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPOutgoingSource_ExtSeqNum_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPOutgoingSource_Cycles_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPOutgoingSource_Cycles_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPOutgoingSource_Jitter_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPOutgoingSource_Jitter_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern void _wrap_SetRTPOutgoingSource_Bitrate_native_6d81daf083c332b5(uintptr_t _swig_base, swig_intgo arg1);
-extern swig_intgo _wrap_GetRTPOutgoingSource_Bitrate_native_6d81daf083c332b5(uintptr_t _swig_base);
-extern uintptr_t _wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_6d81daf083c332b5(swig_intgo arg1);
-extern uintptr_t _wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_RTPOutgoingSourceGroup_Xtype_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPOutgoingSourceGroup_Xtype_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSourceGroup_media_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPOutgoingSourceGroup_media_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSourceGroup_fec_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPOutgoingSourceGroup_fec_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPOutgoingSourceGroup_rtx_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPOutgoingSourceGroup_rtx_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_RTPOutgoingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPIncomingSourceGroup_native_6d81daf083c332b5(swig_intgo arg1);
-extern void _wrap_RTPIncomingSourceGroup_rid_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPIncomingSourceGroup_rid_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_mid_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPIncomingSourceGroup_mid_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_rtt_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSourceGroup_rtt_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_Xtype_set_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPIncomingSourceGroup_Xtype_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_media_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPIncomingSourceGroup_media_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_fec_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPIncomingSourceGroup_fec_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_rtx_set_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_RTPIncomingSourceGroup_rtx_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_RTPIncomingSourceGroup_Update_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPIncomingSourceGroup_GetCurrentLost_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPIncomingSourceGroup_GetMinWaitedTime_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPIncomingSourceGroup_GetMaxWaitedTime_native_6d81daf083c332b5(uintptr_t arg1);
-extern double _wrap_RTPIncomingSourceGroup_GetAvgWaitedTime_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_RTPIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_StringFacade__SWIG_0_native_6d81daf083c332b5(swig_type_73 arg1);
-extern uintptr_t _wrap_new_StringFacade__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_74 _wrap_StringFacade_toString_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_StringFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_PropertiesFacade_SetProperty__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1, swig_type_75 arg2, swig_intgo arg3);
-extern void _wrap_PropertiesFacade_SetProperty__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1, swig_type_76 arg2, swig_type_77 arg3);
-extern void _wrap_PropertiesFacade_SetProperty__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1, swig_type_78 arg2, _Bool arg3);
-extern uintptr_t _wrap_new_PropertiesFacade_native_6d81daf083c332b5(void);
-extern void _wrap_delete_PropertiesFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaServer_Initialize_native_6d81daf083c332b5(void);
-extern void _wrap_MediaServer_EnableLog_native_6d81daf083c332b5(_Bool arg1);
-extern void _wrap_MediaServer_EnableDebug_native_6d81daf083c332b5(_Bool arg1);
-extern void _wrap_MediaServer_EnableUltraDebug_native_6d81daf083c332b5(_Bool arg1);
-extern uintptr_t _wrap_MediaServer_GetFingerprint_native_6d81daf083c332b5(void);
-extern _Bool _wrap_MediaServer_SetPortRange_native_6d81daf083c332b5(swig_intgo arg1, swig_intgo arg2);
-extern uintptr_t _wrap_new_MediaServer_native_6d81daf083c332b5(void);
-extern void _wrap_delete_MediaServer_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPSessionFacade_native_6d81daf083c332b5(swig_intgo arg1);
-extern swig_intgo _wrap_RTPSessionFacade_Init_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_RTPSessionFacade_SetLocalPort_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern swig_intgo _wrap_RTPSessionFacade_GetLocalPort_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPSessionFacade_SetRemotePort_native_6d81daf083c332b5(uintptr_t arg1, swig_type_79 arg2, swig_intgo arg3);
-extern uintptr_t _wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_RTPSessionFacade_GetIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPSessionFacade_End_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPSessionFacade_Enqueue_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_RTPSessionFacade_SendPLI_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_delete_RTPSessionFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPSenderFacade__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPSenderFacade__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_RTPSenderFacade_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_RTPSenderFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPReceiverFacade__SWIG_0_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPReceiverFacade__SWIG_1_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPReceiverFacade__SWIG_2_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_RTPReceiverFacade_get_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RTPReceiverFacade_SendPLI_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_delete_RTPReceiverFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_TransportToSender_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_TransportToReceiver_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_PCAPTransportEmulatorToReceiver_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_SessionToSender_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_SessionToReceiver_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_RTPSessionToReceiver_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RTPStreamTransponderFacade_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern _Bool _wrap_RTPStreamTransponderFacade_SetIncoming_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
-extern void _wrap_RTPStreamTransponderFacade_SelectLayer_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2, swig_intgo arg3);
-extern void _wrap_RTPStreamTransponderFacade_Mute_native_6d81daf083c332b5(uintptr_t arg1, _Bool arg2);
-extern void _wrap_RTPStreamTransponderFacade_Close_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_RTPStreamTransponderFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_StreamTrackDepacketizer_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_StreamTrackDepacketizer_AddMediaListener_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_StreamTrackDepacketizer_RemoveMediaListener_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_StreamTrackDepacketizer_Stop_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_StreamTrackDepacketizer_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_PlayerFacade_native_6d81daf083c332b5(void);
-extern uintptr_t _wrap_PlayerFacade_GetAudioSource_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_PlayerFacade_GetVideoSource_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_PlayerFacade_Reset_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_PlayerFacade_setPlayEndListener_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_PlayerFacade_Open_native_6d81daf083c332b5(uintptr_t arg1, swig_type_80 arg2);
-extern _Bool _wrap_PlayerFacade_HasAudioTrack_native_6d81daf083c332b5(uintptr_t arg1);
-extern _Bool _wrap_PlayerFacade_HasVideoTrack_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_GetAudioCodec_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_GetVideoCodec_native_6d81daf083c332b5(uintptr_t arg1);
-extern double _wrap_PlayerFacade_GetDuration_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_GetVideoWidth_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_GetVideoHeight_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_GetVideoBitrate_native_6d81daf083c332b5(uintptr_t arg1);
-extern double _wrap_PlayerFacade_GetVideoFramerate_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_Play_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_type_81 _wrap_PlayerFacade_PreSeek_native_6d81daf083c332b5(uintptr_t arg1, swig_type_82 arg2);
-extern swig_intgo _wrap_PlayerFacade_Seek_native_6d81daf083c332b5(uintptr_t arg1, swig_type_83 arg2);
-extern swig_type_84 _wrap_PlayerFacade_Tell_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_Stop_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_PlayerFacade_Close_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_PlayerFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_RawRTPSessionFacade_native_6d81daf083c332b5(swig_intgo arg1);
-extern swig_intgo _wrap_RawRTPSessionFacade_Init_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_RawRTPSessionFacade_onRTPPacket_native_6d81daf083c332b5(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
-extern uintptr_t _wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RawRTPSessionFacade_End_native_6d81daf083c332b5(uintptr_t arg1);
-extern swig_intgo _wrap_RawRTPSessionFacade_SendPLI_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_delete_RawRTPSessionFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap__swig_NewDirectorSenderSideEstimatorListenerSenderSideEstimatorListener_native_6d81daf083c332b5(int);
-extern void _wrap_DeleteDirectorSenderSideEstimatorListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap_new_SenderSideEstimatorListener_native_6d81daf083c332b5(void);
-extern void _wrap_delete_SenderSideEstimatorListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern uintptr_t _wrap_new_ActiveSpeakerDetectorFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
-extern void _wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_delete_ActiveSpeakerDetectorFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap__swig_NewDirectorMediaFrameListenerMediaFrameListener_native_6d81daf083c332b5(int);
-extern void _wrap_DeleteDirectorMediaFrameListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap__swig_DirectorMediaFrameListener_upcall_OnMediaFrame_native_6d81daf083c332b5(uintptr_t, uintptr_t frame);
-extern uintptr_t _wrap_new_MediaFrameListener_native_6d81daf083c332b5(void);
-extern void _wrap_delete_MediaFrameListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaFrameListener_onMediaFrame_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern uintptr_t _wrap_new_MediaStreamDuplicaterFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_MediaStreamDuplicaterFacade_AddMediaListener_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_MediaStreamDuplicaterFacade_RemoveMediaListener_native_6d81daf083c332b5(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_MediaStreamDuplicaterFacade_Stop_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_delete_MediaStreamDuplicaterFacade_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_native_6d81daf083c332b5(int);
-extern void _wrap_DeleteDirectorPlayerEndListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_6d81daf083c332b5(uintptr_t);
-extern uintptr_t _wrap_new_PlayerEndListener_native_6d81daf083c332b5(void);
-extern void _wrap_delete_PlayerEndListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_PlayerEndListener_onEnd_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListener_native_6d81daf083c332b5(int);
-extern void _wrap_DeleteDirectorREMBBitrateListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_6d81daf083c332b5(uintptr_t);
-extern uintptr_t _wrap_new_REMBBitrateListener_native_6d81daf083c332b5(void);
-extern void _wrap_delete_REMBBitrateListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_REMBBitrateListener_onREMB_native_6d81daf083c332b5(uintptr_t arg1);
-extern uintptr_t _wrap__swig_NewDirectorActiveTrackListenerActiveTrackListener_native_6d81daf083c332b5(int);
-extern void _wrap_DeleteDirectorActiveTrackListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_6d81daf083c332b5(uintptr_t, swig_intgo id);
-extern uintptr_t _wrap_new_ActiveTrackListener_native_6d81daf083c332b5(void);
-extern void _wrap_delete_ActiveTrackListener_native_6d81daf083c332b5(uintptr_t arg1);
-extern void _wrap_ActiveTrackListener_onActiveTrackchanged_native_6d81daf083c332b5(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_Swig_free_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_Swig_malloc_native_a625d9984f014aad(swig_intgo arg1);
+extern swig_intgo _wrap_GetWidth_native_a625d9984f014aad(swig_intgo arg1);
+extern swig_intgo _wrap_GetHeight_native_a625d9984f014aad(swig_intgo arg1);
+extern _Bool _wrap_Properties_HasProperty_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_Properties_SetProperty__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, swig_type_1 arg2, swig_intgo arg3);
+extern void _wrap_Properties_SetProperty__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_type_2 arg2, swig_type_3 arg3);
+extern void _wrap_Properties_SetProperty__SWIG_2_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern void _wrap_Properties_GetChildren__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern void _wrap_Properties_GetChildren__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_type_4 arg2, uintptr_t arg3);
+extern uintptr_t _wrap_Properties_GetChildren__SWIG_2_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_Properties_GetChildren__SWIG_3_native_a625d9984f014aad(uintptr_t arg1, swig_type_5 arg2);
+extern void _wrap_Properties_GetChildrenArray_native_a625d9984f014aad(uintptr_t arg1, swig_type_6 arg2, uintptr_t arg3);
+extern swig_type_7 _wrap_Properties_GetProperty__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, swig_type_8 arg2);
+extern uintptr_t _wrap_Properties_GetProperty__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_type_9 arg2, uintptr_t arg3);
+extern uintptr_t _wrap_Properties_GetProperty__SWIG_2_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern swig_type_10 _wrap_Properties_GetProperty__SWIG_3_native_a625d9984f014aad(uintptr_t arg1, swig_type_11 arg2, swig_type_12 arg3);
+extern swig_type_13 _wrap_Properties_GetProperty__SWIG_4_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, swig_type_14 arg3);
+extern swig_intgo _wrap_Properties_GetProperty__SWIG_5_native_a625d9984f014aad(uintptr_t arg1, swig_type_15 arg2, swig_intgo arg3);
+extern swig_intgo _wrap_Properties_GetProperty__SWIG_6_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3);
+extern swig_type_16 _wrap_Properties_GetProperty__SWIG_7_native_a625d9984f014aad(uintptr_t arg1, swig_type_17 arg2, swig_type_18 arg3);
+extern swig_type_19 _wrap_Properties_GetProperty__SWIG_8_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, swig_type_20 arg3);
+extern _Bool _wrap_Properties_GetProperty__SWIG_9_native_a625d9984f014aad(uintptr_t arg1, swig_type_21 arg2, _Bool arg3);
+extern _Bool _wrap_Properties_GetProperty__SWIG_10_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, _Bool arg3);
+extern uintptr_t _wrap_new_Properties_native_a625d9984f014aad(void);
+extern void _wrap_delete_Properties_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_malloc32_native_a625d9984f014aad(swig_type_22 arg1);
+extern uintptr_t _wrap_new_ByteBuffer__SWIG_0_native_a625d9984f014aad(void);
+extern uintptr_t _wrap_new_ByteBuffer__SWIG_1_native_a625d9984f014aad(swig_intgo arg1);
+extern uintptr_t _wrap_new_ByteBuffer__SWIG_2_native_a625d9984f014aad(swig_voidp arg1, swig_intgo arg2);
+extern uintptr_t _wrap_new_ByteBuffer__SWIG_3_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_ByteBuffer__SWIG_4_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_ByteBuffer_Clone_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_ByteBuffer_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_ByteBuffer_Alloc_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_ByteBuffer_Set_native_a625d9984f014aad(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
+extern swig_intgo _wrap_ByteBuffer_Append_native_a625d9984f014aad(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
+extern swig_voidp _wrap_ByteBuffer_GetData_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_ByteBuffer_GetSize_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_ByteBuffer_GetLength_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_Audio_MediaFrame_native_a625d9984f014aad(void);
+extern swig_intgo _wrap_Video_MediaFrame_native_a625d9984f014aad(void);
+extern swig_intgo _wrap_Text_MediaFrame_native_a625d9984f014aad(void);
+extern swig_intgo _wrap_Unknown_MediaFrame_native_a625d9984f014aad(void);
+extern swig_type_23 _wrap_MediaFrame_TypeToString_native_a625d9984f014aad(swig_intgo arg1);
+extern void _wrap_delete_MediaFrame_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrame_ClearRTPPacketizationInfo_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrame_AddRtpPacket_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2, swig_intgo arg3, swig_voidp arg4, swig_intgo arg5);
+extern swig_intgo _wrap_MediaFrame_GetType_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_MediaFrame_GetTimeStamp_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrame_SetTimestamp_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_MediaFrame_GetSSRC_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrame_SetSSRC_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern _Bool _wrap_MediaFrame_HasRtpPacketizationInfo_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_MediaFrame_GetRtpPacketizationInfo_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_MediaFrame_Clone_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_MediaFrame_GetDuration_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrame_SetDuration_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_voidp _wrap_MediaFrame_GetData_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_MediaFrame_GetLength_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_MediaFrame_GetMaxMediaLength_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrame_SetLength_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_MediaFrame_Alloc_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_MediaFrame_SetMedia_native_a625d9984f014aad(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
+extern swig_intgo _wrap_MediaFrame_AppendMedia_native_a625d9984f014aad(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
+extern uintptr_t _wrap_new_Acumulator_native_a625d9984f014aad(swig_intgo arg1);
+extern swig_type_24 _wrap_Acumulator_GetAcumulated_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_25 _wrap_Acumulator_GetDiff_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_26 _wrap_Acumulator_GetInstant_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_27 _wrap_Acumulator_GetMin_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_28 _wrap_Acumulator_GetMax_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_Acumulator_GetWindow_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_Acumulator_IsInWindow_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_Acumulator_IsInMinMaxWindow_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_Acumulator_GetInstantMedia_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_Acumulator_GetInstantAvg_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_Acumulator_GetAverage_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_Acumulator_GetMinAvg_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_Acumulator_GetMaxAvg_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_Acumulator_ResetMinMax_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_Acumulator_Reset_native_a625d9984f014aad(uintptr_t arg1, swig_type_29 arg2);
+extern swig_type_30 _wrap_Acumulator_Update__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, swig_type_31 arg2, swig_intgo arg3);
+extern swig_type_32 _wrap_Acumulator_Update__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_type_33 arg2);
+extern swig_intgo _wrap_Acumulator_GetMinValueInWindow_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_Acumulator_GetMaxValueInWindow_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_Acumulator_GetCount_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_Acumulator_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_UDPReader_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_34 _wrap_UDPReader_Next_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_voidp _wrap_UDPReader_GetUDPData_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_UDPReader_GetUDPSize_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_35 _wrap_UDPReader_Seek_native_a625d9984f014aad(uintptr_t arg1, swig_type_36 arg2);
+extern void _wrap_UDPReader_Rewind_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_UDPReader_Close_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_LayerInfo_MaxLayerId_set_native_a625d9984f014aad(char arg1);
+extern char _wrap_LayerInfo_MaxLayerId_get_native_a625d9984f014aad(void);
+extern void _wrap_LayerInfo_temporalLayerId_set_native_a625d9984f014aad(uintptr_t arg1, char arg2);
+extern char _wrap_LayerInfo_temporalLayerId_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_LayerInfo_spatialLayerId_set_native_a625d9984f014aad(uintptr_t arg1, char arg2);
+extern char _wrap_LayerInfo_spatialLayerId_get_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_LayerInfo_native_a625d9984f014aad(void);
+extern void _wrap_delete_LayerInfo_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_LayerSource_numPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_LayerSource_numPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_LayerSource_totalBytes_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_LayerSource_totalBytes_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_LayerSource_bitrate_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_LayerSource_bitrate_get_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_LayerSource_native_a625d9984f014aad(void);
+extern void _wrap_delete_LayerSource_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_SetLayerSource_TemporalLayerId_native_a625d9984f014aad(uintptr_t _swig_base, char arg1);
+extern char _wrap_GetLayerSource_TemporalLayerId_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetLayerSource_SpatialLayerId_native_a625d9984f014aad(uintptr_t _swig_base, char arg1);
+extern char _wrap_GetLayerSource_SpatialLayerId_native_a625d9984f014aad(uintptr_t _swig_base);
+extern swig_type_37 _wrap_LayerSources_size_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_LayerSources_get_native_a625d9984f014aad(uintptr_t arg1, swig_type_38 arg2);
+extern uintptr_t _wrap_new_LayerSources_native_a625d9984f014aad(void);
+extern void _wrap_delete_LayerSources_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_ssrc_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_ssrc_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_extSeqNum_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_extSeqNum_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_cycles_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_cycles_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_jitter_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_jitter_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_numPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_numPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_numRTCPPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_numRTCPPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_totalBytes_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_totalBytes_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_totalRTCPBytes_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_totalRTCPBytes_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPSource_bitrate_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSource_bitrate_get_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPSource_native_a625d9984f014aad(void);
+extern void _wrap_delete_RTPSource_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lostPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_lostPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_dropPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_dropPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_39 arg2);
+extern swig_type_40 _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_41 arg2);
+extern swig_type_42 _wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lastReport_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_43 arg2);
+extern swig_type_44 _wrap_RTPIncomingSource_lastReport_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lastPLI_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_45 arg2);
+extern swig_type_46 _wrap_RTPIncomingSource_lastPLI_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_totalPLIs_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_totalPLIs_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_totalNACKs_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSource_totalNACKs_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSource_lastNACKed_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_47 arg2);
+extern swig_type_48 _wrap_RTPIncomingSource_lastNACKed_get_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_RTPIncomingSource_layers_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPIncomingSource_native_a625d9984f014aad(void);
+extern void _wrap_delete_RTPIncomingSource_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_SetRTPIncomingSource_Ssrc_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_Ssrc_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_ExtSeqNum_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_ExtSeqNum_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_Cycles_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_Cycles_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_Jitter_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_Jitter_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_NumPackets_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_NumPackets_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_NumRTCPPackets_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_NumRTCPPackets_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_TotalBytes_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_TotalBytes_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_TotalRTCPBytes_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_TotalRTCPBytes_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPIncomingSource_Bitrate_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPIncomingSource_Bitrate_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_RTPOutgoingSource_time_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSource_time_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_lastTime_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSource_lastTime_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_numPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSource_numPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_numRTCPPackets_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSource_numRTCPPackets_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_totalBytes_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSource_totalBytes_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_totalRTCPBytes_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSource_totalRTCPBytes_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_lastSenderReport_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_49 arg2);
+extern swig_type_50 _wrap_RTPOutgoingSource_lastSenderReport_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_a625d9984f014aad(uintptr_t arg1, swig_type_51 arg2);
+extern swig_type_52 _wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPOutgoingSource_native_a625d9984f014aad(void);
+extern void _wrap_delete_RTPOutgoingSource_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_SetRTPOutgoingSource_Ssrc_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPOutgoingSource_Ssrc_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPOutgoingSource_ExtSeqNum_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPOutgoingSource_ExtSeqNum_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPOutgoingSource_Cycles_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPOutgoingSource_Cycles_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPOutgoingSource_Jitter_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPOutgoingSource_Jitter_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_SetRTPOutgoingSource_Bitrate_native_a625d9984f014aad(uintptr_t _swig_base, swig_intgo arg1);
+extern swig_intgo _wrap_GetRTPOutgoingSource_Bitrate_native_a625d9984f014aad(uintptr_t _swig_base);
+extern void _wrap_delete_TimeService_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_a625d9984f014aad(swig_intgo arg1);
+extern uintptr_t _wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_RTPOutgoingSourceGroup_Xtype_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPOutgoingSourceGroup_Xtype_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSourceGroup_media_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPOutgoingSourceGroup_media_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSourceGroup_fec_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPOutgoingSourceGroup_fec_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSourceGroup_rtx_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPOutgoingSourceGroup_rtx_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPOutgoingSourceGroup_Update_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_RTPOutgoingSourceGroup_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPIncomingSourceGroup_native_a625d9984f014aad(swig_intgo arg1, uintptr_t arg2);
+extern void _wrap_RTPIncomingSourceGroup_rid_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPIncomingSourceGroup_rid_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_mid_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPIncomingSourceGroup_mid_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_rtt_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSourceGroup_rtt_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_Xtype_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSourceGroup_Xtype_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_media_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPIncomingSourceGroup_media_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_fec_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPIncomingSourceGroup_fec_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_rtx_set_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_RTPIncomingSourceGroup_rtx_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_lost_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSourceGroup_lost_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_minWaitedTime_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSourceGroup_minWaitedTime_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_maxWaitedTime_set_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPIncomingSourceGroup_maxWaitedTime_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_avgWaitedTime_set_native_a625d9984f014aad(uintptr_t arg1, double arg2);
+extern double _wrap_RTPIncomingSourceGroup_avgWaitedTime_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_RTPIncomingSourceGroup_Update_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_RTPIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_StringFacade__SWIG_0_native_a625d9984f014aad(swig_type_53 arg1);
+extern uintptr_t _wrap_new_StringFacade__SWIG_1_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_54 _wrap_StringFacade_toString_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_StringFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_PropertiesFacade_SetProperty__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, swig_type_55 arg2, swig_intgo arg3);
+extern void _wrap_PropertiesFacade_SetProperty__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_type_56 arg2, swig_type_57 arg3);
+extern void _wrap_PropertiesFacade_SetProperty__SWIG_2_native_a625d9984f014aad(uintptr_t arg1, swig_type_58 arg2, _Bool arg3);
+extern uintptr_t _wrap_new_PropertiesFacade_native_a625d9984f014aad(void);
+extern void _wrap_delete_PropertiesFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaServer_Initialize_native_a625d9984f014aad(void);
+extern void _wrap_MediaServer_EnableLog_native_a625d9984f014aad(_Bool arg1);
+extern void _wrap_MediaServer_EnableDebug_native_a625d9984f014aad(_Bool arg1);
+extern void _wrap_MediaServer_EnableUltraDebug_native_a625d9984f014aad(_Bool arg1);
+extern uintptr_t _wrap_MediaServer_GetFingerprint_native_a625d9984f014aad(void);
+extern _Bool _wrap_MediaServer_SetPortRange_native_a625d9984f014aad(swig_intgo arg1, swig_intgo arg2);
+extern uintptr_t _wrap_new_MediaServer_native_a625d9984f014aad(void);
+extern void _wrap_delete_MediaServer_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPBundleTransport_native_a625d9984f014aad(void);
+extern swig_intgo _wrap_RTPBundleTransport_Init__SWIG_0_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPBundleTransport_Init__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern uintptr_t _wrap_RTPBundleTransport_AddICETransport_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern swig_intgo _wrap_RTPBundleTransport_RemoveICETransport_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_intgo _wrap_RTPBundleTransport_End_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPBundleTransport_GetLocalPort_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPBundleTransport_AddRemoteCandidate_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, swig_type_59 arg3, short arg4);
+extern void _wrap_delete_RTPBundleTransport_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_PCAPTransportEmulator_native_a625d9984f014aad(void);
+extern void _wrap_PCAPTransportEmulator_SetRemoteProperties_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_PCAPTransportEmulator_Open_native_a625d9984f014aad(uintptr_t arg1, swig_type_60 arg2);
+extern _Bool _wrap_PCAPTransportEmulator_SetReader_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_PCAPTransportEmulator_Play_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_61 _wrap_PCAPTransportEmulator_Seek_native_a625d9984f014aad(uintptr_t arg1, swig_type_62 arg2);
+extern _Bool _wrap_PCAPTransportEmulator_Stop_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_PCAPTransportEmulator_Close_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_PCAPTransportEmulator_GetTimeService_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_PCAPTransportEmulator_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_DTLSICETransport_Start_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_DTLSICETransport_Stop_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_DTLSICETransport_SetRemoteProperties_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_DTLSICETransport_SetLocalProperties_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_intgo _wrap_DTLSICETransport_SendPLI_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_DTLSICETransport_Enqueue_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, swig_type_63 arg2, _Bool arg3, _Bool arg4, _Bool arg5);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, swig_type_64 arg2, _Bool arg3, _Bool arg4);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_2_native_a625d9984f014aad(uintptr_t arg1, swig_type_65 arg2, _Bool arg3);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_3_native_a625d9984f014aad(uintptr_t arg1, swig_type_66 arg2);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_4_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, _Bool arg3, _Bool arg4, _Bool arg5);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_5_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, _Bool arg3, _Bool arg4);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_6_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, _Bool arg3);
+extern swig_intgo _wrap_DTLSICETransport_Dump__SWIG_7_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_DTLSICETransport_Reset_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_DTLSICETransport_ActivateRemoteCandidate_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, _Bool arg3, swig_intgo arg4);
+extern swig_intgo _wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_a625d9984f014aad(uintptr_t arg1, swig_type_67 arg2, swig_type_68 arg3, swig_type_69 arg4);
+extern swig_intgo _wrap_DTLSICETransport_SetLocalSTUNCredentials_native_a625d9984f014aad(uintptr_t arg1, swig_type_70 arg2, swig_type_71 arg3);
+extern swig_intgo _wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_a625d9984f014aad(uintptr_t arg1, swig_type_72 arg2, swig_type_73 arg3);
+extern _Bool _wrap_DTLSICETransport_AddOutgoingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_DTLSICETransport_AddIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern _Bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_DTLSICETransport_SetBandwidthProbing_native_a625d9984f014aad(uintptr_t arg1, _Bool arg2);
+extern void _wrap_DTLSICETransport_SetMaxProbingBitrate_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_type_74 _wrap_DTLSICETransport_GetRemoteUsername_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_75 _wrap_DTLSICETransport_GetRemotePwd_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_76 _wrap_DTLSICETransport_GetLocalUsername_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_77 _wrap_DTLSICETransport_GetLocalPwd_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_DTLSICETransport_GetRTT_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_DTLSICETransport_GetTimeService_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_DTLSICETransport_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPSessionFacade_native_a625d9984f014aad(swig_intgo arg1);
+extern swig_intgo _wrap_RTPSessionFacade_Init_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_intgo _wrap_RTPSessionFacade_SetLocalPort_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern swig_intgo _wrap_RTPSessionFacade_GetLocalPort_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPSessionFacade_SetRemotePort_native_a625d9984f014aad(uintptr_t arg1, swig_type_78 arg2, swig_intgo arg3);
+extern uintptr_t _wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_RTPSessionFacade_GetIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPSessionFacade_End_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPSessionFacade_Enqueue_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_intgo _wrap_RTPSessionFacade_SendPLI_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_delete_RTPSessionFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_RTPSessionFacade_SwigGetRTPReceiver_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPSenderFacade__SWIG_0_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPSenderFacade__SWIG_1_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_RTPSenderFacade_get_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_RTPSenderFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPReceiverFacade__SWIG_0_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPReceiverFacade__SWIG_1_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPReceiverFacade__SWIG_2_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_RTPReceiverFacade_get_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RTPReceiverFacade_SendPLI_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_delete_RTPReceiverFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_TransportToSender_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_TransportToReceiver_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_PCAPTransportEmulatorToReceiver_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_SessionToSender_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_SessionToReceiver_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_RTPSessionToReceiver_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RTPStreamTransponderFacade_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern _Bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_0_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern _Bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3);
+extern void _wrap_RTPStreamTransponderFacade_SelectLayer_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2, swig_intgo arg3);
+extern void _wrap_RTPStreamTransponderFacade_Mute_native_a625d9984f014aad(uintptr_t arg1, _Bool arg2);
+extern void _wrap_RTPStreamTransponderFacade_Close_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_RTPStreamTransponderFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_StreamTrackDepacketizer_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_StreamTrackDepacketizer_AddMediaListener_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_StreamTrackDepacketizer_RemoveMediaListener_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_StreamTrackDepacketizer_Stop_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_StreamTrackDepacketizer_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_MP4Recorder_native_a625d9984f014aad(void);
+extern void _wrap_delete_MP4Recorder_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_MP4Recorder_Create_native_a625d9984f014aad(uintptr_t arg1, swig_type_79 arg2);
+extern _Bool _wrap_MP4Recorder_Record__SWIG_0_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_MP4Recorder_Record__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, _Bool arg2);
+extern _Bool _wrap_MP4Recorder_Stop_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_MP4Recorder_Close__SWIG_0_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_MP4Recorder_Close__SWIG_1_native_a625d9984f014aad(uintptr_t arg1, _Bool arg2);
+extern uintptr_t _wrap_new_PlayerFacade_native_a625d9984f014aad(void);
+extern uintptr_t _wrap_PlayerFacade_GetAudioSource_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_PlayerFacade_GetVideoSource_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_PlayerFacade_Reset_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_PlayerFacade_setPlayEndListener_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern swig_intgo _wrap_PlayerFacade_Open_native_a625d9984f014aad(uintptr_t arg1, swig_type_80 arg2);
+extern _Bool _wrap_PlayerFacade_HasAudioTrack_native_a625d9984f014aad(uintptr_t arg1);
+extern _Bool _wrap_PlayerFacade_HasVideoTrack_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_GetAudioCodec_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_GetVideoCodec_native_a625d9984f014aad(uintptr_t arg1);
+extern double _wrap_PlayerFacade_GetDuration_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_GetVideoWidth_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_GetVideoHeight_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_GetVideoBitrate_native_a625d9984f014aad(uintptr_t arg1);
+extern double _wrap_PlayerFacade_GetVideoFramerate_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_Play_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_type_81 _wrap_PlayerFacade_PreSeek_native_a625d9984f014aad(uintptr_t arg1, swig_type_82 arg2);
+extern swig_intgo _wrap_PlayerFacade_Seek_native_a625d9984f014aad(uintptr_t arg1, swig_type_83 arg2);
+extern swig_type_84 _wrap_PlayerFacade_Tell_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_Stop_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_PlayerFacade_Close_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_PlayerFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_RawRTPSessionFacade_native_a625d9984f014aad(swig_intgo arg1);
+extern swig_intgo _wrap_RawRTPSessionFacade_Init_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_RawRTPSessionFacade_onRTPPacket_native_a625d9984f014aad(uintptr_t arg1, swig_voidp arg2, swig_intgo arg3);
+extern uintptr_t _wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RawRTPSessionFacade_End_native_a625d9984f014aad(uintptr_t arg1);
+extern swig_intgo _wrap_RawRTPSessionFacade_SendPLI_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_delete_RawRTPSessionFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap__swig_NewDirectorSenderSideEstimatorListenerSenderSideEstimatorListener_native_a625d9984f014aad(int);
+extern void _wrap_DeleteDirectorSenderSideEstimatorListener_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap_new_SenderSideEstimatorListener_native_a625d9984f014aad(void);
+extern void _wrap_delete_SenderSideEstimatorListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern uintptr_t _wrap_new_ActiveSpeakerDetectorFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
+extern void _wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_delete_ActiveSpeakerDetectorFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap__swig_NewDirectorMediaFrameListenerMediaFrameListener_native_a625d9984f014aad(int);
+extern void _wrap_DeleteDirectorMediaFrameListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap__swig_DirectorMediaFrameListener_upcall_OnMediaFrame_native_a625d9984f014aad(uintptr_t, uintptr_t frame);
+extern uintptr_t _wrap_new_MediaFrameListener_native_a625d9984f014aad(void);
+extern void _wrap_delete_MediaFrameListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaFrameListener_onMediaFrame_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_new_MediaStreamDuplicaterFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_MediaStreamDuplicaterFacade_AddMediaListener_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_MediaStreamDuplicaterFacade_RemoveMediaListener_native_a625d9984f014aad(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_MediaStreamDuplicaterFacade_Stop_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_delete_MediaStreamDuplicaterFacade_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_native_a625d9984f014aad(int);
+extern void _wrap_DeleteDirectorPlayerEndListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_a625d9984f014aad(uintptr_t);
+extern uintptr_t _wrap_new_PlayerEndListener_native_a625d9984f014aad(void);
+extern void _wrap_delete_PlayerEndListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_PlayerEndListener_onEnd_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListener_native_a625d9984f014aad(int);
+extern void _wrap_DeleteDirectorREMBBitrateListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_a625d9984f014aad(uintptr_t);
+extern uintptr_t _wrap_new_REMBBitrateListener_native_a625d9984f014aad(void);
+extern void _wrap_delete_REMBBitrateListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_REMBBitrateListener_onREMB_native_a625d9984f014aad(uintptr_t arg1);
+extern uintptr_t _wrap__swig_NewDirectorActiveTrackListenerActiveTrackListener_native_a625d9984f014aad(int);
+extern void _wrap_DeleteDirectorActiveTrackListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_a625d9984f014aad(uintptr_t, swig_intgo id);
+extern uintptr_t _wrap_new_ActiveTrackListener_native_a625d9984f014aad(void);
+extern void _wrap_delete_ActiveTrackListener_native_a625d9984f014aad(uintptr_t arg1);
+extern void _wrap_ActiveTrackListener_onActiveTrackchanged_native_a625d9984f014aad(uintptr_t arg1, swig_intgo arg2);
 #undef intgo
 */
 import "C"
@@ -598,13 +585,13 @@ func swigCopyString(s string) string {
 
 func Swig_free(arg1 uintptr) {
 	_swig_i_0 := arg1
-	C._wrap_Swig_free_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_Swig_free_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func Swig_malloc(arg1 int) (_swig_ret uintptr) {
 	var swig_r uintptr
 	_swig_i_0 := arg1
-	swig_r = (uintptr)(C._wrap_Swig_malloc_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0)))
+	swig_r = (uintptr)(C._wrap_Swig_malloc_native_a625d9984f014aad(C.swig_intgo(_swig_i_0)))
 	return swig_r
 }
 
@@ -631,20 +618,20 @@ const SD480P int = 19
 const SQCIF int = 20
 const SCIF int = 21
 const HD1080P int = 22
-const MTU int = 1500
-const RTPPAYLOADSIZE int = 1350
+const MTU uint = 1500
+const RTPPAYLOADSIZE uint = 1350
 const MAXKBITS int = 300
 func GetWidth(arg1 uint) (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_GetWidth_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0)))
+	swig_r = (uint)(C._wrap_GetWidth_native_a625d9984f014aad(C.swig_intgo(_swig_i_0)))
 	return swig_r
 }
 
 func GetHeight(arg1 uint) (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_GetHeight_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0)))
+	swig_r = (uint)(C._wrap_GetHeight_native_a625d9984f014aad(C.swig_intgo(_swig_i_0)))
 	return swig_r
 }
 
@@ -661,7 +648,7 @@ func (arg1 SwigcptrProperties) HasProperty(arg2 Std_string) (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_Properties_HasProperty_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	swig_r = (bool)(C._wrap_Properties_HasProperty_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
 	return swig_r
 }
 
@@ -669,7 +656,7 @@ func (arg1 SwigcptrProperties) SetProperty__SWIG_0(arg2 string, arg3 int) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_Properties_SetProperty__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_1)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2))
+	C._wrap_Properties_SetProperty__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_1)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -679,7 +666,7 @@ func (arg1 SwigcptrProperties) SetProperty__SWIG_1(arg2 string, arg3 string) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_Properties_SetProperty__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_2)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_3)(unsafe.Pointer(&_swig_i_2)))
+	C._wrap_Properties_SetProperty__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_2)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_3)(unsafe.Pointer(&_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -692,7 +679,7 @@ func (arg1 SwigcptrProperties) SetProperty__SWIG_2(arg2 Std_string, arg3 Std_str
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3.Swigcptr()
-	C._wrap_Properties_SetProperty__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))
+	C._wrap_Properties_SetProperty__SWIG_2_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))
 }
 
 func (p SwigcptrProperties) SetProperty(a ...interface{}) {
@@ -727,14 +714,14 @@ func (arg1 SwigcptrProperties) GetChildren__SWIG_0(arg2 Std_string, arg3 Propert
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3.Swigcptr()
-	C._wrap_Properties_GetChildren__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))
+	C._wrap_Properties_GetChildren__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))
 }
 
 func (arg1 SwigcptrProperties) GetChildren__SWIG_1(arg2 string, arg3 Properties) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3.Swigcptr()
-	C._wrap_Properties_GetChildren__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_4)(unsafe.Pointer(&_swig_i_1)), C.uintptr_t(_swig_i_2))
+	C._wrap_Properties_GetChildren__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_4)(unsafe.Pointer(&_swig_i_1)), C.uintptr_t(_swig_i_2))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -744,7 +731,7 @@ func (arg1 SwigcptrProperties) GetChildren__SWIG_2(arg2 Std_string) (_swig_ret P
 	var swig_r Properties
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (Properties)(SwigcptrProperties(C._wrap_Properties_GetChildren__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))))
+	swig_r = (Properties)(SwigcptrProperties(C._wrap_Properties_GetChildren__SWIG_2_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))))
 	return swig_r
 }
 
@@ -752,7 +739,7 @@ func (arg1 SwigcptrProperties) GetChildren__SWIG_3(arg2 string) (_swig_ret Prope
 	var swig_r Properties
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (Properties)(SwigcptrProperties(C._wrap_Properties_GetChildren__SWIG_3_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_5)(unsafe.Pointer(&_swig_i_1)))))
+	swig_r = (Properties)(SwigcptrProperties(C._wrap_Properties_GetChildren__SWIG_3_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_5)(unsafe.Pointer(&_swig_i_1)))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -790,7 +777,7 @@ func (arg1 SwigcptrProperties) GetChildrenArray(arg2 string, arg3 Std_vector_Sl_
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3.Swigcptr()
-	C._wrap_Properties_GetChildrenArray_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_6)(unsafe.Pointer(&_swig_i_1)), C.uintptr_t(_swig_i_2))
+	C._wrap_Properties_GetChildrenArray_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_6)(unsafe.Pointer(&_swig_i_1)), C.uintptr_t(_swig_i_2))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -800,7 +787,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_0(arg2 string) (_swig_ret strin
 	var swig_r string
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r_p := C._wrap_Properties_GetProperty__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_8)(unsafe.Pointer(&_swig_i_1)))
+	swig_r_p := C._wrap_Properties_GetProperty__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_8)(unsafe.Pointer(&_swig_i_1)))
 	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
@@ -815,7 +802,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_1(arg2 string, arg3 Std_string)
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3.Swigcptr()
-	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_Properties_GetProperty__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_9)(unsafe.Pointer(&_swig_i_1)), C.uintptr_t(_swig_i_2))))
+	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_Properties_GetProperty__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_9)(unsafe.Pointer(&_swig_i_1)), C.uintptr_t(_swig_i_2))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -827,7 +814,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_2(arg2 Std_string, arg3 Std_str
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3.Swigcptr()
-	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_Properties_GetProperty__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))))
+	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_Properties_GetProperty__SWIG_2_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))))
 	return swig_r
 }
 
@@ -836,7 +823,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_3(arg2 string, arg3 string) (_s
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r_p := C._wrap_Properties_GetProperty__SWIG_3_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_11)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_12)(unsafe.Pointer(&_swig_i_2)))
+	swig_r_p := C._wrap_Properties_GetProperty__SWIG_3_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_11)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_12)(unsafe.Pointer(&_swig_i_2)))
 	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
@@ -854,7 +841,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_4(arg2 Std_string, arg3 string)
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3
-	swig_r_p := C._wrap_Properties_GetProperty__SWIG_4_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), *(*C.swig_type_14)(unsafe.Pointer(&_swig_i_2)))
+	swig_r_p := C._wrap_Properties_GetProperty__SWIG_4_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), *(*C.swig_type_14)(unsafe.Pointer(&_swig_i_2)))
 	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg3
@@ -869,7 +856,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_5(arg2 string, arg3 int) (_swig
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_Properties_GetProperty__SWIG_5_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_15)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
+	swig_r = (int)(C._wrap_Properties_GetProperty__SWIG_5_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_15)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -881,7 +868,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_6(arg2 Std_string, arg3 int) (_
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_Properties_GetProperty__SWIG_6_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_intgo(_swig_i_2)))
+	swig_r = (int)(C._wrap_Properties_GetProperty__SWIG_6_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_intgo(_swig_i_2)))
 	return swig_r
 }
 
@@ -890,7 +877,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_7(arg2 string, arg3 uint64) (_s
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (uint64)(C._wrap_Properties_GetProperty__SWIG_7_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_17)(unsafe.Pointer(&_swig_i_1)), C.swig_type_18(_swig_i_2)))
+	swig_r = (uint64)(C._wrap_Properties_GetProperty__SWIG_7_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_17)(unsafe.Pointer(&_swig_i_1)), C.swig_type_18(_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -902,7 +889,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_8(arg2 Std_string, arg3 uint64)
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3
-	swig_r = (uint64)(C._wrap_Properties_GetProperty__SWIG_8_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_type_20(_swig_i_2)))
+	swig_r = (uint64)(C._wrap_Properties_GetProperty__SWIG_8_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_type_20(_swig_i_2)))
 	return swig_r
 }
 
@@ -911,7 +898,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_9(arg2 string, arg3 bool) (_swi
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (bool)(C._wrap_Properties_GetProperty__SWIG_9_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_21)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2)))
+	swig_r = (bool)(C._wrap_Properties_GetProperty__SWIG_9_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_21)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -923,7 +910,7 @@ func (arg1 SwigcptrProperties) GetProperty__SWIG_10(arg2 Std_string, arg3 bool) 
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3
-	swig_r = (bool)(C._wrap_Properties_GetProperty__SWIG_10_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2)))
+	swig_r = (bool)(C._wrap_Properties_GetProperty__SWIG_10_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2)))
 	return swig_r
 }
 
@@ -1018,13 +1005,13 @@ check_10:
 
 func NewProperties() (_swig_ret Properties) {
 	var swig_r Properties
-	swig_r = (Properties)(SwigcptrProperties(C._wrap_new_Properties_native_6d81daf083c332b5()))
+	swig_r = (Properties)(SwigcptrProperties(C._wrap_new_Properties_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteProperties(arg1 Properties) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_Properties_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_Properties_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type Properties interface {
@@ -1040,7 +1027,7 @@ type Properties interface {
 func Malloc32(arg1 int64) (_swig_ret uintptr) {
 	var swig_r uintptr
 	_swig_i_0 := arg1
-	swig_r = (uintptr)(C._wrap_malloc32_native_6d81daf083c332b5(C.swig_type_22(_swig_i_0)))
+	swig_r = (uintptr)(C._wrap_malloc32_native_a625d9984f014aad(C.swig_type_22(_swig_i_0)))
 	return swig_r
 }
 
@@ -1055,14 +1042,14 @@ func (p SwigcptrByteBuffer) SwigIsByteBuffer() {
 
 func NewByteBuffer__SWIG_0() (_swig_ret ByteBuffer) {
 	var swig_r ByteBuffer
-	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_0_native_6d81daf083c332b5()))
+	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_0_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func NewByteBuffer__SWIG_1(arg1 uint) (_swig_ret ByteBuffer) {
 	var swig_r ByteBuffer
 	_swig_i_0 := arg1
-	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_1_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))))
+	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_1_native_a625d9984f014aad(C.swig_intgo(_swig_i_0))))
 	return swig_r
 }
 
@@ -1070,21 +1057,21 @@ func NewByteBuffer__SWIG_2(arg1 *byte, arg2 uint) (_swig_ret ByteBuffer) {
 	var swig_r ByteBuffer
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_2_native_6d81daf083c332b5(C.swig_voidp(_swig_i_0), C.swig_intgo(_swig_i_1))))
+	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_2_native_a625d9984f014aad(C.swig_voidp(_swig_i_0), C.swig_intgo(_swig_i_1))))
 	return swig_r
 }
 
 func NewByteBuffer__SWIG_3(arg1 ByteBuffer) (_swig_ret ByteBuffer) {
 	var swig_r ByteBuffer
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_3_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_3_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func NewByteBuffer__SWIG_4(arg1 ByteBuffer) (_swig_ret ByteBuffer) {
 	var swig_r ByteBuffer
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_4_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_new_ByteBuffer__SWIG_4_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
@@ -1119,26 +1106,26 @@ check_3:
 func (arg1 SwigcptrByteBuffer) Clone() (_swig_ret ByteBuffer) {
 	var swig_r ByteBuffer
 	_swig_i_0 := arg1
-	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_ByteBuffer_Clone_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (ByteBuffer)(SwigcptrByteBuffer(C._wrap_ByteBuffer_Clone_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func DeleteByteBuffer(arg1 ByteBuffer) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_ByteBuffer_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_ByteBuffer_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrByteBuffer) Alloc(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_ByteBuffer_Alloc_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_ByteBuffer_Alloc_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrByteBuffer) Set(arg2 *byte, arg3 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_ByteBuffer_Set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2))
+	C._wrap_ByteBuffer_Set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2))
 }
 
 func (arg1 SwigcptrByteBuffer) Append(arg2 *byte, arg3 uint) (_swig_ret uint) {
@@ -1146,28 +1133,28 @@ func (arg1 SwigcptrByteBuffer) Append(arg2 *byte, arg3 uint) (_swig_ret uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (uint)(C._wrap_ByteBuffer_Append_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2)))
+	swig_r = (uint)(C._wrap_ByteBuffer_Append_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2)))
 	return swig_r
 }
 
 func (arg1 SwigcptrByteBuffer) GetData() (_swig_ret *byte) {
 	var swig_r *byte
 	_swig_i_0 := arg1
-	swig_r = (*byte)(C._wrap_ByteBuffer_GetData_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (*byte)(C._wrap_ByteBuffer_GetData_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrByteBuffer) GetSize() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_ByteBuffer_GetSize_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_ByteBuffer_GetSize_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrByteBuffer) GetLength() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_ByteBuffer_GetLength_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_ByteBuffer_GetLength_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
@@ -1195,28 +1182,28 @@ func (p SwigcptrMediaFrame) SwigIsMediaFrame() {
 type MediaFrameType int
 func _swig_getMediaFrame_Audio_MediaFrame() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
-	swig_r = (MediaFrameType)(C._wrap_Audio_MediaFrame_native_6d81daf083c332b5())
+	swig_r = (MediaFrameType)(C._wrap_Audio_MediaFrame_native_a625d9984f014aad())
 	return swig_r
 }
 
 var MediaFrameAudio MediaFrameType = _swig_getMediaFrame_Audio_MediaFrame()
 func _swig_getMediaFrame_Video_MediaFrame() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
-	swig_r = (MediaFrameType)(C._wrap_Video_MediaFrame_native_6d81daf083c332b5())
+	swig_r = (MediaFrameType)(C._wrap_Video_MediaFrame_native_a625d9984f014aad())
 	return swig_r
 }
 
 var MediaFrameVideo MediaFrameType = _swig_getMediaFrame_Video_MediaFrame()
 func _swig_getMediaFrame_Text_MediaFrame() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
-	swig_r = (MediaFrameType)(C._wrap_Text_MediaFrame_native_6d81daf083c332b5())
+	swig_r = (MediaFrameType)(C._wrap_Text_MediaFrame_native_a625d9984f014aad())
 	return swig_r
 }
 
 var MediaFrameText MediaFrameType = _swig_getMediaFrame_Text_MediaFrame()
 func _swig_getMediaFrame_Unknown_MediaFrame() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
-	swig_r = (MediaFrameType)(C._wrap_Unknown_MediaFrame_native_6d81daf083c332b5())
+	swig_r = (MediaFrameType)(C._wrap_Unknown_MediaFrame_native_a625d9984f014aad())
 	return swig_r
 }
 
@@ -1224,7 +1211,7 @@ var MediaFrameUnknown MediaFrameType = _swig_getMediaFrame_Unknown_MediaFrame()
 func MediaFrameTypeToString(arg1 MediaFrameType) (_swig_ret string) {
 	var swig_r string
 	_swig_i_0 := arg1
-	swig_r_p := C._wrap_MediaFrame_TypeToString_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))
+	swig_r_p := C._wrap_MediaFrame_TypeToString_native_a625d9984f014aad(C.swig_intgo(_swig_i_0))
 	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
 	var swig_r_1 string
  swig_r_1 = swigCopyString(swig_r) 
@@ -1233,12 +1220,12 @@ func MediaFrameTypeToString(arg1 MediaFrameType) (_swig_ret string) {
 
 func DeleteMediaFrame(arg1 MediaFrame) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_MediaFrame_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_MediaFrame_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrMediaFrame) ClearRTPPacketizationInfo() {
 	_swig_i_0 := arg1
-	C._wrap_MediaFrame_ClearRTPPacketizationInfo_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_MediaFrame_ClearRTPPacketizationInfo_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrMediaFrame) AddRtpPacket(arg2 uint, arg3 uint, arg4 *byte, arg5 uint) {
@@ -1247,127 +1234,114 @@ func (arg1 SwigcptrMediaFrame) AddRtpPacket(arg2 uint, arg3 uint, arg4 *byte, ar
 	_swig_i_2 := arg3
 	_swig_i_3 := arg4
 	_swig_i_4 := arg5
-	C._wrap_MediaFrame_AddRtpPacket_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_intgo(_swig_i_2), C.swig_voidp(_swig_i_3), C.swig_intgo(_swig_i_4))
+	C._wrap_MediaFrame_AddRtpPacket_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_intgo(_swig_i_2), C.swig_voidp(_swig_i_3), C.swig_intgo(_swig_i_4))
 }
 
 func (arg1 SwigcptrMediaFrame) GetType() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
 	_swig_i_0 := arg1
-	swig_r = (MediaFrameType)(C._wrap_MediaFrame_GetType_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (MediaFrameType)(C._wrap_MediaFrame_GetType_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) GetTimeStamp() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_MediaFrame_GetTimeStamp_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_MediaFrame_GetTimeStamp_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) SetTimestamp(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_MediaFrame_SetTimestamp_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
-}
-
-func (arg1 SwigcptrMediaFrame) GetTime() (_swig_ret uint64) {
-	var swig_r uint64
-	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_MediaFrame_GetTime_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMediaFrame) SetTime(arg2 uint64) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	C._wrap_MediaFrame_SetTime_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_25(_swig_i_1))
+	C._wrap_MediaFrame_SetTimestamp_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaFrame) GetSSRC() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_MediaFrame_GetSSRC_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_MediaFrame_GetSSRC_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) SetSSRC(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_MediaFrame_SetSSRC_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_MediaFrame_SetSSRC_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaFrame) HasRtpPacketizationInfo() (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_MediaFrame_HasRtpPacketizationInfo_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (bool)(C._wrap_MediaFrame_HasRtpPacketizationInfo_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) GetRtpPacketizationInfo() (_swig_ret Std_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_) {
 	var swig_r Std_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_
 	_swig_i_0 := arg1
-	swig_r = (Std_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_)(SwigcptrStd_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_(C._wrap_MediaFrame_GetRtpPacketizationInfo_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Std_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_)(SwigcptrStd_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_(C._wrap_MediaFrame_GetRtpPacketizationInfo_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) Clone() (_swig_ret MediaFrame) {
 	var swig_r MediaFrame
 	_swig_i_0 := arg1
-	swig_r = (MediaFrame)(SwigcptrMediaFrame(C._wrap_MediaFrame_Clone_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (MediaFrame)(SwigcptrMediaFrame(C._wrap_MediaFrame_Clone_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) GetDuration() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_MediaFrame_GetDuration_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_MediaFrame_GetDuration_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) SetDuration(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_MediaFrame_SetDuration_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_MediaFrame_SetDuration_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaFrame) GetData() (_swig_ret *byte) {
 	var swig_r *byte
 	_swig_i_0 := arg1
-	swig_r = (*byte)(C._wrap_MediaFrame_GetData_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (*byte)(C._wrap_MediaFrame_GetData_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) GetLength() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_MediaFrame_GetLength_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_MediaFrame_GetLength_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) GetMaxMediaLength() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_MediaFrame_GetMaxMediaLength_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_MediaFrame_GetMaxMediaLength_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaFrame) SetLength(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_MediaFrame_SetLength_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_MediaFrame_SetLength_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaFrame) Alloc(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_MediaFrame_Alloc_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_MediaFrame_Alloc_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaFrame) SetMedia(arg2 *byte, arg3 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_MediaFrame_SetMedia_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2))
+	C._wrap_MediaFrame_SetMedia_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2))
 }
 
 func (arg1 SwigcptrMediaFrame) AppendMedia(arg2 *byte, arg3 uint) (_swig_ret uint) {
@@ -1375,7 +1349,7 @@ func (arg1 SwigcptrMediaFrame) AppendMedia(arg2 *byte, arg3 uint) (_swig_ret uin
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (uint)(C._wrap_MediaFrame_AppendMedia_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2)))
+	swig_r = (uint)(C._wrap_MediaFrame_AppendMedia_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2)))
 	return swig_r
 }
 
@@ -1387,8 +1361,6 @@ type MediaFrame interface {
 	GetType() (_swig_ret MediaFrameType)
 	GetTimeStamp() (_swig_ret uint)
 	SetTimestamp(arg2 uint)
-	GetTime() (_swig_ret uint64)
-	SetTime(arg2 uint64)
 	GetSSRC() (_swig_ret uint)
 	SetSSRC(arg2 uint)
 	HasRtpPacketizationInfo() (_swig_ret bool)
@@ -1417,110 +1389,110 @@ func (p SwigcptrAcumulator) SwigIsAcumulator() {
 func NewAcumulator(arg1 uint) (_swig_ret Acumulator) {
 	var swig_r Acumulator
 	_swig_i_0 := arg1
-	swig_r = (Acumulator)(SwigcptrAcumulator(C._wrap_new_Acumulator_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))))
+	swig_r = (Acumulator)(SwigcptrAcumulator(C._wrap_new_Acumulator_native_a625d9984f014aad(C.swig_intgo(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetAcumulated() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_Acumulator_GetAcumulated_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_Acumulator_GetAcumulated_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetDiff() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_Acumulator_GetDiff_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_Acumulator_GetDiff_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetInstant() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_Acumulator_GetInstant_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_Acumulator_GetInstant_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetMin() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_Acumulator_GetMin_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_Acumulator_GetMin_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetMax() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_Acumulator_GetMax_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_Acumulator_GetMax_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetWindow() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_Acumulator_GetWindow_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_Acumulator_GetWindow_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) IsInWindow() (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_Acumulator_IsInWindow_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (bool)(C._wrap_Acumulator_IsInWindow_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) IsInMinMaxWindow() (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_Acumulator_IsInMinMaxWindow_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (bool)(C._wrap_Acumulator_IsInMinMaxWindow_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetInstantMedia() (_swig_ret Long_SS_double) {
 	var swig_r Long_SS_double
 	_swig_i_0 := arg1
-	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetInstantMedia_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetInstantMedia_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetInstantAvg() (_swig_ret Long_SS_double) {
 	var swig_r Long_SS_double
 	_swig_i_0 := arg1
-	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetInstantAvg_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetInstantAvg_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetAverage() (_swig_ret Long_SS_double) {
 	var swig_r Long_SS_double
 	_swig_i_0 := arg1
-	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetAverage_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetAverage_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetMinAvg() (_swig_ret Long_SS_double) {
 	var swig_r Long_SS_double
 	_swig_i_0 := arg1
-	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetMinAvg_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetMinAvg_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetMaxAvg() (_swig_ret Long_SS_double) {
 	var swig_r Long_SS_double
 	_swig_i_0 := arg1
-	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetMaxAvg_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Long_SS_double)(SwigcptrLong_SS_double(C._wrap_Acumulator_GetMaxAvg_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) ResetMinMax() {
 	_swig_i_0 := arg1
-	C._wrap_Acumulator_ResetMinMax_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_Acumulator_ResetMinMax_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrAcumulator) Reset(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_Acumulator_Reset_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_31(_swig_i_1))
+	C._wrap_Acumulator_Reset_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_29(_swig_i_1))
 }
 
 func (arg1 SwigcptrAcumulator) Update__SWIG_0(arg2 uint64, arg3 uint) (_swig_ret uint64) {
@@ -1528,7 +1500,7 @@ func (arg1 SwigcptrAcumulator) Update__SWIG_0(arg2 uint64, arg3 uint) (_swig_ret
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (uint64)(C._wrap_Acumulator_Update__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_33(_swig_i_1), C.swig_intgo(_swig_i_2)))
+	swig_r = (uint64)(C._wrap_Acumulator_Update__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_31(_swig_i_1), C.swig_intgo(_swig_i_2)))
 	return swig_r
 }
 
@@ -1536,7 +1508,7 @@ func (arg1 SwigcptrAcumulator) Update__SWIG_1(arg2 uint64) (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (uint64)(C._wrap_Acumulator_Update__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_35(_swig_i_1)))
+	swig_r = (uint64)(C._wrap_Acumulator_Update__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_33(_swig_i_1)))
 	return swig_r
 }
 
@@ -1554,27 +1526,27 @@ func (p SwigcptrAcumulator) Update(a ...interface{}) uint64 {
 func (arg1 SwigcptrAcumulator) GetMinValueInWindow() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_Acumulator_GetMinValueInWindow_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_Acumulator_GetMinValueInWindow_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetMaxValueInWindow() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_Acumulator_GetMaxValueInWindow_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_Acumulator_GetMaxValueInWindow_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrAcumulator) GetCount() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_Acumulator_GetCount_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_Acumulator_GetCount_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func DeleteAcumulator(arg1 Acumulator) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_Acumulator_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_Acumulator_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type Acumulator interface {
@@ -1601,964 +1573,70 @@ type Acumulator interface {
 	GetCount() (_swig_ret uint)
 }
 
-type SwigcptrDTLSICETransport uintptr
+type SwigcptrUDPReader uintptr
 
-func (p SwigcptrDTLSICETransport) Swigcptr() uintptr {
+func (p SwigcptrUDPReader) Swigcptr() uintptr {
 	return (uintptr)(p)
 }
 
-func (p SwigcptrDTLSICETransport) SwigIsDTLSICETransport() {
+func (p SwigcptrUDPReader) SwigIsUDPReader() {
 }
 
-func NewDTLSICETransport(arg1 DTLSICETransport_Sender) (_swig_ret DTLSICETransport) {
-	var swig_r DTLSICETransport
+func DeleteUDPReader(arg1 UDPReader) {
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (DTLSICETransport)(SwigcptrDTLSICETransport(C._wrap_new_DTLSICETransport_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	C._wrap_delete_UDPReader_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (arg1 SwigcptrUDPReader) Next() (_swig_ret uint64) {
+	var swig_r uint64
+	_swig_i_0 := arg1
+	swig_r = (uint64)(C._wrap_UDPReader_Next_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
-func DeleteDTLSICETransport(arg1 DTLSICETransport) {
-	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_DTLSICETransport_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrDTLSICETransport) Start() {
+func (arg1 SwigcptrUDPReader) GetUDPData() (_swig_ret *byte) {
+	var swig_r *byte
 	_swig_i_0 := arg1
-	C._wrap_DTLSICETransport_Start_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrDTLSICETransport) Stop() {
-	_swig_i_0 := arg1
-	C._wrap_DTLSICETransport_Stop_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetSRTPProtectionProfiles(arg2 Std_string) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetRemoteProperties(arg2 Properties) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_DTLSICETransport_SetRemoteProperties_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetLocalProperties(arg2 Properties) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_DTLSICETransport_SetLocalProperties_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SendPLI(arg2 uint) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_DTLSICETransport_SendPLI_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	swig_r = (*byte)(C._wrap_UDPReader_GetUDPData_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
-func (arg1 SwigcptrDTLSICETransport) Enqueue(arg2 RTPPacket_shared) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_DTLSICETransport_Enqueue_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_0(arg2 string, arg3 bool, arg4 bool, arg5 bool) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	_swig_i_4 := arg5
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_36)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2), C._Bool(_swig_i_3), C._Bool(_swig_i_4)))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_1(arg2 string, arg3 bool, arg4 bool) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_37)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2), C._Bool(_swig_i_3)))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_2(arg2 string, arg3 bool) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_38)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2)))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_3(arg2 string) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_3_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_39)(unsafe.Pointer(&_swig_i_1))))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_4(arg2 UDPDumper, arg3 bool, arg4 bool, arg5 bool) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	_swig_i_4 := arg5
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_4_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2), C._Bool(_swig_i_3), C._Bool(_swig_i_4)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_5(arg2 UDPDumper, arg3 bool, arg4 bool) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_5_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2), C._Bool(_swig_i_3)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_6(arg2 UDPDumper, arg3 bool) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_6_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_7(arg2 UDPDumper) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_7_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (p SwigcptrDTLSICETransport) Dump(a ...interface{}) int {
-	argc := len(a)
-	if argc == 1 {
-		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
-			goto check_1
-		}
-		return p.Dump__SWIG_7(a[0].(UDPDumper))
-	}
-check_1:
-	if argc == 1 {
-		return p.Dump__SWIG_3(a[0].(string))
-	}
-	if argc == 2 {
-		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
-			goto check_3
-		}
-		return p.Dump__SWIG_6(a[0].(UDPDumper), a[1].(bool))
-	}
-check_3:
-	if argc == 2 {
-		return p.Dump__SWIG_2(a[0].(string), a[1].(bool))
-	}
-	if argc == 3 {
-		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
-			goto check_5
-		}
-		return p.Dump__SWIG_5(a[0].(UDPDumper), a[1].(bool), a[2].(bool))
-	}
-check_5:
-	if argc == 3 {
-		return p.Dump__SWIG_1(a[0].(string), a[1].(bool), a[2].(bool))
-	}
-	if argc == 4 {
-		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
-			goto check_7
-		}
-		return p.Dump__SWIG_4(a[0].(UDPDumper), a[1].(bool), a[2].(bool), a[3].(bool))
-	}
-check_7:
-	if argc == 4 {
-		return p.Dump__SWIG_0(a[0].(string), a[1].(bool), a[2].(bool), a[3].(bool))
-	}
-	panic("No match for overloaded function call")
-}
-
-func (arg1 SwigcptrDTLSICETransport) Reset() {
-	_swig_i_0 := arg1
-	C._wrap_DTLSICETransport_Reset_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrDTLSICETransport) ActivateRemoteCandidate(arg2 ICERemoteCandidate, arg3 bool, arg4 uint) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	C._wrap_DTLSICETransport_ActivateRemoteCandidate_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2), C.swig_intgo(_swig_i_3))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetRemoteCryptoDTLS(arg2 string, arg3 string, arg4 string) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_40)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_41)(unsafe.Pointer(&_swig_i_2)), *(*C.swig_type_42)(unsafe.Pointer(&_swig_i_3))))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	if Swig_escape_always_false {
-		Swig_escape_val = arg3
-	}
-	if Swig_escape_always_false {
-		Swig_escape_val = arg4
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetLocalSTUNCredentials(arg2 string, arg3 string) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_DTLSICETransport_SetLocalSTUNCredentials_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_43)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_44)(unsafe.Pointer(&_swig_i_2))))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	if Swig_escape_always_false {
-		Swig_escape_val = arg3
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetRemoteSTUNCredentials(arg2 string, arg3 string) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_45)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_46)(unsafe.Pointer(&_swig_i_2))))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	if Swig_escape_always_false {
-		Swig_escape_val = arg3
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) AddOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_DTLSICETransport_AddOutgoingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) RemoveOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_DTLSICETransport_AddIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetBandwidthProbing(arg2 bool) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	C._wrap_DTLSICETransport_SetBandwidthProbing_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetMaxProbingBitrate(arg2 uint) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	C._wrap_DTLSICETransport_SetMaxProbingBitrate_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
-}
-
-func (arg1 SwigcptrDTLSICETransport) SetSenderSideEstimatorListener(arg2 RemoteRateEstimator_Listener) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrDTLSICETransport) GetRemoteUsername() (_swig_ret string) {
-	var swig_r string
-	_swig_i_0 := arg1
-	swig_r_p := C._wrap_DTLSICETransport_GetRemoteUsername_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
-	var swig_r_1 string
- swig_r_1 = swigCopyString(swig_r) 
-	return swig_r_1
-}
-
-func (arg1 SwigcptrDTLSICETransport) GetRemotePwd() (_swig_ret string) {
-	var swig_r string
-	_swig_i_0 := arg1
-	swig_r_p := C._wrap_DTLSICETransport_GetRemotePwd_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
-	var swig_r_1 string
- swig_r_1 = swigCopyString(swig_r) 
-	return swig_r_1
-}
-
-func (arg1 SwigcptrDTLSICETransport) GetLocalUsername() (_swig_ret string) {
-	var swig_r string
-	_swig_i_0 := arg1
-	swig_r_p := C._wrap_DTLSICETransport_GetLocalUsername_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
-	var swig_r_1 string
- swig_r_1 = swigCopyString(swig_r) 
-	return swig_r_1
-}
-
-func (arg1 SwigcptrDTLSICETransport) GetLocalPwd() (_swig_ret string) {
-	var swig_r string
-	_swig_i_0 := arg1
-	swig_r_p := C._wrap_DTLSICETransport_GetLocalPwd_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
-	var swig_r_1 string
- swig_r_1 = swigCopyString(swig_r) 
-	return swig_r_1
-}
-
-func (arg1 SwigcptrDTLSICETransport) OnDTLSSetup(arg2 DTLSConnection_Suite, arg3 *byte, arg4 uint, arg5 *byte, arg6 uint) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	_swig_i_4 := arg5
-	_swig_i_5 := arg6
-	C._wrap_DTLSICETransport_onDTLSSetup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_voidp(_swig_i_2), C.swig_intgo(_swig_i_3), C.swig_voidp(_swig_i_4), C.swig_intgo(_swig_i_5))
-}
-
-func (arg1 SwigcptrDTLSICETransport) OnData(arg2 ICERemoteCandidate, arg3 *byte, arg4 uint) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_DTLSICETransport_onData_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_voidp(_swig_i_2), C.swig_intgo(_swig_i_3)))
-	return swig_r
-}
-
-func (arg1 SwigcptrDTLSICETransport) GetRTT() (_swig_ret uint) {
+func (arg1 SwigcptrUDPReader) GetUDPSize() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_DTLSICETransport_GetRTT_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_UDPReader_GetUDPSize_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
-type DTLSICETransport interface {
-	Swigcptr() uintptr
-	SwigIsDTLSICETransport()
-	Start()
-	Stop()
-	SetSRTPProtectionProfiles(arg2 Std_string)
-	SetRemoteProperties(arg2 Properties)
-	SetLocalProperties(arg2 Properties)
-	SendPLI(arg2 uint) (_swig_ret int)
-	Enqueue(arg2 RTPPacket_shared) (_swig_ret int)
-	Dump(a ...interface{}) int
-	Reset()
-	ActivateRemoteCandidate(arg2 ICERemoteCandidate, arg3 bool, arg4 uint)
-	SetRemoteCryptoDTLS(arg2 string, arg3 string, arg4 string) (_swig_ret int)
-	SetLocalSTUNCredentials(arg2 string, arg3 string) (_swig_ret int)
-	SetRemoteSTUNCredentials(arg2 string, arg3 string) (_swig_ret int)
-	AddOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool)
-	RemoveOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool)
-	AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
-	RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
-	SetBandwidthProbing(arg2 bool)
-	SetMaxProbingBitrate(arg2 uint)
-	SetSenderSideEstimatorListener(arg2 RemoteRateEstimator_Listener)
-	GetRemoteUsername() (_swig_ret string)
-	GetRemotePwd() (_swig_ret string)
-	GetLocalUsername() (_swig_ret string)
-	GetLocalPwd() (_swig_ret string)
-	OnDTLSSetup(arg2 DTLSConnection_Suite, arg3 *byte, arg4 uint, arg5 *byte, arg6 uint)
-	OnData(arg2 ICERemoteCandidate, arg3 *byte, arg4 uint) (_swig_ret int)
-	GetRTT() (_swig_ret uint)
-}
-
-type SwigcptrRTPBundleTransport uintptr
-
-func (p SwigcptrRTPBundleTransport) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrRTPBundleTransport) SwigIsRTPBundleTransport() {
-}
-
-func NewRTPBundleTransport() (_swig_ret RTPBundleTransport) {
-	var swig_r RTPBundleTransport
-	swig_r = (RTPBundleTransport)(SwigcptrRTPBundleTransport(C._wrap_new_RTPBundleTransport_native_6d81daf083c332b5()))
-	return swig_r
-}
-
-func DeleteRTPBundleTransport(arg1 RTPBundleTransport) {
-	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPBundleTransport_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrRTPBundleTransport) Init__SWIG_0() (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RTPBundleTransport_Init__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPBundleTransport) Init__SWIG_1(arg2 int) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_RTPBundleTransport_Init__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
-	return swig_r
-}
-
-func (p SwigcptrRTPBundleTransport) Init(a ...interface{}) int {
-	argc := len(a)
-	if argc == 0 {
-		return p.Init__SWIG_0()
-	}
-	if argc == 1 {
-		return p.Init__SWIG_1(a[0].(int))
-	}
-	panic("No match for overloaded function call")
-}
-
-func (arg1 SwigcptrRTPBundleTransport) AddICETransport(arg2 Std_string, arg3 Properties) (_swig_ret DTLSICETransport) {
-	var swig_r DTLSICETransport
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3.Swigcptr()
-	swig_r = (DTLSICETransport)(SwigcptrDTLSICETransport(C._wrap_RTPBundleTransport_AddICETransport_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))))
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPBundleTransport) RemoveICETransport(arg2 Std_string) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_RTPBundleTransport_RemoveICETransport_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPBundleTransport) End() (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RTPBundleTransport_End_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPBundleTransport) GetLocalPort() (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RTPBundleTransport_GetLocalPort_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPBundleTransport) AddRemoteCandidate(arg2 Std_string, arg3 string, arg4 uint16) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_RTPBundleTransport_AddRemoteCandidate_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), *(*C.swig_type_51)(unsafe.Pointer(&_swig_i_2)), C.short(_swig_i_3)))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg3
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPBundleTransport) Send(arg2 ICERemoteCandidate, arg3 *byte, arg4 uint) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_RTPBundleTransport_Send_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_voidp(_swig_i_2), C.swig_intgo(_swig_i_3)))
-	return swig_r
-}
-
-type RTPBundleTransport interface {
-	Swigcptr() uintptr
-	SwigIsRTPBundleTransport()
-	Init(a ...interface{}) int
-	AddICETransport(arg2 Std_string, arg3 Properties) (_swig_ret DTLSICETransport)
-	RemoveICETransport(arg2 Std_string) (_swig_ret int)
-	End() (_swig_ret int)
-	GetLocalPort() (_swig_ret int)
-	AddRemoteCandidate(arg2 Std_string, arg3 string, arg4 uint16) (_swig_ret int)
-	Send(arg2 ICERemoteCandidate, arg3 *byte, arg4 uint) (_swig_ret int)
-}
-
-type SwigcptrPCAPTransportEmulator uintptr
-
-func (p SwigcptrPCAPTransportEmulator) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrPCAPTransportEmulator) SwigIsPCAPTransportEmulator() {
-}
-
-func NewPCAPTransportEmulator() (_swig_ret PCAPTransportEmulator) {
-	var swig_r PCAPTransportEmulator
-	swig_r = (PCAPTransportEmulator)(SwigcptrPCAPTransportEmulator(C._wrap_new_PCAPTransportEmulator_native_6d81daf083c332b5()))
-	return swig_r
-}
-
-func DeletePCAPTransportEmulator(arg1 PCAPTransportEmulator) {
-	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_PCAPTransportEmulator_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) SetRemoteProperties(arg2 Properties) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_PCAPTransportEmulator_SetRemoteProperties_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) Open(arg2 string) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Open_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_52)(unsafe.Pointer(&_swig_i_1))))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) SetReader(arg2 UDPReader) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_SetReader_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) Play() (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Play_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) Seek(arg2 uint64) (_swig_ret uint64) {
+func (arg1 SwigcptrUDPReader) Seek(arg2 uint64) (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (uint64)(C._wrap_PCAPTransportEmulator_Seek_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_54(_swig_i_1)))
+	swig_r = (uint64)(C._wrap_UDPReader_Seek_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_36(_swig_i_1)))
 	return swig_r
 }
 
-func (arg1 SwigcptrPCAPTransportEmulator) Stop() (_swig_ret bool) {
+func (arg1 SwigcptrUDPReader) Rewind() {
+	_swig_i_0 := arg1
+	C._wrap_UDPReader_Rewind_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (arg1 SwigcptrUDPReader) Close() (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Stop_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (bool)(C._wrap_UDPReader_Close_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
-func (arg1 SwigcptrPCAPTransportEmulator) Close() (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Close_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrPCAPTransportEmulator) SendPLI(arg2 uint) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_PCAPTransportEmulator_SendPLI_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
-	return swig_r
-}
-
-type PCAPTransportEmulator interface {
+type UDPReader interface {
 	Swigcptr() uintptr
-	SwigIsPCAPTransportEmulator()
-	SetRemoteProperties(arg2 Properties)
-	AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
-	RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
-	Open(arg2 string) (_swig_ret bool)
-	SetReader(arg2 UDPReader) (_swig_ret bool)
-	Play() (_swig_ret bool)
+	SwigIsUDPReader()
+	Next() (_swig_ret uint64)
+	GetUDPData() (_swig_ret *byte)
+	GetUDPSize() (_swig_ret uint)
 	Seek(arg2 uint64) (_swig_ret uint64)
-	Stop() (_swig_ret bool)
+	Rewind()
 	Close() (_swig_ret bool)
-	SendPLI(arg2 uint) (_swig_ret int)
-}
-
-type SwigcptrMp4track uintptr
-
-func (p SwigcptrMp4track) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrMp4track) SwigIsMp4track() {
-}
-
-func NewMp4track(arg1 MP4FileHandle) (_swig_ret Mp4track) {
-	var swig_r Mp4track
-	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (Mp4track)(SwigcptrMp4track(C._wrap_new_mp4track_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) CreateAudioTrack(arg2 AudioCodec_Type, arg3 uint) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_mp4track_CreateAudioTrack_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_intgo(_swig_i_2)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) CreateVideoTrack(arg2 VideoCodec_Type, arg3 int, arg4 int) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	swig_r = (int)(C._wrap_mp4track_CreateVideoTrack_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_intgo(_swig_i_2), C.swig_intgo(_swig_i_3)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) CreateTextTrack() (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_mp4track_CreateTextTrack_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) WriteAudioFrame(arg2 AudioFrame) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_mp4track_WriteAudioFrame_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) WriteVideoFrame(arg2 VideoFrame) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_mp4track_WriteVideoFrame_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) WriteTextFrame(arg2 TextFrame) (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_mp4track_WriteTextFrame_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMp4track) Close() (_swig_ret int) {
-	var swig_r int
-	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_mp4track_Close_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func DeleteMp4track(arg1 Mp4track) {
-	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_mp4track_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-type Mp4track interface {
-	Swigcptr() uintptr
-	SwigIsMp4track()
-	CreateAudioTrack(arg2 AudioCodec_Type, arg3 uint) (_swig_ret int)
-	CreateVideoTrack(arg2 VideoCodec_Type, arg3 int, arg4 int) (_swig_ret int)
-	CreateTextTrack() (_swig_ret int)
-	WriteAudioFrame(arg2 AudioFrame) (_swig_ret int)
-	WriteVideoFrame(arg2 VideoFrame) (_swig_ret int)
-	WriteTextFrame(arg2 TextFrame) (_swig_ret int)
-	Close() (_swig_ret int)
-}
-
-type SwigcptrMP4Recorder uintptr
-
-func (p SwigcptrMP4Recorder) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrMP4Recorder) SwigIsMP4Recorder() {
-}
-
-func NewMP4Recorder() (_swig_ret MP4Recorder) {
-	var swig_r MP4Recorder
-	swig_r = (MP4Recorder)(SwigcptrMP4Recorder(C._wrap_new_MP4Recorder_native_6d81daf083c332b5()))
-	return swig_r
-}
-
-func DeleteMP4Recorder(arg1 MP4Recorder) {
-	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_MP4Recorder_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrMP4Recorder) Create(arg2 string) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (bool)(C._wrap_MP4Recorder_Create_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_55)(unsafe.Pointer(&_swig_i_1))))
-	if Swig_escape_always_false {
-		Swig_escape_val = arg2
-	}
-	return swig_r
-}
-
-func (arg1 SwigcptrMP4Recorder) Record__SWIG_0() (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_MP4Recorder_Record__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMP4Recorder) Record__SWIG_1(arg2 bool) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (bool)(C._wrap_MP4Recorder_Record__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1)))
-	return swig_r
-}
-
-func (p SwigcptrMP4Recorder) Record(a ...interface{}) bool {
-	argc := len(a)
-	if argc == 0 {
-		return p.Record__SWIG_0()
-	}
-	if argc == 1 {
-		return p.Record__SWIG_1(a[0].(bool))
-	}
-	panic("No match for overloaded function call")
-}
-
-func (arg1 SwigcptrMP4Recorder) Stop() (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_MP4Recorder_Stop_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMP4Recorder) Close__SWIG_0() (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_MP4Recorder_Close__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
-	return swig_r
-}
-
-func (arg1 SwigcptrMP4Recorder) Close__SWIG_1(arg2 bool) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	swig_r = (bool)(C._wrap_MP4Recorder_Close__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1)))
-	return swig_r
-}
-
-func (p SwigcptrMP4Recorder) Close(a ...interface{}) bool {
-	argc := len(a)
-	if argc == 0 {
-		return p.Close__SWIG_0()
-	}
-	if argc == 1 {
-		return p.Close__SWIG_1(a[0].(bool))
-	}
-	panic("No match for overloaded function call")
-}
-
-func (arg1 SwigcptrMP4Recorder) GetType() (_swig_ret RecorderControl_Type) {
-	var swig_r RecorderControl_Type
-	_swig_i_0 := arg1
-	swig_r = (RecorderControl_Type)(SwigcptrRecorderControl_Type(C._wrap_MP4Recorder_GetType_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
-	return swig_r
-}
-
-func (arg1 SwigcptrMP4Recorder) OnMediaFrame__SWIG_0(arg2 MediaFrame) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_MP4Recorder_onMediaFrame__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrMP4Recorder) OnMediaFrame__SWIG_1(arg2 uint, arg3 MediaFrame) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3.Swigcptr()
-	C._wrap_MP4Recorder_onMediaFrame__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.uintptr_t(_swig_i_2))
-}
-
-func (arg1 SwigcptrMP4Recorder) OnMediaFrame__SWIG_2(arg2 uint, arg3 MediaFrame, arg4 uint64) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3.Swigcptr()
-	_swig_i_3 := arg4
-	C._wrap_MP4Recorder_onMediaFrame__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.uintptr_t(_swig_i_2), C.swig_type_56(_swig_i_3))
-}
-
-func (p SwigcptrMP4Recorder) OnMediaFrame(a ...interface{}) {
-	argc := len(a)
-	if argc == 1 {
-		p.OnMediaFrame__SWIG_0(a[0].(MediaFrame))
-		return
-	}
-	if argc == 2 {
-		p.OnMediaFrame__SWIG_1(a[0].(uint), a[1].(MediaFrame))
-		return
-	}
-	if argc == 3 {
-		p.OnMediaFrame__SWIG_2(a[0].(uint), a[1].(MediaFrame), a[2].(uint64))
-		return
-	}
-	panic("No match for overloaded function call")
-}
-
-type MP4Recorder interface {
-	Swigcptr() uintptr
-	SwigIsMP4Recorder()
-	Create(arg2 string) (_swig_ret bool)
-	Record(a ...interface{}) bool
-	Stop() (_swig_ret bool)
-	Close(a ...interface{}) bool
-	GetType() (_swig_ret RecorderControl_Type)
-	OnMediaFrame(a ...interface{})
-}
-
-type SwigcptrRTPStreamTransponder uintptr
-
-func (p SwigcptrRTPStreamTransponder) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrRTPStreamTransponder) SwigIsRTPStreamTransponder() {
-}
-
-func NewRTPStreamTransponder(arg1 RTPOutgoingSourceGroup, arg2 RTPSender) (_swig_ret RTPStreamTransponder) {
-	var swig_r RTPStreamTransponder
-	_swig_i_0 := arg1.Swigcptr()
-	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (RTPStreamTransponder)(SwigcptrRTPStreamTransponder(C._wrap_new_RTPStreamTransponder_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))))
-	return swig_r
-}
-
-func DeleteRTPStreamTransponder(arg1 RTPStreamTransponder) {
-	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPStreamTransponder_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) SetIncoming(arg2 RTPIncomingSourceGroup, arg3 RTPReceiver) (_swig_ret bool) {
-	var swig_r bool
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3.Swigcptr()
-	swig_r = (bool)(C._wrap_RTPStreamTransponder_SetIncoming_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2)))
-	return swig_r
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) Close() {
-	_swig_i_0 := arg1
-	C._wrap_RTPStreamTransponder_Close_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) OnRTP(arg2 RTPIncomingSourceGroup, arg3 RTPPacket_shared) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3.Swigcptr()
-	C._wrap_RTPStreamTransponder_onRTP_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) OnEnded(arg2 RTPIncomingSourceGroup) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPStreamTransponder_onEnded_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) OnPLIRequest(arg2 RTPOutgoingSourceGroup, arg3 uint) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	C._wrap_RTPStreamTransponder_onPLIRequest_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_intgo(_swig_i_2))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) OnREMB(arg2 RTPOutgoingSourceGroup, arg3 uint, arg4 uint) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2.Swigcptr()
-	_swig_i_2 := arg3
-	_swig_i_3 := arg4
-	C._wrap_RTPStreamTransponder_onREMB_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_intgo(_swig_i_2), C.swig_intgo(_swig_i_3))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) SelectLayer(arg2 int, arg3 int) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	_swig_i_2 := arg3
-	C._wrap_RTPStreamTransponder_SelectLayer_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_intgo(_swig_i_2))
-}
-
-func (arg1 SwigcptrRTPStreamTransponder) Mute(arg2 bool) {
-	_swig_i_0 := arg1
-	_swig_i_1 := arg2
-	C._wrap_RTPStreamTransponder_Mute_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1))
-}
-
-type RTPStreamTransponder interface {
-	Swigcptr() uintptr
-	SwigIsRTPStreamTransponder()
-	SetIncoming(arg2 RTPIncomingSourceGroup, arg3 RTPReceiver) (_swig_ret bool)
-	Close()
-	OnRTP(arg2 RTPIncomingSourceGroup, arg3 RTPPacket_shared)
-	OnEnded(arg2 RTPIncomingSourceGroup)
-	OnPLIRequest(arg2 RTPOutgoingSourceGroup, arg3 uint)
-	OnREMB(arg2 RTPOutgoingSourceGroup, arg3 uint, arg4 uint)
-	SelectLayer(arg2 int, arg3 int)
-	Mute(arg2 bool)
 }
 
 type SwigcptrLayerInfo uintptr
@@ -2572,50 +1650,50 @@ func (p SwigcptrLayerInfo) SwigIsLayerInfo() {
 
 func SetLayerInfoMaxLayerId(arg1 byte) {
 	_swig_i_0 := arg1
-	C._wrap_LayerInfo_MaxLayerId_set_native_6d81daf083c332b5(C.char(_swig_i_0))
+	C._wrap_LayerInfo_MaxLayerId_set_native_a625d9984f014aad(C.char(_swig_i_0))
 }
 
 func GetLayerInfoMaxLayerId() (_swig_ret byte) {
 	var swig_r byte
-	swig_r = (byte)(C._wrap_LayerInfo_MaxLayerId_get_native_6d81daf083c332b5())
+	swig_r = (byte)(C._wrap_LayerInfo_MaxLayerId_get_native_a625d9984f014aad())
 	return swig_r
 }
 
 func (arg1 SwigcptrLayerInfo) SetTemporalLayerId(arg2 byte) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_LayerInfo_temporalLayerId_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.char(_swig_i_1))
+	C._wrap_LayerInfo_temporalLayerId_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.char(_swig_i_1))
 }
 
 func (arg1 SwigcptrLayerInfo) GetTemporalLayerId() (_swig_ret byte) {
 	var swig_r byte
 	_swig_i_0 := arg1
-	swig_r = (byte)(C._wrap_LayerInfo_temporalLayerId_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (byte)(C._wrap_LayerInfo_temporalLayerId_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrLayerInfo) SetSpatialLayerId(arg2 byte) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_LayerInfo_spatialLayerId_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.char(_swig_i_1))
+	C._wrap_LayerInfo_spatialLayerId_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.char(_swig_i_1))
 }
 
 func (arg1 SwigcptrLayerInfo) GetSpatialLayerId() (_swig_ret byte) {
 	var swig_r byte
 	_swig_i_0 := arg1
-	swig_r = (byte)(C._wrap_LayerInfo_spatialLayerId_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (byte)(C._wrap_LayerInfo_spatialLayerId_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func NewLayerInfo() (_swig_ret LayerInfo) {
 	var swig_r LayerInfo
-	swig_r = (LayerInfo)(SwigcptrLayerInfo(C._wrap_new_LayerInfo_native_6d81daf083c332b5()))
+	swig_r = (LayerInfo)(SwigcptrLayerInfo(C._wrap_new_LayerInfo_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteLayerInfo(arg1 LayerInfo) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_LayerInfo_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_LayerInfo_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type LayerInfo interface {
@@ -2639,72 +1717,72 @@ func (p SwigcptrLayerSource) SwigIsLayerSource() {
 func (arg1 SwigcptrLayerSource) SetNumPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_LayerSource_numPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_LayerSource_numPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrLayerSource) GetNumPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_LayerSource_numPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_LayerSource_numPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrLayerSource) SetTotalBytes(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_LayerSource_totalBytes_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_LayerSource_totalBytes_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrLayerSource) GetTotalBytes() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_LayerSource_totalBytes_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_LayerSource_totalBytes_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrLayerSource) SetBitrate(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_LayerSource_bitrate_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_LayerSource_bitrate_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrLayerSource) GetBitrate() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_LayerSource_bitrate_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_LayerSource_bitrate_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func NewLayerSource() (_swig_ret LayerSource) {
 	var swig_r LayerSource
-	swig_r = (LayerSource)(SwigcptrLayerSource(C._wrap_new_LayerSource_native_6d81daf083c332b5()))
+	swig_r = (LayerSource)(SwigcptrLayerSource(C._wrap_new_LayerSource_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteLayerSource(arg1 LayerSource) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_LayerSource_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_LayerSource_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (_swig_base SwigcptrLayerSource) SetTemporalLayerId(arg1 byte) {
 	_swig_i_0 := arg1
-	C._wrap_SetLayerSource_TemporalLayerId_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.char(_swig_i_0))
+	C._wrap_SetLayerSource_TemporalLayerId_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.char(_swig_i_0))
 }
 
 func (_swig_base SwigcptrLayerSource) GetTemporalLayerId() (_swig_ret byte) {
 	var swig_r byte
-	swig_r = (byte)(C._wrap_GetLayerSource_TemporalLayerId_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (byte)(C._wrap_GetLayerSource_TemporalLayerId_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrLayerSource) SetSpatialLayerId(arg1 byte) {
 	_swig_i_0 := arg1
-	C._wrap_SetLayerSource_SpatialLayerId_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.char(_swig_i_0))
+	C._wrap_SetLayerSource_SpatialLayerId_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.char(_swig_i_0))
 }
 
 func (_swig_base SwigcptrLayerSource) GetSpatialLayerId() (_swig_ret byte) {
 	var swig_r byte
-	swig_r = (byte)(C._wrap_GetLayerSource_SpatialLayerId_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (byte)(C._wrap_GetLayerSource_SpatialLayerId_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
@@ -2744,7 +1822,7 @@ func (p SwigcptrLayerSources) SwigIsLayerSources() {
 func (arg1 SwigcptrLayerSources) Size() (_swig_ret int64) {
 	var swig_r int64
 	_swig_i_0 := arg1
-	swig_r = (int64)(C._wrap_LayerSources_size_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int64)(C._wrap_LayerSources_size_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
@@ -2752,19 +1830,19 @@ func (arg1 SwigcptrLayerSources) Get(arg2 int64) (_swig_ret LayerSource) {
 	var swig_r LayerSource
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (LayerSource)(SwigcptrLayerSource(C._wrap_LayerSources_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_58(_swig_i_1))))
+	swig_r = (LayerSource)(SwigcptrLayerSource(C._wrap_LayerSources_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_38(_swig_i_1))))
 	return swig_r
 }
 
 func NewLayerSources() (_swig_ret LayerSources) {
 	var swig_r LayerSources
-	swig_r = (LayerSources)(SwigcptrLayerSources(C._wrap_new_LayerSources_native_6d81daf083c332b5()))
+	swig_r = (LayerSources)(SwigcptrLayerSources(C._wrap_new_LayerSources_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteLayerSources(arg1 LayerSources) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_LayerSources_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_LayerSources_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type LayerSources interface {
@@ -2786,129 +1864,129 @@ func (p SwigcptrRTPSource) SwigIsRTPSource() {
 func (arg1 SwigcptrRTPSource) SetSsrc(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_ssrc_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_ssrc_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetSsrc() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_ssrc_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_ssrc_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetExtSeqNum(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_extSeqNum_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_extSeqNum_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetExtSeqNum() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_extSeqNum_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_extSeqNum_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetCycles(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_cycles_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_cycles_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetCycles() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_cycles_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_cycles_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetJitter(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_jitter_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_jitter_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetJitter() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_jitter_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_jitter_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetNumPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_numPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_numPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetNumPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_numPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_numPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetNumRTCPPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_numRTCPPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_numRTCPPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetNumRTCPPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_numRTCPPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_numRTCPPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetTotalBytes(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_totalBytes_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_totalBytes_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetTotalBytes() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_totalBytes_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_totalBytes_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetTotalRTCPBytes(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_totalRTCPBytes_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_totalRTCPBytes_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetTotalRTCPBytes() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_totalRTCPBytes_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_totalRTCPBytes_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSource) SetBitrate(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPSource_bitrate_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPSource_bitrate_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPSource) GetBitrate() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPSource_bitrate_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPSource_bitrate_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func NewRTPSource() (_swig_ret RTPSource) {
 	var swig_r RTPSource
-	swig_r = (RTPSource)(SwigcptrRTPSource(C._wrap_new_RTPSource_native_6d81daf083c332b5()))
+	swig_r = (RTPSource)(SwigcptrRTPSource(C._wrap_new_RTPSource_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteRTPSource(arg1 RTPSource) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPSource_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPSource_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type RTPSource interface {
@@ -2946,286 +2024,286 @@ func (p SwigcptrRTPIncomingSource) SwigIsRTPIncomingSource() {
 func (arg1 SwigcptrRTPIncomingSource) SetLostPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lostPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_lostPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLostPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_lostPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_lostPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetDropPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_dropPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_dropPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetDropPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_dropPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_dropPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetTotalPacketsSinceLastSR(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetTotalPacketsSinceLastSR() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetTotalBytesSinceLastSR(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetTotalBytesSinceLastSR() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetMinExtSeqNumSinceLastSR(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetMinExtSeqNumSinceLastSR() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetLostPacketsSinceLastSR(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLostPacketsSinceLastSR() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetLastReceivedSenderNTPTimestamp(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_59(_swig_i_1))
+	C._wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_39(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLastReceivedSenderNTPTimestamp() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetLastReceivedSenderReport(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_61(_swig_i_1))
+	C._wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_41(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLastReceivedSenderReport() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetLastReport(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lastReport_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_63(_swig_i_1))
+	C._wrap_RTPIncomingSource_lastReport_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_43(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLastReport() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastReport_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastReport_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetLastPLI(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lastPLI_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_65(_swig_i_1))
+	C._wrap_RTPIncomingSource_lastPLI_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_45(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLastPLI() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastPLI_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastPLI_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetTotalPLIs(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_totalPLIs_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_totalPLIs_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetTotalPLIs() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_totalPLIs_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_totalPLIs_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetTotalNACKs(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_totalNACKs_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSource_totalNACKs_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetTotalNACKs() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSource_totalNACKs_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSource_totalNACKs_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) SetLastNACKed(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSource_lastNACKed_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_67(_swig_i_1))
+	C._wrap_RTPIncomingSource_lastNACKed_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_47(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSource) GetLastNACKed() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastNACKed_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPIncomingSource_lastNACKed_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSource) Layers() (_swig_ret LayerSources) {
 	var swig_r LayerSources
 	_swig_i_0 := arg1
-	swig_r = (LayerSources)(SwigcptrLayerSources(C._wrap_RTPIncomingSource_layers_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (LayerSources)(SwigcptrLayerSources(C._wrap_RTPIncomingSource_layers_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func NewRTPIncomingSource() (_swig_ret RTPIncomingSource) {
 	var swig_r RTPIncomingSource
-	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_new_RTPIncomingSource_native_6d81daf083c332b5()))
+	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_new_RTPIncomingSource_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteRTPIncomingSource(arg1 RTPIncomingSource) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPIncomingSource_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPIncomingSource_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetSsrc(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_Ssrc_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_Ssrc_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetSsrc() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Ssrc_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Ssrc_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetExtSeqNum(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_ExtSeqNum_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_ExtSeqNum_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetExtSeqNum() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_ExtSeqNum_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_ExtSeqNum_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetCycles(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_Cycles_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_Cycles_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetCycles() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Cycles_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Cycles_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetJitter(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_Jitter_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_Jitter_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetJitter() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Jitter_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Jitter_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetNumPackets(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_NumPackets_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_NumPackets_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetNumPackets() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_NumPackets_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_NumPackets_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetNumRTCPPackets(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_NumRTCPPackets_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_NumRTCPPackets_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetNumRTCPPackets() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_NumRTCPPackets_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_NumRTCPPackets_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetTotalBytes(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_TotalBytes_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_TotalBytes_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetTotalBytes() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_TotalBytes_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_TotalBytes_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetTotalRTCPBytes(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_TotalRTCPBytes_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_TotalRTCPBytes_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetTotalRTCPBytes() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_TotalRTCPBytes_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_TotalRTCPBytes_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) SetBitrate(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPIncomingSource_Bitrate_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPIncomingSource_Bitrate_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPIncomingSource) GetBitrate() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Bitrate_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPIncomingSource_Bitrate_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
@@ -3300,170 +2378,170 @@ func (p SwigcptrRTPOutgoingSource) SwigIsRTPOutgoingSource() {
 func (arg1 SwigcptrRTPOutgoingSource) SetTime(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_time_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSource_time_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetTime() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPOutgoingSource_time_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPOutgoingSource_time_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetLastTime(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_lastTime_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSource_lastTime_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetLastTime() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPOutgoingSource_lastTime_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPOutgoingSource_lastTime_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetNumPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_numPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSource_numPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetNumPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPOutgoingSource_numPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPOutgoingSource_numPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetNumRTCPPackets(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_numRTCPPackets_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSource_numRTCPPackets_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetNumRTCPPackets() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPOutgoingSource_numRTCPPackets_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPOutgoingSource_numRTCPPackets_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetTotalBytes(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_totalBytes_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSource_totalBytes_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetTotalBytes() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPOutgoingSource_totalBytes_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPOutgoingSource_totalBytes_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetTotalRTCPBytes(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_totalRTCPBytes_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSource_totalRTCPBytes_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetTotalRTCPBytes() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPOutgoingSource_totalRTCPBytes_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPOutgoingSource_totalRTCPBytes_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetLastSenderReport(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_lastSenderReport_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_69(_swig_i_1))
+	C._wrap_RTPOutgoingSource_lastSenderReport_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_49(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetLastSenderReport() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPOutgoingSource_lastSenderReport_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPOutgoingSource_lastSenderReport_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) SetLastSenderReportNTP(arg2 uint64) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_71(_swig_i_1))
+	C._wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_51(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSource) GetLastSenderReportNTP() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func NewRTPOutgoingSource() (_swig_ret RTPOutgoingSource) {
 	var swig_r RTPOutgoingSource
-	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_new_RTPOutgoingSource_native_6d81daf083c332b5()))
+	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_new_RTPOutgoingSource_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteRTPOutgoingSource(arg1 RTPOutgoingSource) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPOutgoingSource_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPOutgoingSource_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) SetSsrc(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPOutgoingSource_Ssrc_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPOutgoingSource_Ssrc_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) GetSsrc() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Ssrc_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Ssrc_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) SetExtSeqNum(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPOutgoingSource_ExtSeqNum_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPOutgoingSource_ExtSeqNum_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) GetExtSeqNum() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_ExtSeqNum_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_ExtSeqNum_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) SetCycles(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPOutgoingSource_Cycles_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPOutgoingSource_Cycles_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) GetCycles() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Cycles_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Cycles_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) SetJitter(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPOutgoingSource_Jitter_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPOutgoingSource_Jitter_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) GetJitter() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Jitter_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Jitter_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) SetBitrate(arg1 uint) {
 	_swig_i_0 := arg1
-	C._wrap_SetRTPOutgoingSource_Bitrate_native_6d81daf083c332b5(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
+	C._wrap_SetRTPOutgoingSource_Bitrate_native_a625d9984f014aad(C.uintptr_t(_swig_base), C.swig_intgo(_swig_i_0))
 }
 
 func (_swig_base SwigcptrRTPOutgoingSource) GetBitrate() (_swig_ret uint) {
 	var swig_r uint
-	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Bitrate_native_6d81daf083c332b5(C.uintptr_t(_swig_base)))
+	swig_r = (uint)(C._wrap_GetRTPOutgoingSource_Bitrate_native_a625d9984f014aad(C.uintptr_t(_swig_base)))
 	return swig_r
 }
 
@@ -3507,6 +2585,25 @@ type RTPOutgoingSource interface {
 	SwigGetRTPSource() RTPSource
 }
 
+type SwigcptrTimeService uintptr
+
+func (p SwigcptrTimeService) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrTimeService) SwigIsTimeService() {
+}
+
+func DeleteTimeService(arg1 TimeService) {
+	_swig_i_0 := arg1.Swigcptr()
+	C._wrap_delete_TimeService_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+type TimeService interface {
+	Swigcptr() uintptr
+	SwigIsTimeService()
+}
+
 type SwigcptrRTPOutgoingSourceGroup uintptr
 
 func (p SwigcptrRTPOutgoingSourceGroup) Swigcptr() uintptr {
@@ -3519,7 +2616,7 @@ func (p SwigcptrRTPOutgoingSourceGroup) SwigIsRTPOutgoingSourceGroup() {
 func NewRTPOutgoingSourceGroup__SWIG_0(arg1 MediaFrameType) (_swig_ret RTPOutgoingSourceGroup) {
 	var swig_r RTPOutgoingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPOutgoingSourceGroup)(SwigcptrRTPOutgoingSourceGroup(C._wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))))
+	swig_r = (RTPOutgoingSourceGroup)(SwigcptrRTPOutgoingSourceGroup(C._wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_a625d9984f014aad(C.swig_intgo(_swig_i_0))))
 	return swig_r
 }
 
@@ -3527,7 +2624,7 @@ func NewRTPOutgoingSourceGroup__SWIG_1(arg1 Std_string, arg2 MediaFrameType) (_s
 	var swig_r RTPOutgoingSourceGroup
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (RTPOutgoingSourceGroup)(SwigcptrRTPOutgoingSourceGroup(C._wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))))
+	swig_r = (RTPOutgoingSourceGroup)(SwigcptrRTPOutgoingSourceGroup(C._wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))))
 	return swig_r
 }
 
@@ -3545,58 +2642,63 @@ func NewRTPOutgoingSourceGroup(a ...interface{}) RTPOutgoingSourceGroup {
 func (arg1 SwigcptrRTPOutgoingSourceGroup) SetXtype(arg2 MediaFrameType) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPOutgoingSourceGroup_Xtype_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPOutgoingSourceGroup_Xtype_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) GetXtype() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
 	_swig_i_0 := arg1
-	swig_r = (MediaFrameType)(C._wrap_RTPOutgoingSourceGroup_Xtype_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (MediaFrameType)(C._wrap_RTPOutgoingSourceGroup_Xtype_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) SetMedia(arg2 RTPOutgoingSource) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPOutgoingSourceGroup_media_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPOutgoingSourceGroup_media_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) GetMedia() (_swig_ret RTPOutgoingSource) {
 	var swig_r RTPOutgoingSource
 	_swig_i_0 := arg1
-	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_RTPOutgoingSourceGroup_media_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_RTPOutgoingSourceGroup_media_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) SetFec(arg2 RTPOutgoingSource) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPOutgoingSourceGroup_fec_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPOutgoingSourceGroup_fec_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) GetFec() (_swig_ret RTPOutgoingSource) {
 	var swig_r RTPOutgoingSource
 	_swig_i_0 := arg1
-	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_RTPOutgoingSourceGroup_fec_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_RTPOutgoingSourceGroup_fec_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) SetRtx(arg2 RTPOutgoingSource) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPOutgoingSourceGroup_rtx_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPOutgoingSourceGroup_rtx_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPOutgoingSourceGroup) GetRtx() (_swig_ret RTPOutgoingSource) {
 	var swig_r RTPOutgoingSource
 	_swig_i_0 := arg1
-	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_RTPOutgoingSourceGroup_rtx_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPOutgoingSource)(SwigcptrRTPOutgoingSource(C._wrap_RTPOutgoingSourceGroup_rtx_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPOutgoingSourceGroup) Update() {
+	_swig_i_0 := arg1
+	C._wrap_RTPOutgoingSourceGroup_Update_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func DeleteRTPOutgoingSourceGroup(arg1 RTPOutgoingSourceGroup) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPOutgoingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPOutgoingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type RTPOutgoingSourceGroup interface {
@@ -3610,6 +2712,49 @@ type RTPOutgoingSourceGroup interface {
 	GetFec() (_swig_ret RTPOutgoingSource)
 	SetRtx(arg2 RTPOutgoingSource)
 	GetRtx() (_swig_ret RTPOutgoingSource)
+	Update()
+}
+
+type SwigcptrRTPSender uintptr
+
+func (p SwigcptrRTPSender) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrRTPSender) SwigIsRTPSender() {
+}
+
+type RTPSender interface {
+	Swigcptr() uintptr
+	SwigIsRTPSender()
+}
+
+type SwigcptrRTPReceiver uintptr
+
+func (p SwigcptrRTPReceiver) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrRTPReceiver) SwigIsRTPReceiver() {
+}
+
+type RTPReceiver interface {
+	Swigcptr() uintptr
+	SwigIsRTPReceiver()
+}
+
+type SwigcptrRTPIncomingMediaStream uintptr
+
+func (p SwigcptrRTPIncomingMediaStream) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrRTPIncomingMediaStream) SwigIsRTPIncomingMediaStream() {
+}
+
+type RTPIncomingMediaStream interface {
+	Swigcptr() uintptr
+	SwigIsRTPIncomingMediaStream()
 }
 
 type SwigcptrRTPIncomingSourceGroup uintptr
@@ -3621,140 +2766,172 @@ func (p SwigcptrRTPIncomingSourceGroup) Swigcptr() uintptr {
 func (p SwigcptrRTPIncomingSourceGroup) SwigIsRTPIncomingSourceGroup() {
 }
 
-func NewRTPIncomingSourceGroup(arg1 MediaFrameType) (_swig_ret RTPIncomingSourceGroup) {
+func NewRTPIncomingSourceGroup(arg1 MediaFrameType, arg2 TimeService) (_swig_ret RTPIncomingSourceGroup) {
 	var swig_r RTPIncomingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_new_RTPIncomingSourceGroup_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))))
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_new_RTPIncomingSourceGroup_native_a625d9984f014aad(C.swig_intgo(_swig_i_0), C.uintptr_t(_swig_i_1))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetRid(arg2 Std_string) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPIncomingSourceGroup_rid_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_rid_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetRid() (_swig_ret Std_string) {
 	var swig_r Std_string
 	_swig_i_0 := arg1
-	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_RTPIncomingSourceGroup_rid_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_RTPIncomingSourceGroup_rid_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetMid(arg2 Std_string) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPIncomingSourceGroup_mid_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_mid_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetMid() (_swig_ret Std_string) {
 	var swig_r Std_string
 	_swig_i_0 := arg1
-	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_RTPIncomingSourceGroup_mid_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (Std_string)(SwigcptrStd_string(C._wrap_RTPIncomingSourceGroup_mid_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetRtt(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSourceGroup_rtt_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_rtt_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetRtt() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_rtt_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_rtt_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetXtype(arg2 MediaFrameType) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPIncomingSourceGroup_Xtype_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_Xtype_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetXtype() (_swig_ret MediaFrameType) {
 	var swig_r MediaFrameType
 	_swig_i_0 := arg1
-	swig_r = (MediaFrameType)(C._wrap_RTPIncomingSourceGroup_Xtype_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (MediaFrameType)(C._wrap_RTPIncomingSourceGroup_Xtype_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetMedia(arg2 RTPIncomingSource) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPIncomingSourceGroup_media_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_media_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetMedia() (_swig_ret RTPIncomingSource) {
 	var swig_r RTPIncomingSource
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_RTPIncomingSourceGroup_media_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_RTPIncomingSourceGroup_media_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetFec(arg2 RTPIncomingSource) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPIncomingSourceGroup_fec_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_fec_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetFec() (_swig_ret RTPIncomingSource) {
 	var swig_r RTPIncomingSource
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_RTPIncomingSourceGroup_fec_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_RTPIncomingSourceGroup_fec_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) SetRtx(arg2 RTPIncomingSource) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_RTPIncomingSourceGroup_rtx_set_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_RTPIncomingSourceGroup_rtx_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetRtx() (_swig_ret RTPIncomingSource) {
 	var swig_r RTPIncomingSource
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_RTPIncomingSourceGroup_rtx_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSource)(SwigcptrRTPIncomingSource(C._wrap_RTPIncomingSourceGroup_rtx_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
-func (arg1 SwigcptrRTPIncomingSourceGroup) Update() {
+func (arg1 SwigcptrRTPIncomingSourceGroup) SetLost(arg2 uint) {
 	_swig_i_0 := arg1
-	C._wrap_RTPIncomingSourceGroup_Update_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	_swig_i_1 := arg2
+	C._wrap_RTPIncomingSourceGroup_lost_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
-func (arg1 SwigcptrRTPIncomingSourceGroup) GetCurrentLost() (_swig_ret uint) {
+func (arg1 SwigcptrRTPIncomingSourceGroup) GetLost() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_GetCurrentLost_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_lost_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPIncomingSourceGroup) SetMinWaitedTime(arg2 uint) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_RTPIncomingSourceGroup_minWaitedTime_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetMinWaitedTime() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_GetMinWaitedTime_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_minWaitedTime_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPIncomingSourceGroup) SetMaxWaitedTime(arg2 uint) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_RTPIncomingSourceGroup_maxWaitedTime_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetMaxWaitedTime() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_GetMaxWaitedTime_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_RTPIncomingSourceGroup_maxWaitedTime_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPIncomingSourceGroup) SetAvgWaitedTime(arg2 float64) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_RTPIncomingSourceGroup_avgWaitedTime_set_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.double(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPIncomingSourceGroup) GetAvgWaitedTime() (_swig_ret float64) {
 	var swig_r float64
 	_swig_i_0 := arg1
-	swig_r = (float64)(C._wrap_RTPIncomingSourceGroup_GetAvgWaitedTime_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (float64)(C._wrap_RTPIncomingSourceGroup_avgWaitedTime_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPIncomingSourceGroup) Update() {
+	_swig_i_0 := arg1
+	C._wrap_RTPIncomingSourceGroup_Update_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func DeleteRTPIncomingSourceGroup(arg1 RTPIncomingSourceGroup) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (p SwigcptrRTPIncomingSourceGroup) SwigIsRTPIncomingMediaStream() {
+}
+
+func (p SwigcptrRTPIncomingSourceGroup) SwigGetRTPIncomingMediaStream() RTPIncomingMediaStream {
+	return SwigcptrRTPIncomingMediaStream(p.Swigcptr())
 }
 
 type RTPIncomingSourceGroup interface {
@@ -3774,11 +2951,17 @@ type RTPIncomingSourceGroup interface {
 	GetFec() (_swig_ret RTPIncomingSource)
 	SetRtx(arg2 RTPIncomingSource)
 	GetRtx() (_swig_ret RTPIncomingSource)
-	Update()
-	GetCurrentLost() (_swig_ret uint)
+	SetLost(arg2 uint)
+	GetLost() (_swig_ret uint)
+	SetMinWaitedTime(arg2 uint)
 	GetMinWaitedTime() (_swig_ret uint)
+	SetMaxWaitedTime(arg2 uint)
 	GetMaxWaitedTime() (_swig_ret uint)
+	SetAvgWaitedTime(arg2 float64)
 	GetAvgWaitedTime() (_swig_ret float64)
+	Update()
+	SwigIsRTPIncomingMediaStream()
+	SwigGetRTPIncomingMediaStream() RTPIncomingMediaStream
 }
 
 type SwigcptrStringFacade uintptr
@@ -3793,7 +2976,7 @@ func (p SwigcptrStringFacade) SwigIsStringFacade() {
 func NewStringFacade__SWIG_0(arg1 string) (_swig_ret StringFacade) {
 	var swig_r StringFacade
 	_swig_i_0 := arg1
-	swig_r = (StringFacade)(SwigcptrStringFacade(C._wrap_new_StringFacade__SWIG_0_native_6d81daf083c332b5(*(*C.swig_type_73)(unsafe.Pointer(&_swig_i_0)))))
+	swig_r = (StringFacade)(SwigcptrStringFacade(C._wrap_new_StringFacade__SWIG_0_native_a625d9984f014aad(*(*C.swig_type_53)(unsafe.Pointer(&_swig_i_0)))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg1
 	}
@@ -3803,7 +2986,7 @@ func NewStringFacade__SWIG_0(arg1 string) (_swig_ret StringFacade) {
 func NewStringFacade__SWIG_1(arg1 Std_string) (_swig_ret StringFacade) {
 	var swig_r StringFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (StringFacade)(SwigcptrStringFacade(C._wrap_new_StringFacade__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (StringFacade)(SwigcptrStringFacade(C._wrap_new_StringFacade__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
@@ -3825,7 +3008,7 @@ check_1:
 func (arg1 SwigcptrStringFacade) ToString() (_swig_ret string) {
 	var swig_r string
 	_swig_i_0 := arg1
-	swig_r_p := C._wrap_StringFacade_toString_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	swig_r_p := C._wrap_StringFacade_toString_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
 	var swig_r_1 string
  swig_r_1 = swigCopyString(swig_r) 
@@ -3834,7 +3017,7 @@ func (arg1 SwigcptrStringFacade) ToString() (_swig_ret string) {
 
 func DeleteStringFacade(arg1 StringFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_StringFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_StringFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type StringFacade interface {
@@ -3856,7 +3039,7 @@ func (arg1 SwigcptrPropertiesFacade) SetProperty__SWIG_0(arg2 string, arg3 int) 
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_PropertiesFacade_SetProperty__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_75)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2))
+	C._wrap_PropertiesFacade_SetProperty__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_55)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -3866,7 +3049,7 @@ func (arg1 SwigcptrPropertiesFacade) SetProperty__SWIG_1(arg2 string, arg3 strin
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_PropertiesFacade_SetProperty__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_76)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_77)(unsafe.Pointer(&_swig_i_2)))
+	C._wrap_PropertiesFacade_SetProperty__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_56)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_57)(unsafe.Pointer(&_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -3879,7 +3062,7 @@ func (arg1 SwigcptrPropertiesFacade) SetProperty__SWIG_2(arg2 string, arg3 bool)
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_PropertiesFacade_SetProperty__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_78)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2))
+	C._wrap_PropertiesFacade_SetProperty__SWIG_2_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_58)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -3912,13 +3095,13 @@ check_2:
 
 func NewPropertiesFacade() (_swig_ret PropertiesFacade) {
 	var swig_r PropertiesFacade
-	swig_r = (PropertiesFacade)(SwigcptrPropertiesFacade(C._wrap_new_PropertiesFacade_native_6d81daf083c332b5()))
+	swig_r = (PropertiesFacade)(SwigcptrPropertiesFacade(C._wrap_new_PropertiesFacade_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeletePropertiesFacade(arg1 PropertiesFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_PropertiesFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_PropertiesFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type PropertiesFacade interface {
@@ -3937,27 +3120,27 @@ func (p SwigcptrMediaServer) SwigIsMediaServer() {
 }
 
 func MediaServerInitialize() {
-	C._wrap_MediaServer_Initialize_native_6d81daf083c332b5()
+	C._wrap_MediaServer_Initialize_native_a625d9984f014aad()
 }
 
 func MediaServerEnableLog(arg1 bool) {
 	_swig_i_0 := arg1
-	C._wrap_MediaServer_EnableLog_native_6d81daf083c332b5(C._Bool(_swig_i_0))
+	C._wrap_MediaServer_EnableLog_native_a625d9984f014aad(C._Bool(_swig_i_0))
 }
 
 func MediaServerEnableDebug(arg1 bool) {
 	_swig_i_0 := arg1
-	C._wrap_MediaServer_EnableDebug_native_6d81daf083c332b5(C._Bool(_swig_i_0))
+	C._wrap_MediaServer_EnableDebug_native_a625d9984f014aad(C._Bool(_swig_i_0))
 }
 
 func MediaServerEnableUltraDebug(arg1 bool) {
 	_swig_i_0 := arg1
-	C._wrap_MediaServer_EnableUltraDebug_native_6d81daf083c332b5(C._Bool(_swig_i_0))
+	C._wrap_MediaServer_EnableUltraDebug_native_a625d9984f014aad(C._Bool(_swig_i_0))
 }
 
 func MediaServerGetFingerprint() (_swig_ret StringFacade) {
 	var swig_r StringFacade
-	swig_r = (StringFacade)(SwigcptrStringFacade(C._wrap_MediaServer_GetFingerprint_native_6d81daf083c332b5()))
+	swig_r = (StringFacade)(SwigcptrStringFacade(C._wrap_MediaServer_GetFingerprint_native_a625d9984f014aad()))
 	return swig_r
 }
 
@@ -3965,24 +3148,625 @@ func MediaServerSetPortRange(arg1 int, arg2 int) (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (bool)(C._wrap_MediaServer_SetPortRange_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	swig_r = (bool)(C._wrap_MediaServer_SetPortRange_native_a625d9984f014aad(C.swig_intgo(_swig_i_0), C.swig_intgo(_swig_i_1)))
 	return swig_r
 }
 
 func NewMediaServer() (_swig_ret MediaServer) {
 	var swig_r MediaServer
-	swig_r = (MediaServer)(SwigcptrMediaServer(C._wrap_new_MediaServer_native_6d81daf083c332b5()))
+	swig_r = (MediaServer)(SwigcptrMediaServer(C._wrap_new_MediaServer_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteMediaServer(arg1 MediaServer) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_MediaServer_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_MediaServer_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type MediaServer interface {
 	Swigcptr() uintptr
 	SwigIsMediaServer()
+}
+
+type SwigcptrRTPBundleTransport uintptr
+
+func (p SwigcptrRTPBundleTransport) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrRTPBundleTransport) SwigIsRTPBundleTransport() {
+}
+
+func NewRTPBundleTransport() (_swig_ret RTPBundleTransport) {
+	var swig_r RTPBundleTransport
+	swig_r = (RTPBundleTransport)(SwigcptrRTPBundleTransport(C._wrap_new_RTPBundleTransport_native_a625d9984f014aad()))
+	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) Init__SWIG_0() (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	swig_r = (int)(C._wrap_RTPBundleTransport_Init__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) Init__SWIG_1(arg2 int) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (int)(C._wrap_RTPBundleTransport_Init__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	return swig_r
+}
+
+func (p SwigcptrRTPBundleTransport) Init(a ...interface{}) int {
+	argc := len(a)
+	if argc == 0 {
+		return p.Init__SWIG_0()
+	}
+	if argc == 1 {
+		return p.Init__SWIG_1(a[0].(int))
+	}
+	panic("No match for overloaded function call")
+}
+
+func (arg1 SwigcptrRTPBundleTransport) AddICETransport(arg2 Std_string, arg3 Properties) (_swig_ret DTLSICETransport) {
+	var swig_r DTLSICETransport
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3.Swigcptr()
+	swig_r = (DTLSICETransport)(SwigcptrDTLSICETransport(C._wrap_RTPBundleTransport_AddICETransport_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))))
+	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) RemoveICETransport(arg2 Std_string) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (int)(C._wrap_RTPBundleTransport_RemoveICETransport_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) End() (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	swig_r = (int)(C._wrap_RTPBundleTransport_End_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) GetLocalPort() (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	swig_r = (int)(C._wrap_RTPBundleTransport_GetLocalPort_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrRTPBundleTransport) AddRemoteCandidate(arg2 Std_string, arg3 string, arg4 uint16) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	swig_r = (int)(C._wrap_RTPBundleTransport_AddRemoteCandidate_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), *(*C.swig_type_59)(unsafe.Pointer(&_swig_i_2)), C.short(_swig_i_3)))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg3
+	}
+	return swig_r
+}
+
+func DeleteRTPBundleTransport(arg1 RTPBundleTransport) {
+	_swig_i_0 := arg1.Swigcptr()
+	C._wrap_delete_RTPBundleTransport_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+type RTPBundleTransport interface {
+	Swigcptr() uintptr
+	SwigIsRTPBundleTransport()
+	Init(a ...interface{}) int
+	AddICETransport(arg2 Std_string, arg3 Properties) (_swig_ret DTLSICETransport)
+	RemoveICETransport(arg2 Std_string) (_swig_ret int)
+	End() (_swig_ret int)
+	GetLocalPort() (_swig_ret int)
+	AddRemoteCandidate(arg2 Std_string, arg3 string, arg4 uint16) (_swig_ret int)
+}
+
+type SwigcptrPCAPTransportEmulator uintptr
+
+func (p SwigcptrPCAPTransportEmulator) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrPCAPTransportEmulator) SwigIsPCAPTransportEmulator() {
+}
+
+func NewPCAPTransportEmulator() (_swig_ret PCAPTransportEmulator) {
+	var swig_r PCAPTransportEmulator
+	swig_r = (PCAPTransportEmulator)(SwigcptrPCAPTransportEmulator(C._wrap_new_PCAPTransportEmulator_native_a625d9984f014aad()))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) SetRemoteProperties(arg2 Properties) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_PCAPTransportEmulator_SetRemoteProperties_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) Open(arg2 string) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Open_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_60)(unsafe.Pointer(&_swig_i_1))))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) SetReader(arg2 UDPReader) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_SetReader_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) Play() (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Play_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) Seek(arg2 uint64) (_swig_ret uint64) {
+	var swig_r uint64
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (uint64)(C._wrap_PCAPTransportEmulator_Seek_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_62(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) Stop() (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Stop_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) Close() (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	swig_r = (bool)(C._wrap_PCAPTransportEmulator_Close_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrPCAPTransportEmulator) GetTimeService() (_swig_ret TimeService) {
+	var swig_r TimeService
+	_swig_i_0 := arg1
+	swig_r = (TimeService)(SwigcptrTimeService(C._wrap_PCAPTransportEmulator_GetTimeService_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
+	return swig_r
+}
+
+func DeletePCAPTransportEmulator(arg1 PCAPTransportEmulator) {
+	_swig_i_0 := arg1.Swigcptr()
+	C._wrap_delete_PCAPTransportEmulator_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+type PCAPTransportEmulator interface {
+	Swigcptr() uintptr
+	SwigIsPCAPTransportEmulator()
+	SetRemoteProperties(arg2 Properties)
+	AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
+	RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
+	Open(arg2 string) (_swig_ret bool)
+	SetReader(arg2 UDPReader) (_swig_ret bool)
+	Play() (_swig_ret bool)
+	Seek(arg2 uint64) (_swig_ret uint64)
+	Stop() (_swig_ret bool)
+	Close() (_swig_ret bool)
+	GetTimeService() (_swig_ret TimeService)
+}
+
+type SwigcptrDTLSICETransport uintptr
+
+func (p SwigcptrDTLSICETransport) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrDTLSICETransport) SwigIsDTLSICETransport() {
+}
+
+func (arg1 SwigcptrDTLSICETransport) Start() {
+	_swig_i_0 := arg1
+	C._wrap_DTLSICETransport_Start_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (arg1 SwigcptrDTLSICETransport) Stop() {
+	_swig_i_0 := arg1
+	C._wrap_DTLSICETransport_Stop_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetSRTPProtectionProfiles(arg2 Std_string) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetRemoteProperties(arg2 Properties) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_DTLSICETransport_SetRemoteProperties_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetLocalProperties(arg2 Properties) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_DTLSICETransport_SetLocalProperties_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SendPLI(arg2 uint) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (int)(C._wrap_DTLSICETransport_SendPLI_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Enqueue(arg2 RTPPacket_shared) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (int)(C._wrap_DTLSICETransport_Enqueue_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_0(arg2 string, arg3 bool, arg4 bool, arg5 bool) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	_swig_i_4 := arg5
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_63)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2), C._Bool(_swig_i_3), C._Bool(_swig_i_4)))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_1(arg2 string, arg3 bool, arg4 bool) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_64)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2), C._Bool(_swig_i_3)))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_2(arg2 string, arg3 bool) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	_swig_i_2 := arg3
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_2_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_65)(unsafe.Pointer(&_swig_i_1)), C._Bool(_swig_i_2)))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_3(arg2 string) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_3_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_66)(unsafe.Pointer(&_swig_i_1))))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_4(arg2 UDPDumper, arg3 bool, arg4 bool, arg5 bool) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	_swig_i_4 := arg5
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_4_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2), C._Bool(_swig_i_3), C._Bool(_swig_i_4)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_5(arg2 UDPDumper, arg3 bool, arg4 bool) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_5_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2), C._Bool(_swig_i_3)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_6(arg2 UDPDumper, arg3 bool) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_6_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) Dump__SWIG_7(arg2 UDPDumper) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (int)(C._wrap_DTLSICETransport_Dump__SWIG_7_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (p SwigcptrDTLSICETransport) Dump(a ...interface{}) int {
+	argc := len(a)
+	if argc == 1 {
+		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
+			goto check_1
+		}
+		return p.Dump__SWIG_7(a[0].(UDPDumper))
+	}
+check_1:
+	if argc == 1 {
+		return p.Dump__SWIG_3(a[0].(string))
+	}
+	if argc == 2 {
+		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
+			goto check_3
+		}
+		return p.Dump__SWIG_6(a[0].(UDPDumper), a[1].(bool))
+	}
+check_3:
+	if argc == 2 {
+		return p.Dump__SWIG_2(a[0].(string), a[1].(bool))
+	}
+	if argc == 3 {
+		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
+			goto check_5
+		}
+		return p.Dump__SWIG_5(a[0].(UDPDumper), a[1].(bool), a[2].(bool))
+	}
+check_5:
+	if argc == 3 {
+		return p.Dump__SWIG_1(a[0].(string), a[1].(bool), a[2].(bool))
+	}
+	if argc == 4 {
+		if _, ok := a[0].(SwigcptrUDPDumper); !ok {
+			goto check_7
+		}
+		return p.Dump__SWIG_4(a[0].(UDPDumper), a[1].(bool), a[2].(bool), a[3].(bool))
+	}
+check_7:
+	if argc == 4 {
+		return p.Dump__SWIG_0(a[0].(string), a[1].(bool), a[2].(bool), a[3].(bool))
+	}
+	panic("No match for overloaded function call")
+}
+
+func (arg1 SwigcptrDTLSICETransport) Reset() {
+	_swig_i_0 := arg1
+	C._wrap_DTLSICETransport_Reset_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (arg1 SwigcptrDTLSICETransport) ActivateRemoteCandidate(arg2 ICERemoteCandidate, arg3 bool, arg4 uint) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	C._wrap_DTLSICETransport_ActivateRemoteCandidate_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C._Bool(_swig_i_2), C.swig_intgo(_swig_i_3))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetRemoteCryptoDTLS(arg2 string, arg3 string, arg4 string) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	_swig_i_2 := arg3
+	_swig_i_3 := arg4
+	swig_r = (int)(C._wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_67)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_68)(unsafe.Pointer(&_swig_i_2)), *(*C.swig_type_69)(unsafe.Pointer(&_swig_i_3))))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	if Swig_escape_always_false {
+		Swig_escape_val = arg3
+	}
+	if Swig_escape_always_false {
+		Swig_escape_val = arg4
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetLocalSTUNCredentials(arg2 string, arg3 string) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	_swig_i_2 := arg3
+	swig_r = (int)(C._wrap_DTLSICETransport_SetLocalSTUNCredentials_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_70)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_71)(unsafe.Pointer(&_swig_i_2))))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	if Swig_escape_always_false {
+		Swig_escape_val = arg3
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetRemoteSTUNCredentials(arg2 string, arg3 string) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	_swig_i_2 := arg3
+	swig_r = (int)(C._wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_72)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_73)(unsafe.Pointer(&_swig_i_2))))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	if Swig_escape_always_false {
+		Swig_escape_val = arg3
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) AddOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_DTLSICETransport_AddOutgoingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) RemoveOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_DTLSICETransport_AddIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (bool)(C._wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetBandwidthProbing(arg2 bool) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_DTLSICETransport_SetBandwidthProbing_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetMaxProbingBitrate(arg2 uint) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	C._wrap_DTLSICETransport_SetMaxProbingBitrate_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) SetSenderSideEstimatorListener(arg2 RemoteRateEstimator_Listener) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrDTLSICETransport) GetRemoteUsername() (_swig_ret string) {
+	var swig_r string
+	_swig_i_0 := arg1
+	swig_r_p := C._wrap_DTLSICETransport_GetRemoteUsername_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
+	var swig_r_1 string
+ swig_r_1 = swigCopyString(swig_r) 
+	return swig_r_1
+}
+
+func (arg1 SwigcptrDTLSICETransport) GetRemotePwd() (_swig_ret string) {
+	var swig_r string
+	_swig_i_0 := arg1
+	swig_r_p := C._wrap_DTLSICETransport_GetRemotePwd_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
+	var swig_r_1 string
+ swig_r_1 = swigCopyString(swig_r) 
+	return swig_r_1
+}
+
+func (arg1 SwigcptrDTLSICETransport) GetLocalUsername() (_swig_ret string) {
+	var swig_r string
+	_swig_i_0 := arg1
+	swig_r_p := C._wrap_DTLSICETransport_GetLocalUsername_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
+	var swig_r_1 string
+ swig_r_1 = swigCopyString(swig_r) 
+	return swig_r_1
+}
+
+func (arg1 SwigcptrDTLSICETransport) GetLocalPwd() (_swig_ret string) {
+	var swig_r string
+	_swig_i_0 := arg1
+	swig_r_p := C._wrap_DTLSICETransport_GetLocalPwd_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
+	var swig_r_1 string
+ swig_r_1 = swigCopyString(swig_r) 
+	return swig_r_1
+}
+
+func (arg1 SwigcptrDTLSICETransport) GetRTT() (_swig_ret uint) {
+	var swig_r uint
+	_swig_i_0 := arg1
+	swig_r = (uint)(C._wrap_DTLSICETransport_GetRTT_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrDTLSICETransport) GetTimeService() (_swig_ret TimeService) {
+	var swig_r TimeService
+	_swig_i_0 := arg1
+	swig_r = (TimeService)(SwigcptrTimeService(C._wrap_DTLSICETransport_GetTimeService_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
+	return swig_r
+}
+
+func DeleteDTLSICETransport(arg1 DTLSICETransport) {
+	_swig_i_0 := arg1.Swigcptr()
+	C._wrap_delete_DTLSICETransport_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+type DTLSICETransport interface {
+	Swigcptr() uintptr
+	SwigIsDTLSICETransport()
+	Start()
+	Stop()
+	SetSRTPProtectionProfiles(arg2 Std_string)
+	SetRemoteProperties(arg2 Properties)
+	SetLocalProperties(arg2 Properties)
+	SendPLI(arg2 uint) (_swig_ret int)
+	Enqueue(arg2 RTPPacket_shared) (_swig_ret int)
+	Dump(a ...interface{}) int
+	Reset()
+	ActivateRemoteCandidate(arg2 ICERemoteCandidate, arg3 bool, arg4 uint)
+	SetRemoteCryptoDTLS(arg2 string, arg3 string, arg4 string) (_swig_ret int)
+	SetLocalSTUNCredentials(arg2 string, arg3 string) (_swig_ret int)
+	SetRemoteSTUNCredentials(arg2 string, arg3 string) (_swig_ret int)
+	AddOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool)
+	RemoveOutgoingSourceGroup(arg2 RTPOutgoingSourceGroup) (_swig_ret bool)
+	AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
+	RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) (_swig_ret bool)
+	SetBandwidthProbing(arg2 bool)
+	SetMaxProbingBitrate(arg2 uint)
+	SetSenderSideEstimatorListener(arg2 RemoteRateEstimator_Listener)
+	GetRemoteUsername() (_swig_ret string)
+	GetRemotePwd() (_swig_ret string)
+	GetLocalUsername() (_swig_ret string)
+	GetLocalPwd() (_swig_ret string)
+	GetRTT() (_swig_ret uint)
+	GetTimeService() (_swig_ret TimeService)
 }
 
 type SwigcptrRTPSessionFacade uintptr
@@ -3997,7 +3781,7 @@ func (p SwigcptrRTPSessionFacade) SwigIsRTPSessionFacade() {
 func NewRTPSessionFacade(arg1 MediaFrameType) (_swig_ret RTPSessionFacade) {
 	var swig_r RTPSessionFacade
 	_swig_i_0 := arg1
-	swig_r = (RTPSessionFacade)(SwigcptrRTPSessionFacade(C._wrap_new_RTPSessionFacade_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))))
+	swig_r = (RTPSessionFacade)(SwigcptrRTPSessionFacade(C._wrap_new_RTPSessionFacade_native_a625d9984f014aad(C.swig_intgo(_swig_i_0))))
 	return swig_r
 }
 
@@ -4005,7 +3789,7 @@ func (arg1 SwigcptrRTPSessionFacade) Init(arg2 Properties) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_RTPSessionFacade_Init_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_Init_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
 	return swig_r
 }
 
@@ -4013,14 +3797,14 @@ func (arg1 SwigcptrRTPSessionFacade) SetLocalPort(arg2 int) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_RTPSessionFacade_SetLocalPort_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_SetLocalPort_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSessionFacade) GetLocalPort() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RTPSessionFacade_GetLocalPort_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_GetLocalPort_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
@@ -4029,7 +3813,7 @@ func (arg1 SwigcptrRTPSessionFacade) SetRemotePort(arg2 string, arg3 int) (_swig
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_RTPSessionFacade_SetRemotePort_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_79)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_SetRemotePort_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_78)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -4039,21 +3823,21 @@ func (arg1 SwigcptrRTPSessionFacade) SetRemotePort(arg2 string, arg3 int) (_swig
 func (arg1 SwigcptrRTPSessionFacade) GetOutgoingSourceGroup() (_swig_ret RTPOutgoingSourceGroup) {
 	var swig_r RTPOutgoingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPOutgoingSourceGroup)(SwigcptrRTPOutgoingSourceGroup(C._wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPOutgoingSourceGroup)(SwigcptrRTPOutgoingSourceGroup(C._wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSessionFacade) GetIncomingSourceGroup() (_swig_ret RTPIncomingSourceGroup) {
 	var swig_r RTPIncomingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_RTPSessionFacade_GetIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_RTPSessionFacade_GetIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRTPSessionFacade) End() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RTPSessionFacade_End_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_End_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
@@ -4061,7 +3845,7 @@ func (arg1 SwigcptrRTPSessionFacade) Enqueue(arg2 RTPPacket_shared) (_swig_ret i
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_RTPSessionFacade_Enqueue_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_Enqueue_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
 	return swig_r
 }
 
@@ -4069,13 +3853,27 @@ func (arg1 SwigcptrRTPSessionFacade) SendPLI(arg2 uint) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_RTPSessionFacade_SendPLI_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	swig_r = (int)(C._wrap_RTPSessionFacade_SendPLI_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
 	return swig_r
 }
 
 func DeleteRTPSessionFacade(arg1 RTPSessionFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPSessionFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPSessionFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (p SwigcptrRTPSessionFacade) SwigIsRTPSender() {
+}
+
+func (p SwigcptrRTPSessionFacade) SwigGetRTPSender() RTPSender {
+	return SwigcptrRTPSender(p.Swigcptr())
+}
+
+func (arg1 SwigcptrRTPSessionFacade) SwigGetRTPReceiver() (_swig_ret RTPReceiver) {
+	var swig_r RTPReceiver
+	_swig_i_0 := arg1
+	swig_r = (RTPReceiver)(SwigcptrRTPReceiver(C._wrap_RTPSessionFacade_SwigGetRTPReceiver_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
+	return swig_r
 }
 
 type RTPSessionFacade interface {
@@ -4090,6 +3888,9 @@ type RTPSessionFacade interface {
 	End() (_swig_ret int)
 	Enqueue(arg2 RTPPacket_shared) (_swig_ret int)
 	SendPLI(arg2 uint) (_swig_ret int)
+	SwigIsRTPSender()
+	SwigGetRTPSender() RTPSender
+	SwigGetRTPReceiver() (_swig_ret RTPReceiver)
 }
 
 type SwigcptrRTPSenderFacade uintptr
@@ -4104,14 +3905,14 @@ func (p SwigcptrRTPSenderFacade) SwigIsRTPSenderFacade() {
 func NewRTPSenderFacade__SWIG_0(arg1 DTLSICETransport) (_swig_ret RTPSenderFacade) {
 	var swig_r RTPSenderFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_new_RTPSenderFacade__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_new_RTPSenderFacade__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func NewRTPSenderFacade__SWIG_1(arg1 RTPSessionFacade) (_swig_ret RTPSenderFacade) {
 	var swig_r RTPSenderFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_new_RTPSenderFacade__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_new_RTPSenderFacade__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
@@ -4133,13 +3934,13 @@ check_1:
 func (arg1 SwigcptrRTPSenderFacade) Get() (_swig_ret RTPSender) {
 	var swig_r RTPSender
 	_swig_i_0 := arg1
-	swig_r = (RTPSender)(SwigcptrRTPSender(C._wrap_RTPSenderFacade_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPSender)(SwigcptrRTPSender(C._wrap_RTPSenderFacade_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func DeleteRTPSenderFacade(arg1 RTPSenderFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPSenderFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPSenderFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type RTPSenderFacade interface {
@@ -4160,21 +3961,21 @@ func (p SwigcptrRTPReceiverFacade) SwigIsRTPReceiverFacade() {
 func NewRTPReceiverFacade__SWIG_0(arg1 DTLSICETransport) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_new_RTPReceiverFacade__SWIG_0_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_new_RTPReceiverFacade__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func NewRTPReceiverFacade__SWIG_1(arg1 RTPSessionFacade) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_new_RTPReceiverFacade__SWIG_1_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_new_RTPReceiverFacade__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func NewRTPReceiverFacade__SWIG_2(arg1 PCAPTransportEmulator) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_new_RTPReceiverFacade__SWIG_2_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_new_RTPReceiverFacade__SWIG_2_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
@@ -4203,7 +4004,7 @@ check_2:
 func (arg1 SwigcptrRTPReceiverFacade) Get() (_swig_ret RTPReceiver) {
 	var swig_r RTPReceiver
 	_swig_i_0 := arg1
-	swig_r = (RTPReceiver)(SwigcptrRTPReceiver(C._wrap_RTPReceiverFacade_get_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiver)(SwigcptrRTPReceiver(C._wrap_RTPReceiverFacade_get_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
@@ -4211,13 +4012,13 @@ func (arg1 SwigcptrRTPReceiverFacade) SendPLI(arg2 uint) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_RTPReceiverFacade_SendPLI_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	swig_r = (int)(C._wrap_RTPReceiverFacade_SendPLI_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
 	return swig_r
 }
 
 func DeleteRTPReceiverFacade(arg1 RTPReceiverFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPReceiverFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPReceiverFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type RTPReceiverFacade interface {
@@ -4230,42 +4031,42 @@ type RTPReceiverFacade interface {
 func TransportToSender(arg1 DTLSICETransport) (_swig_ret RTPSenderFacade) {
 	var swig_r RTPSenderFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_TransportToSender_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_TransportToSender_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func TransportToReceiver(arg1 DTLSICETransport) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_TransportToReceiver_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_TransportToReceiver_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func PCAPTransportEmulatorToReceiver(arg1 PCAPTransportEmulator) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_PCAPTransportEmulatorToReceiver_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_PCAPTransportEmulatorToReceiver_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func SessionToSender(arg1 RTPSessionFacade) (_swig_ret RTPSenderFacade) {
 	var swig_r RTPSenderFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_SessionToSender_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPSenderFacade)(SwigcptrRTPSenderFacade(C._wrap_SessionToSender_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func SessionToReceiver(arg1 RTPSessionFacade) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_SessionToReceiver_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_SessionToReceiver_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func RTPSessionToReceiver(arg1 RawRTPSessionFacade) (_swig_ret RTPReceiverFacade) {
 	var swig_r RTPReceiverFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_RTPSessionToReceiver_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPReceiverFacade)(SwigcptrRTPReceiverFacade(C._wrap_RTPSessionToReceiver_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
@@ -4283,46 +4084,70 @@ func NewRTPStreamTransponderFacade(arg1 RTPOutgoingSourceGroup, arg2 RTPSenderFa
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3.Swigcptr()
-	swig_r = (RTPStreamTransponderFacade)(SwigcptrRTPStreamTransponderFacade(C._wrap_new_RTPStreamTransponderFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))))
+	swig_r = (RTPStreamTransponderFacade)(SwigcptrRTPStreamTransponderFacade(C._wrap_new_RTPStreamTransponderFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2))))
 	return swig_r
 }
 
-func (arg1 SwigcptrRTPStreamTransponderFacade) SetIncoming(arg2 RTPIncomingSourceGroup, arg3 RTPReceiverFacade) (_swig_ret bool) {
+func (arg1 SwigcptrRTPStreamTransponderFacade) SetIncoming__SWIG_0(arg2 RTPIncomingMediaStream, arg3 RTPReceiverFacade) (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3.Swigcptr()
-	swig_r = (bool)(C._wrap_RTPStreamTransponderFacade_SetIncoming_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2)))
+	swig_r = (bool)(C._wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2)))
 	return swig_r
+}
+
+func (arg1 SwigcptrRTPStreamTransponderFacade) SetIncoming__SWIG_1(arg2 RTPIncomingMediaStream, arg3 RTPReceiver) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	_swig_i_2 := arg3.Swigcptr()
+	swig_r = (bool)(C._wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2)))
+	return swig_r
+}
+
+func (p SwigcptrRTPStreamTransponderFacade) SetIncoming(a ...interface{}) bool {
+	argc := len(a)
+	if argc == 2 {
+		if _, ok := a[1].(RTPReceiverFacade); !ok {
+			goto check_1
+		}
+		return p.SetIncoming__SWIG_0(a[0].(RTPIncomingMediaStream), a[1].(RTPReceiverFacade))
+	}
+check_1:
+	if argc == 2 {
+		return p.SetIncoming__SWIG_1(a[0].(RTPIncomingMediaStream), a[1].(RTPReceiver))
+	}
+	panic("No match for overloaded function call")
 }
 
 func (arg1 SwigcptrRTPStreamTransponderFacade) SelectLayer(arg2 int, arg3 int) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_RTPStreamTransponderFacade_SelectLayer_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_intgo(_swig_i_2))
+	C._wrap_RTPStreamTransponderFacade_SelectLayer_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_intgo(_swig_i_2))
 }
 
 func (arg1 SwigcptrRTPStreamTransponderFacade) Mute(arg2 bool) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_RTPStreamTransponderFacade_Mute_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1))
+	C._wrap_RTPStreamTransponderFacade_Mute_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1))
 }
 
 func (arg1 SwigcptrRTPStreamTransponderFacade) Close() {
 	_swig_i_0 := arg1
-	C._wrap_RTPStreamTransponderFacade_Close_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_RTPStreamTransponderFacade_Close_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func DeleteRTPStreamTransponderFacade(arg1 RTPStreamTransponderFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RTPStreamTransponderFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RTPStreamTransponderFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type RTPStreamTransponderFacade interface {
 	Swigcptr() uintptr
 	SwigIsRTPStreamTransponderFacade()
-	SetIncoming(arg2 RTPIncomingSourceGroup, arg3 RTPReceiverFacade) (_swig_ret bool)
+	SetIncoming(a ...interface{}) bool
 	SelectLayer(arg2 int, arg3 int)
 	Mute(arg2 bool)
 	Close()
@@ -4337,33 +4162,33 @@ func (p SwigcptrStreamTrackDepacketizer) Swigcptr() uintptr {
 func (p SwigcptrStreamTrackDepacketizer) SwigIsStreamTrackDepacketizer() {
 }
 
-func NewStreamTrackDepacketizer(arg1 RTPIncomingSourceGroup) (_swig_ret StreamTrackDepacketizer) {
+func NewStreamTrackDepacketizer(arg1 RTPIncomingMediaStream) (_swig_ret StreamTrackDepacketizer) {
 	var swig_r StreamTrackDepacketizer
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (StreamTrackDepacketizer)(SwigcptrStreamTrackDepacketizer(C._wrap_new_StreamTrackDepacketizer_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (StreamTrackDepacketizer)(SwigcptrStreamTrackDepacketizer(C._wrap_new_StreamTrackDepacketizer_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrStreamTrackDepacketizer) AddMediaListener(arg2 MediaFrame_Listener) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_StreamTrackDepacketizer_AddMediaListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_StreamTrackDepacketizer_AddMediaListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrStreamTrackDepacketizer) RemoveMediaListener(arg2 MediaFrame_Listener) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_StreamTrackDepacketizer_RemoveMediaListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_StreamTrackDepacketizer_RemoveMediaListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrStreamTrackDepacketizer) Stop() {
 	_swig_i_0 := arg1
-	C._wrap_StreamTrackDepacketizer_Stop_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_StreamTrackDepacketizer_Stop_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func DeleteStreamTrackDepacketizer(arg1 StreamTrackDepacketizer) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_StreamTrackDepacketizer_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_StreamTrackDepacketizer_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type StreamTrackDepacketizer interface {
@@ -4372,6 +4197,105 @@ type StreamTrackDepacketizer interface {
 	AddMediaListener(arg2 MediaFrame_Listener)
 	RemoveMediaListener(arg2 MediaFrame_Listener)
 	Stop()
+}
+
+type SwigcptrMP4Recorder uintptr
+
+func (p SwigcptrMP4Recorder) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrMP4Recorder) SwigIsMP4Recorder() {
+}
+
+func NewMP4Recorder() (_swig_ret MP4Recorder) {
+	var swig_r MP4Recorder
+	swig_r = (MP4Recorder)(SwigcptrMP4Recorder(C._wrap_new_MP4Recorder_native_a625d9984f014aad()))
+	return swig_r
+}
+
+func DeleteMP4Recorder(arg1 MP4Recorder) {
+	_swig_i_0 := arg1.Swigcptr()
+	C._wrap_delete_MP4Recorder_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (arg1 SwigcptrMP4Recorder) Create(arg2 string) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (bool)(C._wrap_MP4Recorder_Create_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_79)(unsafe.Pointer(&_swig_i_1))))
+	if Swig_escape_always_false {
+		Swig_escape_val = arg2
+	}
+	return swig_r
+}
+
+func (arg1 SwigcptrMP4Recorder) Record__SWIG_0() (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	swig_r = (bool)(C._wrap_MP4Recorder_Record__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrMP4Recorder) Record__SWIG_1(arg2 bool) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (bool)(C._wrap_MP4Recorder_Record__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1)))
+	return swig_r
+}
+
+func (p SwigcptrMP4Recorder) Record(a ...interface{}) bool {
+	argc := len(a)
+	if argc == 0 {
+		return p.Record__SWIG_0()
+	}
+	if argc == 1 {
+		return p.Record__SWIG_1(a[0].(bool))
+	}
+	panic("No match for overloaded function call")
+}
+
+func (arg1 SwigcptrMP4Recorder) Stop() (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	swig_r = (bool)(C._wrap_MP4Recorder_Stop_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrMP4Recorder) Close__SWIG_0() (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	swig_r = (bool)(C._wrap_MP4Recorder_Close__SWIG_0_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func (arg1 SwigcptrMP4Recorder) Close__SWIG_1(arg2 bool) (_swig_ret bool) {
+	var swig_r bool
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2
+	swig_r = (bool)(C._wrap_MP4Recorder_Close__SWIG_1_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C._Bool(_swig_i_1)))
+	return swig_r
+}
+
+func (p SwigcptrMP4Recorder) Close(a ...interface{}) bool {
+	argc := len(a)
+	if argc == 0 {
+		return p.Close__SWIG_0()
+	}
+	if argc == 1 {
+		return p.Close__SWIG_1(a[0].(bool))
+	}
+	panic("No match for overloaded function call")
+}
+
+type MP4Recorder interface {
+	Swigcptr() uintptr
+	SwigIsMP4Recorder()
+	Create(arg2 string) (_swig_ret bool)
+	Record(a ...interface{}) bool
+	Stop() (_swig_ret bool)
+	Close(a ...interface{}) bool
 }
 
 type SwigcptrPlayerFacade uintptr
@@ -4385,40 +4309,40 @@ func (p SwigcptrPlayerFacade) SwigIsPlayerFacade() {
 
 func NewPlayerFacade() (_swig_ret PlayerFacade) {
 	var swig_r PlayerFacade
-	swig_r = (PlayerFacade)(SwigcptrPlayerFacade(C._wrap_new_PlayerFacade_native_6d81daf083c332b5()))
+	swig_r = (PlayerFacade)(SwigcptrPlayerFacade(C._wrap_new_PlayerFacade_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetAudioSource() (_swig_ret RTPIncomingSourceGroup) {
 	var swig_r RTPIncomingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_PlayerFacade_GetAudioSource_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_PlayerFacade_GetAudioSource_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetVideoSource() (_swig_ret RTPIncomingSourceGroup) {
 	var swig_r RTPIncomingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_PlayerFacade_GetVideoSource_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_PlayerFacade_GetVideoSource_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) Reset() {
 	_swig_i_0 := arg1
-	C._wrap_PlayerFacade_Reset_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_PlayerFacade_Reset_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrPlayerFacade) SetPlayEndListener(arg2 PlayerEndListener) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_PlayerFacade_setPlayEndListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_PlayerFacade_setPlayEndListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrPlayerFacade) Open(arg2 string) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_PlayerFacade_Open_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), *(*C.swig_type_80)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_PlayerFacade_Open_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), *(*C.swig_type_80)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -4428,70 +4352,70 @@ func (arg1 SwigcptrPlayerFacade) Open(arg2 string) (_swig_ret int) {
 func (arg1 SwigcptrPlayerFacade) HasAudioTrack() (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_PlayerFacade_HasAudioTrack_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (bool)(C._wrap_PlayerFacade_HasAudioTrack_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) HasVideoTrack() (_swig_ret bool) {
 	var swig_r bool
 	_swig_i_0 := arg1
-	swig_r = (bool)(C._wrap_PlayerFacade_HasVideoTrack_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (bool)(C._wrap_PlayerFacade_HasVideoTrack_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetAudioCodec() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_PlayerFacade_GetAudioCodec_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_PlayerFacade_GetAudioCodec_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetVideoCodec() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoCodec_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoCodec_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetDuration() (_swig_ret float64) {
 	var swig_r float64
 	_swig_i_0 := arg1
-	swig_r = (float64)(C._wrap_PlayerFacade_GetDuration_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (float64)(C._wrap_PlayerFacade_GetDuration_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetVideoWidth() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoWidth_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoWidth_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetVideoHeight() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoHeight_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoHeight_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetVideoBitrate() (_swig_ret uint) {
 	var swig_r uint
 	_swig_i_0 := arg1
-	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoBitrate_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint)(C._wrap_PlayerFacade_GetVideoBitrate_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) GetVideoFramerate() (_swig_ret float64) {
 	var swig_r float64
 	_swig_i_0 := arg1
-	swig_r = (float64)(C._wrap_PlayerFacade_GetVideoFramerate_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (float64)(C._wrap_PlayerFacade_GetVideoFramerate_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) Play() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_PlayerFacade_Play_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_PlayerFacade_Play_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
@@ -4499,7 +4423,7 @@ func (arg1 SwigcptrPlayerFacade) PreSeek(arg2 uint64) (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (uint64)(C._wrap_PlayerFacade_PreSeek_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_82(_swig_i_1)))
+	swig_r = (uint64)(C._wrap_PlayerFacade_PreSeek_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_82(_swig_i_1)))
 	return swig_r
 }
 
@@ -4507,34 +4431,34 @@ func (arg1 SwigcptrPlayerFacade) Seek(arg2 uint64) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_PlayerFacade_Seek_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_type_83(_swig_i_1)))
+	swig_r = (int)(C._wrap_PlayerFacade_Seek_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_type_83(_swig_i_1)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) Tell() (_swig_ret uint64) {
 	var swig_r uint64
 	_swig_i_0 := arg1
-	swig_r = (uint64)(C._wrap_PlayerFacade_Tell_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (uint64)(C._wrap_PlayerFacade_Tell_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) Stop() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_PlayerFacade_Stop_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_PlayerFacade_Stop_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func (arg1 SwigcptrPlayerFacade) Close() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_PlayerFacade_Close_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_PlayerFacade_Close_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
 func DeletePlayerFacade(arg1 PlayerFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_PlayerFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_PlayerFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type PlayerFacade interface {
@@ -4574,7 +4498,7 @@ func (p SwigcptrRawRTPSessionFacade) SwigIsRawRTPSessionFacade() {
 func NewRawRTPSessionFacade(arg1 MediaFrameType) (_swig_ret RawRTPSessionFacade) {
 	var swig_r RawRTPSessionFacade
 	_swig_i_0 := arg1
-	swig_r = (RawRTPSessionFacade)(SwigcptrRawRTPSessionFacade(C._wrap_new_RawRTPSessionFacade_native_6d81daf083c332b5(C.swig_intgo(_swig_i_0))))
+	swig_r = (RawRTPSessionFacade)(SwigcptrRawRTPSessionFacade(C._wrap_new_RawRTPSessionFacade_native_a625d9984f014aad(C.swig_intgo(_swig_i_0))))
 	return swig_r
 }
 
@@ -4582,7 +4506,7 @@ func (arg1 SwigcptrRawRTPSessionFacade) Init(arg2 Properties) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	swig_r = (int)(C._wrap_RawRTPSessionFacade_Init_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	swig_r = (int)(C._wrap_RawRTPSessionFacade_Init_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
 	return swig_r
 }
 
@@ -4590,20 +4514,20 @@ func (arg1 SwigcptrRawRTPSessionFacade) OnRTPPacket(arg2 *byte, arg3 int) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_RawRTPSessionFacade_onRTPPacket_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2))
+	C._wrap_RawRTPSessionFacade_onRTPPacket_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_voidp(_swig_i_1), C.swig_intgo(_swig_i_2))
 }
 
 func (arg1 SwigcptrRawRTPSessionFacade) GetIncomingSourceGroup() (_swig_ret RTPIncomingSourceGroup) {
 	var swig_r RTPIncomingSourceGroup
 	_swig_i_0 := arg1
-	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (RTPIncomingSourceGroup)(SwigcptrRTPIncomingSourceGroup(C._wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrRawRTPSessionFacade) End() (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
-	swig_r = (int)(C._wrap_RawRTPSessionFacade_End_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0)))
+	swig_r = (int)(C._wrap_RawRTPSessionFacade_End_native_a625d9984f014aad(C.uintptr_t(_swig_i_0)))
 	return swig_r
 }
 
@@ -4611,13 +4535,20 @@ func (arg1 SwigcptrRawRTPSessionFacade) SendPLI(arg2 uint) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_RawRTPSessionFacade_SendPLI_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
+	swig_r = (int)(C._wrap_RawRTPSessionFacade_SendPLI_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1)))
 	return swig_r
 }
 
 func DeleteRawRTPSessionFacade(arg1 RawRTPSessionFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_RawRTPSessionFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_RawRTPSessionFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
+}
+
+func (p SwigcptrRawRTPSessionFacade) SwigIsRTPReceiver() {
+}
+
+func (p SwigcptrRawRTPSessionFacade) SwigGetRTPReceiver() RTPReceiver {
+	return SwigcptrRTPReceiver(p.Swigcptr())
 }
 
 type RawRTPSessionFacade interface {
@@ -4628,6 +4559,8 @@ type RawRTPSessionFacade interface {
 	GetIncomingSourceGroup() (_swig_ret RTPIncomingSourceGroup)
 	End() (_swig_ret int)
 	SendPLI(arg2 uint) (_swig_ret int)
+	SwigIsRTPReceiver()
+	SwigGetRTPReceiver() RTPReceiver
 }
 
 type _swig_DirectorSenderSideEstimatorListener struct {
@@ -4648,17 +4581,17 @@ func (p *_swig_DirectorSenderSideEstimatorListener) DirectorInterface() interfac
 
 func NewDirectorSenderSideEstimatorListener(v interface{}) SenderSideEstimatorListener {
 	p := &_swig_DirectorSenderSideEstimatorListener{0, v}
-	p.SwigcptrSenderSideEstimatorListener = SwigcptrSenderSideEstimatorListener(C._wrap__swig_NewDirectorSenderSideEstimatorListenerSenderSideEstimatorListener_native_6d81daf083c332b5(C.int(swigDirectorAdd(p))))
+	p.SwigcptrSenderSideEstimatorListener = SwigcptrSenderSideEstimatorListener(C._wrap__swig_NewDirectorSenderSideEstimatorListenerSenderSideEstimatorListener_native_a625d9984f014aad(C.int(swigDirectorAdd(p))))
 	return p
 }
 
 func DeleteDirectorSenderSideEstimatorListener(arg1 SenderSideEstimatorListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_DeleteDirectorSenderSideEstimatorListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_DeleteDirectorSenderSideEstimatorListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
-//export Swiggo_DeleteDirector_SenderSideEstimatorListener_native_6d81daf083c332b5
-func Swiggo_DeleteDirector_SenderSideEstimatorListener_native_6d81daf083c332b5(c int) {
+//export Swiggo_DeleteDirector_SenderSideEstimatorListener_native_a625d9984f014aad
+func Swiggo_DeleteDirector_SenderSideEstimatorListener_native_a625d9984f014aad(c int) {
 	swigDirectorLookup(c).(*_swig_DirectorSenderSideEstimatorListener).SwigcptrSenderSideEstimatorListener = 0
 	swigDirectorDelete(c)
 }
@@ -4678,19 +4611,19 @@ func (p SwigcptrSenderSideEstimatorListener) DirectorInterface() interface{} {
 
 func NewSenderSideEstimatorListener() (_swig_ret SenderSideEstimatorListener) {
 	var swig_r SenderSideEstimatorListener
-	swig_r = (SenderSideEstimatorListener)(SwigcptrSenderSideEstimatorListener(C._wrap_new_SenderSideEstimatorListener_native_6d81daf083c332b5()))
+	swig_r = (SenderSideEstimatorListener)(SwigcptrSenderSideEstimatorListener(C._wrap_new_SenderSideEstimatorListener_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteSenderSideEstimatorListener(arg1 SenderSideEstimatorListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_SenderSideEstimatorListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_SenderSideEstimatorListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrSenderSideEstimatorListener) OnTargetBitrateRequested(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 type SenderSideEstimatorListener interface {
@@ -4712,39 +4645,39 @@ func (p SwigcptrActiveSpeakerDetectorFacade) SwigIsActiveSpeakerDetectorFacade()
 func NewActiveSpeakerDetectorFacade(arg1 ActiveTrackListener) (_swig_ret ActiveSpeakerDetectorFacade) {
 	var swig_r ActiveSpeakerDetectorFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (ActiveSpeakerDetectorFacade)(SwigcptrActiveSpeakerDetectorFacade(C._wrap_new_ActiveSpeakerDetectorFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (ActiveSpeakerDetectorFacade)(SwigcptrActiveSpeakerDetectorFacade(C._wrap_new_ActiveSpeakerDetectorFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrActiveSpeakerDetectorFacade) SetMinChangePeriod(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
-func (arg1 SwigcptrActiveSpeakerDetectorFacade) AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup) {
+func (arg1 SwigcptrActiveSpeakerDetectorFacade) AddIncomingSourceGroup(arg2 RTPIncomingMediaStream) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
-func (arg1 SwigcptrActiveSpeakerDetectorFacade) RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup) {
+func (arg1 SwigcptrActiveSpeakerDetectorFacade) RemoveIncomingSourceGroup(arg2 RTPIncomingMediaStream) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func DeleteActiveSpeakerDetectorFacade(arg1 ActiveSpeakerDetectorFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_ActiveSpeakerDetectorFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_ActiveSpeakerDetectorFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type ActiveSpeakerDetectorFacade interface {
 	Swigcptr() uintptr
 	SwigIsActiveSpeakerDetectorFacade()
 	SetMinChangePeriod(arg2 uint)
-	AddIncomingSourceGroup(arg2 RTPIncomingSourceGroup)
-	RemoveIncomingSourceGroup(arg2 RTPIncomingSourceGroup)
+	AddIncomingSourceGroup(arg2 RTPIncomingMediaStream)
+	RemoveIncomingSourceGroup(arg2 RTPIncomingMediaStream)
 }
 
 type _swig_DirectorMediaFrameListener struct {
@@ -4765,17 +4698,17 @@ func (p *_swig_DirectorMediaFrameListener) DirectorInterface() interface{} {
 
 func NewDirectorMediaFrameListener(v interface{}) MediaFrameListener {
 	p := &_swig_DirectorMediaFrameListener{0, v}
-	p.SwigcptrMediaFrameListener = SwigcptrMediaFrameListener(C._wrap__swig_NewDirectorMediaFrameListenerMediaFrameListener_native_6d81daf083c332b5(C.int(swigDirectorAdd(p))))
+	p.SwigcptrMediaFrameListener = SwigcptrMediaFrameListener(C._wrap__swig_NewDirectorMediaFrameListenerMediaFrameListener_native_a625d9984f014aad(C.int(swigDirectorAdd(p))))
 	return p
 }
 
 func DeleteDirectorMediaFrameListener(arg1 MediaFrameListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_DeleteDirectorMediaFrameListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_DeleteDirectorMediaFrameListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
-//export Swiggo_DeleteDirector_MediaFrameListener_native_6d81daf083c332b5
-func Swiggo_DeleteDirector_MediaFrameListener_native_6d81daf083c332b5(c int) {
+//export Swiggo_DeleteDirector_MediaFrameListener_native_a625d9984f014aad
+func Swiggo_DeleteDirector_MediaFrameListener_native_a625d9984f014aad(c int) {
 	swigDirectorLookup(c).(*_swig_DirectorMediaFrameListener).SwigcptrMediaFrameListener = 0
 	swigDirectorDelete(c)
 }
@@ -4790,16 +4723,16 @@ func (swig_p *_swig_DirectorMediaFrameListener) OnMediaFrame(frame MediaFrame) {
 		return
 	}
 	_swig_i_0 := frame.Swigcptr()
-	C._wrap__swig_DirectorMediaFrameListener_upcall_OnMediaFrame_native_6d81daf083c332b5(C.uintptr_t(swig_p.SwigcptrMediaFrameListener), C.uintptr_t(_swig_i_0))
+	C._wrap__swig_DirectorMediaFrameListener_upcall_OnMediaFrame_native_a625d9984f014aad(C.uintptr_t(swig_p.SwigcptrMediaFrameListener), C.uintptr_t(_swig_i_0))
 }
 
 func DirectorMediaFrameListenerOnMediaFrame(p MediaFrameListener, arg2 MediaFrame) {
 	_swig_i_0 := arg2.Swigcptr()
-	C._wrap__swig_DirectorMediaFrameListener_upcall_OnMediaFrame_native_6d81daf083c332b5(C.uintptr_t(p.(*_swig_DirectorMediaFrameListener).SwigcptrMediaFrameListener), C.uintptr_t(_swig_i_0))
+	C._wrap__swig_DirectorMediaFrameListener_upcall_OnMediaFrame_native_a625d9984f014aad(C.uintptr_t(p.(*_swig_DirectorMediaFrameListener).SwigcptrMediaFrameListener), C.uintptr_t(_swig_i_0))
 }
 
-//export Swig_DirectorMediaFrameListener_callback_onMediaFrame_native_6d81daf083c332b5
-func Swig_DirectorMediaFrameListener_callback_onMediaFrame_native_6d81daf083c332b5(swig_c int, arg2 uintptr) {
+//export Swig_DirectorMediaFrameListener_callback_onMediaFrame_native_a625d9984f014aad
+func Swig_DirectorMediaFrameListener_callback_onMediaFrame_native_a625d9984f014aad(swig_c int, arg2 uintptr) {
 	swig_p := swigDirectorLookup(swig_c).(*_swig_DirectorMediaFrameListener)
 	swig_p.OnMediaFrame(SwigcptrMediaFrame(arg2))
 }
@@ -4819,19 +4752,19 @@ func (p SwigcptrMediaFrameListener) DirectorInterface() interface{} {
 
 func NewMediaFrameListener() (_swig_ret MediaFrameListener) {
 	var swig_r MediaFrameListener
-	swig_r = (MediaFrameListener)(SwigcptrMediaFrameListener(C._wrap_new_MediaFrameListener_native_6d81daf083c332b5()))
+	swig_r = (MediaFrameListener)(SwigcptrMediaFrameListener(C._wrap_new_MediaFrameListener_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteMediaFrameListener(arg1 MediaFrameListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_MediaFrameListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_MediaFrameListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrMediaFrameListener) OnMediaFrame(arg2 MediaFrame) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_MediaFrameListener_onMediaFrame_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_MediaFrameListener_onMediaFrame_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 type MediaFrameListener interface {
@@ -4853,30 +4786,30 @@ func (p SwigcptrMediaStreamDuplicaterFacade) SwigIsMediaStreamDuplicaterFacade()
 func NewMediaStreamDuplicaterFacade(arg1 RTPIncomingSourceGroup) (_swig_ret MediaStreamDuplicaterFacade) {
 	var swig_r MediaStreamDuplicaterFacade
 	_swig_i_0 := arg1.Swigcptr()
-	swig_r = (MediaStreamDuplicaterFacade)(SwigcptrMediaStreamDuplicaterFacade(C._wrap_new_MediaStreamDuplicaterFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))))
+	swig_r = (MediaStreamDuplicaterFacade)(SwigcptrMediaStreamDuplicaterFacade(C._wrap_new_MediaStreamDuplicaterFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))))
 	return swig_r
 }
 
 func (arg1 SwigcptrMediaStreamDuplicaterFacade) AddMediaListener(arg2 MediaFrameListener) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_MediaStreamDuplicaterFacade_AddMediaListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_MediaStreamDuplicaterFacade_AddMediaListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaStreamDuplicaterFacade) RemoveMediaListener(arg2 MediaFrameListener) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_MediaStreamDuplicaterFacade_RemoveMediaListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	C._wrap_MediaStreamDuplicaterFacade_RemoveMediaListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
 }
 
 func (arg1 SwigcptrMediaStreamDuplicaterFacade) Stop() {
 	_swig_i_0 := arg1
-	C._wrap_MediaStreamDuplicaterFacade_Stop_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_MediaStreamDuplicaterFacade_Stop_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func DeleteMediaStreamDuplicaterFacade(arg1 MediaStreamDuplicaterFacade) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_MediaStreamDuplicaterFacade_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_MediaStreamDuplicaterFacade_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type MediaStreamDuplicaterFacade interface {
@@ -4905,17 +4838,17 @@ func (p *_swig_DirectorPlayerEndListener) DirectorInterface() interface{} {
 
 func NewDirectorPlayerEndListener(v interface{}) PlayerEndListener {
 	p := &_swig_DirectorPlayerEndListener{0, v}
-	p.SwigcptrPlayerEndListener = SwigcptrPlayerEndListener(C._wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_native_6d81daf083c332b5(C.int(swigDirectorAdd(p))))
+	p.SwigcptrPlayerEndListener = SwigcptrPlayerEndListener(C._wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_native_a625d9984f014aad(C.int(swigDirectorAdd(p))))
 	return p
 }
 
 func DeleteDirectorPlayerEndListener(arg1 PlayerEndListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_DeleteDirectorPlayerEndListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_DeleteDirectorPlayerEndListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
-//export Swiggo_DeleteDirector_PlayerEndListener_native_6d81daf083c332b5
-func Swiggo_DeleteDirector_PlayerEndListener_native_6d81daf083c332b5(c int) {
+//export Swiggo_DeleteDirector_PlayerEndListener_native_a625d9984f014aad
+func Swiggo_DeleteDirector_PlayerEndListener_native_a625d9984f014aad(c int) {
 	swigDirectorLookup(c).(*_swig_DirectorPlayerEndListener).SwigcptrPlayerEndListener = 0
 	swigDirectorDelete(c)
 }
@@ -4929,15 +4862,15 @@ func (swig_p *_swig_DirectorPlayerEndListener) OnEnd() {
 		swig_g.OnEnd()
 		return
 	}
-	C._wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_6d81daf083c332b5(C.uintptr_t(swig_p.SwigcptrPlayerEndListener))
+	C._wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_a625d9984f014aad(C.uintptr_t(swig_p.SwigcptrPlayerEndListener))
 }
 
 func DirectorPlayerEndListenerOnEnd(p PlayerEndListener) {
-	C._wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_6d81daf083c332b5(C.uintptr_t(p.(*_swig_DirectorPlayerEndListener).SwigcptrPlayerEndListener))
+	C._wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_a625d9984f014aad(C.uintptr_t(p.(*_swig_DirectorPlayerEndListener).SwigcptrPlayerEndListener))
 }
 
-//export Swig_DirectorPlayerEndListener_callback_onEnd_native_6d81daf083c332b5
-func Swig_DirectorPlayerEndListener_callback_onEnd_native_6d81daf083c332b5(swig_c int) {
+//export Swig_DirectorPlayerEndListener_callback_onEnd_native_a625d9984f014aad
+func Swig_DirectorPlayerEndListener_callback_onEnd_native_a625d9984f014aad(swig_c int) {
 	swig_p := swigDirectorLookup(swig_c).(*_swig_DirectorPlayerEndListener)
 	swig_p.OnEnd()
 }
@@ -4957,18 +4890,18 @@ func (p SwigcptrPlayerEndListener) DirectorInterface() interface{} {
 
 func NewPlayerEndListener() (_swig_ret PlayerEndListener) {
 	var swig_r PlayerEndListener
-	swig_r = (PlayerEndListener)(SwigcptrPlayerEndListener(C._wrap_new_PlayerEndListener_native_6d81daf083c332b5()))
+	swig_r = (PlayerEndListener)(SwigcptrPlayerEndListener(C._wrap_new_PlayerEndListener_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeletePlayerEndListener(arg1 PlayerEndListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_PlayerEndListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_PlayerEndListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrPlayerEndListener) OnEnd() {
 	_swig_i_0 := arg1
-	C._wrap_PlayerEndListener_onEnd_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_PlayerEndListener_onEnd_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type PlayerEndListener interface {
@@ -4996,17 +4929,17 @@ func (p *_swig_DirectorREMBBitrateListener) DirectorInterface() interface{} {
 
 func NewDirectorREMBBitrateListener(v interface{}) REMBBitrateListener {
 	p := &_swig_DirectorREMBBitrateListener{0, v}
-	p.SwigcptrREMBBitrateListener = SwigcptrREMBBitrateListener(C._wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListener_native_6d81daf083c332b5(C.int(swigDirectorAdd(p))))
+	p.SwigcptrREMBBitrateListener = SwigcptrREMBBitrateListener(C._wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListener_native_a625d9984f014aad(C.int(swigDirectorAdd(p))))
 	return p
 }
 
 func DeleteDirectorREMBBitrateListener(arg1 REMBBitrateListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_DeleteDirectorREMBBitrateListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_DeleteDirectorREMBBitrateListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
-//export Swiggo_DeleteDirector_REMBBitrateListener_native_6d81daf083c332b5
-func Swiggo_DeleteDirector_REMBBitrateListener_native_6d81daf083c332b5(c int) {
+//export Swiggo_DeleteDirector_REMBBitrateListener_native_a625d9984f014aad
+func Swiggo_DeleteDirector_REMBBitrateListener_native_a625d9984f014aad(c int) {
 	swigDirectorLookup(c).(*_swig_DirectorREMBBitrateListener).SwigcptrREMBBitrateListener = 0
 	swigDirectorDelete(c)
 }
@@ -5020,15 +4953,15 @@ func (swig_p *_swig_DirectorREMBBitrateListener) OnREMB() {
 		swig_g.OnREMB()
 		return
 	}
-	C._wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_6d81daf083c332b5(C.uintptr_t(swig_p.SwigcptrREMBBitrateListener))
+	C._wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_a625d9984f014aad(C.uintptr_t(swig_p.SwigcptrREMBBitrateListener))
 }
 
 func DirectorREMBBitrateListenerOnREMB(p REMBBitrateListener) {
-	C._wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_6d81daf083c332b5(C.uintptr_t(p.(*_swig_DirectorREMBBitrateListener).SwigcptrREMBBitrateListener))
+	C._wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_a625d9984f014aad(C.uintptr_t(p.(*_swig_DirectorREMBBitrateListener).SwigcptrREMBBitrateListener))
 }
 
-//export Swig_DirectorREMBBitrateListener_callback_onREMB_native_6d81daf083c332b5
-func Swig_DirectorREMBBitrateListener_callback_onREMB_native_6d81daf083c332b5(swig_c int) {
+//export Swig_DirectorREMBBitrateListener_callback_onREMB_native_a625d9984f014aad
+func Swig_DirectorREMBBitrateListener_callback_onREMB_native_a625d9984f014aad(swig_c int) {
 	swig_p := swigDirectorLookup(swig_c).(*_swig_DirectorREMBBitrateListener)
 	swig_p.OnREMB()
 }
@@ -5048,18 +4981,18 @@ func (p SwigcptrREMBBitrateListener) DirectorInterface() interface{} {
 
 func NewREMBBitrateListener() (_swig_ret REMBBitrateListener) {
 	var swig_r REMBBitrateListener
-	swig_r = (REMBBitrateListener)(SwigcptrREMBBitrateListener(C._wrap_new_REMBBitrateListener_native_6d81daf083c332b5()))
+	swig_r = (REMBBitrateListener)(SwigcptrREMBBitrateListener(C._wrap_new_REMBBitrateListener_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteREMBBitrateListener(arg1 REMBBitrateListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_REMBBitrateListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_REMBBitrateListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrREMBBitrateListener) OnREMB() {
 	_swig_i_0 := arg1
-	C._wrap_REMBBitrateListener_onREMB_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_REMBBitrateListener_onREMB_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 type REMBBitrateListener interface {
@@ -5087,17 +5020,17 @@ func (p *_swig_DirectorActiveTrackListener) DirectorInterface() interface{} {
 
 func NewDirectorActiveTrackListener(v interface{}) ActiveTrackListener {
 	p := &_swig_DirectorActiveTrackListener{0, v}
-	p.SwigcptrActiveTrackListener = SwigcptrActiveTrackListener(C._wrap__swig_NewDirectorActiveTrackListenerActiveTrackListener_native_6d81daf083c332b5(C.int(swigDirectorAdd(p))))
+	p.SwigcptrActiveTrackListener = SwigcptrActiveTrackListener(C._wrap__swig_NewDirectorActiveTrackListenerActiveTrackListener_native_a625d9984f014aad(C.int(swigDirectorAdd(p))))
 	return p
 }
 
 func DeleteDirectorActiveTrackListener(arg1 ActiveTrackListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_DeleteDirectorActiveTrackListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_DeleteDirectorActiveTrackListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
-//export Swiggo_DeleteDirector_ActiveTrackListener_native_6d81daf083c332b5
-func Swiggo_DeleteDirector_ActiveTrackListener_native_6d81daf083c332b5(c int) {
+//export Swiggo_DeleteDirector_ActiveTrackListener_native_a625d9984f014aad
+func Swiggo_DeleteDirector_ActiveTrackListener_native_a625d9984f014aad(c int) {
 	swigDirectorLookup(c).(*_swig_DirectorActiveTrackListener).SwigcptrActiveTrackListener = 0
 	swigDirectorDelete(c)
 }
@@ -5112,16 +5045,16 @@ func (swig_p *_swig_DirectorActiveTrackListener) OnActiveTrackchanged(id uint) {
 		return
 	}
 	_swig_i_0 := id
-	C._wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_6d81daf083c332b5(C.uintptr_t(swig_p.SwigcptrActiveTrackListener), C.swig_intgo(_swig_i_0))
+	C._wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_a625d9984f014aad(C.uintptr_t(swig_p.SwigcptrActiveTrackListener), C.swig_intgo(_swig_i_0))
 }
 
 func DirectorActiveTrackListenerOnActiveTrackchanged(p ActiveTrackListener, arg2 uint) {
 	_swig_i_0 := arg2
-	C._wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_6d81daf083c332b5(C.uintptr_t(p.(*_swig_DirectorActiveTrackListener).SwigcptrActiveTrackListener), C.swig_intgo(_swig_i_0))
+	C._wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_a625d9984f014aad(C.uintptr_t(p.(*_swig_DirectorActiveTrackListener).SwigcptrActiveTrackListener), C.swig_intgo(_swig_i_0))
 }
 
-//export Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_6d81daf083c332b5
-func Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_6d81daf083c332b5(swig_c int, arg2 uint) {
+//export Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_a625d9984f014aad
+func Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_a625d9984f014aad(swig_c int, arg2 uint) {
 	swig_p := swigDirectorLookup(swig_c).(*_swig_DirectorActiveTrackListener)
 	swig_p.OnActiveTrackchanged(arg2)
 }
@@ -5141,19 +5074,19 @@ func (p SwigcptrActiveTrackListener) DirectorInterface() interface{} {
 
 func NewActiveTrackListener() (_swig_ret ActiveTrackListener) {
 	var swig_r ActiveTrackListener
-	swig_r = (ActiveTrackListener)(SwigcptrActiveTrackListener(C._wrap_new_ActiveTrackListener_native_6d81daf083c332b5()))
+	swig_r = (ActiveTrackListener)(SwigcptrActiveTrackListener(C._wrap_new_ActiveTrackListener_native_a625d9984f014aad()))
 	return swig_r
 }
 
 func DeleteActiveTrackListener(arg1 ActiveTrackListener) {
 	_swig_i_0 := arg1.Swigcptr()
-	C._wrap_delete_ActiveTrackListener_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0))
+	C._wrap_delete_ActiveTrackListener_native_a625d9984f014aad(C.uintptr_t(_swig_i_0))
 }
 
 func (arg1 SwigcptrActiveTrackListener) OnActiveTrackchanged(arg2 uint) {
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	C._wrap_ActiveTrackListener_onActiveTrackchanged_native_6d81daf083c332b5(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
+	C._wrap_ActiveTrackListener_onActiveTrackchanged_native_a625d9984f014aad(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1))
 }
 
 type ActiveTrackListener interface {
@@ -5163,38 +5096,6 @@ type ActiveTrackListener interface {
 	OnActiveTrackchanged(arg2 uint)
 }
 
-
-type SwigcptrUDPReader uintptr
-type UDPReader interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrUDPReader) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrDTLSConnection_Suite uintptr
-type DTLSConnection_Suite interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrDTLSConnection_Suite) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrRTPReceiver uintptr
-type RTPReceiver interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrRTPReceiver) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrMP4FileHandle uintptr
-type MP4FileHandle interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrMP4FileHandle) Swigcptr() uintptr {
-	return uintptr(p)
-}
 
 type SwigcptrRemoteRateEstimator_Listener uintptr
 type RemoteRateEstimator_Listener interface {
@@ -5244,22 +5145,6 @@ func (p SwigcptrSwigDirector_ActiveTrackListener) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
-type SwigcptrVideoCodec_Type uintptr
-type VideoCodec_Type interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrVideoCodec_Type) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrAudioCodec_Type uintptr
-type AudioCodec_Type interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrAudioCodec_Type) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
 type SwigcptrUDPDumper uintptr
 type UDPDumper interface {
 	Swigcptr() uintptr;
@@ -5284,35 +5169,11 @@ func (p SwigcptrLong_SS_double) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
-type SwigcptrRecorderControl_Type uintptr
-type RecorderControl_Type interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrRecorderControl_Type) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
 type SwigcptrRTPPacket_shared uintptr
 type RTPPacket_shared interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrRTPPacket_shared) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrRTPSender uintptr
-type RTPSender interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrRTPSender) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrDTLSICETransport_Sender uintptr
-type DTLSICETransport_Sender interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrDTLSICETransport_Sender) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
@@ -5337,30 +5198,6 @@ type Std_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_ interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrStd_vector_Sl_MediaFrame_RtpPacketization_Sm__Sg_) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrVideoFrame uintptr
-type VideoFrame interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrVideoFrame) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrAudioFrame uintptr
-type AudioFrame interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrAudioFrame) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrTextFrame uintptr
-type TextFrame interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrTextFrame) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
