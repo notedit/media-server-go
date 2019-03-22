@@ -40,7 +40,7 @@ Yon can see the demos from here [Demos](https://github.com/notedit/media-server-
 
 ## Install 
 
-you should install `libtool` and `autoconf` `automake` before you build 
+You should install `libtool` and `autoconf` `automake` before you build 
 
 ubuntu
 ```
@@ -56,7 +56,17 @@ brew install automake
 ```
 
 
-Build the native c/c++ code,  it will install `openssl`/`libsrtp/mp4v2`/`libmediaserver` into  `/usr/local`
+Your compiler should support c++17, for linux, you should update your gcc/g++ to 7.0+
+
+```
+sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+sudo apt-get update -qq
+sudo apt-get install g++-7
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+```
+
+
+Build the native c/c++ code,  it will install `openssl` `libsrtp` `mp4v2` `libmediaserver` into  `/usr/local`
 
 ```
 git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git  
