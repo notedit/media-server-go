@@ -11,10 +11,6 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-libsrtp/
-mp4v2/
-openssl/
-media-server/
 
 .vscode/
 .idea/
