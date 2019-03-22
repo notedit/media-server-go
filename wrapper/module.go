@@ -8,8 +8,7 @@ package native
 #cgo CPPFLAGS: -I${SRCDIR}/../include/libdatachannels/internal/
 #cgo CPPFLAGS: -I${SRCDIR}/../include/media-server/include/
 
-#cgo LDFLAGS: -L/usr/local/lib -lssl  -lcrypto
-#cgo LDFLAGS: -L/usr/local/lib  -lmp4v2 -lsrtp2 -lmediaserver
+#cgo LDFLAGS: -L/usr/local/lib -lmediaserver -lssl -lcrypto -lsrtp2 -lmp4v2
 #cgo LDFLAGS: -ldl
 */
 import "C"
