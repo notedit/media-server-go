@@ -72,7 +72,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
 Build the native c/c++ code, see [media-server-go-native](https://github.com/notedit/media-server-go-native.git), it will install `openssl` `libsrtp` `mp4v2` `libmediaserver` into  `/usr/local`
 
-```bash
+```sh
 git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git  
 
 cd media-server-go-native
