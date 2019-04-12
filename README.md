@@ -42,23 +42,27 @@ Yon can see the demos from here [Demos](https://github.com/notedit/media-server-
 
 You should install `libtool` and `autoconf` `automake` before you build 
 
-ubuntu
-```
+
+On ubuntu
+```bash
 apt install autoconf
 apt install libtool
 apt install automake
 ```
-macOS
-```
+
+
+On macOS
+
+```bash
 brew install libtool
 brew install autoconf
 brew install automake
 ```
 
 
-Your compiler should support c++17, for linux, you should update your gcc/g++ to 7.0+
+Your compiler should support `c++17`, for linux, you should update your `gcc/g++` to `7.0+`
 
-```
+```bash
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get update -qq
 sudo apt-get install g++-7
@@ -66,9 +70,9 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 ```
 
 
-Build the native c/c++ code,  it will install `openssl` `libsrtp` `mp4v2` `libmediaserver` into  `/usr/local`
+Build the native c/c++ code, see [media-server-go-native](https://github.com/notedit/media-server-go-native.git), it will install `openssl` `libsrtp` `mp4v2` `libmediaserver` into  `/usr/local`
 
-```
+```bash
 git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git  
 
 cd media-server-go-native
@@ -78,7 +82,7 @@ make
 
 Install mediaserver go lib
 
-```
+```bash
 go get github.com/notedit/media-server-go
 
 ```
