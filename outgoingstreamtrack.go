@@ -3,8 +3,8 @@ package mediaserver
 import (
 	"time"
 
-	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
+	"github.com/notedit/sdp"
 )
 
 // OutgoingStreamTrack Audio or Video track of a media stream sent to a remote peer

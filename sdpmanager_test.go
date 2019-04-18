@@ -3,7 +3,7 @@ package mediaserver
 import (
 	"testing"
 
-	"github.com/notedit/media-server-go/sdp"
+	"github.com/notedit/sdp"
 )
 
 var Capabilities = map[string]*sdp.Capability{

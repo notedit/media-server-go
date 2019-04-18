@@ -7,8 +7,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
+	"github.com/notedit/sdp"
 )
 
 // IncomingStream The incoming streams represent the recived media stream from a remote peer.

@@ -1,6 +1,8 @@
 package mediaserver
 
-import "errors"
+import (
+	"errors"
+)
 
 const ssrcMin uint = 1000000000
 const ssrcMax uint = 4294967295
