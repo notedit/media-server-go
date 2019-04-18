@@ -3,7 +3,7 @@ package mediaserver
 import (
 	"sync"
 
-	"github.com/notedit/media-server-go/sdp"
+	"github.com/notedit/sdp"
 )
 
 // Streamer

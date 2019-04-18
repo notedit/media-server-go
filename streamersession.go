@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/notedit/media-server-go/sdp"
+	"github.com/notedit/sdp"
 
 	native "github.com/notedit/media-server-go/wrapper"
 )

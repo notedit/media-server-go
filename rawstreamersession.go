@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/gofrs/uuid"
-	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
+	"github.com/notedit/sdp"
 )
 
 type RawStreamerSession struct {

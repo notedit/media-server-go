@@ -1,7 +1,7 @@
 package mediaserver
 
 import (
-	"github.com/notedit/media-server-go/sdp"
+	"github.com/notedit/sdp"
 )
 
 // SDPManagerPlanb  planb manager

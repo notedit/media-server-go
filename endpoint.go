@@ -1,9 +1,10 @@
 package mediaserver
 
 import (
-	"github.com/notedit/media-server-go/sdp"
-	native "github.com/notedit/media-server-go/wrapper"
 	"sync"
+
+	native "github.com/notedit/media-server-go/wrapper"
+	"github.com/notedit/sdp"
 )
 
 // Endpoint is an endpoint represent an UDP server socket.
@@ -73,7 +74,6 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 
 	transport := NewTransport(e.bundle, remoteIce, remoteDtls, remoteCandidates,
 		localIce, localDtls, localCandidates, disableSTUNKeepAlive)
-
 
 	e.Lock()
 	e.transports[transport.username.ToString()] = transport

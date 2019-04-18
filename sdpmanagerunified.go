@@ -3,7 +3,7 @@ package mediaserver
 import (
 	"strconv"
 
-	"github.com/notedit/media-server-go/sdp"
+	"github.com/notedit/sdp"
 )
 
 type outmediatrack struct {

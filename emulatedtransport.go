@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
+	"github.com/notedit/sdp"
 )
 
 // EmulatedTransport pcap file as a transport

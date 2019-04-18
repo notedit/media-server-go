@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/notedit/media-server-go/sdp"
 	native "github.com/notedit/media-server-go/wrapper"
+	"github.com/notedit/sdp"
 )
 
 // Layer info
