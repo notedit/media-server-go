@@ -92,7 +92,6 @@ go get github.com/notedit/media-server-go
 
  - [Media Server](https://github.com/medooze/media-server)
  - [Media Server for Node.js](https://github.com/medooze/media-server-node)
- - [Murillo](https://github.com/murillo128)
 
 
 
