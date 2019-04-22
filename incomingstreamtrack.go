@@ -1,7 +1,6 @@
 package mediaserver
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 	"time"
@@ -237,8 +236,6 @@ func NewIncomingStreamTrack(media string, id string, receiver native.RTPReceiver
 	sort.SliceStable(track.encodings, func(i, j int) bool {
 		return track.encodings[i].id < track.encodings[j].id
 	})
-
-	fmt.Println(track.encodings)
 
 	return track
 }
@@ -504,9 +501,10 @@ func (i *IncomingStreamTrack) Stop() {
 			encoding.depacketizer.Stop()
 			native.DeleteStreamTrackDepacketizer(encoding.depacketizer)
 		}
-		if encoding.source != nil {
-			native.DeleteRTPIncomingSourceGroup(encoding.source)
-		}
+		// does not
+		// if encoding.source != nil {
+		// 	native.DeleteRTPIncomingSourceGroup(encoding.source)
+		// }
 	}
 
 	if i.mediaStreamDuplicater != nil {
