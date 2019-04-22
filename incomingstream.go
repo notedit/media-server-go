@@ -311,12 +311,12 @@ func (i *IncomingStream) Stop() {
 		return
 	}
 
-	i.Lock()
 	for k, track := range i.tracks {
 		track.Stop()
+		i.Lock()
 		delete(i.tracks, k)
+		i.Unlock()
 	}
-	i.Unlock()
 
 	for _, stopFunc := range i.onStopListeners {
 		stopFunc()
