@@ -114,7 +114,8 @@ public:
 		GetIncomingSourceGroup()->Start();
 	}
 	virtual ~RTPSessionFacade() = default;
-	virtual int Enqueue(const RTPPacket::shared& packet)	 { return SendPacket(*packet); }
+	virtual int Enqueue(const RTPPacket::shared& packet)	 { return SendPacket(packet); }
+	virtual int Enqueue(const RTPPacket::shared& packet,std::function<RTPPacket::shared(const RTPPacket::shared&)> modifier) { return SendPacket(modifier(packet)); }
 	virtual int SendPLI(DWORD ssrc)				 { return RequestFPU();}
 	
 	int Init(const Properties &properties)
@@ -246,7 +247,7 @@ public:
 				//Set ssrc of video
 				packet.SetSSRC(video.media.ssrc);
 				//Multiplex
-				video.AddPacket(packet.Clone());
+				video.AddPacket(packet.Clone(),0);
 				break;
 			case MediaFrame::Audio:
 				//Update stats
@@ -254,7 +255,7 @@ public:
 				//Set ssrc of audio
 				packet.SetSSRC(audio.media.ssrc);
 				//Multiplex
-				audio.AddPacket(packet.Clone());
+				audio.AddPacket(packet.Clone(),0);
 				break;
 			default:
 				///Ignore
@@ -625,9 +626,14 @@ public:
 				 (*it)->onMediaFrame(packet->GetSSRC(),*frame);
 			 //Next
 			 depacketizer->ResetFrame();
-		 }
-		
-			
+		 }	
+	}
+
+	virtual void onBye(RTPIncomingMediaStream* group) 
+	{
+		if(depacketizer)
+			//Skip current
+			depacketizer->ResetFrame();
 	}
 	
 	virtual void onEnded(RTPIncomingMediaStream* group) 
@@ -668,6 +674,43 @@ private:
 	RTPDepacketizer* depacketizer;
 	RTPIncomingMediaStream* incomingSource;
 };
+
+
+
+class DTLSICETransportListener :
+	public DTLSICETransport::Listener
+{
+public:
+	DTLSICETransportListener()
+	{
+
+ 	}
+
+ 	virtual void onDTLSStateChanged(const DTLSICETransport::DTLSState state) override 
+	{
+
+		switch(state)
+		{
+			case DTLSICETransport::DTLSState::New:
+				//todo
+				break;
+			case DTLSICETransport::DTLSState::Connecting:
+				//todo 
+				break;
+			case DTLSICETransport::DTLSState::Connected:
+				// todo 
+				break;
+			case DTLSICETransport::DTLSState::Closed:
+				// todo 
+				break;
+			case DTLSICETransport::DTLSState::Failed:
+				// todo
+				break;
+		}
+	}
+};
+
+
 
 
 class SenderSideEstimatorListener : 
@@ -765,7 +808,11 @@ public:
 			ActiveSpeakerDetector::Accumulate(packet->GetSSRC(), packet->GetVAD(),packet->GetLevel(), getTimeMS());
 		}
 	}		
-	
+
+	virtual void onBye(RTPIncomingMediaStream* group) 
+	{
+
+	}
 	
 	virtual void onEnded(RTPIncomingMediaStream* group) override
 	{
@@ -1027,9 +1074,21 @@ struct RTPSender {};
 %nodefaultdtor RTPReceiver; 
 struct RTPReceiver {};
 
+%{
+using RTPIncomingMediaStreamListener = RTPIncomingMediaStream::Listener;
+%}
+%nodefaultctor RTPIncomingMediaStreamListener;
+struct RTPIncomingMediaStreamListener
+{
+
+};
+
+
 %nodefaultctor RTPIncomingMediaStream;
 %nodefaultdtor RTPIncomingMediaStream; 
-struct RTPIncomingMediaStream {};
+struct RTPIncomingMediaStream {
+
+};
 
 
 
@@ -1049,7 +1108,16 @@ struct RTPIncomingSourceGroup : public RTPIncomingMediaStream
 	DWORD maxWaitedTime;
 	double avgWaitedTime;
 
+	void AddListener(RTPIncomingMediaStreamListener* listener);
+	void RemoveListener(RTPIncomingMediaStreamListener* listener);
+
 	void Update();
+};
+
+
+struct RTPIncomingMediaStreamMultiplexer : public RTPIncomingMediaStream, public RTPIncomingMediaStreamListener
+{
+	RTPIncomingMediaStreamMultiplexer(DWORD ssrc, TimeService& TimeService);
 };
 
 
@@ -1091,7 +1159,9 @@ public:
 	int RemoveICETransport(const std::string &username);
 	int End();
 	int GetLocalPort() const { return port; }
-	int AddRemoteCandidate(const std::string& username,const char* ip, WORD port);		
+	int AddRemoteCandidate(const std::string& username,const char* ip, WORD port);
+	bool SetAffinity(int cpu);
+	TimeService& GetTimeService();		
 };
 
 
@@ -1118,11 +1188,20 @@ public:
 };
 
 
+class DTLSICETransportListener
+{
+public:
+	DTLSICETransportListener();
+	// todo set out side event listener  
+};
+
 
 %nodefaultctor DTLSICETransport; 
 class DTLSICETransport
 {
 public:
+
+	void SetListener(DTLSICETransportListener* listener);
 	void Start();
 	void Stop();
 	
@@ -1306,6 +1385,9 @@ class ActiveSpeakerDetectorFacade
 public:	
 	ActiveSpeakerDetectorFacade(ActiveTrackListener* listener);
 	void SetMinChangePeriod(uint32_t minChangePeriod);
+	void SetMaxAccumulatedScore(uint64_t maxAcummulatedScore);
+	void SetNoiseGatingThreshold(uint8_t noiseGatingThreshold);
+	void SetMinActivationScore(uint32_t minActivationScore);
 	void AddIncomingSourceGroup(RTPIncomingMediaStream* incoming);
 	void RemoveIncomingSourceGroup(RTPIncomingMediaStream* incoming);
 };
