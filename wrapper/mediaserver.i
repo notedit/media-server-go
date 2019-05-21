@@ -692,21 +692,26 @@ public:
 		switch(state)
 		{
 			case DTLSICETransport::DTLSState::New:
-				//todo
+				onDTLSStateChange(0);
 				break;
 			case DTLSICETransport::DTLSState::Connecting:
-				//todo 
+				onDTLSStateChange(1);
 				break;
 			case DTLSICETransport::DTLSState::Connected:
-				// todo 
+				onDTLSStateChange(2);
 				break;
 			case DTLSICETransport::DTLSState::Closed:
-				// todo 
+				onDTLSStateChange(3);
 				break;
 			case DTLSICETransport::DTLSState::Failed:
-				// todo
+				onDTLSStateChange(4);
 				break;
 		}
+	}
+
+	virtual void onDTLSStateChange(uint32_t state) override 
+	{
+
 	}
 };
 
@@ -954,6 +959,7 @@ private:
 %feature("director") SenderSideEstimatorListener;
 %feature("director") MediaFrameListener;
 %feature("director") ActiveTrackListener;
+%feature("director") DTLSICETransportListener;
 
 
 
@@ -1192,7 +1198,9 @@ class DTLSICETransportListener
 {
 public:
 	DTLSICETransportListener();
-	// todo set out side event listener  
+	virtual ~DTLSICETransportListener() {};
+	// swig does not support inter class
+	virtual void onDTLSStateChange(uint32_t state);
 };
 
 
