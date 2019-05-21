@@ -69,6 +69,24 @@ func (a *ActiveSpeakerDetector) SetMinChangePeriod(minChangePeriod uint) {
 	a.detector.SetMinChangePeriod(minChangePeriod)
 }
 
+
+// SetMaxAccumulatedScore  maximux activity score accumulated by an speaker
+func (a *ActiveSpeakerDetector) SetMaxAccumulatedScore(maxAcummulatedScore uint) {
+	a.detector.SetMaxAccumulatedScore(maxAcummulatedScore)
+}
+
+
+// SetNoiseGatingThreshold Minimum db level to not be considered as muted
+func (a *ActiveSpeakerDetector) SetNoiseGatingThreshold(noiseGatingThreshold uint) {
+	a.detector.SetNoiseGatingThreshold(noiseGatingThreshold)
+}
+
+//SetMinActivationScore  Set minimum activation score to be electible as active speaker
+func (a *ActiveSpeakerDetector) SetMinActivationScore(minActivationScore uint) {
+	a.detector.SetMinActivationScore(minActivationScore)
+}
+
+
 // AddTrack  add incoming track into detector
 func (a *ActiveSpeakerDetector) AddTrack(track *IncomingStreamTrack) {
 
@@ -100,17 +118,27 @@ func (a *ActiveSpeakerDetector) RemoveTrack(track *IncomingStreamTrack) {
 
 // Stop stop the detector
 func (a *ActiveSpeakerDetector) Stop() {
-
+	
 	for _, track := range a.tracks {
-		source := track.GetFirstEncoding().GetSource()
-		a.detector.RemoveIncomingSourceGroup(source)
+		encoding := track.GetFirstEncoding() 
+		if encoding != nil {
+			source := encoding.GetSource()
+			if source != nil {
+				a.detector.RemoveIncomingSourceGroup(source)
+			}
+			
+		}
 	}
 
 	if a.activeTrackListener != nil {
 		a.activeTrackListener.deleteActiveTrackListener()
 	}
 
-	a.tracks = map[uint]*IncomingStreamTrack{}
+	a.tracks = nil
 
-	native.DeleteActiveSpeakerDetectorFacade(a.detector)
+	if a.detector != nil {
+		native.DeleteActiveSpeakerDetectorFacade(a.detector)
+		a.detector = nil
+	}
+
 }

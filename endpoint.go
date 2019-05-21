@@ -41,6 +41,11 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	return endpoint
 }
 
+//SetAffinity Set cpu affinity
+func (e *Endpoint) SetAffinity(cpu int) {
+	e.bundle.SetAffinity(cpu)
+}
+
 // CreateTransport create a new transport object and register it with the remote ICE username and password
 // disableSTUNKeepAlive - Disable ICE/STUN keep alives, required for server to server transports, set this to false if you do not how to use it
 func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo, options ...bool) *Transport {

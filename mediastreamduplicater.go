@@ -17,6 +17,7 @@ type MediaStreamDuplicater struct {
 	mediaframeListener func([]byte, uint) // used for outside
 }
 
+
 type mediaframeListener interface {
 	native.MediaFrameListener
 	deleteMediaFrameListener()

@@ -30,6 +30,27 @@ func (p *overwrittenSenderSideEstimatorListener) OnTargetBitrateRequested(bitrat
 	fmt.Println(bitrate)
 }
 
+type dtlsICETransportListener interface {
+	native.DTLSICETransportListener
+	deleteDTLSICETransportListener()
+}
+
+type goDTLSICETransportListener struct {
+	native.DTLSICETransportListener
+}
+
+func (d *goDTLSICETransportListener) deleteDTLSICETransportListener() {
+	native.DeleteDTLSICETransportListener(d.DTLSICETransportListener)
+}
+
+type overwrittenDTLSICETransportListener struct {
+	p native.DTLSICETransportListener
+}
+
+func (p *overwrittenDTLSICETransportListener) OnDTLSStateChange(state uint) {
+	fmt.Println("OnDTLSStateChange", state)
+}
+
 type (
 	// TransportStopListener listener
 	TransportStopListener func()
@@ -37,6 +58,8 @@ type (
 	IncomingTrackListener func(*IncomingStreamTrack, *IncomingStream)
 	// OutgoingTrackListener new track listener
 	OutgoingTrackListener func(*OutgoingStreamTrack, *OutgoingStream)
+	// DTLSStateListener listener
+	DTLSStateListener func(state string)
 )
 
 // Transport represent a connection between a local ICE candidate and a remote set of ICE candidates over a single DTLS session
@@ -49,12 +72,15 @@ type Transport struct {
 	remoteCandidates         []*sdp.CandidateInfo
 	bundle                   native.RTPBundleTransport
 	transport                native.DTLSICETransport
+	dtlsState                string
 	username                 native.StringFacade
 	incomingStreams          map[string]*IncomingStream
 	outgoingStreams          map[string]*OutgoingStream
 	incomingStreamTracks     map[string]*IncomingStreamTrack
 	outgoingStreamTracks     map[string]*OutgoingStreamTrack
 	senderSideListener       senderSideEstimatorListener
+	dtlsICEListener          dtlsICETransportListener
+	outDTLSStateListener     DTLSStateListener
 	onTransportStopListeners []TransportStopListener
 	onIncomingTrackListeners []IncomingTrackListener
 	onOutgoingTrackListeners []OutgoingTrackListener
@@ -71,6 +97,7 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	transport.localIce = localIce
 	transport.localDtls = localDtls
 	transport.bundle = bundle
+	transport.dtlsState = "new"
 
 	properties := native.NewProperties()
 
@@ -95,12 +122,20 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	native.DeleteProperties(properties)
 
-	listener := &overwrittenSenderSideEstimatorListener{}
-	p := native.NewDirectorSenderSideEstimatorListener(listener)
-	listener.p = p
+	sseListener := &overwrittenSenderSideEstimatorListener{}
+	p := native.NewDirectorSenderSideEstimatorListener(sseListener)
+	sseListener.p = p
 
 	transport.senderSideListener = &goSenderSideEstimatorListener{SenderSideEstimatorListener: p}
 	transport.transport.SetSenderSideEstimatorListener(transport.senderSideListener)
+
+	dtlsListener := &overwrittenDTLSICETransportListener{}
+	dtlsl := native.NewDirectorDTLSICETransportListener(dtlsListener)
+	dtlsListener.p = dtlsl
+
+	transport.dtlsICEListener = &goDTLSICETransportListener{DTLSICETransportListener: dtlsl}
+	transport.transport.SetListener(transport.dtlsICEListener)
+
 
 	var address string
 	var port int
@@ -151,6 +186,11 @@ func (t *Transport) SetBandwidthProbing(probe bool) {
 // SetMaxProbingBitrate Set the maximum bitrate to be used if probing is enabled.
 func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
 	t.transport.SetMaxProbingBitrate(bitrate)
+}
+
+// GetDTLSState  get dtls state
+func (t *Transport) GetDTLSState() string {
+	return t.dtlsState
 }
 
 // SetRemoteProperties  Set remote RTP properties
@@ -422,24 +462,6 @@ func (t *Transport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *IncomingSt
 	t.incomingStreams[incomingStream.GetID()] = incomingStream
 	t.Unlock()
 
-	incomingStream.OnStop(func() {
-		t.Lock()
-		delete(t.incomingStreams, incomingStream.GetID())
-		t.Unlock()
-	})
-
-	incomingStream.OnTrack(func(track *IncomingStreamTrack) {
-		for _, trackFunc := range t.onIncomingTrackListeners {
-			trackFunc(track, incomingStream)
-		}
-	})
-
-	for _, track := range incomingStream.GetTracks() {
-		for _, trackFunc := range t.onIncomingTrackListeners {
-			trackFunc(track, incomingStream)
-		}
-	}
-
 	return incomingStream
 }
 
@@ -482,6 +504,7 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 
 	incomingTrack := NewIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
 
+	// todo: remove callback
 	incomingTrack.OnStop(func() {
 		for _, item := range sources {
 			t.transport.RemoveIncomingSourceGroup(item)
@@ -493,6 +516,13 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 	}
 
 	return incomingTrack
+}
+
+func (t *Transport) RemoveIncomingStream(incomingStream *IncomingStream) {
+
+	t.Lock()
+	delete(t.incomingStreams, incomingStream.GetID())
+	t.Unlock()
 }
 
 // GetIncomingStreams get all incoming streams
@@ -542,6 +572,11 @@ func (t *Transport) OnOutgoingTrack(listener OutgoingTrackListener) {
 	t.onOutgoingTrackListeners = append(t.onOutgoingTrackListeners, listener)
 }
 
+// OnDTLSICEState  OnDTLSICEState
+func (t *Transport) OnDTLSICEState(listener DTLSStateListener) {
+	t.outDTLSStateListener = listener
+}
+
 // Stop stop this transport
 func (t *Transport) Stop() {
 
@@ -559,10 +594,13 @@ func (t *Transport) Stop() {
 
 	if t.senderSideListener != nil {
 		t.senderSideListener.deleteSenderSideEstimatorListener()
+		t.senderSideListener = nil
 	}
 
-	t.incomingStreams = map[string]*IncomingStream{}
-	t.outgoingStreams = map[string]*OutgoingStream{}
+	if t.dtlsICEListener != nil {
+		t.dtlsICEListener.deleteDTLSICETransportListener()
+		t.dtlsICEListener = nil
+	}
 
 	t.bundle.RemoveICETransport(t.username)
 
@@ -572,7 +610,11 @@ func (t *Transport) Stop() {
 
 	native.DeleteStringFacade(t.username)
 
+	t.incomingStreams = nil
+	t.outgoingStreams = nil
+
 	t.username = nil
 	t.bundle = nil
+
 
 }

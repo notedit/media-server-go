@@ -100,6 +100,13 @@ go get github.com/notedit/media-server-go
 ```
 
 
+## Generate golang bingding 
+
+```
+swig -go -cgo -c++ -intgosize 64 mediaserver.i
+```
+
+
 ## Thanks 
 
  - [Media Server](https://github.com/medooze/media-server)

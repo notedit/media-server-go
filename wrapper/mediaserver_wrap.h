@@ -15,6 +15,20 @@
 
 class Swig_memory;
 
+class SwigDirector_DTLSICETransportListener : public DTLSICETransportListener
+{
+ public:
+  SwigDirector_DTLSICETransportListener(int swig_p);
+  virtual ~SwigDirector_DTLSICETransportListener();
+  void _swig_upcall_onDTLSStateChange(uint32_t state) {
+    DTLSICETransportListener::onDTLSStateChange(state);
+  }
+  virtual void onDTLSStateChange(uint32_t state);
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
 class SwigDirector_SenderSideEstimatorListener : public SenderSideEstimatorListener
 {
  public:
