@@ -9,9 +9,9 @@ import (
 )
 
 // MediaStreamDuplicater we can make a copy of the incoming stream and callback the mediaframe data
-type MediaStreamDuplicater struct {
+type MediaFrameMultiplexer struct {
 	track      *IncomingStreamTrack
-	duplicater native.MediaStreamDuplicaterFacade
+	multiplexer native.MediaFrameMultiplexer
 	listener   mediaframeListener // used for native wrapper, see swig's doc
 
 	mediaframeListener func([]byte, uint) // used for outside
@@ -33,64 +33,64 @@ func (m *goMediaFrameListener) deleteMediaFrameListener() {
 
 type overwrittenMediaFrameListener struct {
 	p          native.MediaFrameListener
-	duplicater *MediaStreamDuplicater
+	multiplexer *MediaFrameMultiplexer
 }
 
 func (p *overwrittenMediaFrameListener) OnMediaFrame(frame native.MediaFrame) {
 
-	if p.duplicater != nil && p.duplicater.mediaframeListener != nil {
+	if p.multiplexer != nil && p.multiplexer.mediaframeListener != nil {
 		buffer := C.GoBytes(unsafe.Pointer(frame.GetData()), C.int(frame.GetLength()))
 		if frame.GetType() == native.MediaFrameVideo {
 			data, err := annexbConvert(buffer)
 			if err == nil {
-				p.duplicater.mediaframeListener(data, frame.GetTimeStamp())
+				p.multiplexer.mediaframeListener(data, frame.GetTimeStamp())
 			} else {
 				fmt.Println(err)
 			}
 		} else {
-			p.duplicater.mediaframeListener(buffer, frame.GetTimeStamp())
+			p.multiplexer.mediaframeListener(buffer, frame.GetTimeStamp())
 		}
 
 	}
 }
 
 // NewMediaStreamDuplicater duplicate this IncomingStreamTrack and callback the mediaframe
-func NewMediaStreamDuplicater(track *IncomingStreamTrack) *MediaStreamDuplicater {
+func NewMediaFrameMultiplexer(track *IncomingStreamTrack) *MediaFrameMultiplexer {
 
-	duplicater := &MediaStreamDuplicater{}
+	duplicater := &MediaFrameMultiplexer{}
 	duplicater.track = track
 
 	// We should make sure this source is the main source
 	source := track.GetFirstEncoding().GetSource()
-	duplicater.duplicater = native.NewMediaStreamDuplicaterFacade(source)
+	duplicater.multiplexer = native.NewMediaFrameMultiplexer(source)
 
 	listener := &overwrittenMediaFrameListener{
-		duplicater: duplicater,
+		multiplexer: duplicater,
 	}
 	p := native.NewDirectorMediaFrameListener(listener)
 	listener.p = p
 
 	duplicater.listener = &goMediaFrameListener{MediaFrameListener: p}
 
-	duplicater.duplicater.AddMediaListener(duplicater.listener)
+	duplicater.multiplexer.AddMediaListener(duplicater.listener)
 
 	return duplicater
 }
 
 // SetMediaFrameListener set outside mediaframe listener
-func (d *MediaStreamDuplicater) SetMediaFrameListener(listener func([]byte, uint)) {
+func (d *MediaFrameMultiplexer) SetMediaFrameListener(listener func([]byte, uint)) {
 	d.mediaframeListener = listener
 }
 
 // Stop stop this
-func (d *MediaStreamDuplicater) Stop() {
+func (d *MediaFrameMultiplexer) Stop() {
 
 	if d.track == nil {
 		return
 	}
 
 	if d.listener != nil {
-		d.duplicater.RemoveMediaListener(d.listener)
+		d.multiplexer.RemoveMediaListener(d.listener)
 		d.listener.deleteMediaFrameListener()
 	}
 
