@@ -501,10 +501,6 @@ func (i *IncomingStreamTrack) Stop() {
 			encoding.depacketizer.Stop()
 			native.DeleteStreamTrackDepacketizer(encoding.depacketizer)
 		}
-		// does not
-		// if encoding.source != nil {
-		// 	native.DeleteRTPIncomingSourceGroup(encoding.source)
-		// }
 	}
 
 	if i.mediaStreamDuplicater != nil {
