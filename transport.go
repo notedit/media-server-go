@@ -79,8 +79,7 @@ type Transport struct {
 	incomingStreamTracks     map[string]*IncomingStreamTrack
 	outgoingStreamTracks     map[string]*OutgoingStreamTrack
 
-	mirroredStreams          map[string]*IncomingStream
-	mirroredTracks           map[string]*IncomingStreamTrack
+
 
 	senderSideListener       senderSideEstimatorListener
 	dtlsICEListener          dtlsICETransportListener
@@ -163,8 +162,7 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	transport.incomingStreamTracks = make(map[string]*IncomingStreamTrack)
 	transport.outgoingStreamTracks = make(map[string]*OutgoingStreamTrack)
 
-	transport.mirroredStreams = make(map[string]*IncomingStream)
-	transport.mirroredTracks = make(map[string]*IncomingStreamTrack)
+
 
 	transport.onTransportStopListeners = make([]TransportStopListener, 0)
 

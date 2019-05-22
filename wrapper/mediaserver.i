@@ -572,6 +572,8 @@ private:
 	REMBBitrateListener* listener;
 };
 
+
+
 class StreamTrackDepacketizer :
 	public RTPIncomingMediaStream::Listener
 {
@@ -849,11 +851,11 @@ public:
 };
 
 
-class MediaStreamDuplicaterFacade :
+class MediaFrameMultiplexer :
 	public RTPIncomingMediaStream::Listener
 {
 public:
-	MediaStreamDuplicaterFacade(RTPIncomingMediaStream* incomingSource)
+	MediaFrameMultiplexer(RTPIncomingMediaStream* incomingSource)
 	{
 		//Store
 		this->incomingSource = incomingSource;
@@ -863,7 +865,7 @@ public:
 		depacketizer = NULL;
 	}
 
-	virtual ~MediaStreamDuplicaterFacade()
+	virtual ~MediaFrameMultiplexer()
 	{
 		//JIC
 		Stop();
@@ -1409,10 +1411,10 @@ public:
 };
 
 
-class MediaStreamDuplicaterFacade
+class MediaFrameMultiplexer
 {
 public:
-	MediaStreamDuplicaterFacade(RTPIncomingSourceGroup* incomingSource);
+	MediaFrameMultiplexer(RTPIncomingSourceGroup* incomingSource);
 	void AddMediaListener(MediaFrameListener* listener);
 	void RemoveMediaListener(MediaFrameListener* listener);
 	void Stop();
