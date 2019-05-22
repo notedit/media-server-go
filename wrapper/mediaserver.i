@@ -969,7 +969,6 @@ private:
 %include "../include/media-server/include/config.h"	
 %include "../include/media-server/include/media.h"
 %include "../include/media-server/include/acumulator.h"
-
 %include "../include/media-server/include/UDPReader.h"
 
 
@@ -1121,7 +1120,7 @@ struct RTPIncomingSourceGroup : public RTPIncomingMediaStream
 };
 
 
-struct RTPIncomingMediaStreamMultiplexer : public RTPIncomingMediaStream, public RTPIncomingMediaStreamListener
+struct RTPIncomingMediaStreamMultiplexer :  public RTPIncomingMediaStreamListener,public RTPIncomingMediaStream
 {
 	RTPIncomingMediaStreamMultiplexer(DWORD ssrc, TimeService& TimeService);
 };
