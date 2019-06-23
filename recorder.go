@@ -16,6 +16,7 @@ type Recorder struct {
 	maxTrackId int
 }
 
+// NewRecorder create a new recorder
 func NewRecorder(filename string, waitForIntra bool, refresh int) *Recorder {
 	recorder := &Recorder{}
 	recorder.recorder = native.NewMP4Recorder()
@@ -31,6 +32,7 @@ func NewRecorder(filename string, waitForIntra bool, refresh int) *Recorder {
 	return recorder
 }
 
+// Record start record an incoming track
 func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 
 	for _, encoding := range incoming.GetEncodings() {
@@ -52,6 +54,7 @@ func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 	}
 }
 
+// RecordStream start record an incoming stream
 func (r *Recorder) RecordStream(incoming *IncomingStream) {
 
 	for _, track := range incoming.GetTracks() {
@@ -59,6 +62,7 @@ func (r *Recorder) RecordStream(incoming *IncomingStream) {
 	}
 }
 
+// Stop  stop the recorder
 func (r *Recorder) Stop() {
 
 	if r.recorder == nil {

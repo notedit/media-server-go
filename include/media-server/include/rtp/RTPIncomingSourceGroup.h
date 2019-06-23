@@ -27,9 +27,9 @@ public:
 	virtual void AddListener(RTPIncomingMediaStream::Listener* listener) override;
 	virtual void RemoveListener(RTPIncomingMediaStream::Listener* listener) override;
 	virtual DWORD GetMediaSSRC() override { return media.ssrc; }
-	int AddPacket(const RTPPacket::shared &packet, DWORD size = 0); //Size is only used if remb is in use
+	int AddPacket(const RTPPacket::shared &packet, DWORD size);
 	RTPIncomingSource* Process(RTPPacket::shared &packet);
-	
+	void Bye(DWORD ssrc);
 	
 	void ResetPackets();
 	void Update();
@@ -42,7 +42,7 @@ public:
 	
 	WORD SetRTTRTX(uint64_t time);
 	
-	DWORD GetCurrentLost()			const { return lost;		}
+	DWORD GetCurrentLost()			const { return losts.GetTotal();}
 	DWORD GetMinWaitedTime()		const { return minWaitedTime;	}
 	DWORD GetMaxWaitedTime()		const { return maxWaitedTime;	}
 	long double GetAvgWaitedTime()		const {	return avgWaitedTime;	}
@@ -65,6 +65,9 @@ public:
 	DWORD minWaitedTime = 0;
 	DWORD maxWaitedTime = 0;
 	long double avgWaitedTime = 0;
+	
+	//TODO: FIx
+	RemoteRateEstimator remoteRateEstimator;
 private:
 	TimeService&	timeService;
 	Timer::shared	dispatchTimer;
@@ -72,7 +75,7 @@ private:
 	RTPBuffer	packets;
 	Mutex		listenerMutex;
 	std::set<RTPIncomingMediaStream::Listener*>  listeners;
-	RemoteRateEstimator remoteRateEstimator;
+	
 	WORD  rttrtxSeq	 = 0 ;
 	QWORD rttrtxTime = 0;
 	bool remb	 = false;

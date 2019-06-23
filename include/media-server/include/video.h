@@ -64,13 +64,32 @@ private:
 
 };
 
+struct VideoBuffer
+{
+	VideoBuffer() = default;
+	VideoBuffer(DWORD width, DWORD height,BYTE* buffer)
+	{
+		this->width = width;
+		this->height = height;
+		this->buffer = buffer;
+	}
+	
+	DWORD GetBufferSize()
+	{
+		return (width*height*3)/2;
+	}
+	
+	DWORD	width = 0;
+	DWORD	height = 0;
+	BYTE*	buffer = nullptr;
+};
+
 class VideoInput
 {
 public:
 	virtual int   StartVideoCapture(int width,int height,int fps)=0;
-	virtual BYTE* GrabFrame(DWORD timeout)=0;
+	virtual VideoBuffer GrabFrame(DWORD timeout)=0;
 	virtual void  CancelGrabFrame()=0;
-	virtual DWORD GetBufferSize()=0;
 	virtual int   StopVideoCapture()=0;
 };
 
@@ -105,7 +124,7 @@ public:
 	virtual int GetWidth()=0;
 	virtual int GetHeight()=0;
 	virtual int Decode(BYTE *in,DWORD len) = 0;
-	virtual int DecodePacket(BYTE *in,DWORD len,int lost,int last)=0;
+	virtual int DecodePacket(const BYTE *in,DWORD len,int lost,int last)=0;
 	virtual BYTE* GetFrame()=0;
 	virtual bool  IsKeyFrame()=0;
 public:
@@ -113,11 +132,4 @@ public:
 
 };
 
-class VideoCodecFactory
-{
-public:
-	static VideoDecoder* CreateDecoder(VideoCodec::Type codec);
-	static VideoEncoder* CreateEncoder(VideoCodec::Type codec);
-	static VideoEncoder* CreateEncoder(VideoCodec::Type codec, const Properties &properties);
-};
 #endif

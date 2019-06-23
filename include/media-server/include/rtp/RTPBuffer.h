@@ -23,9 +23,9 @@ public:
 		if (next!=(DWORD)-1 && seq<next)
 		{
 			//Error
-			//UltraDebug("-RTPBuffer::Add() | Out of order non recoverable packet [next:%u,seq:%u,maxWaitTime=%d,cycles:%d-%u,time:%lld,current:%lld,hurry:%d]\n",next,seq,maxWaitTime,rtp->GetSeqCycles(),rtp->GetSeqNum(),rtp->GetTime(),GetTime(),hurryUp);
+			//UltraDebug("-RTPBuffer::Add() | Out of order non recoverable packet [next:%u,seq:%u,maxWaitTime=%d,cycles:%d-%u,time:%lld,current:%lld,hurry:%d]\n",next,seq,maxWaitTime,rtp->GetSeqCycles(),rtp->GetSeqNum(),rtp->GetTime(),getTime(),hurryUp);
 			//Skip it and lost forever
-			return 0;
+			return false;
 		}
 		
 		//Check if we already have it
@@ -34,7 +34,7 @@ public:
 			//Error
 			//UltraDebug("-RTPBuffer::Add() | Already have that packet [next:%u,seq:%u,maxWaitTime=%d,cycles:%d-%u]\n",next,seq,maxWaitTime,rtp->GetSeqCycles(),rtp->GetSeqNum());
 			//Skip it and lost forever
-			return 0;
+			return false;
 		}
 
 		//Add packet
@@ -59,12 +59,12 @@ public:
 			QWORD time = candidate->GetTime();
 
 			//Check if first is the one expected or wait if not
-			if (next==(DWORD)-1 || seq==next || time+maxWaitTime<now || hurryUp)
+			if (next==(DWORD)-1 || seq==next || time+maxWaitTime<=now || hurryUp)
 			{
 				//Update next
 				next = seq+1;
 				//Waiting time
-				waited.Update(now,now-time);
+				waited.Update(now, now>time ? now-time : 0);
 				//Remove it
 				packets.erase(it);
 				//If no mor packets
@@ -168,7 +168,7 @@ public:
 		//Get time of the packet
 		QWORD time = candidate->GetTime();
 		//Get wait time
-		if (next==(DWORD)-1 || seq==next || time+maxWaitTime<now || hurryUp)
+		if (next==(DWORD)-1 || seq==next || time+maxWaitTime<=now || hurryUp)
 			//Now!
 			return 0;
 		//Return wait time for next packet

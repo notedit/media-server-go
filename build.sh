@@ -11,11 +11,10 @@ CRC32_INCLUDE=$ROOT_DIR/include/crc32c/include
 DATACHANNEL_INCUDE=$ROOT_DIR/include/libdatachannels
 
 
-if [ ! -d "$MEDIASERVER_INCLUDE" ]; then
-    mkdir -p $MEDIASERVER_INCLUDE
-    mkdir -p $CRC32_INCLUDE
-    mkdir -p $DATACHANNEL_INCUDE
-fi
+
+mkdir -p $MEDIASERVER_INCLUDE
+mkdir -p $CRC32_INCLUDE
+mkdir -p $DATACHANNEL_INCUDE
 
 cp -rf  ../media-server-go-native/media-server/include/*  $MEDIASERVER_INCLUDE
 cp -rf  ../media-server-go-native/media-server/ext/crc32c/include/* $CRC32_INCLUDE
