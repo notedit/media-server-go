@@ -74,6 +74,9 @@ brew install automake
 
 Your compiler should support `c++17`, for linux, you should update your `gcc/g++` to `7.0+`
 
+for macos, clang should support `c++17`.
+
+
 ```sh
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get update -qq
@@ -83,6 +86,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
 
 Build the native c/c++ code, see [media-server-go-native](https://github.com/notedit/media-server-go-native.git), it will install `openssl` `libsrtp` `mp4v2` `libmediaserver` into  `/usr/local`
+
 
 ```sh
 git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git  
@@ -100,9 +104,16 @@ go get github.com/notedit/media-server-go
 ```
 
 
+then you can use media-server-go in your project.
+
+
+
+
+
 ## Generate golang bingding 
 
 ```
+cd wrapper/
 swig -go -cgo -c++ -intgosize 64 mediaserver.i
 ```
 

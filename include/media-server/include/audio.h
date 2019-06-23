@@ -22,7 +22,7 @@ class AudioDecoder
 public:
 	// Must have virtual destructor to ensure child class's destructor is called
 	virtual ~AudioDecoder(){};
-	virtual int   Decode(BYTE *in,int inLen,SWORD* out,int outLen)=0;
+	virtual int   Decode(const BYTE *in,int inLen,SWORD* out,int outLen)=0;
 	virtual DWORD TrySetRate(DWORD rate)=0;
 	virtual DWORD GetRate()=0;
 	AudioCodec::Type	type;
@@ -83,14 +83,6 @@ public:
 	virtual int PlayBuffer(SWORD *buffer,DWORD size,DWORD frameTime, BYTE vadLevel = -1) = 0;
 	virtual int StartPlaying(DWORD samplerate)=0;
 	virtual int StopPlaying()=0;
-};
-
-class AudioCodecFactory
-{
-public:
-	static AudioDecoder* CreateDecoder(AudioCodec::Type codec);
-	static AudioEncoder* CreateEncoder(AudioCodec::Type codec);
-	static AudioEncoder* CreateEncoder(AudioCodec::Type codec, const Properties &properties);
 };
 
 #endif

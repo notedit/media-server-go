@@ -62,24 +62,34 @@ type (
 	DTLSStateListener func(state string)
 )
 
+// ICEStats ice stats for this connection
+type ICEStats struct {
+	RequestsSent      int64
+	RequestsReceived  int64
+	ResponsesSent     int64
+	ResponsesReceived int64
+}
+
 // Transport represent a connection between a local ICE candidate and a remote set of ICE candidates over a single DTLS session
 type Transport struct {
-	localIce                 *sdp.ICEInfo
-	localDtls                *sdp.DTLSInfo
-	localCandidates          []*sdp.CandidateInfo
-	remoteIce                *sdp.ICEInfo
-	remoteDtls               *sdp.DTLSInfo
-	remoteCandidates         []*sdp.CandidateInfo
-	bundle                   native.RTPBundleTransport
-	transport                native.DTLSICETransport
-	dtlsState                string
-	username                 native.StringFacade
-	incomingStreams          map[string]*IncomingStream
-	outgoingStreams          map[string]*OutgoingStream
-	incomingStreamTracks     map[string]*IncomingStreamTrack
-	outgoingStreamTracks     map[string]*OutgoingStreamTrack
+	localIce         *sdp.ICEInfo
+	localDtls        *sdp.DTLSInfo
+	localCandidates  []*sdp.CandidateInfo
+	remoteIce        *sdp.ICEInfo
+	remoteDtls       *sdp.DTLSInfo
+	remoteCandidates []*sdp.CandidateInfo
+	bundle           native.RTPBundleTransport
+	transport        native.DTLSICETransport
+	cconnection      native.RTPBundleTransportConnection
+	dtlsState        string
 
+	username             native.StringFacade
+	incomingStreams      map[string]*IncomingStream
+	outgoingStreams      map[string]*OutgoingStream
+	incomingStreamTracks map[string]*IncomingStreamTrack
+	outgoingStreamTracks map[string]*OutgoingStreamTrack
 
+	iceStats *ICEStats
 
 	senderSideListener       senderSideEstimatorListener
 	dtlsICEListener          dtlsICETransportListener
@@ -121,7 +131,10 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	properties.SetProperty("disableSTUNKeepAlive", stunKeepAlive)
 
 	transport.username = native.NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
-	transport.transport = bundle.AddICETransport(transport.username, properties)
+	transport.connection = bundle.AddICETransport(transport.username, properties)
+	transport.transport = transport.connection.GetTransport()
+
+	transport.iceStats = &ICEStats{}
 
 	native.DeleteProperties(properties)
 
@@ -138,7 +151,6 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	transport.dtlsICEListener = &goDTLSICETransportListener{DTLSICETransportListener: dtlsl}
 	transport.transport.SetListener(transport.dtlsICEListener)
-
 
 	var address string
 	var port int
@@ -161,8 +173,6 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	transport.incomingStreamTracks = make(map[string]*IncomingStreamTrack)
 	transport.outgoingStreamTracks = make(map[string]*OutgoingStreamTrack)
-
-
 
 	transport.onTransportStopListeners = make([]TransportStopListener, 0)
 
@@ -196,6 +206,17 @@ func (t *Transport) SetMaxProbingBitrate(bitrate uint) {
 // GetDTLSState  get dtls state
 func (t *Transport) GetDTLSState() string {
 	return t.dtlsState
+}
+
+// GetICEStats  get ice stats
+func (t *Transport) GetICEStats() *ICEStats {
+
+	t.iceStats.RequestsSent = t.connection.GetIceRequestsSent()
+	t.iceStats.RequestsReceived = t.connection.GetIceRequestsReceived()
+	t.iceStats.ResponsesSent = t.connection.GetIceResponsesSent()
+	t.iceStats.ResponsesReceived = t.connection.GetIceResponsesReceived()
+
+	return t.iceStats
 }
 
 // SetRemoteProperties  Set remote RTP properties
@@ -618,8 +639,10 @@ func (t *Transport) Stop() {
 	t.incomingStreams = nil
 	t.outgoingStreams = nil
 
+	t.connection = nil
+	t.transport = nil
+
 	t.username = nil
 	t.bundle = nil
-
 
 }
