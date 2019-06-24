@@ -431,7 +431,7 @@ public:
 
 		source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
 		packet->SetSSRC(source.media.ssrc);
-		source.AddPacket(packet->Clone());
+		source.AddPacket(packet->Clone(),0);
 		
 		Debug("-RawRTPSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
 
@@ -713,7 +713,7 @@ public:
 		}
 	}
 
-	virtual void onDTLSStateChange(uint32_t state) override 
+	virtual void onDTLSStateChange(uint32_t state)
 	{
 
 	}
@@ -818,7 +818,7 @@ public:
 		}
 	}		
 
-	virtual void onBye(RTPIncomingMediaStream* group) 
+	virtual void onBye(RTPIncomingMediaStream* group) override
 	{
 
 	}
@@ -913,6 +913,13 @@ public:
 			 depacketizer->ResetFrame();
 		 }
 
+	}
+
+	virtual void onBye(RTPIncomingMediaStream* group) 
+	{
+		if(depacketizer)
+			//Skip current
+			depacketizer->ResetFrame();
 	}
 	
 	virtual void onEnded(RTPIncomingMediaStream* group) 
@@ -1432,7 +1439,7 @@ public:
 class MediaFrameMultiplexer
 {
 public:
-	MediaFrameMultiplexer(RTPIncomingSourceGroup* incomingSource);
+	MediaFrameMultiplexer(RTPIncomingMediaStream* incomingSource);
 	void AddMediaListener(MediaFrameListener* listener);
 	void RemoveMediaListener(MediaFrameListener* listener);
 	void Stop();
