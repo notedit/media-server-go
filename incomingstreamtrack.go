@@ -61,7 +61,7 @@ type IncomingStreamTrack struct {
 	encodings             []*Encoding
 	trackInfo             *sdp.TrackInfo
 	stats                 map[string]*IncomingAllStats
-	mediaStreamDuplicater *MediaStreamDuplicater
+	mediaframeMultiplexer *MediaFrameMultiplexer
 	onStopListeners       []func()
 	onAttachedListeners   []func()
 	onDetachedListeners   []func()
@@ -470,7 +470,7 @@ func (i *IncomingStreamTrack) OnDetach(detach func()) {
 	i.onDetachedListeners = append(i.onDetachedListeners, detach)
 }
 
-// OnAttach
+// OnAttach  run this func when attached
 func (i *IncomingStreamTrack) OnAttach(attach func()) {
 	i.onAttachedListeners = append(i.onAttachedListeners, attach)
 }
@@ -480,13 +480,14 @@ func (i *IncomingStreamTrack) OnStop(stop func()) {
 	i.onStopListeners = append(i.onStopListeners, stop)
 }
 
+// OnMediaFrame callback
 func (i *IncomingStreamTrack) OnMediaFrame(listener func([]byte, uint)) {
 
-	if i.mediaStreamDuplicater == nil {
-		i.mediaStreamDuplicater = NewMediaStreamDuplicater(i)
+	if i.mediaframeMultiplexer == nil {
+		i.mediaframeMultiplexer = NewMediaFrameMultiplexer(i)
 	}
 
-	i.mediaStreamDuplicater.SetMediaFrameListener(listener)
+	i.mediaframeMultiplexer.SetMediaFrameListener(listener)
 }
 
 // Stop Removes the track from the incoming stream and also detaches any attached outgoing track or recorder
@@ -503,9 +504,9 @@ func (i *IncomingStreamTrack) Stop() {
 		}
 	}
 
-	if i.mediaStreamDuplicater != nil {
-		i.mediaStreamDuplicater.Stop()
-		i.mediaStreamDuplicater = nil
+	if i.mediaframeMultiplexer != nil {
+		i.mediaframeMultiplexer.Stop()
+		i.mediaframeMultiplexer = nil
 	}
 
 	for _, stopFunc := range i.onStopListeners {

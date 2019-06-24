@@ -80,7 +80,7 @@ type Transport struct {
 	remoteCandidates []*sdp.CandidateInfo
 	bundle           native.RTPBundleTransport
 	transport        native.DTLSICETransport
-	cconnection      native.RTPBundleTransportConnection
+	connection       native.RTPBundleTransportConnection
 	dtlsState        string
 
 	username             native.StringFacade
