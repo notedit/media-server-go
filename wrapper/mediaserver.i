@@ -116,6 +116,7 @@ public:
 		GetIncomingSourceGroup()->Start();
 	}
 	virtual ~RTPSessionFacade() = default;
+
 	virtual int Enqueue(const RTPPacket::shared& packet)	 { return SendPacket(packet); }
 	virtual int Enqueue(const RTPPacket::shared& packet,std::function<RTPPacket::shared(const RTPPacket::shared&)> modifier) { return SendPacket(modifier(packet)); }
 	virtual int SendPLI(DWORD ssrc)				 { return RequestFPU();}
@@ -415,7 +416,7 @@ public:
 		auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
 
 		//Set the payload
-		packet->SetPayload(data+ini,size-ini);
+		//packet->SetPayload(data+ini,size-ini);
 		
 		//Get sec number
 		WORD seq = packet->GetSeqNum();
