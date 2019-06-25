@@ -109,15 +109,6 @@ then you can use media-server-go in your project.
 
 
 
-
-## Generate golang bingding 
-
-```
-cd wrapper/
-swig -go -cgo -c++ -intgosize 64 mediaserver.i
-```
-
-
 ## Thanks 
 
  - [Media Server](https://github.com/medooze/media-server)
