@@ -416,7 +416,7 @@ public:
 		auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
 
 		//Set the payload
-		//packet->SetPayload(data+ini,size-ini);
+		packet->SetPayload(data+ini,size-ini);
 		
 		//Get sec number
 		WORD seq = packet->GetSeqNum();
