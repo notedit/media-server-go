@@ -22,7 +22,7 @@ type StreamerSession struct {
 	onStopListeners []func()
 }
 
-// NewStreamerSession new StreamerSession
+// NewStreamerSession new StreamerSession with auto selectd port
 func NewStreamerSession(media *sdp.MediaInfo) *StreamerSession {
 
 	streamerSession := &StreamerSession{}
@@ -65,14 +65,58 @@ func NewStreamerSession(media *sdp.MediaInfo) *StreamerSession {
 	return streamerSession
 }
 
+// NewStreamerSessionWithLocalPort  create streamer session with pre selected port
+func NewStreamerSessionWithLocalPort(port int, media *sdp.MediaInfo) *StreamerSession {
+
+	streamerSession := &StreamerSession{}
+	var mediaType native.MediaFrameType = 0
+	if strings.ToLower(media.GetType()) == "video" {
+		mediaType = 1
+	}
+	session := native.NewRTPSessionFacade(mediaType)
+
+	streamerSession.id = uuid.Must(uuid.NewV4()).String()
+
+	properties := native.NewProperties()
+
+	if media != nil {
+		num := 0
+		for _, codec := range media.GetCodecs() {
+			item := fmt.Sprintf("codecs.%d", num)
+			properties.SetProperty(item+".codec", codec.GetCodec())
+			properties.SetProperty(item+".pt", codec.GetType())
+			if codec.HasRTX() {
+				properties.SetProperty(item+".rtx", codec.GetRTX())
+			}
+			num = num + 1
+		}
+		properties.SetProperty("codecs.length", num)
+	}
+
+	session.SetLocalPort(port)
+
+	session.Init(properties)
+
+	native.DeleteProperties(properties)
+
+	streamerSession.session = session
+
+	streamerSession.incoming = NewIncomingStreamTrack(media.GetType(), media.GetType(), native.SessionToReceiver(session), map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
+
+	streamerSession.outgoing = newOutgoingStreamTrack(media.GetType(), media.GetType(), native.SessionToSender(session), session.GetOutgoingSourceGroup())
+
+	streamerSession.onStopListeners = make([]func(), 0)
+
+	return streamerSession
+}
+
 // GetID get id
 func (s *StreamerSession) GetID() string {
 	return s.id
 }
 
-func (s *StreamerSession) SetLocalPort(port int) {
-
-	s.session.SetLocalPort(port)
+func (s *StreamerSession) GetLocalPort() int {
+	return s.session.GetLocalPort()
 }
 
 func (s *StreamerSession) SetRemotePort(ip string, port int) {
