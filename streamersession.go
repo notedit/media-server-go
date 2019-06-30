@@ -23,7 +23,7 @@ type StreamerSession struct {
 }
 
 // NewStreamerSession new StreamerSession
-func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *StreamerSession {
+func NewStreamerSession(media *sdp.MediaInfo) *StreamerSession {
 
 	streamerSession := &StreamerSession{}
 	var mediaType native.MediaFrameType = 0
@@ -31,11 +31,6 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 		mediaType = 1
 	}
 	session := native.NewRTPSessionFacade(mediaType)
-	if local {
-		session.SetLocalPort(port)
-	} else {
-		session.SetRemotePort(ip, port)
-	}
 
 	streamerSession.id = uuid.Must(uuid.NewV4()).String()
 
@@ -73,6 +68,15 @@ func NewStreamerSession(local bool, ip string, port int, media *sdp.MediaInfo) *
 // GetID get id
 func (s *StreamerSession) GetID() string {
 	return s.id
+}
+
+func (s *StreamerSession) SetLocalPort(port int) {
+
+	s.session.SetLocalPort(port)
+}
+
+func (s *StreamerSession) SetRemotePort(ip string, port int) {
+	s.session.SetRemotePort(ip, port)
 }
 
 // GetIncomingStreamTrack get asso incoming track,
