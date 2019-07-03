@@ -89,7 +89,7 @@ type Transport struct {
 	incomingStreamTracks map[string]*IncomingStreamTrack
 	outgoingStreamTracks map[string]*OutgoingStreamTrack
 
-	iceStats *ICEStats
+	iceStats ICEStats
 
 	senderSideListener       senderSideEstimatorListener
 	dtlsICEListener          dtlsICETransportListener
@@ -134,7 +134,7 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	transport.connection = bundle.AddICETransport(transport.username, properties)
 	transport.transport = transport.connection.GetTransport()
 
-	transport.iceStats = &ICEStats{}
+	transport.iceStats = ICEStats{}
 
 	native.DeleteProperties(properties)
 
@@ -209,14 +209,15 @@ func (t *Transport) GetDTLSState() string {
 }
 
 // GetICEStats  get ice stats
-func (t *Transport) GetICEStats() *ICEStats {
+func (t *Transport) GetICEStats() ICEStats {
 
-	t.iceStats.RequestsSent = t.connection.GetIceRequestsSent()
-	t.iceStats.RequestsReceived = t.connection.GetIceRequestsReceived()
-	t.iceStats.ResponsesSent = t.connection.GetIceResponsesSent()
-	t.iceStats.ResponsesReceived = t.connection.GetIceResponsesReceived()
+	iceStats := ICEStats{}
+	iceStats.RequestsSent = t.connection.GetIceRequestsSent()
+	iceStats.RequestsReceived = t.connection.GetIceRequestsReceived()
+	iceStats.ResponsesSent = t.connection.GetIceResponsesSent()
+	iceStats.ResponsesReceived = t.connection.GetIceResponsesReceived()
 
-	return t.iceStats
+	return iceStats
 }
 
 // SetRemoteProperties  Set remote RTP properties
