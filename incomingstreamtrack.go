@@ -496,14 +496,7 @@ func (i *IncomingStreamTrack) Stop() {
 	if i.receiver == nil {
 		return
 	}
-
-	for _, encoding := range i.encodings {
-		if encoding.depacketizer != nil {
-			encoding.depacketizer.Stop()
-			native.DeleteStreamTrackDepacketizer(encoding.depacketizer)
-		}
-	}
-
+	
 	if i.mediaframeMultiplexer != nil {
 		i.mediaframeMultiplexer.Stop()
 		i.mediaframeMultiplexer = nil
@@ -511,6 +504,16 @@ func (i *IncomingStreamTrack) Stop() {
 
 	for _, stopFunc := range i.onStopListeners {
 		stopFunc()
+	}
+
+	for _, encoding := range i.encodings {
+		if encoding.depacketizer != nil {
+			encoding.depacketizer.Stop()
+			native.DeleteStreamTrackDepacketizer(encoding.depacketizer)
+		}
+		if encoding.source != nil {
+			native.DeleteRTPIncomingSourceGroup(encoding.source)
+		}
 	}
 
 	i.encodings = nil
