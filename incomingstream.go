@@ -322,4 +322,6 @@ func (i *IncomingStream) Stop() {
 		stopFunc()
 	}
 
+	native.DeleteRTPReceiverFacade(i.receiver) // other module maybe need delete
+	i.receiver = nil
 }
