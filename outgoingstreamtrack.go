@@ -257,6 +257,7 @@ func (o *OutgoingStreamTrack) Stop() {
 
 	o.source = nil
 
+	native.DeleteRTPSenderFacade(o.sender)
 	o.sender = nil
 }
 
