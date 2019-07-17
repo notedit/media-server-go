@@ -242,7 +242,10 @@ func (o *OutgoingStreamTrack) Stop() {
 	// swig memory clean
 	o.interCallback.deleteREMBBitrateListener()
 
-	o.transpoder.Stop()
+	if o.transpoder != nil { // maybe = nil at onTransponderStopped
+		o.transpoder.Stop()
+		o.transpoder = nil
+	}
 
 	for _, stopFunc := range o.onStopListeners {
 		stopFunc()
