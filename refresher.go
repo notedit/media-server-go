@@ -64,4 +64,3 @@ func (r *Refresher) Stop() {
 	}
 	r.tracks = nil
 }
-

@@ -140,11 +140,13 @@ func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 		return errors.New("Track id already present in stream")
 	}
 
-	track.OnStop(func() {
-		delete(i.tracks, track.GetID())
-	})
-
 	i.tracks[track.GetID()] = track
+	return nil
+}
+
+func (i *IncomingStream) RemoveTrack(track *IncomingStreamTrack) error {
+
+	// TODO
 	return nil
 }
 
