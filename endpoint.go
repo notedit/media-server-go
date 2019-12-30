@@ -13,7 +13,6 @@ import (
 type Endpoint struct {
 	ip              string
 	bundle          native.RTPBundleTransport
-	transports      map[string]*Transport
 	candidate       *sdp.CandidateInfo
 	mirroredStreams map[string]*IncomingStream
 	mirroredTracks  map[string]*IncomingStreamTrack
@@ -26,7 +25,6 @@ func NewEndpoint(ip string) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init()
-	endpoint.transports = make(map[string]*Transport)
 	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
 	endpoint.mirroredStreams = make(map[string]*IncomingStream)
 	endpoint.mirroredTracks = make(map[string]*IncomingStreamTrack)
@@ -39,7 +37,6 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init(port)
-	endpoint.transports = make(map[string]*Transport)
 	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	return endpoint
@@ -84,16 +81,6 @@ func (e *Endpoint) CreateTransport(remoteSdp *sdp.SDPInfo, localSdp *sdp.SDPInfo
 	transport := NewTransport(e.bundle, remoteIce, remoteDtls, remoteCandidates,
 		localIce, localDtls, localCandidates, disableSTUNKeepAlive)
 
-	e.Lock()
-	e.transports[transport.username.ToString()] = transport
-	e.Unlock()
-
-	transport.OnStop(func() {
-		e.Lock()
-		delete(e.transports, transport.username.ToString())
-		e.Unlock()
-	})
-
 	return transport
 }
 
@@ -130,8 +117,6 @@ func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sd
 	return sdp.Create(ice, dtls, candidates, capabilities)
 }
 
-
-
 // CreateSDPManager Create new SDP manager, this object will manage the SDP O/A for you and produce a suitable trasnport.
 func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string]*sdp.Capability) SDPManager {
 
@@ -150,14 +135,10 @@ func (e *Endpoint) Stop() {
 		return
 	}
 
-	for _, transport := range e.transports {
-		transport.Stop()
-	}
-
-	e.transports = nil
-
 	e.bundle.End()
 
 	native.DeleteRTPBundleTransport(e.bundle)
+
+	e.bundle = nil
 
 }

@@ -2,6 +2,7 @@ package mediaserver
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 
 	"github.com/gofrs/uuid"
@@ -381,12 +382,6 @@ func (t *Transport) CreateOutgoingStream(streamInfo *sdp.StreamInfo) *OutgoingSt
 	info := streamInfo.Clone()
 	outgoingStream := NewOutgoingStream(t.transport, info)
 
-	outgoingStream.OnStop(func() {
-		t.Lock()
-		delete(t.outgoingStreams, outgoingStream.GetID())
-		t.Unlock()
-	})
-
 	t.Lock()
 	t.outgoingStreams[outgoingStream.GetID()] = outgoingStream
 	t.Unlock()
@@ -465,7 +460,7 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 
 	outgoingTrack := newOutgoingStreamTrack(media, trackId, native.TransportToSender(t.transport), source)
 
-	outgoingTrack.OnStop(func() {
+	runtime.SetFinalizer(source, func(source native.RTPOutgoingSourceGroup) {
 		t.transport.RemoveOutgoingSourceGroup(source)
 	})
 
@@ -531,11 +526,8 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 
 	incomingTrack := NewIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
 
-	// todo: remove callback
-	incomingTrack.OnStop(func() {
-		for _, item := range sources {
-			t.transport.RemoveIncomingSourceGroup(item)
-		}
+	runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
+		t.transport.RemoveIncomingSourceGroup(source)
 	})
 
 	for _, trackFunc := range t.onIncomingTrackListeners {
@@ -582,11 +574,6 @@ func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
 	t.Lock()
 	defer t.Unlock()
 	return t.outgoingStreams[streamId]
-}
-
-// OnStop register a stop listener
-func (t *Transport) OnStop(stop TransportStopListener) {
-	t.onTransportStopListeners = append(t.onTransportStopListeners, stop)
 }
 
 // OnIncomingTrack register incoming track
