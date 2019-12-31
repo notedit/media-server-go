@@ -201,8 +201,6 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 
 	o.transpoder.SetIncomingTrack(incomingTrack)
 
-	o.transpoder.OnStop(o.onTransponderStopped)
-
 	return o.transpoder
 }
 
@@ -227,11 +225,6 @@ func (o *OutgoingStreamTrack) OnMute(mute func(bool)) {
 	o.onMuteListeners = append(o.onMuteListeners, mute)
 }
 
-// OnStop
-func (o *OutgoingStreamTrack) OnStop(stop func()) {
-	o.onStopListeners = append(o.onStopListeners, stop)
-}
-
 // Stop Removes the track from the outgoing stream and also detaches from any attached incoming track
 func (o *OutgoingStreamTrack) Stop() {
 
@@ -247,10 +240,6 @@ func (o *OutgoingStreamTrack) Stop() {
 		o.transpoder = nil
 	}
 
-	for _, stopFunc := range o.onStopListeners {
-		stopFunc()
-	}
-
 	if o.source != nil {
 		native.DeleteRTPOutgoingSourceGroup(o.source)
 	}
@@ -259,9 +248,4 @@ func (o *OutgoingStreamTrack) Stop() {
 
 	native.DeleteRTPSenderFacade(o.sender)
 	o.sender = nil
-}
-
-func (o *OutgoingStreamTrack) onTransponderStopped() {
-
-	o.transpoder = nil
 }

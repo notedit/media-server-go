@@ -23,16 +23,9 @@ func NewRefresher(period int) *Refresher {
 func (r *Refresher) Add(incom *IncomingStreamTrack) {
 
 	if incom.GetMedia() == "video" {
-
 		r.Lock()
 		r.tracks[incom.GetID()] = incom
 		r.Unlock()
-
-		incom.OnStop(func() {
-			r.Lock()
-			delete(r.tracks, incom.GetID())
-			r.Unlock()
-		})
 	}
 
 	if r.ticker == nil {

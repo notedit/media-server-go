@@ -133,11 +133,6 @@ func (s *StreamerSession) GetOutgoingStreamTrack() *OutgoingStreamTrack {
 	return s.outgoing
 }
 
-// OnStop register stop listener
-func (s *StreamerSession) OnStop(stop func()) {
-	s.onStopListeners = append(s.onStopListeners, stop)
-}
-
 // Stop it
 func (s *StreamerSession) Stop() {
 
@@ -156,10 +151,6 @@ func (s *StreamerSession) Stop() {
 	s.session.End()
 
 	native.DeleteRTPSessionFacade(s.session)
-
-	for _, stopFunc := range s.onStopListeners {
-		stopFunc()
-	}
 
 	s.session = nil
 }

@@ -1,6 +1,7 @@
 package mediaserver
 
 import (
+	"runtime"
 	"strings"
 	"sync"
 
@@ -174,12 +175,11 @@ func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) {
 	if _, ok := o.tracks[track.GetID()]; ok {
 		return
 	}
-
-	track.OnStop(func() {
-		delete(o.tracks, track.GetID())
-	})
-
 	o.tracks[track.GetID()] = track
+}
+
+func (o *OutgoingStream) RemoveTrack(track *OutgoingStreamTrack) {
+	// TODO
 }
 
 // CreateTrack Create new track from a TrackInfo object and add it to this stream
@@ -217,10 +217,7 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 
 	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)
 
-	outgoingTrack.OnStop(func() {
-		o.Lock()
-		delete(o.tracks, outgoingTrack.GetID())
-		o.Unlock()
+	runtime.SetFinalizer(source, func(source native.RTPOutgoingSourceGroup) {
 		o.transport.RemoveOutgoingSourceGroup(source)
 	})
 
@@ -243,11 +240,6 @@ func (o *OutgoingStream) OnTrack(listener func(*OutgoingStreamTrack)) {
 // OnMute register onmute listener
 func (o *OutgoingStream) OnMute(listener func(bool)) {
 	o.onMuteListeners = append(o.onMuteListeners, listener)
-}
-
-// OnStop register onstop listener
-func (o *OutgoingStream) OnStop(listener func()) {
-	o.onStopListeners = append(o.onStopListeners, listener)
 }
 
 // Stop stop the remote stream
