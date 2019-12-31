@@ -3,6 +3,7 @@ package mediaserver
 import (
 	"errors"
 	"fmt"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -210,6 +211,11 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 				i.transport.AddIncomingSourceGroup(source)
 				sources[rid] = source
+
+				runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
+					i.transport.RemoveIncomingSourceGroup(source)
+				})
+
 			}
 		}
 
@@ -244,6 +250,10 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 			i.transport.AddIncomingSourceGroup(source)
 
 			sources[strconv.Itoa(j)] = source
+
+			runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
+				i.transport.RemoveIncomingSourceGroup(source)
+			})
 		}
 
 	} else {
@@ -270,20 +280,13 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 		// Append to soruces with empty rid
 		sources[""] = source
+
+		runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
+			i.transport.RemoveIncomingSourceGroup(source)
+		})
 	}
 
 	incomingTrack := NewIncomingStreamTrack(track.GetMedia(), track.GetID(), i.receiver, sources)
-
-	incomingTrack.OnStop(func() {
-
-		i.Lock()
-		delete(i.tracks, incomingTrack.GetID())
-		i.Unlock()
-
-		for _, source := range sources {
-			i.transport.RemoveIncomingSourceGroup(source)
-		}
-	})
 
 	i.Lock()
 	i.tracks[track.GetID()] = incomingTrack
@@ -301,11 +304,6 @@ func (i *IncomingStream) OnTrack(ontrack func(*IncomingStreamTrack)) {
 	i.onStreamAddIncomingTrackListeners = append(i.onStreamAddIncomingTrackListeners, ontrack)
 }
 
-// OnStop register stop  listener
-func (i *IncomingStream) OnStop(stop func()) {
-	i.onStopListeners = append(i.onStopListeners, stop)
-}
-
 // Stop Removes the media strem from the transport and also detaches from any attached incoming stream
 func (i *IncomingStream) Stop() {
 
@@ -318,10 +316,6 @@ func (i *IncomingStream) Stop() {
 		i.Lock()
 		delete(i.tracks, k)
 		i.Unlock()
-	}
-
-	for _, stopFunc := range i.onStopListeners {
-		stopFunc()
 	}
 
 	native.DeleteRTPReceiverFacade(i.receiver) // other module maybe need delete

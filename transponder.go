@@ -81,8 +81,6 @@ func (t *Transponder) SetIncomingTrack(incomingTrack *IncomingStreamTrack) error
 	t.maxSpatialLayerId = MaxLayerId
 	t.maxTemporalLayerId = MaxLayerId
 
-	t.track.OnStop(t.onAttachedTrackStopped)
-
 	t.track.Attached()
 
 	return nil
@@ -309,11 +307,6 @@ func (t *Transponder) OnMute(listener func(bool)) {
 	t.onMuteListeners = append(t.onMuteListeners, listener)
 }
 
-// OnStop register stop listener
-func (t *Transponder) OnStop(stop func()) {
-	t.onStopListeners = append(t.onStopListeners, stop)
-}
-
 // Stop stop this transponder
 func (t *Transponder) Stop() {
 
@@ -329,15 +322,7 @@ func (t *Transponder) Stop() {
 
 	native.DeleteRTPStreamTransponderFacade(t.transponder)
 
-	for _, stopFunc := range t.onStopListeners {
-		stopFunc()
-	}
-
 	t.transponder = nil
 
 	t.track = nil
-}
-
-func (t *Transponder) onAttachedTrackStopped() {
-	t.Stop()
 }

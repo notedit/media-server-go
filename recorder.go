@@ -40,12 +40,6 @@ func (r *Recorder) Record(incoming *IncomingStreamTrack) {
 
 		r.maxTrackId += 1
 		recorderTrack := NewRecorderTrack(strconv.Itoa(r.maxTrackId), incoming, encoding)
-
-		recorderTrack.OnStop(func() {
-			recorderTrack.encoding.depacketizer.RemoveMediaListener(r.recorder)
-			delete(r.tracks, recorderTrack.GetID())
-		})
-
 		r.tracks[recorderTrack.GetID()] = recorderTrack
 	}
 

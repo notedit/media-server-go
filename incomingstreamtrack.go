@@ -475,11 +475,6 @@ func (i *IncomingStreamTrack) OnAttach(attach func()) {
 	i.onAttachedListeners = append(i.onAttachedListeners, attach)
 }
 
-// OnStop register stop callback
-func (i *IncomingStreamTrack) OnStop(stop func()) {
-	i.onStopListeners = append(i.onStopListeners, stop)
-}
-
 // OnMediaFrame callback
 func (i *IncomingStreamTrack) OnMediaFrame(listener func([]byte, uint)) {
 
@@ -496,14 +491,10 @@ func (i *IncomingStreamTrack) Stop() {
 	if i.receiver == nil {
 		return
 	}
-	
+
 	if i.mediaframeMultiplexer != nil {
 		i.mediaframeMultiplexer.Stop()
 		i.mediaframeMultiplexer = nil
-	}
-
-	for _, stopFunc := range i.onStopListeners {
-		stopFunc()
 	}
 
 	for _, encoding := range i.encodings {
