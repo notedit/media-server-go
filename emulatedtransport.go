@@ -88,12 +88,6 @@ func (e *EmulatedTransport) CreateIncomingStream(streamInfo *sdp.StreamInfo) *In
 	e.streams[incomingStream.GetID()] = incomingStream
 	e.Unlock()
 
-	incomingStream.OnStop(func() {
-		e.Lock()
-		delete(e.streams, incomingStream.GetID())
-		e.Unlock()
-	})
-
 	incomingStream.OnTrack(func(track *IncomingStreamTrack) {
 		for _, addTrackFunc := range e.onIncomingTrackListeners {
 			addTrackFunc(track, incomingStream)
