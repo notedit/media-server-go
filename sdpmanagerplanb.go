@@ -73,12 +73,12 @@ func (s *SDPManagerPlanb) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInfo,
 		s.transport.SetLocalProperties(s.localInfo.GetAudioMedia(), s.localInfo.GetVideoMedia())
 		s.transport.SetRemoteProperties(s.remoteInfo.GetAudioMedia(), s.remoteInfo.GetVideoMedia())
 
-		s.transport.OnOutgoingTrack(func(track *OutgoingStreamTrack, stream *OutgoingStream) {
-			track.OnStop(func() {
-				s.renegotiate()
-			})
-			s.renegotiate()
-		})
+		// s.transport.OnOutgoingTrack(func(track *OutgoingStreamTrack, stream *OutgoingStream) {
+		// 	track.OnStop(func() {
+		// 		s.renegotiate()
+		// 	})
+		// 	s.renegotiate()
+		// })
 
 	}
 

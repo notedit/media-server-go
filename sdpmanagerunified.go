@@ -188,10 +188,10 @@ func (s *SDPManagerUnified) ProcessRemoteDescription(sdpStr string) (*sdp.SDPInf
 				stream: stream,
 			})
 
-			track.OnStop(func() {
-				s.removed = append(s.removed, track)
-				s.renegotiate()
-			})
+			// track.OnStop(func() {
+			// 	s.removed = append(s.removed, track)
+			// 	s.renegotiate()
+			// })
 
 			s.renegotiate()
 		})
