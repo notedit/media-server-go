@@ -182,10 +182,6 @@ func Test_TransportStop(t *testing.T) {
 
 	transport := endpoint.CreateTransport(sdpInfo, nil)
 
-	transport.OnStop(func() {
-		t.Log("transport stopped")
-	})
-
 	transport.Stop()
 }
 
@@ -209,10 +205,6 @@ func Test_TransportCreateStream(t *testing.T) {
 	streamInfo := offer.GetFirstStream()
 
 	incoming := transport.CreateIncomingStream(streamInfo)
-
-	transport.OnStop(func() {
-		t.Log("transport stopped")
-	})
 
 	fmt.Println(incoming)
 
