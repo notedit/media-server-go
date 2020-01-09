@@ -2,7 +2,6 @@ package mediaserver
 
 import (
 	"fmt"
-	"runtime"
 	"sync"
 
 	"github.com/gofrs/uuid"
@@ -460,10 +459,6 @@ func (t *Transport) CreateOutgoingStreamTrack(media string, trackId string, ssrc
 
 	outgoingTrack := newOutgoingStreamTrack(media, trackId, native.TransportToSender(t.transport), source)
 
-	runtime.SetFinalizer(source, func(source native.RTPOutgoingSourceGroup) {
-		t.transport.RemoveOutgoingSourceGroup(source)
-	})
-
 	for _, trackFunc := range t.onOutgoingTrackListeners {
 		trackFunc(outgoingTrack, nil)
 	}
@@ -525,10 +520,6 @@ func (t *Transport) CreateIncomingStreamTrack(media string, trackId string, ssrc
 	sources := map[string]native.RTPIncomingSourceGroup{"": source}
 
 	incomingTrack := NewIncomingStreamTrack(media, trackId, native.TransportToReceiver(t.transport), sources)
-
-	runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
-		t.transport.RemoveIncomingSourceGroup(source)
-	})
 
 	for _, trackFunc := range t.onIncomingTrackListeners {
 		trackFunc(incomingTrack, nil)

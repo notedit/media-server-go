@@ -208,7 +208,6 @@ func Test_TransportCreateStream(t *testing.T) {
 
 	fmt.Println(incoming)
 
-	//incoming.Stop()
 	transport.Stop()
 
 }

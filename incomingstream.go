@@ -281,9 +281,6 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 		// Append to soruces with empty rid
 		sources[""] = source
 
-		runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
-			i.transport.RemoveIncomingSourceGroup(source)
-		})
 	}
 
 	incomingTrack := NewIncomingStreamTrack(track.GetMedia(), track.GetID(), i.receiver, sources)

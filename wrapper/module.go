@@ -10,6 +10,7 @@ package native
 #cgo CPPFLAGS: -I${SRCDIR}/../include/media-server/src/
 #cgo LDFLAGS: -L/usr/local/lib -lmediaserver -lssl -lcrypto -lsrtp2
 #cgo LDFLAGS: /usr/local/lib/libmp4v2.a
+#cgo LDFLAGS: /usr/local/lib/libsrtp2.a
 #cgo LDFLAGS: -ldl
 */
 import "C"
