@@ -217,8 +217,8 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 
 	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)
 
-	runtime.SetFinalizer(source, func(source native.RTPOutgoingSourceGroup) {
-		o.transport.RemoveOutgoingSourceGroup(source)
+	runtime.SetFinalizer(&source, func(source *native.RTPOutgoingSourceGroup) {
+		o.transport.RemoveOutgoingSourceGroup(*source)
 	})
 
 	o.Lock()
