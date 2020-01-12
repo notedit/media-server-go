@@ -3,7 +3,6 @@ package mediaserver
 import (
 	"errors"
 	"fmt"
-	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -212,9 +211,9 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 				i.transport.AddIncomingSourceGroup(source)
 				sources[rid] = source
 
-				runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
-					i.transport.RemoveIncomingSourceGroup(source)
-				})
+				// runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
+				// 	i.transport.RemoveIncomingSourceGroup(source)
+				// })
 
 			}
 		}
@@ -251,9 +250,9 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 			sources[strconv.Itoa(j)] = source
 
-			runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
-				i.transport.RemoveIncomingSourceGroup(source)
-			})
+			// runtime.SetFinalizer(source, func(source native.RTPIncomingSourceGroup) {
+			// 	i.transport.RemoveIncomingSourceGroup(source)
+			// })
 		}
 
 	} else {
