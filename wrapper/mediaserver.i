@@ -4,20 +4,20 @@
 #include <string>
 #include <list>
 #include <functional>
-#include "../include/media-server/include/config.h"	
-#include "../include/media-server/include/dtls.h"
-#include "../include/media-server/include/OpenSSL.h"
-#include "../include/media-server/include/media.h"
-#include "../include/media-server/include/rtp.h"
-#include "../include/media-server/include/tools.h"
-#include "../include/media-server/include/rtpsession.h"
-#include "../include/media-server/include/DTLSICETransport.h"	
-#include "../include/media-server/include/RTPBundleTransport.h"
-#include "../include/media-server/include/PCAPTransportEmulator.h"	
-#include "../include/media-server/include/mp4recorder.h"
-#include "../include/media-server/include/mp4streamer.h"
-#include "../include/media-server/include/rtp/RTPStreamTransponder.h"
-#include "../include/media-server/include/ActiveSpeakerDetector.h"
+#include "../media-server/include/config.h"
+#include "../media-server/include/dtls.h"
+#include "../media-server/include/OpenSSL.h"
+#include "../media-server/include/media.h"
+#include "../media-server/include/rtp.h"
+#include "../media-server/include/tools.h"
+#include "../media-server/include/rtpsession.h"
+#include "../media-server/include/DTLSICETransport.h"
+#include "../media-server/include/RTPBundleTransport.h"
+#include "../media-server/include/PCAPTransportEmulator.h"
+#include "../media-server/include/mp4recorder.h"
+#include "../media-server/include/mp4streamer.h"
+#include "../media-server/include/rtp/RTPStreamTransponder.h"
+#include "../media-server/include/ActiveSpeakerDetector.h"
 
 using RTPBundleTransportConnection = RTPBundleTransport::Connection;
 

@@ -7,3 +7,5 @@ require (
 	github.com/notedit/sdp v0.0.0-20190418080450-702b42591eb2
 	github.com/sanity-io/litter v1.1.0
 )
+
+go 1.13
