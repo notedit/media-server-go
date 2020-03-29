@@ -39,15 +39,15 @@ class SwigDirector_SenderSideEstimatorListener : public SenderSideEstimatorListe
   Swig_memory *swig_mem;
 };
 
-class SwigDirector_MediaFrameListener : public MediaFrameListener
+class SwigDirector_MediaFrameListenerFacade : public MediaFrameListenerFacade
 {
  public:
-  SwigDirector_MediaFrameListener(int swig_p);
-  virtual ~SwigDirector_MediaFrameListener();
-  void _swig_upcall_onMediaFrame(MediaFrame &frame) {
-    MediaFrameListener::onMediaFrame(frame);
+  SwigDirector_MediaFrameListenerFacade(int swig_p);
+  virtual ~SwigDirector_MediaFrameListenerFacade();
+  void _swig_upcall_onMediaFrame(MediaFrame const &frame) {
+    MediaFrameListenerFacade::onMediaFrame(frame);
   }
-  virtual void onMediaFrame(MediaFrame &frame);
+  virtual void onMediaFrame(MediaFrame const &frame);
  private:
   intgo go_val;
   Swig_memory *swig_mem;

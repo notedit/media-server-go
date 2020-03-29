@@ -15,6 +15,7 @@ package native
 #cgo LDFLAGS: -L${SRCDIR}/../thirdparty/openssl/build/  -lssl -lcrypto
 #cgo LDFLAGS: -L${SRCDIR}/../thirdparty/libsrtp/build/  -lsrtp2
 #cgo LDFLAGS: -L${SRCDIR}/../thirdparty/mp4v2/build/  -lmp4v2
+#cgo LDFLAGS: -L${SRCDIR}/../media-server/bin/release/  -lmediaserver
 #cgo LDFLAGS: -ldl
 */
 import "C"

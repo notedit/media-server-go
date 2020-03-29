@@ -25,7 +25,7 @@ func NewEndpoint(ip string) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init()
-	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
+	endpoint.fingerprint = native.MediaServerGetFingerprint()
 	endpoint.mirroredStreams = make(map[string]*IncomingStream)
 	endpoint.mirroredTracks = make(map[string]*IncomingStreamTrack)
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
@@ -37,7 +37,7 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init(port)
-	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
+	endpoint.fingerprint = native.MediaServerGetFingerprint()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	return endpoint
 }

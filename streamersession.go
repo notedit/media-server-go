@@ -34,25 +34,25 @@ func NewStreamerSession(media *sdp.MediaInfo) *StreamerSession {
 
 	streamerSession.id = uuid.Must(uuid.NewV4()).String()
 
-	properties := native.NewProperties()
+	properties := native.NewPropertiesFacade()
 
 	if media != nil {
 		num := 0
 		for _, codec := range media.GetCodecs() {
 			item := fmt.Sprintf("codecs.%d", num)
-			properties.SetProperty(item+".codec", codec.GetCodec())
-			properties.SetProperty(item+".pt", codec.GetType())
+			properties.SetPropertyStr(item+".codec", codec.GetCodec())
+			properties.SetPropertyInt(item+".pt", codec.GetType())
 			if codec.HasRTX() {
-				properties.SetProperty(item+".rtx", codec.GetRTX())
+				properties.SetPropertyInt(item+".rtx", codec.GetRTX())
 			}
 			num = num + 1
 		}
-		properties.SetProperty("codecs.length", num)
+		properties.SetPropertyInt("codecs.length", num)
 	}
 
 	session.Init(properties)
 
-	native.DeleteProperties(properties)
+	native.DeletePropertiesFacade(properties)
 
 	streamerSession.session = session
 
@@ -77,27 +77,27 @@ func NewStreamerSessionWithLocalPort(port int, media *sdp.MediaInfo) *StreamerSe
 
 	streamerSession.id = uuid.Must(uuid.NewV4()).String()
 
-	properties := native.NewProperties()
+	properties := native.NewPropertiesFacade()
 
 	if media != nil {
 		num := 0
 		for _, codec := range media.GetCodecs() {
 			item := fmt.Sprintf("codecs.%d", num)
-			properties.SetProperty(item+".codec", codec.GetCodec())
-			properties.SetProperty(item+".pt", codec.GetType())
+			properties.SetPropertyStr(item+".codec", codec.GetCodec())
+			properties.SetPropertyInt(item+".pt", codec.GetType())
 			if codec.HasRTX() {
-				properties.SetProperty(item+".rtx", codec.GetRTX())
+				properties.SetPropertyInt(item+".rtx", codec.GetRTX())
 			}
 			num = num + 1
 		}
-		properties.SetProperty("codecs.length", num)
+		properties.SetPropertyInt("codecs.length", num)
 	}
 
 	session.SetLocalPort(port)
 
 	session.Init(properties)
 
-	native.DeleteProperties(properties)
+	native.DeletePropertiesFacade(properties)
 
 	streamerSession.session = session
 

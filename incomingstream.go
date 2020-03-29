@@ -178,10 +178,10 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 				rid := encoding.GetID()
 
-				source.SetRid(native.NewStringFacade(rid))
+				source.SetRid(rid)
 
 				if mid != "" {
-					source.SetMid(native.NewStringFacade(mid))
+					source.SetMid(mid)
 				}
 
 				params := encoding.GetParams()

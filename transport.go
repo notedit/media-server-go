@@ -83,7 +83,7 @@ type Transport struct {
 	connection       native.RTPBundleTransportConnection
 	dtlsState        string
 
-	username             native.StringFacade
+	username             string
 	incomingStreams      map[string]*IncomingStream
 	outgoingStreams      map[string]*OutgoingStream
 	incomingStreamTracks map[string]*IncomingStreamTrack
@@ -112,31 +112,31 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 	transport.bundle = bundle
 	transport.dtlsState = "new"
 
-	properties := native.NewProperties()
+	properties := native.NewPropertiesFacade()
 
-	properties.SetProperty("ice.localUsername", localIce.GetUfrag())
-	properties.SetProperty("ice.localPassword", localIce.GetPassword())
-	properties.SetProperty("ice.remoteUsername", remoteIce.GetUfrag())
-	properties.SetProperty("ice.remotePassword", remoteIce.GetPassword())
+	properties.SetPropertyStr("ice.localUsername", localIce.GetUfrag())
+	properties.SetPropertyStr("ice.localPassword", localIce.GetPassword())
+	properties.SetPropertyStr("ice.remoteUsername", remoteIce.GetUfrag())
+	properties.SetPropertyStr("ice.remotePassword", remoteIce.GetPassword())
 
-	properties.SetProperty("dtls.setup", remoteDtls.GetSetup().String())
-	properties.SetProperty("dtls.hash", remoteDtls.GetHash())
-	properties.SetProperty("dtls.fingerprint", remoteDtls.GetFingerprint())
+	properties.SetPropertyStr("dtls.setup", remoteDtls.GetSetup().String())
+	properties.SetPropertyStr("dtls.hash", remoteDtls.GetHash())
+	properties.SetPropertyStr("dtls.fingerprint", remoteDtls.GetFingerprint())
 
-	stunKeepAlive := "false"
+	stunKeepAlive := false
 	if disableSTUNKeepAlive {
-		stunKeepAlive = "true"
+		stunKeepAlive = true
 	}
 
-	properties.SetProperty("disableSTUNKeepAlive", stunKeepAlive)
+	properties.SetPropertyBool("disableSTUNKeepAlive", stunKeepAlive)
 
-	transport.username = native.NewStringFacade(localIce.GetUfrag() + ":" + remoteIce.GetUfrag())
+	transport.username = localIce.GetUfrag() + ":" + remoteIce.GetUfrag()
 	transport.connection = bundle.AddICETransport(transport.username, properties)
 	transport.transport = transport.connection.GetTransport()
 
 	transport.iceStats = ICEStats{}
 
-	native.DeleteProperties(properties)
+	native.DeletePropertiesFacade(properties)
 
 	sseListener := &overwrittenSenderSideEstimatorListener{}
 	p := native.NewDirectorSenderSideEstimatorListener(sseListener)
@@ -222,109 +222,110 @@ func (t *Transport) GetICEStats() ICEStats {
 
 // SetRemoteProperties  Set remote RTP properties
 func (t *Transport) SetRemoteProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
-	properties := native.NewProperties()
+	properties := native.NewPropertiesFacade()
+	defer native.DeletePropertiesFacade(properties)
 	if audio != nil {
 		num := 0
 		for _, codec := range audio.GetCodecs() {
 			item := fmt.Sprintf("audio.codecs.%d", num)
-			properties.SetProperty(item+".codec", codec.GetCodec())
-			properties.SetProperty(item+".pt", codec.GetType())
+			properties.SetPropertyStr(item+".codec", codec.GetCodec())
+			properties.SetPropertyInt(item+".pt", codec.GetType())
 			if codec.HasRTX() {
-				properties.SetProperty(item+".rtx", codec.GetRTX())
+				properties.SetPropertyInt(item+".rtx", codec.GetRTX())
 			}
 			num = num + 1
 		}
-		properties.SetProperty("audio.codecs.length", num)
+		properties.SetPropertyInt("audio.codecs.length", num)
 
 		num = 0
 		for id, uri := range audio.GetExtensions() {
 			item := fmt.Sprintf("audio.ext.%d", num)
-			properties.SetProperty(item+".id", id)
-			properties.SetProperty(item+".uri", uri)
+			properties.SetPropertyInt(item+".id", id)
+			properties.SetPropertyStr(item+".uri", uri)
 			num = num + 1
 		}
-		properties.SetProperty("audio.ext.length", num)
+		properties.SetPropertyInt("audio.ext.length", num)
 	}
 
 	if video != nil {
 		num := 0
 		for _, codec := range video.GetCodecs() {
 			item := fmt.Sprintf("video.codecs.%d", num)
-			properties.SetProperty(item+".codec", codec.GetCodec())
-			properties.SetProperty(item+".pt", codec.GetType())
+			properties.SetPropertyStr(item+".codec", codec.GetCodec())
+			properties.SetPropertyInt(item+".pt", codec.GetType())
 			if codec.HasRTX() {
-				properties.SetProperty(item+".rtx", codec.GetRTX())
+				properties.SetPropertyInt(item+".rtx", codec.GetRTX())
 			}
 			num = num + 1
 		}
-		properties.SetProperty("video.codecs.length", num)
+		properties.SetPropertyInt("video.codecs.length", num)
 
 		num = 0
 		for id, uri := range video.GetExtensions() {
 			item := fmt.Sprintf("video.ext.%d", num)
-			properties.SetProperty(item+".id", id)
-			properties.SetProperty(item+".uri", uri)
+			properties.SetPropertyInt(item+".id", id)
+			properties.SetPropertyStr(item+".uri", uri)
 			num = num + 1
 		}
-		properties.SetProperty("video.ext.length", num)
+		properties.SetPropertyInt("video.ext.length", num)
 	}
 
 	t.transport.SetRemoteProperties(properties)
 
-	native.DeleteProperties(properties)
+
 }
 
 // SetLocalProperties Set local RTP properties
 func (t *Transport) SetLocalProperties(audio *sdp.MediaInfo, video *sdp.MediaInfo) {
 
-	properties := native.NewProperties()
+	properties := native.NewPropertiesFacade()
+	defer native.DeletePropertiesFacade(properties)
 
 	if audio != nil {
 		num := 0
 		for _, codec := range audio.GetCodecs() {
 			item := fmt.Sprintf("audio.codecs.%d", num)
-			properties.SetProperty(item+".codec", codec.GetCodec())
-			properties.SetProperty(item+".pt", codec.GetType())
+			properties.SetPropertyStr(item+".codec", codec.GetCodec())
+			properties.SetPropertyInt(item+".pt", codec.GetType())
 			if codec.HasRTX() {
-				properties.SetProperty(item+".rtx", codec.GetRTX())
+				properties.SetPropertyInt(item+".rtx", codec.GetRTX())
 			}
 			num = num + 1
 		}
-		properties.SetProperty("audio.codecs.length", num)
+		properties.SetPropertyInt("audio.codecs.length", num)
 		num = 0
 		for id, uri := range audio.GetExtensions() {
 			item := fmt.Sprintf("audio.ext.%d", num)
-			properties.SetProperty(item+".id", id)
-			properties.SetProperty(item+".uri", uri)
+			properties.SetPropertyInt(item+".id", id)
+			properties.SetPropertyStr(item+".uri", uri)
 			num = num + 1
 		}
-		properties.SetProperty("audio.ext.length", num)
+		properties.SetPropertyInt("audio.ext.length", num)
 	}
 
 	if video != nil {
 		num := 0
 		for _, codec := range video.GetCodecs() {
 			item := fmt.Sprintf("video.codecs.%d", num)
-			properties.SetProperty(item+".codec", codec.GetCodec())
-			properties.SetProperty(item+".pt", codec.GetType())
+			properties.SetPropertyStr(item+".codec", codec.GetCodec())
+			properties.SetPropertyInt(item+".pt", codec.GetType())
 			if codec.HasRTX() {
-				properties.SetProperty(item+".rtx", codec.GetRTX())
+				properties.SetPropertyInt(item+".rtx", codec.GetRTX())
 			}
 			num = num + 1
 		}
-		properties.SetProperty("video.codecs.length", num)
+		properties.SetPropertyInt("video.codecs.length", num)
 		num = 0
 		for id, uri := range video.GetExtensions() {
 			item := fmt.Sprintf("video.ext.%d", num)
-			properties.SetProperty(item+".id", id)
-			properties.SetProperty(item+".uri", uri)
+			properties.SetPropertyInt(item+".id", id)
+			properties.SetPropertyStr(item+".uri", uri)
 			num = num + 1
 		}
-		properties.SetProperty("video.ext.length", num)
+		properties.SetPropertyInt("video.ext.length", num)
 	}
 
 	t.transport.SetLocalProperties(properties)
-	native.DeleteProperties(properties)
 }
 
 // GetLocalDTLSInfo Get transport local DTLS info
@@ -613,7 +614,6 @@ func (t *Transport) Stop() {
 		stopFunc()
 	}
 
-	native.DeleteStringFacade(t.username)
 
 	t.incomingStreams = nil
 	t.outgoingStreams = nil
@@ -621,7 +621,7 @@ func (t *Transport) Stop() {
 	t.connection = nil
 	t.transport = nil
 
-	t.username = nil
+	t.username = ""
 	t.bundle = nil
 
 }
