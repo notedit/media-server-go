@@ -539,6 +539,7 @@ public:
 };
 
 
+// todo remove this
 class REMBBitrateListener {
 public:
 	REMBBitrateListener()
@@ -948,6 +949,11 @@ public:
 
 	virtual void onRTP(RTPIncomingMediaStream* group,const RTPPacket::shared& packet)
 	{
+
+	    if (listeners.empty())
+	           return;
+
+
 		//If depacketizer is not the same codec 
 		if (depacketizer && depacketizer->GetCodec()!=packet->GetCodec())
 		{
@@ -1103,8 +1109,6 @@ public:
         // todo make callback
 	}
 
-	void SetMinPeriod(DWORD period) { this->period = period; }
-
 private:
 	DWORD period  = 500;
 	QWORD last = 0;
@@ -1139,6 +1143,8 @@ public:
 	size_t size() const  { return std::vector<LayerSource*>::size(); }
 	LayerSource* get(size_t i)	{ return  std::vector<LayerSource*>::at(i); }
 };
+
+
 
 class ActiveSpeakerDetectorFacade :
 	public ActiveSpeakerDetector,
@@ -1406,19 +1412,19 @@ SwigDirector_DTLSICETransportListener::SwigDirector_DTLSICETransportListener(int
       go_val(swig_p), swig_mem(0)
 { }
 
-extern "C" void Swiggo_DeleteDirector_DTLSICETransportListener_native_7aa1c37706fa59c2(intgo);
+extern "C" void Swiggo_DeleteDirector_DTLSICETransportListener_native_ab264d744f132009(intgo);
 SwigDirector_DTLSICETransportListener::~SwigDirector_DTLSICETransportListener()
 {
-  Swiggo_DeleteDirector_DTLSICETransportListener_native_7aa1c37706fa59c2(go_val);
+  Swiggo_DeleteDirector_DTLSICETransportListener_native_ab264d744f132009(go_val);
   delete swig_mem;
 }
 
-extern "C" void Swig_DirectorDTLSICETransportListener_callback_onDTLSStateChange_native_7aa1c37706fa59c2(int, intgo arg2);
+extern "C" void Swig_DirectorDTLSICETransportListener_callback_onDTLSStateChange_native_ab264d744f132009(int, intgo arg2);
 void SwigDirector_DTLSICETransportListener::onDTLSStateChange(uint32_t state) {
   intgo swig_arg2;
   
   swig_arg2 = (uint32_t)state; 
-  Swig_DirectorDTLSICETransportListener_callback_onDTLSStateChange_native_7aa1c37706fa59c2(go_val, swig_arg2);
+  Swig_DirectorDTLSICETransportListener_callback_onDTLSStateChange_native_ab264d744f132009(go_val, swig_arg2);
 }
 
 SwigDirector_SenderSideEstimatorListener::SwigDirector_SenderSideEstimatorListener(int swig_p)
@@ -1426,10 +1432,10 @@ SwigDirector_SenderSideEstimatorListener::SwigDirector_SenderSideEstimatorListen
       go_val(swig_p), swig_mem(0)
 { }
 
-extern "C" void Swiggo_DeleteDirector_SenderSideEstimatorListener_native_7aa1c37706fa59c2(intgo);
+extern "C" void Swiggo_DeleteDirector_SenderSideEstimatorListener_native_ab264d744f132009(intgo);
 SwigDirector_SenderSideEstimatorListener::~SwigDirector_SenderSideEstimatorListener()
 {
-  Swiggo_DeleteDirector_SenderSideEstimatorListener_native_7aa1c37706fa59c2(go_val);
+  Swiggo_DeleteDirector_SenderSideEstimatorListener_native_ab264d744f132009(go_val);
   delete swig_mem;
 }
 
@@ -1438,19 +1444,19 @@ SwigDirector_MediaFrameListenerFacade::SwigDirector_MediaFrameListenerFacade(int
       go_val(swig_p), swig_mem(0)
 { }
 
-extern "C" void Swiggo_DeleteDirector_MediaFrameListenerFacade_native_7aa1c37706fa59c2(intgo);
+extern "C" void Swiggo_DeleteDirector_MediaFrameListenerFacade_native_ab264d744f132009(intgo);
 SwigDirector_MediaFrameListenerFacade::~SwigDirector_MediaFrameListenerFacade()
 {
-  Swiggo_DeleteDirector_MediaFrameListenerFacade_native_7aa1c37706fa59c2(go_val);
+  Swiggo_DeleteDirector_MediaFrameListenerFacade_native_ab264d744f132009(go_val);
   delete swig_mem;
 }
 
-extern "C" void Swig_DirectorMediaFrameListenerFacade_callback_onMediaFrame_native_7aa1c37706fa59c2(int, MediaFrame *arg2);
+extern "C" void Swig_DirectorMediaFrameListenerFacade_callback_onMediaFrame_native_ab264d744f132009(int, MediaFrame *arg2);
 void SwigDirector_MediaFrameListenerFacade::onMediaFrame(MediaFrame const &frame) {
   MediaFrame *swig_arg2;
   
   swig_arg2 = (MediaFrame *)&frame; 
-  Swig_DirectorMediaFrameListenerFacade_callback_onMediaFrame_native_7aa1c37706fa59c2(go_val, swig_arg2);
+  Swig_DirectorMediaFrameListenerFacade_callback_onMediaFrame_native_ab264d744f132009(go_val, swig_arg2);
 }
 
 SwigDirector_PlayerEndListener::SwigDirector_PlayerEndListener(int swig_p)
@@ -1458,16 +1464,16 @@ SwigDirector_PlayerEndListener::SwigDirector_PlayerEndListener(int swig_p)
       go_val(swig_p), swig_mem(0)
 { }
 
-extern "C" void Swiggo_DeleteDirector_PlayerEndListener_native_7aa1c37706fa59c2(intgo);
+extern "C" void Swiggo_DeleteDirector_PlayerEndListener_native_ab264d744f132009(intgo);
 SwigDirector_PlayerEndListener::~SwigDirector_PlayerEndListener()
 {
-  Swiggo_DeleteDirector_PlayerEndListener_native_7aa1c37706fa59c2(go_val);
+  Swiggo_DeleteDirector_PlayerEndListener_native_ab264d744f132009(go_val);
   delete swig_mem;
 }
 
-extern "C" void Swig_DirectorPlayerEndListener_callback_onEnd_native_7aa1c37706fa59c2(int);
+extern "C" void Swig_DirectorPlayerEndListener_callback_onEnd_native_ab264d744f132009(int);
 void SwigDirector_PlayerEndListener::onEnd() {
-  Swig_DirectorPlayerEndListener_callback_onEnd_native_7aa1c37706fa59c2(go_val);
+  Swig_DirectorPlayerEndListener_callback_onEnd_native_ab264d744f132009(go_val);
 }
 
 SwigDirector_REMBBitrateListener::SwigDirector_REMBBitrateListener(int swig_p)
@@ -1475,16 +1481,16 @@ SwigDirector_REMBBitrateListener::SwigDirector_REMBBitrateListener(int swig_p)
       go_val(swig_p), swig_mem(0)
 { }
 
-extern "C" void Swiggo_DeleteDirector_REMBBitrateListener_native_7aa1c37706fa59c2(intgo);
+extern "C" void Swiggo_DeleteDirector_REMBBitrateListener_native_ab264d744f132009(intgo);
 SwigDirector_REMBBitrateListener::~SwigDirector_REMBBitrateListener()
 {
-  Swiggo_DeleteDirector_REMBBitrateListener_native_7aa1c37706fa59c2(go_val);
+  Swiggo_DeleteDirector_REMBBitrateListener_native_ab264d744f132009(go_val);
   delete swig_mem;
 }
 
-extern "C" void Swig_DirectorREMBBitrateListener_callback_onREMB_native_7aa1c37706fa59c2(int);
+extern "C" void Swig_DirectorREMBBitrateListener_callback_onREMB_native_ab264d744f132009(int);
 void SwigDirector_REMBBitrateListener::onREMB() {
-  Swig_DirectorREMBBitrateListener_callback_onREMB_native_7aa1c37706fa59c2(go_val);
+  Swig_DirectorREMBBitrateListener_callback_onREMB_native_ab264d744f132009(go_val);
 }
 
 SwigDirector_ActiveTrackListener::SwigDirector_ActiveTrackListener(int swig_p)
@@ -1492,26 +1498,26 @@ SwigDirector_ActiveTrackListener::SwigDirector_ActiveTrackListener(int swig_p)
       go_val(swig_p), swig_mem(0)
 { }
 
-extern "C" void Swiggo_DeleteDirector_ActiveTrackListener_native_7aa1c37706fa59c2(intgo);
+extern "C" void Swiggo_DeleteDirector_ActiveTrackListener_native_ab264d744f132009(intgo);
 SwigDirector_ActiveTrackListener::~SwigDirector_ActiveTrackListener()
 {
-  Swiggo_DeleteDirector_ActiveTrackListener_native_7aa1c37706fa59c2(go_val);
+  Swiggo_DeleteDirector_ActiveTrackListener_native_ab264d744f132009(go_val);
   delete swig_mem;
 }
 
-extern "C" void Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_7aa1c37706fa59c2(int, intgo arg2);
+extern "C" void Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_ab264d744f132009(int, intgo arg2);
 void SwigDirector_ActiveTrackListener::onActiveTrackchanged(uint32_t id) {
   intgo swig_arg2;
   
   swig_arg2 = (uint32_t)id; 
-  Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_7aa1c37706fa59c2(go_val, swig_arg2);
+  Swig_DirectorActiveTrackListener_callback_onActiveTrackchanged_native_ab264d744f132009(go_val, swig_arg2);
 }
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void _wrap_Swig_free_native_7aa1c37706fa59c2(void *_swig_go_0) {
+void _wrap_Swig_free_native_ab264d744f132009(void *_swig_go_0) {
   void *arg1 = (void *) 0 ;
   
   arg1 = *(void **)&_swig_go_0; 
@@ -1521,7 +1527,7 @@ void _wrap_Swig_free_native_7aa1c37706fa59c2(void *_swig_go_0) {
 }
 
 
-void *_wrap_Swig_malloc_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+void *_wrap_Swig_malloc_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   void *result = 0 ;
   void *_swig_go_result;
@@ -1534,7 +1540,7 @@ void *_wrap_Swig_malloc_native_7aa1c37706fa59c2(intgo _swig_go_0) {
 }
 
 
-intgo _wrap_Audio_MediaFrame_native_7aa1c37706fa59c2() {
+intgo _wrap_Audio_MediaFrame_native_ab264d744f132009() {
   MediaFrame::Type result;
   intgo _swig_go_result;
   
@@ -1546,7 +1552,7 @@ intgo _wrap_Audio_MediaFrame_native_7aa1c37706fa59c2() {
 }
 
 
-intgo _wrap_Video_MediaFrame_native_7aa1c37706fa59c2() {
+intgo _wrap_Video_MediaFrame_native_ab264d744f132009() {
   MediaFrame::Type result;
   intgo _swig_go_result;
   
@@ -1558,7 +1564,7 @@ intgo _wrap_Video_MediaFrame_native_7aa1c37706fa59c2() {
 }
 
 
-intgo _wrap_Text_MediaFrame_native_7aa1c37706fa59c2() {
+intgo _wrap_Text_MediaFrame_native_ab264d744f132009() {
   MediaFrame::Type result;
   intgo _swig_go_result;
   
@@ -1570,7 +1576,7 @@ intgo _wrap_Text_MediaFrame_native_7aa1c37706fa59c2() {
 }
 
 
-intgo _wrap_Unknown_MediaFrame_native_7aa1c37706fa59c2() {
+intgo _wrap_Unknown_MediaFrame_native_ab264d744f132009() {
   MediaFrame::Type result;
   intgo _swig_go_result;
   
@@ -1582,7 +1588,7 @@ intgo _wrap_Unknown_MediaFrame_native_7aa1c37706fa59c2() {
 }
 
 
-_gostring_ _wrap_MediaFrame_TypeToString_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+_gostring_ _wrap_MediaFrame_TypeToString_native_ab264d744f132009(intgo _swig_go_0) {
   MediaFrame::Type arg1 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -1595,7 +1601,7 @@ _gostring_ _wrap_MediaFrame_TypeToString_native_7aa1c37706fa59c2(intgo _swig_go_
 }
 
 
-void _wrap_delete_MediaFrame_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+void _wrap_delete_MediaFrame_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
@@ -1605,7 +1611,7 @@ void _wrap_delete_MediaFrame_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
 }
 
 
-void _wrap_MediaFrame_ClearRTPPacketizationInfo_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+void _wrap_MediaFrame_ClearRTPPacketizationInfo_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
@@ -1615,46 +1621,35 @@ void _wrap_MediaFrame_ClearRTPPacketizationInfo_native_7aa1c37706fa59c2(MediaFra
 }
 
 
-void _wrap_MediaFrame_AddRtpPacket_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, DWORD *_swig_go_1, DWORD *_swig_go_2, BYTE *_swig_go_3, DWORD *_swig_go_4) {
+void _wrap_MediaFrame_DumpRTPPacketizationInfo_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD arg2 ;
-  DWORD arg3 ;
-  BYTE *arg4 = (BYTE *) 0 ;
-  DWORD arg5 ;
-  DWORD *argp2 ;
-  DWORD *argp3 ;
-  DWORD *argp5 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  argp2 = (DWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg2 = (DWORD)*argp2;
-  
-  
-  argp3 = (DWORD *)_swig_go_2;
-  if (argp3 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg3 = (DWORD)*argp3;
-  
-  arg4 = *(BYTE **)&_swig_go_3; 
-  
-  argp5 = (DWORD *)_swig_go_4;
-  if (argp5 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg5 = (DWORD)*argp5;
-  
-  
-  (arg1)->AddRtpPacket(arg2,arg3,(BYTE const *)arg4,arg5);
+  ((MediaFrame const *)arg1)->DumpRTPPacketizationInfo();
   
 }
 
 
-intgo _wrap_MediaFrame_GetType_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+void _wrap_MediaFrame_AddRtpPacket_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2, char *_swig_go_3, intgo _swig_go_4) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t arg2 ;
+  uint32_t arg3 ;
+  uint8_t *arg4 = (uint8_t *) 0 ;
+  uint32_t arg5 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
+  arg3 = (uint32_t)_swig_go_2; 
+  arg4 = *(uint8_t **)&_swig_go_3; 
+  arg5 = (uint32_t)_swig_go_4; 
+  
+  (arg1)->AddRtpPacket(arg2,arg3,(uint8_t const *)arg4,arg5);
+  
+}
+
+
+intgo _wrap_MediaFrame_GetType_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
   MediaFrame::Type result;
   intgo _swig_go_result;
@@ -1667,71 +1662,82 @@ intgo _wrap_MediaFrame_GetType_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
 }
 
 
-DWORD *_wrap_MediaFrame_GetTimeStamp_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+long long _wrap_MediaFrame_GetTimeStamp_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = ((MediaFrame const *)arg1)->GetTimeStamp();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint64_t)((MediaFrame const *)arg1)->GetTimeStamp();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-void _wrap_MediaFrame_SetTimestamp_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, DWORD *_swig_go_1) {
+void _wrap_MediaFrame_SetTimestamp_native_ab264d744f132009(MediaFrame *_swig_go_0, long long _swig_go_1) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD arg2 ;
-  DWORD *argp2 ;
+  uint64_t arg2 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
-  
-  argp2 = (DWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg2 = (DWORD)*argp2;
-  
+  arg2 = (uint64_t)_swig_go_1; 
   
   (arg1)->SetTimestamp(arg2);
   
 }
 
 
-DWORD *_wrap_MediaFrame_GetSSRC_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+long long _wrap_MediaFrame_GetTime_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = ((MediaFrame const *)arg1)->GetSSRC();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint64_t)((MediaFrame const *)arg1)->GetTime();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-void _wrap_MediaFrame_SetSSRC_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, DWORD *_swig_go_1) {
+void _wrap_MediaFrame_SetTime_native_ab264d744f132009(MediaFrame *_swig_go_0, long long _swig_go_1) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD arg2 ;
-  DWORD *argp2 ;
+  uint64_t arg2 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint64_t)_swig_go_1; 
+  
+  (arg1)->SetTime(arg2);
+  
+}
+
+
+intgo _wrap_MediaFrame_GetSSRC_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  argp2 = (DWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg2 = (DWORD)*argp2;
+  result = (uint32_t)((MediaFrame const *)arg1)->GetSSRC();
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+void _wrap_MediaFrame_SetSSRC_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t arg2 ;
   
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
   
   (arg1)->SetSSRC(arg2);
   
 }
 
 
-bool _wrap_MediaFrame_HasRtpPacketizationInfo_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+bool _wrap_MediaFrame_HasRtpPacketizationInfo_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -1744,7 +1750,7 @@ bool _wrap_MediaFrame_HasRtpPacketizationInfo_native_7aa1c37706fa59c2(MediaFrame
 }
 
 
-std::vector< MediaFrame::RtpPacketization * > *_wrap_MediaFrame_GetRtpPacketizationInfo_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+std::vector< MediaFrame::RtpPacketization * > *_wrap_MediaFrame_GetRtpPacketizationInfo_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
   MediaFrame::RtpPacketizationInfo *result = 0 ;
   std::vector< MediaFrame::RtpPacketization * > *_swig_go_result;
@@ -1757,186 +1763,304 @@ std::vector< MediaFrame::RtpPacketization * > *_wrap_MediaFrame_GetRtpPacketizat
 }
 
 
-MediaFrame *_wrap_MediaFrame_Clone_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+MediaFrame *_wrap_MediaFrame_Clone_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
   MediaFrame *result = 0 ;
   MediaFrame *_swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = (MediaFrame *)(arg1)->Clone();
+  result = (MediaFrame *)((MediaFrame const *)arg1)->Clone();
   *(MediaFrame **)&_swig_go_result = (MediaFrame *)result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_MediaFrame_GetDuration_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+intgo _wrap_MediaFrame_GetDuration_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = ((MediaFrame const *)arg1)->GetDuration();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)((MediaFrame const *)arg1)->GetDuration();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-void _wrap_MediaFrame_SetDuration_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, DWORD *_swig_go_1) {
+void _wrap_MediaFrame_SetDuration_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD arg2 ;
-  DWORD *argp2 ;
+  uint32_t arg2 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
-  
-  argp2 = (DWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg2 = (DWORD)*argp2;
-  
+  arg2 = (uint32_t)_swig_go_1; 
   
   (arg1)->SetDuration(arg2);
   
 }
 
 
-BYTE *_wrap_MediaFrame_GetData_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+intgo _wrap_MediaFrame_GetLength_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  BYTE *result = 0 ;
-  BYTE *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = (BYTE *)((MediaFrame const *)arg1)->GetData();
-  *(BYTE **)&_swig_go_result = (BYTE *)result; 
+  result = (uint32_t)((MediaFrame const *)arg1)->GetLength();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_MediaFrame_GetLength_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+intgo _wrap_MediaFrame_GetMaxMediaLength_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = ((MediaFrame const *)arg1)->GetLength();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)((MediaFrame const *)arg1)->GetMaxMediaLength();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_MediaFrame_GetMaxMediaLength_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0) {
+char *_wrap_MediaFrame_GetData_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint8_t *result = 0 ;
+  char *_swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  result = ((MediaFrame const *)arg1)->GetMaxMediaLength();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint8_t *)(arg1)->GetData();
+  *(uint8_t **)&_swig_go_result = (uint8_t *)result; 
   return _swig_go_result;
 }
 
 
-void _wrap_MediaFrame_SetLength_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, DWORD *_swig_go_1) {
+void _wrap_MediaFrame_SetLength_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD arg2 ;
-  DWORD *argp2 ;
+  uint32_t arg2 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
-  
-  argp2 = (DWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg2 = (DWORD)*argp2;
-  
+  arg2 = (uint32_t)_swig_go_1; 
   
   (arg1)->SetLength(arg2);
   
 }
 
 
-void _wrap_MediaFrame_Alloc_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, DWORD *_swig_go_1) {
+void _wrap_MediaFrame_DisableSharedBufer_native_ab264d744f132009(MediaFrame *_swig_go_0) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  DWORD arg2 ;
-  DWORD *argp2 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
   
-  argp2 = (DWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg2 = (DWORD)*argp2;
+  (arg1)->DisableSharedBufer();
   
+}
+
+
+void _wrap_MediaFrame_ResetData__SWIG_0_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t arg2 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
+  
+  (arg1)->ResetData(arg2);
+  
+}
+
+
+void _wrap_MediaFrame_ResetData__SWIG_1_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  (arg1)->ResetData();
+  
+}
+
+
+void _wrap_MediaFrame_Alloc_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t arg2 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
   
   (arg1)->Alloc(arg2);
   
 }
 
 
-void _wrap_MediaFrame_SetMedia_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, BYTE *_swig_go_1, DWORD *_swig_go_2) {
+void _wrap_MediaFrame_SetMedia_native_ab264d744f132009(MediaFrame *_swig_go_0, char *_swig_go_1, intgo _swig_go_2) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  BYTE *arg2 = (BYTE *) 0 ;
-  DWORD arg3 ;
-  DWORD *argp3 ;
+  uint8_t *arg2 = (uint8_t *) 0 ;
+  uint32_t arg3 ;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
-  arg2 = *(BYTE **)&_swig_go_1; 
+  arg2 = *(uint8_t **)&_swig_go_1; 
+  arg3 = (uint32_t)_swig_go_2; 
   
-  argp3 = (DWORD *)_swig_go_2;
-  if (argp3 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg3 = (DWORD)*argp3;
-  
-  
-  (arg1)->SetMedia((BYTE const *)arg2,arg3);
+  (arg1)->SetMedia((uint8_t const *)arg2,arg3);
   
 }
 
 
-DWORD *_wrap_MediaFrame_AppendMedia_native_7aa1c37706fa59c2(MediaFrame *_swig_go_0, BYTE *_swig_go_1, DWORD *_swig_go_2) {
+intgo _wrap_MediaFrame_AppendMedia_native_ab264d744f132009(MediaFrame *_swig_go_0, char *_swig_go_1, intgo _swig_go_2) {
   MediaFrame *arg1 = (MediaFrame *) 0 ;
-  BYTE *arg2 = (BYTE *) 0 ;
-  DWORD arg3 ;
-  DWORD *argp3 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint8_t *arg2 = (uint8_t *) 0 ;
+  uint32_t arg3 ;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(MediaFrame **)&_swig_go_0; 
-  arg2 = *(BYTE **)&_swig_go_1; 
+  arg2 = *(uint8_t **)&_swig_go_1; 
+  arg3 = (uint32_t)_swig_go_2; 
   
-  argp3 = (DWORD *)_swig_go_2;
-  if (argp3 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg3 = (DWORD)*argp3;
-  
-  
-  result = (arg1)->AppendMedia((BYTE const *)arg2,arg3);
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)(arg1)->AppendMedia((uint8_t const *)arg2,arg3);
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-Acumulator *_wrap_new_Acumulator_native_7aa1c37706fa59c2(DWORD *_swig_go_0) {
-  DWORD arg1 ;
-  DWORD *argp1 ;
+char *_wrap_MediaFrame_AllocateCodecConfig_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t arg2 ;
+  uint8_t *result = 0 ;
+  char *_swig_go_result;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
+  
+  result = (uint8_t *)(arg1)->AllocateCodecConfig(arg2);
+  *(uint8_t **)&_swig_go_result = (uint8_t *)result; 
+  return _swig_go_result;
+}
+
+
+void _wrap_MediaFrame_SetCodecConfig_native_ab264d744f132009(MediaFrame *_swig_go_0, char *_swig_go_1, intgo _swig_go_2) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint8_t *arg2 = (uint8_t *) 0 ;
+  uint32_t arg3 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = *(uint8_t **)&_swig_go_1; 
+  arg3 = (uint32_t)_swig_go_2; 
+  
+  (arg1)->SetCodecConfig((uint8_t const *)arg2,arg3);
+  
+}
+
+
+void _wrap_MediaFrame_ClearCodecConfig_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  (arg1)->ClearCodecConfig();
+  
+}
+
+
+void _wrap_MediaFrame_Reset_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  (arg1)->Reset();
+  
+}
+
+
+bool _wrap_MediaFrame_HasCodecConfig_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  bool result;
+  bool _swig_go_result;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  result = (bool)((MediaFrame const *)arg1)->HasCodecConfig();
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+char *_wrap_MediaFrame_GetCodecConfigData_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint8_t *result = 0 ;
+  char *_swig_go_result;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  result = (uint8_t *)((MediaFrame const *)arg1)->GetCodecConfigData();
+  *(uint8_t **)&_swig_go_result = (uint8_t *)result; 
+  return _swig_go_result;
+}
+
+
+intgo _wrap_MediaFrame_GetCodecConfigSize_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t result;
+  intgo _swig_go_result;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  result = (uint32_t)((MediaFrame const *)arg1)->GetCodecConfigSize();
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+intgo _wrap_MediaFrame_GetClockRate_native_ab264d744f132009(MediaFrame *_swig_go_0) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t result;
+  intgo _swig_go_result;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  
+  result = (uint32_t)((MediaFrame const *)arg1)->GetClockRate();
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+void _wrap_MediaFrame_SetClockRate_native_ab264d744f132009(MediaFrame *_swig_go_0, intgo _swig_go_1) {
+  MediaFrame *arg1 = (MediaFrame *) 0 ;
+  uint32_t arg2 ;
+  
+  arg1 = *(MediaFrame **)&_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
+  
+  (arg1)->SetClockRate(arg2);
+  
+}
+
+
+Acumulator *_wrap_new_Acumulator__SWIG_0_native_ab264d744f132009(intgo _swig_go_0, intgo _swig_go_1) {
+  uint32_t arg1 ;
+  uint32_t arg2 ;
   Acumulator *result = 0 ;
   Acumulator *_swig_go_result;
   
+  arg1 = (uint32_t)_swig_go_0; 
+  arg2 = (uint32_t)_swig_go_1; 
   
-  argp1 = (DWORD *)_swig_go_0;
-  if (argp1 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg1 = (DWORD)*argp1;
+  result = (Acumulator *)new Acumulator(arg1,arg2);
+  *(Acumulator **)&_swig_go_result = (Acumulator *)result; 
+  return _swig_go_result;
+}
+
+
+Acumulator *_wrap_new_Acumulator__SWIG_1_native_ab264d744f132009(intgo _swig_go_0) {
+  uint32_t arg1 ;
+  Acumulator *result = 0 ;
+  Acumulator *_swig_go_result;
   
+  arg1 = (uint32_t)_swig_go_0; 
   
   result = (Acumulator *)new Acumulator(arg1);
   *(Acumulator **)&_swig_go_result = (Acumulator *)result; 
@@ -1944,85 +2068,85 @@ Acumulator *_wrap_new_Acumulator_native_7aa1c37706fa59c2(DWORD *_swig_go_0) {
 }
 
 
-QWORD *_wrap_Acumulator_GetAcumulated_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long long _wrap_Acumulator_GetAcumulated_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetAcumulated();
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)((Acumulator const *)arg1)->GetAcumulated();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-QWORD *_wrap_Acumulator_GetDiff_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long long _wrap_Acumulator_GetDiff_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetDiff();
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)((Acumulator const *)arg1)->GetDiff();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-QWORD *_wrap_Acumulator_GetInstant_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long long _wrap_Acumulator_GetInstant_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetInstant();
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)((Acumulator const *)arg1)->GetInstant();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-QWORD *_wrap_Acumulator_GetMin_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long long _wrap_Acumulator_GetMin_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetMin();
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)((Acumulator const *)arg1)->GetMin();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-QWORD *_wrap_Acumulator_GetMax_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long long _wrap_Acumulator_GetMax_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetMax();
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)((Acumulator const *)arg1)->GetMax();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_Acumulator_GetWindow_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+intgo _wrap_Acumulator_GetWindow_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetWindow();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)((Acumulator const *)arg1)->GetWindow();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-bool _wrap_Acumulator_IsInWindow_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+bool _wrap_Acumulator_IsInWindow_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -2035,7 +2159,7 @@ bool _wrap_Acumulator_IsInWindow_native_7aa1c37706fa59c2(Acumulator *_swig_go_0)
 }
 
 
-bool _wrap_Acumulator_IsInMinMaxWindow_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+bool _wrap_Acumulator_IsInMinMaxWindow_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -2048,7 +2172,7 @@ bool _wrap_Acumulator_IsInMinMaxWindow_native_7aa1c37706fa59c2(Acumulator *_swig
 }
 
 
-long double *_wrap_Acumulator_GetInstantMedia_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long double *_wrap_Acumulator_GetInstantMedia_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   long double result;
   long double *_swig_go_result;
@@ -2061,7 +2185,7 @@ long double *_wrap_Acumulator_GetInstantMedia_native_7aa1c37706fa59c2(Acumulator
 }
 
 
-long double *_wrap_Acumulator_GetInstantAvg_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long double *_wrap_Acumulator_GetInstantAvg_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   long double result;
   long double *_swig_go_result;
@@ -2074,7 +2198,7 @@ long double *_wrap_Acumulator_GetInstantAvg_native_7aa1c37706fa59c2(Acumulator *
 }
 
 
-long double *_wrap_Acumulator_GetAverage_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long double *_wrap_Acumulator_GetAverage_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   long double result;
   long double *_swig_go_result;
@@ -2087,7 +2211,7 @@ long double *_wrap_Acumulator_GetAverage_native_7aa1c37706fa59c2(Acumulator *_sw
 }
 
 
-long double *_wrap_Acumulator_GetMinAvg_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long double *_wrap_Acumulator_GetMinAvg_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   long double result;
   long double *_swig_go_result;
@@ -2100,7 +2224,7 @@ long double *_wrap_Acumulator_GetMinAvg_native_7aa1c37706fa59c2(Acumulator *_swi
 }
 
 
-long double *_wrap_Acumulator_GetMaxAvg_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+long double *_wrap_Acumulator_GetMaxAvg_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   long double result;
   long double *_swig_go_result;
@@ -2113,7 +2237,7 @@ long double *_wrap_Acumulator_GetMaxAvg_native_7aa1c37706fa59c2(Acumulator *_swi
 }
 
 
-void _wrap_Acumulator_ResetMinMax_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+void _wrap_Acumulator_ResetMinMax_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
@@ -2123,118 +2247,90 @@ void _wrap_Acumulator_ResetMinMax_native_7aa1c37706fa59c2(Acumulator *_swig_go_0
 }
 
 
-void _wrap_Acumulator_Reset_native_7aa1c37706fa59c2(Acumulator *_swig_go_0, QWORD *_swig_go_1) {
+void _wrap_Acumulator_Reset_native_ab264d744f132009(Acumulator *_swig_go_0, long long _swig_go_1) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD arg2 ;
-  QWORD *argp2 ;
+  uint64_t arg2 ;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
-  
-  argp2 = (QWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null QWORD");
-  }
-  arg2 = (QWORD)*argp2;
-  
+  arg2 = (uint64_t)_swig_go_1; 
   
   (arg1)->Reset(arg2);
   
 }
 
 
-QWORD *_wrap_Acumulator_Update__SWIG_0_native_7aa1c37706fa59c2(Acumulator *_swig_go_0, QWORD *_swig_go_1, DWORD *_swig_go_2) {
+long long _wrap_Acumulator_Update__SWIG_0_native_ab264d744f132009(Acumulator *_swig_go_0, long long _swig_go_1, intgo _swig_go_2) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD arg2 ;
-  DWORD arg3 ;
-  QWORD *argp2 ;
-  DWORD *argp3 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t arg2 ;
+  uint32_t arg3 ;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
+  arg2 = (uint64_t)_swig_go_1; 
+  arg3 = (uint32_t)_swig_go_2; 
   
-  argp2 = (QWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null QWORD");
-  }
-  arg2 = (QWORD)*argp2;
-  
-  
-  argp3 = (DWORD *)_swig_go_2;
-  if (argp3 == NULL) {
-    _swig_gopanic("Attempt to dereference null DWORD");
-  }
-  arg3 = (DWORD)*argp3;
-  
-  
-  result = (arg1)->Update(arg2,arg3);
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)(arg1)->Update(arg2,arg3);
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-QWORD *_wrap_Acumulator_Update__SWIG_1_native_7aa1c37706fa59c2(Acumulator *_swig_go_0, QWORD *_swig_go_1) {
+long long _wrap_Acumulator_Update__SWIG_1_native_ab264d744f132009(Acumulator *_swig_go_0, long long _swig_go_1) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  QWORD arg2 ;
-  QWORD *argp2 ;
-  QWORD result;
-  QWORD *_swig_go_result;
+  uint64_t arg2 ;
+  uint64_t result;
+  long long _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
+  arg2 = (uint64_t)_swig_go_1; 
   
-  argp2 = (QWORD *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null QWORD");
-  }
-  arg2 = (QWORD)*argp2;
-  
-  
-  result = (arg1)->Update(arg2);
-  *(QWORD **)&_swig_go_result = new QWORD(result); 
+  result = (uint64_t)(arg1)->Update(arg2);
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_Acumulator_GetMinValueInWindow_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+intgo _wrap_Acumulator_GetMinValueInWindow_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetMinValueInWindow();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)((Acumulator const *)arg1)->GetMinValueInWindow();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_Acumulator_GetMaxValueInWindow_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+intgo _wrap_Acumulator_GetMaxValueInWindow_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetMaxValueInWindow();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)((Acumulator const *)arg1)->GetMaxValueInWindow();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-DWORD *_wrap_Acumulator_GetCount_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+intgo _wrap_Acumulator_GetCount_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
-  DWORD result;
-  DWORD *_swig_go_result;
+  uint32_t result;
+  intgo _swig_go_result;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
   
-  result = ((Acumulator const *)arg1)->GetCount();
-  *(DWORD **)&_swig_go_result = new DWORD(result); 
+  result = (uint32_t)((Acumulator const *)arg1)->GetCount();
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
 
-void _wrap_delete_Acumulator_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
+void _wrap_delete_Acumulator_native_ab264d744f132009(Acumulator *_swig_go_0) {
   Acumulator *arg1 = (Acumulator *) 0 ;
   
   arg1 = *(Acumulator **)&_swig_go_0; 
@@ -2244,7 +2340,7 @@ void _wrap_delete_Acumulator_native_7aa1c37706fa59c2(Acumulator *_swig_go_0) {
 }
 
 
-void _wrap_delete_UDPReader_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
+void _wrap_delete_UDPReader_native_ab264d744f132009(UDPReader *_swig_go_0) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   
   arg1 = *(UDPReader **)&_swig_go_0; 
@@ -2254,7 +2350,7 @@ void _wrap_delete_UDPReader_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
 }
 
 
-long long _wrap_UDPReader_Next_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
+long long _wrap_UDPReader_Next_native_ab264d744f132009(UDPReader *_swig_go_0) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -2267,7 +2363,7 @@ long long _wrap_UDPReader_Next_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
 }
 
 
-char *_wrap_UDPReader_GetUDPData_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
+char *_wrap_UDPReader_GetUDPData_native_ab264d744f132009(UDPReader *_swig_go_0) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   uint8_t *result = 0 ;
   char *_swig_go_result;
@@ -2280,7 +2376,7 @@ char *_wrap_UDPReader_GetUDPData_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) 
 }
 
 
-intgo _wrap_UDPReader_GetUDPSize_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
+intgo _wrap_UDPReader_GetUDPSize_native_ab264d744f132009(UDPReader *_swig_go_0) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2293,7 +2389,7 @@ intgo _wrap_UDPReader_GetUDPSize_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) 
 }
 
 
-long long _wrap_UDPReader_Seek_native_7aa1c37706fa59c2(UDPReader *_swig_go_0, long long _swig_go_1) {
+long long _wrap_UDPReader_Seek_native_ab264d744f132009(UDPReader *_swig_go_0, long long _swig_go_1) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   uint64_t arg2 ;
   uint64_t result;
@@ -2308,7 +2404,7 @@ long long _wrap_UDPReader_Seek_native_7aa1c37706fa59c2(UDPReader *_swig_go_0, lo
 }
 
 
-void _wrap_UDPReader_Rewind_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
+void _wrap_UDPReader_Rewind_native_ab264d744f132009(UDPReader *_swig_go_0) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   
   arg1 = *(UDPReader **)&_swig_go_0; 
@@ -2318,7 +2414,7 @@ void _wrap_UDPReader_Rewind_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
 }
 
 
-bool _wrap_UDPReader_Close_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
+bool _wrap_UDPReader_Close_native_ab264d744f132009(UDPReader *_swig_go_0) {
   UDPReader *arg1 = (UDPReader *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -2331,7 +2427,7 @@ bool _wrap_UDPReader_Close_native_7aa1c37706fa59c2(UDPReader *_swig_go_0) {
 }
 
 
-void _wrap_LayerInfo_MaxLayerId_set_native_7aa1c37706fa59c2(char _swig_go_0) {
+void _wrap_LayerInfo_MaxLayerId_set_native_ab264d744f132009(char _swig_go_0) {
   uint8_t arg1 ;
   
   arg1 = (uint8_t)_swig_go_0; 
@@ -2341,7 +2437,7 @@ void _wrap_LayerInfo_MaxLayerId_set_native_7aa1c37706fa59c2(char _swig_go_0) {
 }
 
 
-char _wrap_LayerInfo_MaxLayerId_get_native_7aa1c37706fa59c2() {
+char _wrap_LayerInfo_MaxLayerId_get_native_ab264d744f132009() {
   uint8_t result;
   char _swig_go_result;
   
@@ -2352,7 +2448,7 @@ char _wrap_LayerInfo_MaxLayerId_get_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_LayerInfo_temporalLayerId_set_native_7aa1c37706fa59c2(LayerInfo *_swig_go_0, char _swig_go_1) {
+void _wrap_LayerInfo_temporalLayerId_set_native_ab264d744f132009(LayerInfo *_swig_go_0, char _swig_go_1) {
   LayerInfo *arg1 = (LayerInfo *) 0 ;
   uint8_t arg2 ;
   
@@ -2364,7 +2460,7 @@ void _wrap_LayerInfo_temporalLayerId_set_native_7aa1c37706fa59c2(LayerInfo *_swi
 }
 
 
-char _wrap_LayerInfo_temporalLayerId_get_native_7aa1c37706fa59c2(LayerInfo *_swig_go_0) {
+char _wrap_LayerInfo_temporalLayerId_get_native_ab264d744f132009(LayerInfo *_swig_go_0) {
   LayerInfo *arg1 = (LayerInfo *) 0 ;
   uint8_t result;
   char _swig_go_result;
@@ -2377,7 +2473,7 @@ char _wrap_LayerInfo_temporalLayerId_get_native_7aa1c37706fa59c2(LayerInfo *_swi
 }
 
 
-void _wrap_LayerInfo_spatialLayerId_set_native_7aa1c37706fa59c2(LayerInfo *_swig_go_0, char _swig_go_1) {
+void _wrap_LayerInfo_spatialLayerId_set_native_ab264d744f132009(LayerInfo *_swig_go_0, char _swig_go_1) {
   LayerInfo *arg1 = (LayerInfo *) 0 ;
   uint8_t arg2 ;
   
@@ -2389,7 +2485,7 @@ void _wrap_LayerInfo_spatialLayerId_set_native_7aa1c37706fa59c2(LayerInfo *_swig
 }
 
 
-char _wrap_LayerInfo_spatialLayerId_get_native_7aa1c37706fa59c2(LayerInfo *_swig_go_0) {
+char _wrap_LayerInfo_spatialLayerId_get_native_ab264d744f132009(LayerInfo *_swig_go_0) {
   LayerInfo *arg1 = (LayerInfo *) 0 ;
   uint8_t result;
   char _swig_go_result;
@@ -2402,7 +2498,7 @@ char _wrap_LayerInfo_spatialLayerId_get_native_7aa1c37706fa59c2(LayerInfo *_swig
 }
 
 
-LayerInfo *_wrap_new_LayerInfo_native_7aa1c37706fa59c2() {
+LayerInfo *_wrap_new_LayerInfo_native_ab264d744f132009() {
   LayerInfo *result = 0 ;
   LayerInfo *_swig_go_result;
   
@@ -2413,7 +2509,7 @@ LayerInfo *_wrap_new_LayerInfo_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_LayerInfo_native_7aa1c37706fa59c2(LayerInfo *_swig_go_0) {
+void _wrap_delete_LayerInfo_native_ab264d744f132009(LayerInfo *_swig_go_0) {
   LayerInfo *arg1 = (LayerInfo *) 0 ;
   
   arg1 = *(LayerInfo **)&_swig_go_0; 
@@ -2423,7 +2519,7 @@ void _wrap_delete_LayerInfo_native_7aa1c37706fa59c2(LayerInfo *_swig_go_0) {
 }
 
 
-void _wrap_LayerSource_numPackets_set_native_7aa1c37706fa59c2(LayerSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_LayerSource_numPackets_set_native_ab264d744f132009(LayerSource *_swig_go_0, intgo _swig_go_1) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2435,7 +2531,7 @@ void _wrap_LayerSource_numPackets_set_native_7aa1c37706fa59c2(LayerSource *_swig
 }
 
 
-intgo _wrap_LayerSource_numPackets_get_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
+intgo _wrap_LayerSource_numPackets_get_native_ab264d744f132009(LayerSource *_swig_go_0) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2448,7 +2544,7 @@ intgo _wrap_LayerSource_numPackets_get_native_7aa1c37706fa59c2(LayerSource *_swi
 }
 
 
-void _wrap_LayerSource_totalBytes_set_native_7aa1c37706fa59c2(LayerSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_LayerSource_totalBytes_set_native_ab264d744f132009(LayerSource *_swig_go_0, intgo _swig_go_1) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2460,7 +2556,7 @@ void _wrap_LayerSource_totalBytes_set_native_7aa1c37706fa59c2(LayerSource *_swig
 }
 
 
-intgo _wrap_LayerSource_totalBytes_get_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
+intgo _wrap_LayerSource_totalBytes_get_native_ab264d744f132009(LayerSource *_swig_go_0) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2473,7 +2569,7 @@ intgo _wrap_LayerSource_totalBytes_get_native_7aa1c37706fa59c2(LayerSource *_swi
 }
 
 
-void _wrap_LayerSource_bitrate_set_native_7aa1c37706fa59c2(LayerSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_LayerSource_bitrate_set_native_ab264d744f132009(LayerSource *_swig_go_0, intgo _swig_go_1) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2485,7 +2581,7 @@ void _wrap_LayerSource_bitrate_set_native_7aa1c37706fa59c2(LayerSource *_swig_go
 }
 
 
-intgo _wrap_LayerSource_bitrate_get_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
+intgo _wrap_LayerSource_bitrate_get_native_ab264d744f132009(LayerSource *_swig_go_0) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2498,7 +2594,7 @@ intgo _wrap_LayerSource_bitrate_get_native_7aa1c37706fa59c2(LayerSource *_swig_g
 }
 
 
-LayerSource *_wrap_new_LayerSource_native_7aa1c37706fa59c2() {
+LayerSource *_wrap_new_LayerSource_native_ab264d744f132009() {
   LayerSource *result = 0 ;
   LayerSource *_swig_go_result;
   
@@ -2509,7 +2605,7 @@ LayerSource *_wrap_new_LayerSource_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_LayerSource_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
+void _wrap_delete_LayerSource_native_ab264d744f132009(LayerSource *_swig_go_0) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   
   arg1 = *(LayerSource **)&_swig_go_0; 
@@ -2519,7 +2615,7 @@ void _wrap_delete_LayerSource_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
 }
 
 
-void _wrap_SetLayerSource_TemporalLayerId_native_7aa1c37706fa59c2(LayerSource *_swig_go_0, char _swig_go_1) {
+void _wrap_SetLayerSource_TemporalLayerId_native_ab264d744f132009(LayerSource *_swig_go_0, char _swig_go_1) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint8_t arg2 ;
   
@@ -2532,7 +2628,7 @@ void _wrap_SetLayerSource_TemporalLayerId_native_7aa1c37706fa59c2(LayerSource *_
 }
 
 
-char _wrap_GetLayerSource_TemporalLayerId_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
+char _wrap_GetLayerSource_TemporalLayerId_native_ab264d744f132009(LayerSource *_swig_go_0) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint8_t result;
   char _swig_go_result;
@@ -2546,7 +2642,7 @@ char _wrap_GetLayerSource_TemporalLayerId_native_7aa1c37706fa59c2(LayerSource *_
 }
 
 
-void _wrap_SetLayerSource_SpatialLayerId_native_7aa1c37706fa59c2(LayerSource *_swig_go_0, char _swig_go_1) {
+void _wrap_SetLayerSource_SpatialLayerId_native_ab264d744f132009(LayerSource *_swig_go_0, char _swig_go_1) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint8_t arg2 ;
   
@@ -2559,7 +2655,7 @@ void _wrap_SetLayerSource_SpatialLayerId_native_7aa1c37706fa59c2(LayerSource *_s
 }
 
 
-char _wrap_GetLayerSource_SpatialLayerId_native_7aa1c37706fa59c2(LayerSource *_swig_go_0) {
+char _wrap_GetLayerSource_SpatialLayerId_native_ab264d744f132009(LayerSource *_swig_go_0) {
   LayerSource *arg1 = (LayerSource *) 0 ;
   uint8_t result;
   char _swig_go_result;
@@ -2573,7 +2669,7 @@ char _wrap_GetLayerSource_SpatialLayerId_native_7aa1c37706fa59c2(LayerSource *_s
 }
 
 
-long long _wrap_LayerSources_size_native_7aa1c37706fa59c2(LayerSources *_swig_go_0) {
+long long _wrap_LayerSources_size_native_ab264d744f132009(LayerSources *_swig_go_0) {
   LayerSources *arg1 = (LayerSources *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -2586,7 +2682,7 @@ long long _wrap_LayerSources_size_native_7aa1c37706fa59c2(LayerSources *_swig_go
 }
 
 
-LayerSource *_wrap_LayerSources_get_native_7aa1c37706fa59c2(LayerSources *_swig_go_0, long long _swig_go_1) {
+LayerSource *_wrap_LayerSources_get_native_ab264d744f132009(LayerSources *_swig_go_0, long long _swig_go_1) {
   LayerSources *arg1 = (LayerSources *) 0 ;
   size_t arg2 ;
   LayerSource *result = 0 ;
@@ -2601,7 +2697,7 @@ LayerSource *_wrap_LayerSources_get_native_7aa1c37706fa59c2(LayerSources *_swig_
 }
 
 
-LayerSources *_wrap_new_LayerSources_native_7aa1c37706fa59c2() {
+LayerSources *_wrap_new_LayerSources_native_ab264d744f132009() {
   LayerSources *result = 0 ;
   LayerSources *_swig_go_result;
   
@@ -2612,7 +2708,7 @@ LayerSources *_wrap_new_LayerSources_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_LayerSources_native_7aa1c37706fa59c2(LayerSources *_swig_go_0) {
+void _wrap_delete_LayerSources_native_ab264d744f132009(LayerSources *_swig_go_0) {
   LayerSources *arg1 = (LayerSources *) 0 ;
   
   arg1 = *(LayerSources **)&_swig_go_0; 
@@ -2622,7 +2718,7 @@ void _wrap_delete_LayerSources_native_7aa1c37706fa59c2(LayerSources *_swig_go_0)
 }
 
 
-void _wrap_RTPSource_ssrc_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_ssrc_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2634,7 +2730,7 @@ void _wrap_RTPSource_ssrc_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, int
 }
 
 
-intgo _wrap_RTPSource_ssrc_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_ssrc_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2647,7 +2743,7 @@ intgo _wrap_RTPSource_ssrc_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
 }
 
 
-void _wrap_RTPSource_extSeqNum_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_extSeqNum_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2659,7 +2755,7 @@ void _wrap_RTPSource_extSeqNum_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0
 }
 
 
-intgo _wrap_RTPSource_extSeqNum_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_extSeqNum_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2672,7 +2768,7 @@ intgo _wrap_RTPSource_extSeqNum_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_
 }
 
 
-void _wrap_RTPSource_cycles_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_cycles_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2684,7 +2780,7 @@ void _wrap_RTPSource_cycles_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, i
 }
 
 
-intgo _wrap_RTPSource_cycles_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_cycles_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2697,7 +2793,7 @@ intgo _wrap_RTPSource_cycles_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) 
 }
 
 
-void _wrap_RTPSource_jitter_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_jitter_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2709,7 +2805,7 @@ void _wrap_RTPSource_jitter_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, i
 }
 
 
-intgo _wrap_RTPSource_jitter_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_jitter_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2722,7 +2818,7 @@ intgo _wrap_RTPSource_jitter_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) 
 }
 
 
-void _wrap_RTPSource_numPackets_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_numPackets_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2734,7 +2830,7 @@ void _wrap_RTPSource_numPackets_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_
 }
 
 
-intgo _wrap_RTPSource_numPackets_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_numPackets_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2747,7 +2843,7 @@ intgo _wrap_RTPSource_numPackets_get_native_7aa1c37706fa59c2(RTPSource *_swig_go
 }
 
 
-void _wrap_RTPSource_numRTCPPackets_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_numRTCPPackets_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2759,7 +2855,7 @@ void _wrap_RTPSource_numRTCPPackets_set_native_7aa1c37706fa59c2(RTPSource *_swig
 }
 
 
-intgo _wrap_RTPSource_numRTCPPackets_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_numRTCPPackets_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2772,7 +2868,7 @@ intgo _wrap_RTPSource_numRTCPPackets_get_native_7aa1c37706fa59c2(RTPSource *_swi
 }
 
 
-void _wrap_RTPSource_totalBytes_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_totalBytes_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2784,7 +2880,7 @@ void _wrap_RTPSource_totalBytes_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_
 }
 
 
-intgo _wrap_RTPSource_totalBytes_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_totalBytes_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2797,7 +2893,7 @@ intgo _wrap_RTPSource_totalBytes_get_native_7aa1c37706fa59c2(RTPSource *_swig_go
 }
 
 
-void _wrap_RTPSource_totalRTCPBytes_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_totalRTCPBytes_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2809,7 +2905,7 @@ void _wrap_RTPSource_totalRTCPBytes_set_native_7aa1c37706fa59c2(RTPSource *_swig
 }
 
 
-intgo _wrap_RTPSource_totalRTCPBytes_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_totalRTCPBytes_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2822,7 +2918,7 @@ intgo _wrap_RTPSource_totalRTCPBytes_get_native_7aa1c37706fa59c2(RTPSource *_swi
 }
 
 
-void _wrap_RTPSource_bitrate_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPSource_bitrate_set_native_ab264d744f132009(RTPSource *_swig_go_0, intgo _swig_go_1) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2834,7 +2930,7 @@ void _wrap_RTPSource_bitrate_set_native_7aa1c37706fa59c2(RTPSource *_swig_go_0, 
 }
 
 
-intgo _wrap_RTPSource_bitrate_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+intgo _wrap_RTPSource_bitrate_get_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2847,7 +2943,7 @@ intgo _wrap_RTPSource_bitrate_get_native_7aa1c37706fa59c2(RTPSource *_swig_go_0)
 }
 
 
-RTPSource *_wrap_new_RTPSource_native_7aa1c37706fa59c2() {
+RTPSource *_wrap_new_RTPSource_native_ab264d744f132009() {
   RTPSource *result = 0 ;
   RTPSource *_swig_go_result;
   
@@ -2858,7 +2954,7 @@ RTPSource *_wrap_new_RTPSource_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_RTPSource_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
+void _wrap_delete_RTPSource_native_ab264d744f132009(RTPSource *_swig_go_0) {
   RTPSource *arg1 = (RTPSource *) 0 ;
   
   arg1 = *(RTPSource **)&_swig_go_0; 
@@ -2868,7 +2964,7 @@ void _wrap_delete_RTPSource_native_7aa1c37706fa59c2(RTPSource *_swig_go_0) {
 }
 
 
-void _wrap_RTPIncomingSource_lostPackets_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_lostPackets_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2880,7 +2976,7 @@ void _wrap_RTPIncomingSource_lostPackets_set_native_7aa1c37706fa59c2(RTPIncoming
 }
 
 
-intgo _wrap_RTPIncomingSource_lostPackets_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_lostPackets_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2893,7 +2989,7 @@ intgo _wrap_RTPIncomingSource_lostPackets_get_native_7aa1c37706fa59c2(RTPIncomin
 }
 
 
-void _wrap_RTPIncomingSource_dropPackets_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_dropPackets_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2905,7 +3001,7 @@ void _wrap_RTPIncomingSource_dropPackets_set_native_7aa1c37706fa59c2(RTPIncoming
 }
 
 
-intgo _wrap_RTPIncomingSource_dropPackets_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_dropPackets_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2918,7 +3014,7 @@ intgo _wrap_RTPIncomingSource_dropPackets_get_native_7aa1c37706fa59c2(RTPIncomin
 }
 
 
-void _wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2930,7 +3026,7 @@ void _wrap_RTPIncomingSource_totalPacketsSinceLastSR_set_native_7aa1c37706fa59c2
 }
 
 
-intgo _wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2943,7 +3039,7 @@ intgo _wrap_RTPIncomingSource_totalPacketsSinceLastSR_get_native_7aa1c37706fa59c
 }
 
 
-void _wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2955,7 +3051,7 @@ void _wrap_RTPIncomingSource_totalBytesSinceLastSR_set_native_7aa1c37706fa59c2(R
 }
 
 
-intgo _wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2968,7 +3064,7 @@ intgo _wrap_RTPIncomingSource_totalBytesSinceLastSR_get_native_7aa1c37706fa59c2(
 }
 
 
-void _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -2980,7 +3076,7 @@ void _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_set_native_7aa1c37706fa59c2
 }
 
 
-intgo _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -2993,7 +3089,7 @@ intgo _wrap_RTPIncomingSource_minExtSeqNumSinceLastSR_get_native_7aa1c37706fa59c
 }
 
 
-void _wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3005,7 +3101,7 @@ void _wrap_RTPIncomingSource_lostPacketsSinceLastSR_set_native_7aa1c37706fa59c2(
 }
 
 
-intgo _wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3018,7 +3114,7 @@ intgo _wrap_RTPIncomingSource_lostPacketsSinceLastSR_get_native_7aa1c37706fa59c2
 }
 
 
-void _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3030,7 +3126,7 @@ void _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_set_native_7aa1c3770
 }
 
 
-long long _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+long long _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3043,7 +3139,7 @@ long long _wrap_RTPIncomingSource_lastReceivedSenderNTPTimestamp_get_native_7aa1
 }
 
 
-void _wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3055,7 +3151,7 @@ void _wrap_RTPIncomingSource_lastReceivedSenderReport_set_native_7aa1c37706fa59c
 }
 
 
-long long _wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+long long _wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3068,7 +3164,7 @@ long long _wrap_RTPIncomingSource_lastReceivedSenderReport_get_native_7aa1c37706
 }
 
 
-void _wrap_RTPIncomingSource_lastReport_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPIncomingSource_lastReport_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3080,7 +3176,7 @@ void _wrap_RTPIncomingSource_lastReport_set_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-long long _wrap_RTPIncomingSource_lastReport_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+long long _wrap_RTPIncomingSource_lastReport_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3093,7 +3189,7 @@ long long _wrap_RTPIncomingSource_lastReport_get_native_7aa1c37706fa59c2(RTPInco
 }
 
 
-void _wrap_RTPIncomingSource_lastPLI_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPIncomingSource_lastPLI_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3105,7 +3201,7 @@ void _wrap_RTPIncomingSource_lastPLI_set_native_7aa1c37706fa59c2(RTPIncomingSour
 }
 
 
-long long _wrap_RTPIncomingSource_lastPLI_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+long long _wrap_RTPIncomingSource_lastPLI_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3118,7 +3214,7 @@ long long _wrap_RTPIncomingSource_lastPLI_get_native_7aa1c37706fa59c2(RTPIncomin
 }
 
 
-void _wrap_RTPIncomingSource_totalPLIs_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_totalPLIs_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3130,7 +3226,7 @@ void _wrap_RTPIncomingSource_totalPLIs_set_native_7aa1c37706fa59c2(RTPIncomingSo
 }
 
 
-intgo _wrap_RTPIncomingSource_totalPLIs_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_totalPLIs_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3143,7 +3239,7 @@ intgo _wrap_RTPIncomingSource_totalPLIs_get_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-void _wrap_RTPIncomingSource_totalNACKs_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSource_totalNACKs_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3155,7 +3251,7 @@ void _wrap_RTPIncomingSource_totalNACKs_set_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-intgo _wrap_RTPIncomingSource_totalNACKs_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_RTPIncomingSource_totalNACKs_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3168,7 +3264,7 @@ intgo _wrap_RTPIncomingSource_totalNACKs_get_native_7aa1c37706fa59c2(RTPIncoming
 }
 
 
-void _wrap_RTPIncomingSource_lastNACKed_set_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPIncomingSource_lastNACKed_set_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, long long _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3180,7 +3276,7 @@ void _wrap_RTPIncomingSource_lastNACKed_set_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-long long _wrap_RTPIncomingSource_lastNACKed_get_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+long long _wrap_RTPIncomingSource_lastNACKed_get_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3193,7 +3289,7 @@ long long _wrap_RTPIncomingSource_lastNACKed_get_native_7aa1c37706fa59c2(RTPInco
 }
 
 
-LayerSources *_wrap_RTPIncomingSource_layers_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+LayerSources *_wrap_RTPIncomingSource_layers_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   LayerSources result;
   LayerSources *_swig_go_result;
@@ -3206,7 +3302,7 @@ LayerSources *_wrap_RTPIncomingSource_layers_native_7aa1c37706fa59c2(RTPIncoming
 }
 
 
-RTPIncomingSource *_wrap_new_RTPIncomingSource_native_7aa1c37706fa59c2() {
+RTPIncomingSource *_wrap_new_RTPIncomingSource_native_ab264d744f132009() {
   RTPIncomingSource *result = 0 ;
   RTPIncomingSource *_swig_go_result;
   
@@ -3217,7 +3313,7 @@ RTPIncomingSource *_wrap_new_RTPIncomingSource_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_RTPIncomingSource_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+void _wrap_delete_RTPIncomingSource_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   
   arg1 = *(RTPIncomingSource **)&_swig_go_0; 
@@ -3227,7 +3323,7 @@ void _wrap_delete_RTPIncomingSource_native_7aa1c37706fa59c2(RTPIncomingSource *_
 }
 
 
-void _wrap_SetRTPIncomingSource_Ssrc_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_Ssrc_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3240,7 +3336,7 @@ void _wrap_SetRTPIncomingSource_Ssrc_native_7aa1c37706fa59c2(RTPIncomingSource *
 }
 
 
-intgo _wrap_GetRTPIncomingSource_Ssrc_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_Ssrc_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3254,7 +3350,7 @@ intgo _wrap_GetRTPIncomingSource_Ssrc_native_7aa1c37706fa59c2(RTPIncomingSource 
 }
 
 
-void _wrap_SetRTPIncomingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_ExtSeqNum_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3267,7 +3363,7 @@ void _wrap_SetRTPIncomingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPIncomingSou
 }
 
 
-intgo _wrap_GetRTPIncomingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_ExtSeqNum_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3281,7 +3377,7 @@ intgo _wrap_GetRTPIncomingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPIncomingSo
 }
 
 
-void _wrap_SetRTPIncomingSource_Cycles_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_Cycles_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3294,7 +3390,7 @@ void _wrap_SetRTPIncomingSource_Cycles_native_7aa1c37706fa59c2(RTPIncomingSource
 }
 
 
-intgo _wrap_GetRTPIncomingSource_Cycles_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_Cycles_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3308,7 +3404,7 @@ intgo _wrap_GetRTPIncomingSource_Cycles_native_7aa1c37706fa59c2(RTPIncomingSourc
 }
 
 
-void _wrap_SetRTPIncomingSource_Jitter_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_Jitter_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3321,7 +3417,7 @@ void _wrap_SetRTPIncomingSource_Jitter_native_7aa1c37706fa59c2(RTPIncomingSource
 }
 
 
-intgo _wrap_GetRTPIncomingSource_Jitter_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_Jitter_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3335,7 +3431,7 @@ intgo _wrap_GetRTPIncomingSource_Jitter_native_7aa1c37706fa59c2(RTPIncomingSourc
 }
 
 
-void _wrap_SetRTPIncomingSource_NumPackets_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_NumPackets_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3348,7 +3444,7 @@ void _wrap_SetRTPIncomingSource_NumPackets_native_7aa1c37706fa59c2(RTPIncomingSo
 }
 
 
-intgo _wrap_GetRTPIncomingSource_NumPackets_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_NumPackets_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3362,7 +3458,7 @@ intgo _wrap_GetRTPIncomingSource_NumPackets_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-void _wrap_SetRTPIncomingSource_NumRTCPPackets_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_NumRTCPPackets_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3375,7 +3471,7 @@ void _wrap_SetRTPIncomingSource_NumRTCPPackets_native_7aa1c37706fa59c2(RTPIncomi
 }
 
 
-intgo _wrap_GetRTPIncomingSource_NumRTCPPackets_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_NumRTCPPackets_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3389,7 +3485,7 @@ intgo _wrap_GetRTPIncomingSource_NumRTCPPackets_native_7aa1c37706fa59c2(RTPIncom
 }
 
 
-void _wrap_SetRTPIncomingSource_TotalBytes_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_TotalBytes_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3402,7 +3498,7 @@ void _wrap_SetRTPIncomingSource_TotalBytes_native_7aa1c37706fa59c2(RTPIncomingSo
 }
 
 
-intgo _wrap_GetRTPIncomingSource_TotalBytes_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_TotalBytes_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3416,7 +3512,7 @@ intgo _wrap_GetRTPIncomingSource_TotalBytes_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-void _wrap_SetRTPIncomingSource_TotalRTCPBytes_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_TotalRTCPBytes_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3429,7 +3525,7 @@ void _wrap_SetRTPIncomingSource_TotalRTCPBytes_native_7aa1c37706fa59c2(RTPIncomi
 }
 
 
-intgo _wrap_GetRTPIncomingSource_TotalRTCPBytes_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_TotalRTCPBytes_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3443,7 +3539,7 @@ intgo _wrap_GetRTPIncomingSource_TotalRTCPBytes_native_7aa1c37706fa59c2(RTPIncom
 }
 
 
-void _wrap_SetRTPIncomingSource_Bitrate_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPIncomingSource_Bitrate_native_ab264d744f132009(RTPIncomingSource *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3456,7 +3552,7 @@ void _wrap_SetRTPIncomingSource_Bitrate_native_7aa1c37706fa59c2(RTPIncomingSourc
 }
 
 
-intgo _wrap_GetRTPIncomingSource_Bitrate_native_7aa1c37706fa59c2(RTPIncomingSource *_swig_go_0) {
+intgo _wrap_GetRTPIncomingSource_Bitrate_native_ab264d744f132009(RTPIncomingSource *_swig_go_0) {
   RTPIncomingSource *arg1 = (RTPIncomingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3470,7 +3566,7 @@ intgo _wrap_GetRTPIncomingSource_Bitrate_native_7aa1c37706fa59c2(RTPIncomingSour
 }
 
 
-void _wrap_RTPOutgoingSource_time_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSource_time_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3482,7 +3578,7 @@ void _wrap_RTPOutgoingSource_time_set_native_7aa1c37706fa59c2(RTPOutgoingSource 
 }
 
 
-intgo _wrap_RTPOutgoingSource_time_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_RTPOutgoingSource_time_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3495,7 +3591,7 @@ intgo _wrap_RTPOutgoingSource_time_get_native_7aa1c37706fa59c2(RTPOutgoingSource
 }
 
 
-void _wrap_RTPOutgoingSource_lastTime_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSource_lastTime_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3507,7 +3603,7 @@ void _wrap_RTPOutgoingSource_lastTime_set_native_7aa1c37706fa59c2(RTPOutgoingSou
 }
 
 
-intgo _wrap_RTPOutgoingSource_lastTime_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_RTPOutgoingSource_lastTime_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3520,7 +3616,7 @@ intgo _wrap_RTPOutgoingSource_lastTime_get_native_7aa1c37706fa59c2(RTPOutgoingSo
 }
 
 
-void _wrap_RTPOutgoingSource_numPackets_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSource_numPackets_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3532,7 +3628,7 @@ void _wrap_RTPOutgoingSource_numPackets_set_native_7aa1c37706fa59c2(RTPOutgoingS
 }
 
 
-intgo _wrap_RTPOutgoingSource_numPackets_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_RTPOutgoingSource_numPackets_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3545,7 +3641,7 @@ intgo _wrap_RTPOutgoingSource_numPackets_get_native_7aa1c37706fa59c2(RTPOutgoing
 }
 
 
-void _wrap_RTPOutgoingSource_numRTCPPackets_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSource_numRTCPPackets_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3557,7 +3653,7 @@ void _wrap_RTPOutgoingSource_numRTCPPackets_set_native_7aa1c37706fa59c2(RTPOutgo
 }
 
 
-intgo _wrap_RTPOutgoingSource_numRTCPPackets_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_RTPOutgoingSource_numRTCPPackets_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3570,7 +3666,7 @@ intgo _wrap_RTPOutgoingSource_numRTCPPackets_get_native_7aa1c37706fa59c2(RTPOutg
 }
 
 
-void _wrap_RTPOutgoingSource_totalBytes_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSource_totalBytes_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3582,7 +3678,7 @@ void _wrap_RTPOutgoingSource_totalBytes_set_native_7aa1c37706fa59c2(RTPOutgoingS
 }
 
 
-intgo _wrap_RTPOutgoingSource_totalBytes_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_RTPOutgoingSource_totalBytes_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3595,7 +3691,7 @@ intgo _wrap_RTPOutgoingSource_totalBytes_get_native_7aa1c37706fa59c2(RTPOutgoing
 }
 
 
-void _wrap_RTPOutgoingSource_totalRTCPBytes_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSource_totalRTCPBytes_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3607,7 +3703,7 @@ void _wrap_RTPOutgoingSource_totalRTCPBytes_set_native_7aa1c37706fa59c2(RTPOutgo
 }
 
 
-intgo _wrap_RTPOutgoingSource_totalRTCPBytes_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_RTPOutgoingSource_totalRTCPBytes_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3620,7 +3716,7 @@ intgo _wrap_RTPOutgoingSource_totalRTCPBytes_get_native_7aa1c37706fa59c2(RTPOutg
 }
 
 
-void _wrap_RTPOutgoingSource_lastSenderReport_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPOutgoingSource_lastSenderReport_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, long long _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3632,7 +3728,7 @@ void _wrap_RTPOutgoingSource_lastSenderReport_set_native_7aa1c37706fa59c2(RTPOut
 }
 
 
-long long _wrap_RTPOutgoingSource_lastSenderReport_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+long long _wrap_RTPOutgoingSource_lastSenderReport_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3645,7 +3741,7 @@ long long _wrap_RTPOutgoingSource_lastSenderReport_get_native_7aa1c37706fa59c2(R
 }
 
 
-void _wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, long long _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint64_t arg2 ;
   
@@ -3657,7 +3753,7 @@ void _wrap_RTPOutgoingSource_lastSenderReportNTP_set_native_7aa1c37706fa59c2(RTP
 }
 
 
-long long _wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+long long _wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -3670,7 +3766,7 @@ long long _wrap_RTPOutgoingSource_lastSenderReportNTP_get_native_7aa1c37706fa59c
 }
 
 
-RTPOutgoingSource *_wrap_new_RTPOutgoingSource_native_7aa1c37706fa59c2() {
+RTPOutgoingSource *_wrap_new_RTPOutgoingSource_native_ab264d744f132009() {
   RTPOutgoingSource *result = 0 ;
   RTPOutgoingSource *_swig_go_result;
   
@@ -3681,7 +3777,7 @@ RTPOutgoingSource *_wrap_new_RTPOutgoingSource_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_RTPOutgoingSource_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+void _wrap_delete_RTPOutgoingSource_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   
   arg1 = *(RTPOutgoingSource **)&_swig_go_0; 
@@ -3691,7 +3787,7 @@ void _wrap_delete_RTPOutgoingSource_native_7aa1c37706fa59c2(RTPOutgoingSource *_
 }
 
 
-void _wrap_SetRTPOutgoingSource_Ssrc_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPOutgoingSource_Ssrc_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3704,7 +3800,7 @@ void _wrap_SetRTPOutgoingSource_Ssrc_native_7aa1c37706fa59c2(RTPOutgoingSource *
 }
 
 
-intgo _wrap_GetRTPOutgoingSource_Ssrc_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_GetRTPOutgoingSource_Ssrc_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3718,7 +3814,7 @@ intgo _wrap_GetRTPOutgoingSource_Ssrc_native_7aa1c37706fa59c2(RTPOutgoingSource 
 }
 
 
-void _wrap_SetRTPOutgoingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPOutgoingSource_ExtSeqNum_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3731,7 +3827,7 @@ void _wrap_SetRTPOutgoingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPOutgoingSou
 }
 
 
-intgo _wrap_GetRTPOutgoingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_GetRTPOutgoingSource_ExtSeqNum_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3745,7 +3841,7 @@ intgo _wrap_GetRTPOutgoingSource_ExtSeqNum_native_7aa1c37706fa59c2(RTPOutgoingSo
 }
 
 
-void _wrap_SetRTPOutgoingSource_Cycles_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPOutgoingSource_Cycles_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3758,7 +3854,7 @@ void _wrap_SetRTPOutgoingSource_Cycles_native_7aa1c37706fa59c2(RTPOutgoingSource
 }
 
 
-intgo _wrap_GetRTPOutgoingSource_Cycles_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_GetRTPOutgoingSource_Cycles_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3772,7 +3868,7 @@ intgo _wrap_GetRTPOutgoingSource_Cycles_native_7aa1c37706fa59c2(RTPOutgoingSourc
 }
 
 
-void _wrap_SetRTPOutgoingSource_Jitter_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPOutgoingSource_Jitter_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3785,7 +3881,7 @@ void _wrap_SetRTPOutgoingSource_Jitter_native_7aa1c37706fa59c2(RTPOutgoingSource
 }
 
 
-intgo _wrap_GetRTPOutgoingSource_Jitter_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_GetRTPOutgoingSource_Jitter_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3799,7 +3895,7 @@ intgo _wrap_GetRTPOutgoingSource_Jitter_native_7aa1c37706fa59c2(RTPOutgoingSourc
 }
 
 
-void _wrap_SetRTPOutgoingSource_Bitrate_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SetRTPOutgoingSource_Bitrate_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t arg2 ;
   
@@ -3812,7 +3908,7 @@ void _wrap_SetRTPOutgoingSource_Bitrate_native_7aa1c37706fa59c2(RTPOutgoingSourc
 }
 
 
-intgo _wrap_GetRTPOutgoingSource_Bitrate_native_7aa1c37706fa59c2(RTPOutgoingSource *_swig_go_0) {
+intgo _wrap_GetRTPOutgoingSource_Bitrate_native_ab264d744f132009(RTPOutgoingSource *_swig_go_0) {
   RTPOutgoingSource *arg1 = (RTPOutgoingSource *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -3826,7 +3922,7 @@ intgo _wrap_GetRTPOutgoingSource_Bitrate_native_7aa1c37706fa59c2(RTPOutgoingSour
 }
 
 
-void _wrap_delete_TimeService_native_7aa1c37706fa59c2(TimeService *_swig_go_0) {
+void _wrap_delete_TimeService_native_ab264d744f132009(TimeService *_swig_go_0) {
   TimeService *arg1 = (TimeService *) 0 ;
   
   arg1 = *(TimeService **)&_swig_go_0; 
@@ -3836,7 +3932,7 @@ void _wrap_delete_TimeService_native_7aa1c37706fa59c2(TimeService *_swig_go_0) {
 }
 
 
-RTPOutgoingSourceGroup *_wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+RTPOutgoingSourceGroup *_wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_ab264d744f132009(intgo _swig_go_0) {
   MediaFrameType arg1 ;
   RTPOutgoingSourceGroup *result = 0 ;
   RTPOutgoingSourceGroup *_swig_go_result;
@@ -3849,7 +3945,7 @@ RTPOutgoingSourceGroup *_wrap_new_RTPOutgoingSourceGroup__SWIG_0_native_7aa1c377
 }
 
 
-RTPOutgoingSourceGroup *_wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_7aa1c37706fa59c2(std::string *_swig_go_0, intgo _swig_go_1) {
+RTPOutgoingSourceGroup *_wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_ab264d744f132009(std::string *_swig_go_0, intgo _swig_go_1) {
   std::string *arg1 = 0 ;
   MediaFrameType arg2 ;
   RTPOutgoingSourceGroup *result = 0 ;
@@ -3864,7 +3960,7 @@ RTPOutgoingSourceGroup *_wrap_new_RTPOutgoingSourceGroup__SWIG_1_native_7aa1c377
 }
 
 
-void _wrap_RTPOutgoingSourceGroup_Xtype_set_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPOutgoingSourceGroup_Xtype_set_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0, intgo _swig_go_1) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   MediaFrameType arg2 ;
   
@@ -3876,7 +3972,7 @@ void _wrap_RTPOutgoingSourceGroup_Xtype_set_native_7aa1c37706fa59c2(RTPOutgoingS
 }
 
 
-intgo _wrap_RTPOutgoingSourceGroup_Xtype_get_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0) {
+intgo _wrap_RTPOutgoingSourceGroup_Xtype_get_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   MediaFrameType result;
   intgo _swig_go_result;
@@ -3889,7 +3985,7 @@ intgo _wrap_RTPOutgoingSourceGroup_Xtype_get_native_7aa1c37706fa59c2(RTPOutgoing
 }
 
 
-void _wrap_RTPOutgoingSourceGroup_media_set_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0, RTPOutgoingSource *_swig_go_1) {
+void _wrap_RTPOutgoingSourceGroup_media_set_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0, RTPOutgoingSource *_swig_go_1) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPOutgoingSource *arg2 = (RTPOutgoingSource *) 0 ;
   
@@ -3901,7 +3997,7 @@ void _wrap_RTPOutgoingSourceGroup_media_set_native_7aa1c37706fa59c2(RTPOutgoingS
 }
 
 
-RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_media_get_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0) {
+RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_media_get_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPOutgoingSource *result = 0 ;
   RTPOutgoingSource *_swig_go_result;
@@ -3914,7 +4010,7 @@ RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_media_get_native_7aa1c37706fa59c
 }
 
 
-void _wrap_RTPOutgoingSourceGroup_fec_set_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0, RTPOutgoingSource *_swig_go_1) {
+void _wrap_RTPOutgoingSourceGroup_fec_set_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0, RTPOutgoingSource *_swig_go_1) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPOutgoingSource *arg2 = (RTPOutgoingSource *) 0 ;
   
@@ -3926,7 +4022,7 @@ void _wrap_RTPOutgoingSourceGroup_fec_set_native_7aa1c37706fa59c2(RTPOutgoingSou
 }
 
 
-RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_fec_get_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0) {
+RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_fec_get_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPOutgoingSource *result = 0 ;
   RTPOutgoingSource *_swig_go_result;
@@ -3939,7 +4035,7 @@ RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_fec_get_native_7aa1c37706fa59c2(
 }
 
 
-void _wrap_RTPOutgoingSourceGroup_rtx_set_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0, RTPOutgoingSource *_swig_go_1) {
+void _wrap_RTPOutgoingSourceGroup_rtx_set_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0, RTPOutgoingSource *_swig_go_1) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPOutgoingSource *arg2 = (RTPOutgoingSource *) 0 ;
   
@@ -3951,7 +4047,7 @@ void _wrap_RTPOutgoingSourceGroup_rtx_set_native_7aa1c37706fa59c2(RTPOutgoingSou
 }
 
 
-RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_rtx_get_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0) {
+RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_rtx_get_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPOutgoingSource *result = 0 ;
   RTPOutgoingSource *_swig_go_result;
@@ -3964,7 +4060,7 @@ RTPOutgoingSource *_wrap_RTPOutgoingSourceGroup_rtx_get_native_7aa1c37706fa59c2(
 }
 
 
-void _wrap_RTPOutgoingSourceGroup_Update_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0) {
+void _wrap_RTPOutgoingSourceGroup_Update_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   
   arg1 = *(RTPOutgoingSourceGroup **)&_swig_go_0; 
@@ -3974,7 +4070,7 @@ void _wrap_RTPOutgoingSourceGroup_Update_native_7aa1c37706fa59c2(RTPOutgoingSour
 }
 
 
-void _wrap_delete_RTPOutgoingSourceGroup_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0) {
+void _wrap_delete_RTPOutgoingSourceGroup_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   
   arg1 = *(RTPOutgoingSourceGroup **)&_swig_go_0; 
@@ -3984,7 +4080,7 @@ void _wrap_delete_RTPOutgoingSourceGroup_native_7aa1c37706fa59c2(RTPOutgoingSour
 }
 
 
-void _wrap_delete_RTPIncomingMediaStreamListener_native_7aa1c37706fa59c2(RTPIncomingMediaStreamListener *_swig_go_0) {
+void _wrap_delete_RTPIncomingMediaStreamListener_native_ab264d744f132009(RTPIncomingMediaStreamListener *_swig_go_0) {
   RTPIncomingMediaStreamListener *arg1 = (RTPIncomingMediaStreamListener *) 0 ;
   
   arg1 = *(RTPIncomingMediaStreamListener **)&_swig_go_0; 
@@ -3994,7 +4090,7 @@ void _wrap_delete_RTPIncomingMediaStreamListener_native_7aa1c37706fa59c2(RTPInco
 }
 
 
-RTPIncomingSourceGroup *_wrap_new_RTPIncomingSourceGroup_native_7aa1c37706fa59c2(intgo _swig_go_0, TimeService *_swig_go_1) {
+RTPIncomingSourceGroup *_wrap_new_RTPIncomingSourceGroup_native_ab264d744f132009(intgo _swig_go_0, TimeService *_swig_go_1) {
   MediaFrameType arg1 ;
   TimeService *arg2 = 0 ;
   RTPIncomingSourceGroup *result = 0 ;
@@ -4009,7 +4105,7 @@ RTPIncomingSourceGroup *_wrap_new_RTPIncomingSourceGroup_native_7aa1c37706fa59c2
 }
 
 
-void _wrap_RTPIncomingSourceGroup_rid_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, _gostring_ _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_rid_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, _gostring_ _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   std::string *arg2 = 0 ;
   
@@ -4024,7 +4120,7 @@ void _wrap_RTPIncomingSourceGroup_rid_set_native_7aa1c37706fa59c2(RTPIncomingSou
 }
 
 
-_gostring_ _wrap_RTPIncomingSourceGroup_rid_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+_gostring_ _wrap_RTPIncomingSourceGroup_rid_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   std::string *result = 0 ;
   _gostring_ _swig_go_result;
@@ -4037,7 +4133,7 @@ _gostring_ _wrap_RTPIncomingSourceGroup_rid_get_native_7aa1c37706fa59c2(RTPIncom
 }
 
 
-void _wrap_RTPIncomingSourceGroup_mid_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, _gostring_ _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_mid_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, _gostring_ _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   std::string *arg2 = 0 ;
   
@@ -4052,7 +4148,7 @@ void _wrap_RTPIncomingSourceGroup_mid_set_native_7aa1c37706fa59c2(RTPIncomingSou
 }
 
 
-_gostring_ _wrap_RTPIncomingSourceGroup_mid_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+_gostring_ _wrap_RTPIncomingSourceGroup_mid_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   std::string *result = 0 ;
   _gostring_ _swig_go_result;
@@ -4065,7 +4161,7 @@ _gostring_ _wrap_RTPIncomingSourceGroup_mid_get_native_7aa1c37706fa59c2(RTPIncom
 }
 
 
-void _wrap_RTPIncomingSourceGroup_rtt_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_rtt_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t arg2 ;
   
@@ -4077,7 +4173,7 @@ void _wrap_RTPIncomingSourceGroup_rtt_set_native_7aa1c37706fa59c2(RTPIncomingSou
 }
 
 
-intgo _wrap_RTPIncomingSourceGroup_rtt_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+intgo _wrap_RTPIncomingSourceGroup_rtt_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -4090,7 +4186,7 @@ intgo _wrap_RTPIncomingSourceGroup_rtt_get_native_7aa1c37706fa59c2(RTPIncomingSo
 }
 
 
-void _wrap_RTPIncomingSourceGroup_Xtype_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_Xtype_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   MediaFrameType arg2 ;
   
@@ -4102,7 +4198,7 @@ void _wrap_RTPIncomingSourceGroup_Xtype_set_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-intgo _wrap_RTPIncomingSourceGroup_Xtype_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+intgo _wrap_RTPIncomingSourceGroup_Xtype_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   MediaFrameType result;
   intgo _swig_go_result;
@@ -4115,7 +4211,7 @@ intgo _wrap_RTPIncomingSourceGroup_Xtype_get_native_7aa1c37706fa59c2(RTPIncoming
 }
 
 
-void _wrap_RTPIncomingSourceGroup_media_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingSource *_swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_media_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingSource *_swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingSource *arg2 = (RTPIncomingSource *) 0 ;
   
@@ -4127,7 +4223,7 @@ void _wrap_RTPIncomingSourceGroup_media_set_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-RTPIncomingSource *_wrap_RTPIncomingSourceGroup_media_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+RTPIncomingSource *_wrap_RTPIncomingSourceGroup_media_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingSource *result = 0 ;
   RTPIncomingSource *_swig_go_result;
@@ -4140,7 +4236,7 @@ RTPIncomingSource *_wrap_RTPIncomingSourceGroup_media_get_native_7aa1c37706fa59c
 }
 
 
-void _wrap_RTPIncomingSourceGroup_fec_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingSource *_swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_fec_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingSource *_swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingSource *arg2 = (RTPIncomingSource *) 0 ;
   
@@ -4152,7 +4248,7 @@ void _wrap_RTPIncomingSourceGroup_fec_set_native_7aa1c37706fa59c2(RTPIncomingSou
 }
 
 
-RTPIncomingSource *_wrap_RTPIncomingSourceGroup_fec_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+RTPIncomingSource *_wrap_RTPIncomingSourceGroup_fec_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingSource *result = 0 ;
   RTPIncomingSource *_swig_go_result;
@@ -4165,7 +4261,7 @@ RTPIncomingSource *_wrap_RTPIncomingSourceGroup_fec_get_native_7aa1c37706fa59c2(
 }
 
 
-void _wrap_RTPIncomingSourceGroup_rtx_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingSource *_swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_rtx_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingSource *_swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingSource *arg2 = (RTPIncomingSource *) 0 ;
   
@@ -4177,7 +4273,7 @@ void _wrap_RTPIncomingSourceGroup_rtx_set_native_7aa1c37706fa59c2(RTPIncomingSou
 }
 
 
-RTPIncomingSource *_wrap_RTPIncomingSourceGroup_rtx_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+RTPIncomingSource *_wrap_RTPIncomingSourceGroup_rtx_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingSource *result = 0 ;
   RTPIncomingSource *_swig_go_result;
@@ -4190,7 +4286,7 @@ RTPIncomingSource *_wrap_RTPIncomingSourceGroup_rtx_get_native_7aa1c37706fa59c2(
 }
 
 
-void _wrap_RTPIncomingSourceGroup_lost_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_lost_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t arg2 ;
   
@@ -4202,7 +4298,7 @@ void _wrap_RTPIncomingSourceGroup_lost_set_native_7aa1c37706fa59c2(RTPIncomingSo
 }
 
 
-intgo _wrap_RTPIncomingSourceGroup_lost_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+intgo _wrap_RTPIncomingSourceGroup_lost_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -4215,7 +4311,7 @@ intgo _wrap_RTPIncomingSourceGroup_lost_get_native_7aa1c37706fa59c2(RTPIncomingS
 }
 
 
-void _wrap_RTPIncomingSourceGroup_minWaitedTime_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_minWaitedTime_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t arg2 ;
   
@@ -4227,7 +4323,7 @@ void _wrap_RTPIncomingSourceGroup_minWaitedTime_set_native_7aa1c37706fa59c2(RTPI
 }
 
 
-intgo _wrap_RTPIncomingSourceGroup_minWaitedTime_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+intgo _wrap_RTPIncomingSourceGroup_minWaitedTime_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -4240,7 +4336,7 @@ intgo _wrap_RTPIncomingSourceGroup_minWaitedTime_get_native_7aa1c37706fa59c2(RTP
 }
 
 
-void _wrap_RTPIncomingSourceGroup_maxWaitedTime_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_maxWaitedTime_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, intgo _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t arg2 ;
   
@@ -4252,7 +4348,7 @@ void _wrap_RTPIncomingSourceGroup_maxWaitedTime_set_native_7aa1c37706fa59c2(RTPI
 }
 
 
-intgo _wrap_RTPIncomingSourceGroup_maxWaitedTime_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+intgo _wrap_RTPIncomingSourceGroup_maxWaitedTime_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -4265,7 +4361,7 @@ intgo _wrap_RTPIncomingSourceGroup_maxWaitedTime_get_native_7aa1c37706fa59c2(RTP
 }
 
 
-void _wrap_RTPIncomingSourceGroup_avgWaitedTime_set_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, double _swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_avgWaitedTime_set_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, double _swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   double arg2 ;
   
@@ -4277,7 +4373,7 @@ void _wrap_RTPIncomingSourceGroup_avgWaitedTime_set_native_7aa1c37706fa59c2(RTPI
 }
 
 
-double _wrap_RTPIncomingSourceGroup_avgWaitedTime_get_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+double _wrap_RTPIncomingSourceGroup_avgWaitedTime_get_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   double result;
   double _swig_go_result;
@@ -4290,7 +4386,7 @@ double _wrap_RTPIncomingSourceGroup_avgWaitedTime_get_native_7aa1c37706fa59c2(RT
 }
 
 
-void _wrap_RTPIncomingSourceGroup_AddListener_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingMediaStreamListener *_swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_AddListener_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingMediaStreamListener *_swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingMediaStreamListener *arg2 = (RTPIncomingMediaStreamListener *) 0 ;
   
@@ -4302,7 +4398,7 @@ void _wrap_RTPIncomingSourceGroup_AddListener_native_7aa1c37706fa59c2(RTPIncomin
 }
 
 
-void _wrap_RTPIncomingSourceGroup_RemoveListener_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingMediaStreamListener *_swig_go_1) {
+void _wrap_RTPIncomingSourceGroup_RemoveListener_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0, RTPIncomingMediaStreamListener *_swig_go_1) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   RTPIncomingMediaStreamListener *arg2 = (RTPIncomingMediaStreamListener *) 0 ;
   
@@ -4314,7 +4410,7 @@ void _wrap_RTPIncomingSourceGroup_RemoveListener_native_7aa1c37706fa59c2(RTPInco
 }
 
 
-void _wrap_RTPIncomingSourceGroup_Update_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+void _wrap_RTPIncomingSourceGroup_Update_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   
   arg1 = *(RTPIncomingSourceGroup **)&_swig_go_0; 
@@ -4324,7 +4420,7 @@ void _wrap_RTPIncomingSourceGroup_Update_native_7aa1c37706fa59c2(RTPIncomingSour
 }
 
 
-void _wrap_delete_RTPIncomingSourceGroup_native_7aa1c37706fa59c2(RTPIncomingSourceGroup *_swig_go_0) {
+void _wrap_delete_RTPIncomingSourceGroup_native_ab264d744f132009(RTPIncomingSourceGroup *_swig_go_0) {
   RTPIncomingSourceGroup *arg1 = (RTPIncomingSourceGroup *) 0 ;
   
   arg1 = *(RTPIncomingSourceGroup **)&_swig_go_0; 
@@ -4334,7 +4430,7 @@ void _wrap_delete_RTPIncomingSourceGroup_native_7aa1c37706fa59c2(RTPIncomingSour
 }
 
 
-RTPIncomingMediaStreamMultiplexer *_wrap_new_RTPIncomingMediaStreamMultiplexer_native_7aa1c37706fa59c2(intgo _swig_go_0, TimeService *_swig_go_1) {
+RTPIncomingMediaStreamMultiplexer *_wrap_new_RTPIncomingMediaStreamMultiplexer_native_ab264d744f132009(intgo _swig_go_0, TimeService *_swig_go_1) {
   uint32_t arg1 ;
   TimeService *arg2 = 0 ;
   RTPIncomingMediaStreamMultiplexer *result = 0 ;
@@ -4349,7 +4445,7 @@ RTPIncomingMediaStreamMultiplexer *_wrap_new_RTPIncomingMediaStreamMultiplexer_n
 }
 
 
-void _wrap_RTPIncomingMediaStreamMultiplexer_Stop_native_7aa1c37706fa59c2(RTPIncomingMediaStreamMultiplexer *_swig_go_0) {
+void _wrap_RTPIncomingMediaStreamMultiplexer_Stop_native_ab264d744f132009(RTPIncomingMediaStreamMultiplexer *_swig_go_0) {
   RTPIncomingMediaStreamMultiplexer *arg1 = (RTPIncomingMediaStreamMultiplexer *) 0 ;
   
   arg1 = *(RTPIncomingMediaStreamMultiplexer **)&_swig_go_0; 
@@ -4359,7 +4455,7 @@ void _wrap_RTPIncomingMediaStreamMultiplexer_Stop_native_7aa1c37706fa59c2(RTPInc
 }
 
 
-void _wrap_delete_RTPIncomingMediaStreamMultiplexer_native_7aa1c37706fa59c2(RTPIncomingMediaStreamMultiplexer *_swig_go_0) {
+void _wrap_delete_RTPIncomingMediaStreamMultiplexer_native_ab264d744f132009(RTPIncomingMediaStreamMultiplexer *_swig_go_0) {
   RTPIncomingMediaStreamMultiplexer *arg1 = (RTPIncomingMediaStreamMultiplexer *) 0 ;
   
   arg1 = *(RTPIncomingMediaStreamMultiplexer **)&_swig_go_0; 
@@ -4369,7 +4465,7 @@ void _wrap_delete_RTPIncomingMediaStreamMultiplexer_native_7aa1c37706fa59c2(RTPI
 }
 
 
-RTPIncomingMediaStream *_wrap_RTPIncomingMediaStreamMultiplexer_SwigGetRTPIncomingMediaStream_native_7aa1c37706fa59c2(RTPIncomingMediaStreamMultiplexer *_swig_go_0) {
+RTPIncomingMediaStream *_wrap_RTPIncomingMediaStreamMultiplexer_SwigGetRTPIncomingMediaStream_native_ab264d744f132009(RTPIncomingMediaStreamMultiplexer *_swig_go_0) {
   RTPIncomingMediaStreamMultiplexer *arg1 = (RTPIncomingMediaStreamMultiplexer *) 0 ;
   RTPIncomingMediaStream *result = 0 ;
   RTPIncomingMediaStream *_swig_go_result;
@@ -4382,7 +4478,7 @@ RTPIncomingMediaStream *_wrap_RTPIncomingMediaStreamMultiplexer_SwigGetRTPIncomi
 }
 
 
-void _wrap_PropertiesFacade_SetPropertyInt_native_7aa1c37706fa59c2(PropertiesFacade *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
+void _wrap_PropertiesFacade_SetPropertyInt_native_ab264d744f132009(PropertiesFacade *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
   PropertiesFacade *arg1 = (PropertiesFacade *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
@@ -4401,7 +4497,7 @@ void _wrap_PropertiesFacade_SetPropertyInt_native_7aa1c37706fa59c2(PropertiesFac
 }
 
 
-void _wrap_PropertiesFacade_SetPropertyStr_native_7aa1c37706fa59c2(PropertiesFacade *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
+void _wrap_PropertiesFacade_SetPropertyStr_native_ab264d744f132009(PropertiesFacade *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
   PropertiesFacade *arg1 = (PropertiesFacade *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
@@ -4425,7 +4521,7 @@ void _wrap_PropertiesFacade_SetPropertyStr_native_7aa1c37706fa59c2(PropertiesFac
 }
 
 
-void _wrap_PropertiesFacade_SetPropertyBool_native_7aa1c37706fa59c2(PropertiesFacade *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2) {
+void _wrap_PropertiesFacade_SetPropertyBool_native_ab264d744f132009(PropertiesFacade *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2) {
   PropertiesFacade *arg1 = (PropertiesFacade *) 0 ;
   char *arg2 = (char *) 0 ;
   bool arg3 ;
@@ -4444,7 +4540,7 @@ void _wrap_PropertiesFacade_SetPropertyBool_native_7aa1c37706fa59c2(PropertiesFa
 }
 
 
-PropertiesFacade *_wrap_new_PropertiesFacade_native_7aa1c37706fa59c2() {
+PropertiesFacade *_wrap_new_PropertiesFacade_native_ab264d744f132009() {
   PropertiesFacade *result = 0 ;
   PropertiesFacade *_swig_go_result;
   
@@ -4455,7 +4551,7 @@ PropertiesFacade *_wrap_new_PropertiesFacade_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_PropertiesFacade_native_7aa1c37706fa59c2(PropertiesFacade *_swig_go_0) {
+void _wrap_delete_PropertiesFacade_native_ab264d744f132009(PropertiesFacade *_swig_go_0) {
   PropertiesFacade *arg1 = (PropertiesFacade *) 0 ;
   
   arg1 = *(PropertiesFacade **)&_swig_go_0; 
@@ -4465,13 +4561,13 @@ void _wrap_delete_PropertiesFacade_native_7aa1c37706fa59c2(PropertiesFacade *_sw
 }
 
 
-void _wrap_MediaServer_Initialize_native_7aa1c37706fa59c2() {
+void _wrap_MediaServer_Initialize_native_ab264d744f132009() {
   MediaServer::Initialize();
   
 }
 
 
-void _wrap_MediaServer_EnableLog_native_7aa1c37706fa59c2(bool _swig_go_0) {
+void _wrap_MediaServer_EnableLog_native_ab264d744f132009(bool _swig_go_0) {
   bool arg1 ;
   
   arg1 = (bool)_swig_go_0; 
@@ -4481,7 +4577,7 @@ void _wrap_MediaServer_EnableLog_native_7aa1c37706fa59c2(bool _swig_go_0) {
 }
 
 
-void _wrap_MediaServer_EnableDebug_native_7aa1c37706fa59c2(bool _swig_go_0) {
+void _wrap_MediaServer_EnableDebug_native_ab264d744f132009(bool _swig_go_0) {
   bool arg1 ;
   
   arg1 = (bool)_swig_go_0; 
@@ -4491,7 +4587,7 @@ void _wrap_MediaServer_EnableDebug_native_7aa1c37706fa59c2(bool _swig_go_0) {
 }
 
 
-void _wrap_MediaServer_EnableUltraDebug_native_7aa1c37706fa59c2(bool _swig_go_0) {
+void _wrap_MediaServer_EnableUltraDebug_native_ab264d744f132009(bool _swig_go_0) {
   bool arg1 ;
   
   arg1 = (bool)_swig_go_0; 
@@ -4501,7 +4597,7 @@ void _wrap_MediaServer_EnableUltraDebug_native_7aa1c37706fa59c2(bool _swig_go_0)
 }
 
 
-_gostring_ _wrap_MediaServer_GetFingerprint_native_7aa1c37706fa59c2() {
+_gostring_ _wrap_MediaServer_GetFingerprint_native_ab264d744f132009() {
   std::string result;
   _gostring_ _swig_go_result;
   
@@ -4512,7 +4608,7 @@ _gostring_ _wrap_MediaServer_GetFingerprint_native_7aa1c37706fa59c2() {
 }
 
 
-bool _wrap_MediaServer_SetPortRange_native_7aa1c37706fa59c2(intgo _swig_go_0, intgo _swig_go_1) {
+bool _wrap_MediaServer_SetPortRange_native_ab264d744f132009(intgo _swig_go_0, intgo _swig_go_1) {
   int arg1 ;
   int arg2 ;
   bool result;
@@ -4527,7 +4623,7 @@ bool _wrap_MediaServer_SetPortRange_native_7aa1c37706fa59c2(intgo _swig_go_0, in
 }
 
 
-MediaServer *_wrap_new_MediaServer_native_7aa1c37706fa59c2() {
+MediaServer *_wrap_new_MediaServer_native_ab264d744f132009() {
   MediaServer *result = 0 ;
   MediaServer *_swig_go_result;
   
@@ -4538,7 +4634,7 @@ MediaServer *_wrap_new_MediaServer_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_MediaServer_native_7aa1c37706fa59c2(MediaServer *_swig_go_0) {
+void _wrap_delete_MediaServer_native_ab264d744f132009(MediaServer *_swig_go_0) {
   MediaServer *arg1 = (MediaServer *) 0 ;
   
   arg1 = *(MediaServer **)&_swig_go_0; 
@@ -4548,7 +4644,7 @@ void _wrap_delete_MediaServer_native_7aa1c37706fa59c2(MediaServer *_swig_go_0) {
 }
 
 
-void _wrap_RTPBundleTransportConnection_transport_set_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0, DTLSICETransport *_swig_go_1) {
+void _wrap_RTPBundleTransportConnection_transport_set_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0, DTLSICETransport *_swig_go_1) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   DTLSICETransport *arg2 = (DTLSICETransport *) 0 ;
   
@@ -4560,7 +4656,7 @@ void _wrap_RTPBundleTransportConnection_transport_set_native_7aa1c37706fa59c2(RT
 }
 
 
-DTLSICETransport *_wrap_RTPBundleTransportConnection_transport_get_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0) {
+DTLSICETransport *_wrap_RTPBundleTransportConnection_transport_get_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   DTLSICETransport *result = 0 ;
   DTLSICETransport *_swig_go_result;
@@ -4573,7 +4669,7 @@ DTLSICETransport *_wrap_RTPBundleTransportConnection_transport_get_native_7aa1c3
 }
 
 
-void _wrap_RTPBundleTransportConnection_disableSTUNKeepAlive_set_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0, bool _swig_go_1) {
+void _wrap_RTPBundleTransportConnection_disableSTUNKeepAlive_set_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0, bool _swig_go_1) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   bool arg2 ;
   
@@ -4585,7 +4681,7 @@ void _wrap_RTPBundleTransportConnection_disableSTUNKeepAlive_set_native_7aa1c377
 }
 
 
-bool _wrap_RTPBundleTransportConnection_disableSTUNKeepAlive_get_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0) {
+bool _wrap_RTPBundleTransportConnection_disableSTUNKeepAlive_get_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -4598,7 +4694,7 @@ bool _wrap_RTPBundleTransportConnection_disableSTUNKeepAlive_get_native_7aa1c377
 }
 
 
-void _wrap_RTPBundleTransportConnection_iceRequestsSent_set_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPBundleTransportConnection_iceRequestsSent_set_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t arg2 ;
   
@@ -4610,7 +4706,7 @@ void _wrap_RTPBundleTransportConnection_iceRequestsSent_set_native_7aa1c37706fa5
 }
 
 
-long long _wrap_RTPBundleTransportConnection_iceRequestsSent_get_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0) {
+long long _wrap_RTPBundleTransportConnection_iceRequestsSent_get_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -4623,7 +4719,7 @@ long long _wrap_RTPBundleTransportConnection_iceRequestsSent_get_native_7aa1c377
 }
 
 
-void _wrap_RTPBundleTransportConnection_iceRequestsReceived_set_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPBundleTransportConnection_iceRequestsReceived_set_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t arg2 ;
   
@@ -4635,7 +4731,7 @@ void _wrap_RTPBundleTransportConnection_iceRequestsReceived_set_native_7aa1c3770
 }
 
 
-long long _wrap_RTPBundleTransportConnection_iceRequestsReceived_get_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0) {
+long long _wrap_RTPBundleTransportConnection_iceRequestsReceived_get_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -4648,7 +4744,7 @@ long long _wrap_RTPBundleTransportConnection_iceRequestsReceived_get_native_7aa1
 }
 
 
-void _wrap_RTPBundleTransportConnection_iceResponsesSent_set_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPBundleTransportConnection_iceResponsesSent_set_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t arg2 ;
   
@@ -4660,7 +4756,7 @@ void _wrap_RTPBundleTransportConnection_iceResponsesSent_set_native_7aa1c37706fa
 }
 
 
-long long _wrap_RTPBundleTransportConnection_iceResponsesSent_get_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0) {
+long long _wrap_RTPBundleTransportConnection_iceResponsesSent_get_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -4673,7 +4769,7 @@ long long _wrap_RTPBundleTransportConnection_iceResponsesSent_get_native_7aa1c37
 }
 
 
-void _wrap_RTPBundleTransportConnection_iceResponsesReceived_set_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
+void _wrap_RTPBundleTransportConnection_iceResponsesReceived_set_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0, long long _swig_go_1) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t arg2 ;
   
@@ -4685,7 +4781,7 @@ void _wrap_RTPBundleTransportConnection_iceResponsesReceived_set_native_7aa1c377
 }
 
 
-long long _wrap_RTPBundleTransportConnection_iceResponsesReceived_get_native_7aa1c37706fa59c2(RTPBundleTransportConnection *_swig_go_0) {
+long long _wrap_RTPBundleTransportConnection_iceResponsesReceived_get_native_ab264d744f132009(RTPBundleTransportConnection *_swig_go_0) {
   RTPBundleTransportConnection *arg1 = (RTPBundleTransportConnection *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -4698,7 +4794,7 @@ long long _wrap_RTPBundleTransportConnection_iceResponsesReceived_get_native_7aa
 }
 
 
-RTPBundleTransport *_wrap_new_RTPBundleTransport_native_7aa1c37706fa59c2() {
+RTPBundleTransport *_wrap_new_RTPBundleTransport_native_ab264d744f132009() {
   RTPBundleTransport *result = 0 ;
   RTPBundleTransport *_swig_go_result;
   
@@ -4709,7 +4805,7 @@ RTPBundleTransport *_wrap_new_RTPBundleTransport_native_7aa1c37706fa59c2() {
 }
 
 
-intgo _wrap_RTPBundleTransport_Init__SWIG_0_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0) {
+intgo _wrap_RTPBundleTransport_Init__SWIG_0_native_ab264d744f132009(RTPBundleTransport *_swig_go_0) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -4722,7 +4818,7 @@ intgo _wrap_RTPBundleTransport_Init__SWIG_0_native_7aa1c37706fa59c2(RTPBundleTra
 }
 
 
-intgo _wrap_RTPBundleTransport_Init__SWIG_1_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_RTPBundleTransport_Init__SWIG_1_native_ab264d744f132009(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   int arg2 ;
   int result;
@@ -4737,7 +4833,7 @@ intgo _wrap_RTPBundleTransport_Init__SWIG_1_native_7aa1c37706fa59c2(RTPBundleTra
 }
 
 
-RTPBundleTransportConnection *_wrap_RTPBundleTransport_AddICETransport_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0, _gostring_ _swig_go_1, Properties *_swig_go_2) {
+RTPBundleTransportConnection *_wrap_RTPBundleTransport_AddICETransport_native_ab264d744f132009(RTPBundleTransport *_swig_go_0, _gostring_ _swig_go_1, Properties *_swig_go_2) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   std::string *arg2 = 0 ;
   Properties *arg3 = 0 ;
@@ -4757,7 +4853,7 @@ RTPBundleTransportConnection *_wrap_RTPBundleTransport_AddICETransport_native_7a
 }
 
 
-intgo _wrap_RTPBundleTransport_RemoveICETransport_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_RTPBundleTransport_RemoveICETransport_native_ab264d744f132009(RTPBundleTransport *_swig_go_0, _gostring_ _swig_go_1) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   std::string *arg2 = 0 ;
   int result;
@@ -4775,7 +4871,7 @@ intgo _wrap_RTPBundleTransport_RemoveICETransport_native_7aa1c37706fa59c2(RTPBun
 }
 
 
-intgo _wrap_RTPBundleTransport_End_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0) {
+intgo _wrap_RTPBundleTransport_End_native_ab264d744f132009(RTPBundleTransport *_swig_go_0) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -4788,7 +4884,7 @@ intgo _wrap_RTPBundleTransport_End_native_7aa1c37706fa59c2(RTPBundleTransport *_
 }
 
 
-intgo _wrap_RTPBundleTransport_GetLocalPort_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0) {
+intgo _wrap_RTPBundleTransport_GetLocalPort_native_ab264d744f132009(RTPBundleTransport *_swig_go_0) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -4801,7 +4897,7 @@ intgo _wrap_RTPBundleTransport_GetLocalPort_native_7aa1c37706fa59c2(RTPBundleTra
 }
 
 
-intgo _wrap_RTPBundleTransport_AddRemoteCandidate_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2, short _swig_go_3) {
+intgo _wrap_RTPBundleTransport_AddRemoteCandidate_native_ab264d744f132009(RTPBundleTransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2, short _swig_go_3) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   std::string *arg2 = 0 ;
   char *arg3 = (char *) 0 ;
@@ -4828,7 +4924,7 @@ intgo _wrap_RTPBundleTransport_AddRemoteCandidate_native_7aa1c37706fa59c2(RTPBun
 }
 
 
-bool _wrap_RTPBundleTransport_SetAffinity_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
+bool _wrap_RTPBundleTransport_SetAffinity_native_ab264d744f132009(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   int arg2 ;
   bool result;
@@ -4843,7 +4939,7 @@ bool _wrap_RTPBundleTransport_SetAffinity_native_7aa1c37706fa59c2(RTPBundleTrans
 }
 
 
-void _wrap_RTPBundleTransport_SetIceTimeout_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
+void _wrap_RTPBundleTransport_SetIceTimeout_native_ab264d744f132009(RTPBundleTransport *_swig_go_0, intgo _swig_go_1) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   uint32_t arg2 ;
   
@@ -4855,7 +4951,7 @@ void _wrap_RTPBundleTransport_SetIceTimeout_native_7aa1c37706fa59c2(RTPBundleTra
 }
 
 
-TimeService *_wrap_RTPBundleTransport_GetTimeService_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0) {
+TimeService *_wrap_RTPBundleTransport_GetTimeService_native_ab264d744f132009(RTPBundleTransport *_swig_go_0) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   TimeService *result = 0 ;
   TimeService *_swig_go_result;
@@ -4868,7 +4964,7 @@ TimeService *_wrap_RTPBundleTransport_GetTimeService_native_7aa1c37706fa59c2(RTP
 }
 
 
-void _wrap_delete_RTPBundleTransport_native_7aa1c37706fa59c2(RTPBundleTransport *_swig_go_0) {
+void _wrap_delete_RTPBundleTransport_native_ab264d744f132009(RTPBundleTransport *_swig_go_0) {
   RTPBundleTransport *arg1 = (RTPBundleTransport *) 0 ;
   
   arg1 = *(RTPBundleTransport **)&_swig_go_0; 
@@ -4878,7 +4974,7 @@ void _wrap_delete_RTPBundleTransport_native_7aa1c37706fa59c2(RTPBundleTransport 
 }
 
 
-PCAPTransportEmulator *_wrap_new_PCAPTransportEmulator_native_7aa1c37706fa59c2() {
+PCAPTransportEmulator *_wrap_new_PCAPTransportEmulator_native_ab264d744f132009() {
   PCAPTransportEmulator *result = 0 ;
   PCAPTransportEmulator *_swig_go_result;
   
@@ -4889,7 +4985,7 @@ PCAPTransportEmulator *_wrap_new_PCAPTransportEmulator_native_7aa1c37706fa59c2()
 }
 
 
-void _wrap_PCAPTransportEmulator_SetRemoteProperties_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0, Properties *_swig_go_1) {
+void _wrap_PCAPTransportEmulator_SetRemoteProperties_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0, Properties *_swig_go_1) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   Properties *arg2 = 0 ;
   
@@ -4901,7 +4997,7 @@ void _wrap_PCAPTransportEmulator_SetRemoteProperties_native_7aa1c37706fa59c2(PCA
 }
 
 
-bool _wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
+bool _wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   RTPIncomingSourceGroup *arg2 = (RTPIncomingSourceGroup *) 0 ;
   bool result;
@@ -4916,7 +5012,7 @@ bool _wrap_PCAPTransportEmulator_AddIncomingSourceGroup_native_7aa1c37706fa59c2(
 }
 
 
-bool _wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
+bool _wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   RTPIncomingSourceGroup *arg2 = (RTPIncomingSourceGroup *) 0 ;
   bool result;
@@ -4931,7 +5027,7 @@ bool _wrap_PCAPTransportEmulator_RemoveIncomingSourceGroup_native_7aa1c37706fa59
 }
 
 
-bool _wrap_PCAPTransportEmulator_Open_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0, _gostring_ _swig_go_1) {
+bool _wrap_PCAPTransportEmulator_Open_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0, _gostring_ _swig_go_1) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   char *arg2 = (char *) 0 ;
   bool result;
@@ -4951,7 +5047,7 @@ bool _wrap_PCAPTransportEmulator_Open_native_7aa1c37706fa59c2(PCAPTransportEmula
 }
 
 
-bool _wrap_PCAPTransportEmulator_SetReader_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0, UDPReader *_swig_go_1) {
+bool _wrap_PCAPTransportEmulator_SetReader_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0, UDPReader *_swig_go_1) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   UDPReader *arg2 = (UDPReader *) 0 ;
   bool result;
@@ -4966,7 +5062,7 @@ bool _wrap_PCAPTransportEmulator_SetReader_native_7aa1c37706fa59c2(PCAPTransport
 }
 
 
-bool _wrap_PCAPTransportEmulator_Play_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+bool _wrap_PCAPTransportEmulator_Play_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -4979,7 +5075,7 @@ bool _wrap_PCAPTransportEmulator_Play_native_7aa1c37706fa59c2(PCAPTransportEmula
 }
 
 
-long long _wrap_PCAPTransportEmulator_Seek_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0, long long _swig_go_1) {
+long long _wrap_PCAPTransportEmulator_Seek_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0, long long _swig_go_1) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   uint64_t arg2 ;
   uint64_t result;
@@ -4994,7 +5090,7 @@ long long _wrap_PCAPTransportEmulator_Seek_native_7aa1c37706fa59c2(PCAPTransport
 }
 
 
-bool _wrap_PCAPTransportEmulator_Stop_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+bool _wrap_PCAPTransportEmulator_Stop_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -5007,7 +5103,7 @@ bool _wrap_PCAPTransportEmulator_Stop_native_7aa1c37706fa59c2(PCAPTransportEmula
 }
 
 
-bool _wrap_PCAPTransportEmulator_Close_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+bool _wrap_PCAPTransportEmulator_Close_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -5020,7 +5116,7 @@ bool _wrap_PCAPTransportEmulator_Close_native_7aa1c37706fa59c2(PCAPTransportEmul
 }
 
 
-TimeService *_wrap_PCAPTransportEmulator_GetTimeService_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+TimeService *_wrap_PCAPTransportEmulator_GetTimeService_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   TimeService *result = 0 ;
   TimeService *_swig_go_result;
@@ -5033,7 +5129,7 @@ TimeService *_wrap_PCAPTransportEmulator_GetTimeService_native_7aa1c37706fa59c2(
 }
 
 
-void _wrap_delete_PCAPTransportEmulator_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+void _wrap_delete_PCAPTransportEmulator_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   
   arg1 = *(PCAPTransportEmulator **)&_swig_go_0; 
@@ -5043,7 +5139,7 @@ void _wrap_delete_PCAPTransportEmulator_native_7aa1c37706fa59c2(PCAPTransportEmu
 }
 
 
-DTLSICETransportListener *_wrap__swig_NewDirectorDTLSICETransportListenerDTLSICETransportListener_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+DTLSICETransportListener *_wrap__swig_NewDirectorDTLSICETransportListenerDTLSICETransportListener_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   DTLSICETransportListener *result = 0 ;
   DTLSICETransportListener *_swig_go_result;
@@ -5056,7 +5152,7 @@ DTLSICETransportListener *_wrap__swig_NewDirectorDTLSICETransportListenerDTLSICE
 }
 
 
-void _wrap_DeleteDirectorDTLSICETransportListener_native_7aa1c37706fa59c2(DTLSICETransportListener *_swig_go_0) {
+void _wrap_DeleteDirectorDTLSICETransportListener_native_ab264d744f132009(DTLSICETransportListener *_swig_go_0) {
   DTLSICETransportListener *arg1 = (DTLSICETransportListener *) 0 ;
   
   arg1 = *(DTLSICETransportListener **)&_swig_go_0; 
@@ -5066,7 +5162,7 @@ void _wrap_DeleteDirectorDTLSICETransportListener_native_7aa1c37706fa59c2(DTLSIC
 }
 
 
-void _wrap__swig_DirectorDTLSICETransportListener_upcall_OnDTLSStateChange_native_7aa1c37706fa59c2(SwigDirector_DTLSICETransportListener *_swig_go_0, intgo _swig_go_1) {
+void _wrap__swig_DirectorDTLSICETransportListener_upcall_OnDTLSStateChange_native_ab264d744f132009(SwigDirector_DTLSICETransportListener *_swig_go_0, intgo _swig_go_1) {
   SwigDirector_DTLSICETransportListener *arg1 = (SwigDirector_DTLSICETransportListener *) 0 ;
   uint32_t arg2 ;
   
@@ -5078,7 +5174,7 @@ void _wrap__swig_DirectorDTLSICETransportListener_upcall_OnDTLSStateChange_nativ
 }
 
 
-DTLSICETransportListener *_wrap_new_DTLSICETransportListener_native_7aa1c37706fa59c2() {
+DTLSICETransportListener *_wrap_new_DTLSICETransportListener_native_ab264d744f132009() {
   DTLSICETransportListener *result = 0 ;
   DTLSICETransportListener *_swig_go_result;
   
@@ -5089,7 +5185,7 @@ DTLSICETransportListener *_wrap_new_DTLSICETransportListener_native_7aa1c37706fa
 }
 
 
-void _wrap_delete_DTLSICETransportListener_native_7aa1c37706fa59c2(DTLSICETransportListener *_swig_go_0) {
+void _wrap_delete_DTLSICETransportListener_native_ab264d744f132009(DTLSICETransportListener *_swig_go_0) {
   DTLSICETransportListener *arg1 = (DTLSICETransportListener *) 0 ;
   
   arg1 = *(DTLSICETransportListener **)&_swig_go_0; 
@@ -5099,7 +5195,7 @@ void _wrap_delete_DTLSICETransportListener_native_7aa1c37706fa59c2(DTLSICETransp
 }
 
 
-void _wrap_DTLSICETransportListener_onDTLSStateChange_native_7aa1c37706fa59c2(DTLSICETransportListener *_swig_go_0, intgo _swig_go_1) {
+void _wrap_DTLSICETransportListener_onDTLSStateChange_native_ab264d744f132009(DTLSICETransportListener *_swig_go_0, intgo _swig_go_1) {
   DTLSICETransportListener *arg1 = (DTLSICETransportListener *) 0 ;
   uint32_t arg2 ;
   
@@ -5111,7 +5207,7 @@ void _wrap_DTLSICETransportListener_onDTLSStateChange_native_7aa1c37706fa59c2(DT
 }
 
 
-void _wrap_delete_RemoteRateEstimatorListener_native_7aa1c37706fa59c2(RemoteRateEstimatorListener *_swig_go_0) {
+void _wrap_delete_RemoteRateEstimatorListener_native_ab264d744f132009(RemoteRateEstimatorListener *_swig_go_0) {
   RemoteRateEstimatorListener *arg1 = (RemoteRateEstimatorListener *) 0 ;
   
   arg1 = *(RemoteRateEstimatorListener **)&_swig_go_0; 
@@ -5121,7 +5217,7 @@ void _wrap_delete_RemoteRateEstimatorListener_native_7aa1c37706fa59c2(RemoteRate
 }
 
 
-void _wrap_DTLSICETransport_SetListener_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, DTLSICETransportListener *_swig_go_1) {
+void _wrap_DTLSICETransport_SetListener_native_ab264d744f132009(DTLSICETransport *_swig_go_0, DTLSICETransportListener *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   DTLSICETransportListener *arg2 = (DTLSICETransportListener *) 0 ;
   
@@ -5133,7 +5229,7 @@ void _wrap_DTLSICETransport_SetListener_native_7aa1c37706fa59c2(DTLSICETransport
 }
 
 
-void _wrap_DTLSICETransport_Start_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+void _wrap_DTLSICETransport_Start_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   
   arg1 = *(DTLSICETransport **)&_swig_go_0; 
@@ -5143,7 +5239,7 @@ void _wrap_DTLSICETransport_Start_native_7aa1c37706fa59c2(DTLSICETransport *_swi
 }
 
 
-void _wrap_DTLSICETransport_Stop_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+void _wrap_DTLSICETransport_Stop_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   
   arg1 = *(DTLSICETransport **)&_swig_go_0; 
@@ -5153,7 +5249,7 @@ void _wrap_DTLSICETransport_Stop_native_7aa1c37706fa59c2(DTLSICETransport *_swig
 }
 
 
-void _wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1) {
+void _wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   std::string *arg2 = 0 ;
   
@@ -5168,7 +5264,7 @@ void _wrap_DTLSICETransport_SetSRTPProtectionProfiles_native_7aa1c37706fa59c2(DT
 }
 
 
-void _wrap_DTLSICETransport_SetRemoteProperties_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, Properties *_swig_go_1) {
+void _wrap_DTLSICETransport_SetRemoteProperties_native_ab264d744f132009(DTLSICETransport *_swig_go_0, Properties *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   Properties *arg2 = 0 ;
   
@@ -5180,7 +5276,7 @@ void _wrap_DTLSICETransport_SetRemoteProperties_native_7aa1c37706fa59c2(DTLSICET
 }
 
 
-void _wrap_DTLSICETransport_SetLocalProperties_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, Properties *_swig_go_1) {
+void _wrap_DTLSICETransport_SetLocalProperties_native_ab264d744f132009(DTLSICETransport *_swig_go_0, Properties *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   Properties *arg2 = 0 ;
   
@@ -5192,7 +5288,7 @@ void _wrap_DTLSICETransport_SetLocalProperties_native_7aa1c37706fa59c2(DTLSICETr
 }
 
 
-intgo _wrap_DTLSICETransport_SendPLI_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_DTLSICETransport_SendPLI_native_ab264d744f132009(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   uint32_t arg2 ;
   int result;
@@ -5207,7 +5303,7 @@ intgo _wrap_DTLSICETransport_SendPLI_native_7aa1c37706fa59c2(DTLSICETransport *_
 }
 
 
-intgo _wrap_DTLSICETransport_Enqueue_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, RTPPacket::shared *_swig_go_1) {
+intgo _wrap_DTLSICETransport_Enqueue_native_ab264d744f132009(DTLSICETransport *_swig_go_0, RTPPacket::shared *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPPacket::shared *arg2 = 0 ;
   int result;
@@ -5222,7 +5318,7 @@ intgo _wrap_DTLSICETransport_Enqueue_native_7aa1c37706fa59c2(DTLSICETransport *_
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_0_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4, bool _swig_go_5) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_0_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4, bool _swig_go_5) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   bool arg3 ;
@@ -5250,7 +5346,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_0_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_1_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_1_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   bool arg3 ;
@@ -5276,7 +5372,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_1_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_2_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2, bool _swig_go_3) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_2_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2, bool _swig_go_3) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   bool arg3 ;
@@ -5300,7 +5396,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_2_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_3_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_3_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, bool _swig_go_2) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   bool arg3 ;
@@ -5322,7 +5418,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_3_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_4_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_4_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -5342,7 +5438,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_4_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_5_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4, bool _swig_go_5) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_5_native_ab264d744f132009(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4, bool _swig_go_5) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   UDPDumper *arg2 = (UDPDumper *) 0 ;
   bool arg3 ;
@@ -5365,7 +5461,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_5_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_6_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_6_native_ab264d744f132009(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2, bool _swig_go_3, bool _swig_go_4) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   UDPDumper *arg2 = (UDPDumper *) 0 ;
   bool arg3 ;
@@ -5386,7 +5482,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_6_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_7_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2, bool _swig_go_3) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_7_native_ab264d744f132009(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2, bool _swig_go_3) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   UDPDumper *arg2 = (UDPDumper *) 0 ;
   bool arg3 ;
@@ -5405,7 +5501,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_7_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_8_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_8_native_ab264d744f132009(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1, bool _swig_go_2) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   UDPDumper *arg2 = (UDPDumper *) 0 ;
   bool arg3 ;
@@ -5422,7 +5518,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_8_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_Dump__SWIG_9_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1) {
+intgo _wrap_DTLSICETransport_Dump__SWIG_9_native_ab264d744f132009(DTLSICETransport *_swig_go_0, UDPDumper *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   UDPDumper *arg2 = (UDPDumper *) 0 ;
   int result;
@@ -5437,7 +5533,7 @@ intgo _wrap_DTLSICETransport_Dump__SWIG_9_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-intgo _wrap_DTLSICETransport_DumpBWEStats_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_DTLSICETransport_DumpBWEStats_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -5457,7 +5553,7 @@ intgo _wrap_DTLSICETransport_DumpBWEStats_native_7aa1c37706fa59c2(DTLSICETranspo
 }
 
 
-void _wrap_DTLSICETransport_Reset_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+void _wrap_DTLSICETransport_Reset_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   
   arg1 = *(DTLSICETransport **)&_swig_go_0; 
@@ -5467,7 +5563,7 @@ void _wrap_DTLSICETransport_Reset_native_7aa1c37706fa59c2(DTLSICETransport *_swi
 }
 
 
-void _wrap_DTLSICETransport_ActivateRemoteCandidate_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, ICERemoteCandidate *_swig_go_1, bool _swig_go_2, intgo _swig_go_3) {
+void _wrap_DTLSICETransport_ActivateRemoteCandidate_native_ab264d744f132009(DTLSICETransport *_swig_go_0, ICERemoteCandidate *_swig_go_1, bool _swig_go_2, intgo _swig_go_3) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   ICERemoteCandidate *arg2 = (ICERemoteCandidate *) 0 ;
   bool arg3 ;
@@ -5483,7 +5579,7 @@ void _wrap_DTLSICETransport_ActivateRemoteCandidate_native_7aa1c37706fa59c2(DTLS
 }
 
 
-intgo _wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2, _gostring_ _swig_go_3) {
+intgo _wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2, _gostring_ _swig_go_3) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
@@ -5517,7 +5613,7 @@ intgo _wrap_DTLSICETransport_SetRemoteCryptoDTLS_native_7aa1c37706fa59c2(DTLSICE
 }
 
 
-intgo _wrap_DTLSICETransport_SetLocalSTUNCredentials_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
+intgo _wrap_DTLSICETransport_SetLocalSTUNCredentials_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
@@ -5544,7 +5640,7 @@ intgo _wrap_DTLSICETransport_SetLocalSTUNCredentials_native_7aa1c37706fa59c2(DTL
 }
 
 
-intgo _wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
+intgo _wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_ab264d744f132009(DTLSICETransport *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
@@ -5571,7 +5667,7 @@ intgo _wrap_DTLSICETransport_SetRemoteSTUNCredentials_native_7aa1c37706fa59c2(DT
 }
 
 
-bool _wrap_DTLSICETransport_AddOutgoingSourceGroup_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, RTPOutgoingSourceGroup *_swig_go_1) {
+bool _wrap_DTLSICETransport_AddOutgoingSourceGroup_native_ab264d744f132009(DTLSICETransport *_swig_go_0, RTPOutgoingSourceGroup *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPOutgoingSourceGroup *arg2 = (RTPOutgoingSourceGroup *) 0 ;
   bool result;
@@ -5586,7 +5682,7 @@ bool _wrap_DTLSICETransport_AddOutgoingSourceGroup_native_7aa1c37706fa59c2(DTLSI
 }
 
 
-bool _wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, RTPOutgoingSourceGroup *_swig_go_1) {
+bool _wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_ab264d744f132009(DTLSICETransport *_swig_go_0, RTPOutgoingSourceGroup *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPOutgoingSourceGroup *arg2 = (RTPOutgoingSourceGroup *) 0 ;
   bool result;
@@ -5601,7 +5697,7 @@ bool _wrap_DTLSICETransport_RemoveOutgoingSourceGroup_native_7aa1c37706fa59c2(DT
 }
 
 
-bool _wrap_DTLSICETransport_AddIncomingSourceGroup_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
+bool _wrap_DTLSICETransport_AddIncomingSourceGroup_native_ab264d744f132009(DTLSICETransport *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPIncomingSourceGroup *arg2 = (RTPIncomingSourceGroup *) 0 ;
   bool result;
@@ -5616,7 +5712,7 @@ bool _wrap_DTLSICETransport_AddIncomingSourceGroup_native_7aa1c37706fa59c2(DTLSI
 }
 
 
-bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
+bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_ab264d744f132009(DTLSICETransport *_swig_go_0, RTPIncomingSourceGroup *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPIncomingSourceGroup *arg2 = (RTPIncomingSourceGroup *) 0 ;
   bool result;
@@ -5631,7 +5727,7 @@ bool _wrap_DTLSICETransport_RemoveIncomingSourceGroup_native_7aa1c37706fa59c2(DT
 }
 
 
-void _wrap_DTLSICETransport_SetBandwidthProbing_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, bool _swig_go_1) {
+void _wrap_DTLSICETransport_SetBandwidthProbing_native_ab264d744f132009(DTLSICETransport *_swig_go_0, bool _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   bool arg2 ;
   
@@ -5643,7 +5739,7 @@ void _wrap_DTLSICETransport_SetBandwidthProbing_native_7aa1c37706fa59c2(DTLSICET
 }
 
 
-void _wrap_DTLSICETransport_SetMaxProbingBitrate_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
+void _wrap_DTLSICETransport_SetMaxProbingBitrate_native_ab264d744f132009(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   uint32_t arg2 ;
   
@@ -5655,7 +5751,7 @@ void _wrap_DTLSICETransport_SetMaxProbingBitrate_native_7aa1c37706fa59c2(DTLSICE
 }
 
 
-void _wrap_DTLSICETransport_SetProbingBitrateLimit_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
+void _wrap_DTLSICETransport_SetProbingBitrateLimit_native_ab264d744f132009(DTLSICETransport *_swig_go_0, intgo _swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   uint32_t arg2 ;
   
@@ -5667,7 +5763,7 @@ void _wrap_DTLSICETransport_SetProbingBitrateLimit_native_7aa1c37706fa59c2(DTLSI
 }
 
 
-void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0, RemoteRateEstimatorListener *_swig_go_1) {
+void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_ab264d744f132009(DTLSICETransport *_swig_go_0, RemoteRateEstimatorListener *_swig_go_1) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RemoteRateEstimatorListener *arg2 = (RemoteRateEstimatorListener *) 0 ;
   
@@ -5679,7 +5775,7 @@ void _wrap_DTLSICETransport_SetSenderSideEstimatorListener_native_7aa1c37706fa59
 }
 
 
-_gostring_ _wrap_DTLSICETransport_GetRemoteUsername_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+_gostring_ _wrap_DTLSICETransport_GetRemoteUsername_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -5692,7 +5788,7 @@ _gostring_ _wrap_DTLSICETransport_GetRemoteUsername_native_7aa1c37706fa59c2(DTLS
 }
 
 
-_gostring_ _wrap_DTLSICETransport_GetRemotePwd_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+_gostring_ _wrap_DTLSICETransport_GetRemotePwd_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -5705,7 +5801,7 @@ _gostring_ _wrap_DTLSICETransport_GetRemotePwd_native_7aa1c37706fa59c2(DTLSICETr
 }
 
 
-_gostring_ _wrap_DTLSICETransport_GetLocalUsername_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+_gostring_ _wrap_DTLSICETransport_GetLocalUsername_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -5718,7 +5814,7 @@ _gostring_ _wrap_DTLSICETransport_GetLocalUsername_native_7aa1c37706fa59c2(DTLSI
 }
 
 
-_gostring_ _wrap_DTLSICETransport_GetLocalPwd_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+_gostring_ _wrap_DTLSICETransport_GetLocalPwd_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -5731,7 +5827,7 @@ _gostring_ _wrap_DTLSICETransport_GetLocalPwd_native_7aa1c37706fa59c2(DTLSICETra
 }
 
 
-intgo _wrap_DTLSICETransport_GetRTT_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+intgo _wrap_DTLSICETransport_GetRTT_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -5744,7 +5840,7 @@ intgo _wrap_DTLSICETransport_GetRTT_native_7aa1c37706fa59c2(DTLSICETransport *_s
 }
 
 
-TimeService *_wrap_DTLSICETransport_GetTimeService_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+TimeService *_wrap_DTLSICETransport_GetTimeService_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   TimeService *result = 0 ;
   TimeService *_swig_go_result;
@@ -5757,7 +5853,7 @@ TimeService *_wrap_DTLSICETransport_GetTimeService_native_7aa1c37706fa59c2(DTLSI
 }
 
 
-void _wrap_delete_DTLSICETransport_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+void _wrap_delete_DTLSICETransport_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   
   arg1 = *(DTLSICETransport **)&_swig_go_0; 
@@ -5767,7 +5863,7 @@ void _wrap_delete_DTLSICETransport_native_7aa1c37706fa59c2(DTLSICETransport *_sw
 }
 
 
-RTPSessionFacade *_wrap_new_RTPSessionFacade_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+RTPSessionFacade *_wrap_new_RTPSessionFacade_native_ab264d744f132009(intgo _swig_go_0) {
   MediaFrameType arg1 ;
   RTPSessionFacade *result = 0 ;
   RTPSessionFacade *_swig_go_result;
@@ -5780,7 +5876,7 @@ RTPSessionFacade *_wrap_new_RTPSessionFacade_native_7aa1c37706fa59c2(intgo _swig
 }
 
 
-intgo _wrap_RTPSessionFacade_Init_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0, Properties *_swig_go_1) {
+intgo _wrap_RTPSessionFacade_Init_native_ab264d744f132009(RTPSessionFacade *_swig_go_0, Properties *_swig_go_1) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   Properties *arg2 = 0 ;
   int result;
@@ -5795,7 +5891,7 @@ intgo _wrap_RTPSessionFacade_Init_native_7aa1c37706fa59c2(RTPSessionFacade *_swi
 }
 
 
-intgo _wrap_RTPSessionFacade_SetLocalPort_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_RTPSessionFacade_SetLocalPort_native_ab264d744f132009(RTPSessionFacade *_swig_go_0, intgo _swig_go_1) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   int arg2 ;
   int result;
@@ -5810,7 +5906,7 @@ intgo _wrap_RTPSessionFacade_SetLocalPort_native_7aa1c37706fa59c2(RTPSessionFaca
 }
 
 
-intgo _wrap_RTPSessionFacade_GetLocalPort_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+intgo _wrap_RTPSessionFacade_GetLocalPort_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -5823,7 +5919,7 @@ intgo _wrap_RTPSessionFacade_GetLocalPort_native_7aa1c37706fa59c2(RTPSessionFaca
 }
 
 
-intgo _wrap_RTPSessionFacade_SetRemotePort_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
+intgo _wrap_RTPSessionFacade_SetRemotePort_native_ab264d744f132009(RTPSessionFacade *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
@@ -5845,7 +5941,7 @@ intgo _wrap_RTPSessionFacade_SetRemotePort_native_7aa1c37706fa59c2(RTPSessionFac
 }
 
 
-RTPOutgoingSourceGroup *_wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPOutgoingSourceGroup *_wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPOutgoingSourceGroup *result = 0 ;
   RTPOutgoingSourceGroup *_swig_go_result;
@@ -5858,7 +5954,7 @@ RTPOutgoingSourceGroup *_wrap_RTPSessionFacade_GetOutgoingSourceGroup_native_7aa
 }
 
 
-RTPIncomingSourceGroup *_wrap_RTPSessionFacade_GetIncomingSourceGroup_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPIncomingSourceGroup *_wrap_RTPSessionFacade_GetIncomingSourceGroup_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPIncomingSourceGroup *result = 0 ;
   RTPIncomingSourceGroup *_swig_go_result;
@@ -5871,7 +5967,7 @@ RTPIncomingSourceGroup *_wrap_RTPSessionFacade_GetIncomingSourceGroup_native_7aa
 }
 
 
-intgo _wrap_RTPSessionFacade_End_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+intgo _wrap_RTPSessionFacade_End_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -5884,7 +5980,7 @@ intgo _wrap_RTPSessionFacade_End_native_7aa1c37706fa59c2(RTPSessionFacade *_swig
 }
 
 
-intgo _wrap_RTPSessionFacade_Enqueue_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0, RTPPacket::shared *_swig_go_1) {
+intgo _wrap_RTPSessionFacade_Enqueue_native_ab264d744f132009(RTPSessionFacade *_swig_go_0, RTPPacket::shared *_swig_go_1) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPPacket::shared *arg2 = 0 ;
   int result;
@@ -5899,7 +5995,7 @@ intgo _wrap_RTPSessionFacade_Enqueue_native_7aa1c37706fa59c2(RTPSessionFacade *_
 }
 
 
-intgo _wrap_RTPSessionFacade_SendPLI_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_RTPSessionFacade_SendPLI_native_ab264d744f132009(RTPSessionFacade *_swig_go_0, intgo _swig_go_1) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   uint32_t arg2 ;
   int result;
@@ -5914,7 +6010,7 @@ intgo _wrap_RTPSessionFacade_SendPLI_native_7aa1c37706fa59c2(RTPSessionFacade *_
 }
 
 
-void _wrap_delete_RTPSessionFacade_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+void _wrap_delete_RTPSessionFacade_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   
   arg1 = *(RTPSessionFacade **)&_swig_go_0; 
@@ -5924,7 +6020,7 @@ void _wrap_delete_RTPSessionFacade_native_7aa1c37706fa59c2(RTPSessionFacade *_sw
 }
 
 
-RTPReceiver *_wrap_RTPSessionFacade_SwigGetRTPReceiver_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPReceiver *_wrap_RTPSessionFacade_SwigGetRTPReceiver_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPReceiver *result = 0 ;
   RTPReceiver *_swig_go_result;
@@ -5937,7 +6033,7 @@ RTPReceiver *_wrap_RTPSessionFacade_SwigGetRTPReceiver_native_7aa1c37706fa59c2(R
 }
 
 
-RTPSenderFacade *_wrap_new_RTPSenderFacade__SWIG_0_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+RTPSenderFacade *_wrap_new_RTPSenderFacade__SWIG_0_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPSenderFacade *result = 0 ;
   RTPSenderFacade *_swig_go_result;
@@ -5950,7 +6046,7 @@ RTPSenderFacade *_wrap_new_RTPSenderFacade__SWIG_0_native_7aa1c37706fa59c2(DTLSI
 }
 
 
-RTPSenderFacade *_wrap_new_RTPSenderFacade__SWIG_1_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPSenderFacade *_wrap_new_RTPSenderFacade__SWIG_1_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPSenderFacade *result = 0 ;
   RTPSenderFacade *_swig_go_result;
@@ -5963,7 +6059,7 @@ RTPSenderFacade *_wrap_new_RTPSenderFacade__SWIG_1_native_7aa1c37706fa59c2(RTPSe
 }
 
 
-RTPSender *_wrap_RTPSenderFacade_get_native_7aa1c37706fa59c2(RTPSenderFacade *_swig_go_0) {
+RTPSender *_wrap_RTPSenderFacade_get_native_ab264d744f132009(RTPSenderFacade *_swig_go_0) {
   RTPSenderFacade *arg1 = (RTPSenderFacade *) 0 ;
   RTPSender *result = 0 ;
   RTPSender *_swig_go_result;
@@ -5976,7 +6072,7 @@ RTPSender *_wrap_RTPSenderFacade_get_native_7aa1c37706fa59c2(RTPSenderFacade *_s
 }
 
 
-void _wrap_delete_RTPSenderFacade_native_7aa1c37706fa59c2(RTPSenderFacade *_swig_go_0) {
+void _wrap_delete_RTPSenderFacade_native_ab264d744f132009(RTPSenderFacade *_swig_go_0) {
   RTPSenderFacade *arg1 = (RTPSenderFacade *) 0 ;
   
   arg1 = *(RTPSenderFacade **)&_swig_go_0; 
@@ -5986,7 +6082,7 @@ void _wrap_delete_RTPSenderFacade_native_7aa1c37706fa59c2(RTPSenderFacade *_swig
 }
 
 
-RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_0_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_0_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -5999,7 +6095,7 @@ RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_0_native_7aa1c37706fa59c2(D
 }
 
 
-RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_1_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_1_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -6012,7 +6108,7 @@ RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_1_native_7aa1c37706fa59c2(R
 }
 
 
-RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_2_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_2_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -6025,7 +6121,7 @@ RTPReceiverFacade *_wrap_new_RTPReceiverFacade__SWIG_2_native_7aa1c37706fa59c2(P
 }
 
 
-RTPReceiver *_wrap_RTPReceiverFacade_get_native_7aa1c37706fa59c2(RTPReceiverFacade *_swig_go_0) {
+RTPReceiver *_wrap_RTPReceiverFacade_get_native_ab264d744f132009(RTPReceiverFacade *_swig_go_0) {
   RTPReceiverFacade *arg1 = (RTPReceiverFacade *) 0 ;
   RTPReceiver *result = 0 ;
   RTPReceiver *_swig_go_result;
@@ -6038,7 +6134,7 @@ RTPReceiver *_wrap_RTPReceiverFacade_get_native_7aa1c37706fa59c2(RTPReceiverFaca
 }
 
 
-intgo _wrap_RTPReceiverFacade_SendPLI_native_7aa1c37706fa59c2(RTPReceiverFacade *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_RTPReceiverFacade_SendPLI_native_ab264d744f132009(RTPReceiverFacade *_swig_go_0, intgo _swig_go_1) {
   RTPReceiverFacade *arg1 = (RTPReceiverFacade *) 0 ;
   uint32_t arg2 ;
   int result;
@@ -6053,7 +6149,7 @@ intgo _wrap_RTPReceiverFacade_SendPLI_native_7aa1c37706fa59c2(RTPReceiverFacade 
 }
 
 
-void _wrap_delete_RTPReceiverFacade_native_7aa1c37706fa59c2(RTPReceiverFacade *_swig_go_0) {
+void _wrap_delete_RTPReceiverFacade_native_ab264d744f132009(RTPReceiverFacade *_swig_go_0) {
   RTPReceiverFacade *arg1 = (RTPReceiverFacade *) 0 ;
   
   arg1 = *(RTPReceiverFacade **)&_swig_go_0; 
@@ -6063,7 +6159,7 @@ void _wrap_delete_RTPReceiverFacade_native_7aa1c37706fa59c2(RTPReceiverFacade *_
 }
 
 
-RTPSenderFacade *_wrap_TransportToSender_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+RTPSenderFacade *_wrap_TransportToSender_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPSenderFacade *result = 0 ;
   RTPSenderFacade *_swig_go_result;
@@ -6076,7 +6172,7 @@ RTPSenderFacade *_wrap_TransportToSender_native_7aa1c37706fa59c2(DTLSICETranspor
 }
 
 
-RTPReceiverFacade *_wrap_TransportToReceiver_native_7aa1c37706fa59c2(DTLSICETransport *_swig_go_0) {
+RTPReceiverFacade *_wrap_TransportToReceiver_native_ab264d744f132009(DTLSICETransport *_swig_go_0) {
   DTLSICETransport *arg1 = (DTLSICETransport *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -6089,7 +6185,7 @@ RTPReceiverFacade *_wrap_TransportToReceiver_native_7aa1c37706fa59c2(DTLSICETran
 }
 
 
-RTPReceiverFacade *_wrap_PCAPTransportEmulatorToReceiver_native_7aa1c37706fa59c2(PCAPTransportEmulator *_swig_go_0) {
+RTPReceiverFacade *_wrap_PCAPTransportEmulatorToReceiver_native_ab264d744f132009(PCAPTransportEmulator *_swig_go_0) {
   PCAPTransportEmulator *arg1 = (PCAPTransportEmulator *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -6102,7 +6198,7 @@ RTPReceiverFacade *_wrap_PCAPTransportEmulatorToReceiver_native_7aa1c37706fa59c2
 }
 
 
-RTPSenderFacade *_wrap_SessionToSender_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPSenderFacade *_wrap_SessionToSender_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPSenderFacade *result = 0 ;
   RTPSenderFacade *_swig_go_result;
@@ -6115,7 +6211,7 @@ RTPSenderFacade *_wrap_SessionToSender_native_7aa1c37706fa59c2(RTPSessionFacade 
 }
 
 
-RTPReceiverFacade *_wrap_SessionToReceiver_native_7aa1c37706fa59c2(RTPSessionFacade *_swig_go_0) {
+RTPReceiverFacade *_wrap_SessionToReceiver_native_ab264d744f132009(RTPSessionFacade *_swig_go_0) {
   RTPSessionFacade *arg1 = (RTPSessionFacade *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -6128,7 +6224,7 @@ RTPReceiverFacade *_wrap_SessionToReceiver_native_7aa1c37706fa59c2(RTPSessionFac
 }
 
 
-RTPReceiverFacade *_wrap_RTPSessionToReceiver_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0) {
+RTPReceiverFacade *_wrap_RTPSessionToReceiver_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   RTPReceiverFacade *result = 0 ;
   RTPReceiverFacade *_swig_go_result;
@@ -6141,7 +6237,7 @@ RTPReceiverFacade *_wrap_RTPSessionToReceiver_native_7aa1c37706fa59c2(RawRTPSess
 }
 
 
-RTPStreamTransponderFacade *_wrap_new_RTPStreamTransponderFacade_native_7aa1c37706fa59c2(RTPOutgoingSourceGroup *_swig_go_0, RTPSenderFacade *_swig_go_1, REMBBitrateListener *_swig_go_2) {
+RTPStreamTransponderFacade *_wrap_new_RTPStreamTransponderFacade_native_ab264d744f132009(RTPOutgoingSourceGroup *_swig_go_0, RTPSenderFacade *_swig_go_1, REMBBitrateListener *_swig_go_2) {
   RTPOutgoingSourceGroup *arg1 = (RTPOutgoingSourceGroup *) 0 ;
   RTPSenderFacade *arg2 = (RTPSenderFacade *) 0 ;
   REMBBitrateListener *arg3 = (REMBBitrateListener *) 0 ;
@@ -6158,7 +6254,7 @@ RTPStreamTransponderFacade *_wrap_new_RTPStreamTransponderFacade_native_7aa1c377
 }
 
 
-bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_0_native_7aa1c37706fa59c2(RTPStreamTransponderFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1, RTPReceiverFacade *_swig_go_2) {
+bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_0_native_ab264d744f132009(RTPStreamTransponderFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1, RTPReceiverFacade *_swig_go_2) {
   RTPStreamTransponderFacade *arg1 = (RTPStreamTransponderFacade *) 0 ;
   RTPIncomingMediaStream *arg2 = (RTPIncomingMediaStream *) 0 ;
   RTPReceiverFacade *arg3 = (RTPReceiverFacade *) 0 ;
@@ -6175,7 +6271,7 @@ bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_0_native_7aa1c37706fa59c
 }
 
 
-bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_1_native_7aa1c37706fa59c2(RTPStreamTransponderFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1, RTPReceiver *_swig_go_2) {
+bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_1_native_ab264d744f132009(RTPStreamTransponderFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1, RTPReceiver *_swig_go_2) {
   RTPStreamTransponderFacade *arg1 = (RTPStreamTransponderFacade *) 0 ;
   RTPIncomingMediaStream *arg2 = (RTPIncomingMediaStream *) 0 ;
   RTPReceiver *arg3 = (RTPReceiver *) 0 ;
@@ -6192,7 +6288,7 @@ bool _wrap_RTPStreamTransponderFacade_SetIncoming__SWIG_1_native_7aa1c37706fa59c
 }
 
 
-void _wrap_RTPStreamTransponderFacade_SelectLayer_native_7aa1c37706fa59c2(RTPStreamTransponderFacade *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
+void _wrap_RTPStreamTransponderFacade_SelectLayer_native_ab264d744f132009(RTPStreamTransponderFacade *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
   RTPStreamTransponderFacade *arg1 = (RTPStreamTransponderFacade *) 0 ;
   int arg2 ;
   int arg3 ;
@@ -6206,7 +6302,7 @@ void _wrap_RTPStreamTransponderFacade_SelectLayer_native_7aa1c37706fa59c2(RTPStr
 }
 
 
-void _wrap_RTPStreamTransponderFacade_Mute_native_7aa1c37706fa59c2(RTPStreamTransponderFacade *_swig_go_0, bool _swig_go_1) {
+void _wrap_RTPStreamTransponderFacade_Mute_native_ab264d744f132009(RTPStreamTransponderFacade *_swig_go_0, bool _swig_go_1) {
   RTPStreamTransponderFacade *arg1 = (RTPStreamTransponderFacade *) 0 ;
   bool arg2 ;
   
@@ -6218,7 +6314,7 @@ void _wrap_RTPStreamTransponderFacade_Mute_native_7aa1c37706fa59c2(RTPStreamTran
 }
 
 
-void _wrap_RTPStreamTransponderFacade_Close_native_7aa1c37706fa59c2(RTPStreamTransponderFacade *_swig_go_0) {
+void _wrap_RTPStreamTransponderFacade_Close_native_ab264d744f132009(RTPStreamTransponderFacade *_swig_go_0) {
   RTPStreamTransponderFacade *arg1 = (RTPStreamTransponderFacade *) 0 ;
   
   arg1 = *(RTPStreamTransponderFacade **)&_swig_go_0; 
@@ -6228,7 +6324,7 @@ void _wrap_RTPStreamTransponderFacade_Close_native_7aa1c37706fa59c2(RTPStreamTra
 }
 
 
-void _wrap_delete_RTPStreamTransponderFacade_native_7aa1c37706fa59c2(RTPStreamTransponderFacade *_swig_go_0) {
+void _wrap_delete_RTPStreamTransponderFacade_native_ab264d744f132009(RTPStreamTransponderFacade *_swig_go_0) {
   RTPStreamTransponderFacade *arg1 = (RTPStreamTransponderFacade *) 0 ;
   
   arg1 = *(RTPStreamTransponderFacade **)&_swig_go_0; 
@@ -6238,7 +6334,7 @@ void _wrap_delete_RTPStreamTransponderFacade_native_7aa1c37706fa59c2(RTPStreamTr
 }
 
 
-StreamTrackDepacketizer *_wrap_new_StreamTrackDepacketizer_native_7aa1c37706fa59c2(RTPIncomingMediaStream *_swig_go_0) {
+StreamTrackDepacketizer *_wrap_new_StreamTrackDepacketizer_native_ab264d744f132009(RTPIncomingMediaStream *_swig_go_0) {
   RTPIncomingMediaStream *arg1 = (RTPIncomingMediaStream *) 0 ;
   StreamTrackDepacketizer *result = 0 ;
   StreamTrackDepacketizer *_swig_go_result;
@@ -6251,7 +6347,7 @@ StreamTrackDepacketizer *_wrap_new_StreamTrackDepacketizer_native_7aa1c37706fa59
 }
 
 
-void _wrap_StreamTrackDepacketizer_AddMediaListener_native_7aa1c37706fa59c2(StreamTrackDepacketizer *_swig_go_0, MediaFrameListener *_swig_go_1) {
+void _wrap_StreamTrackDepacketizer_AddMediaListener_native_ab264d744f132009(StreamTrackDepacketizer *_swig_go_0, MediaFrameListener *_swig_go_1) {
   StreamTrackDepacketizer *arg1 = (StreamTrackDepacketizer *) 0 ;
   MediaFrameListener *arg2 = (MediaFrameListener *) 0 ;
   
@@ -6263,7 +6359,7 @@ void _wrap_StreamTrackDepacketizer_AddMediaListener_native_7aa1c37706fa59c2(Stre
 }
 
 
-void _wrap_StreamTrackDepacketizer_RemoveMediaListener_native_7aa1c37706fa59c2(StreamTrackDepacketizer *_swig_go_0, MediaFrameListener *_swig_go_1) {
+void _wrap_StreamTrackDepacketizer_RemoveMediaListener_native_ab264d744f132009(StreamTrackDepacketizer *_swig_go_0, MediaFrameListener *_swig_go_1) {
   StreamTrackDepacketizer *arg1 = (StreamTrackDepacketizer *) 0 ;
   MediaFrameListener *arg2 = (MediaFrameListener *) 0 ;
   
@@ -6275,7 +6371,7 @@ void _wrap_StreamTrackDepacketizer_RemoveMediaListener_native_7aa1c37706fa59c2(S
 }
 
 
-void _wrap_StreamTrackDepacketizer_Stop_native_7aa1c37706fa59c2(StreamTrackDepacketizer *_swig_go_0) {
+void _wrap_StreamTrackDepacketizer_Stop_native_ab264d744f132009(StreamTrackDepacketizer *_swig_go_0) {
   StreamTrackDepacketizer *arg1 = (StreamTrackDepacketizer *) 0 ;
   
   arg1 = *(StreamTrackDepacketizer **)&_swig_go_0; 
@@ -6285,7 +6381,7 @@ void _wrap_StreamTrackDepacketizer_Stop_native_7aa1c37706fa59c2(StreamTrackDepac
 }
 
 
-void _wrap_delete_StreamTrackDepacketizer_native_7aa1c37706fa59c2(StreamTrackDepacketizer *_swig_go_0) {
+void _wrap_delete_StreamTrackDepacketizer_native_ab264d744f132009(StreamTrackDepacketizer *_swig_go_0) {
   StreamTrackDepacketizer *arg1 = (StreamTrackDepacketizer *) 0 ;
   
   arg1 = *(StreamTrackDepacketizer **)&_swig_go_0; 
@@ -6295,7 +6391,7 @@ void _wrap_delete_StreamTrackDepacketizer_native_7aa1c37706fa59c2(StreamTrackDep
 }
 
 
-MP4RecorderFacade *_wrap_new_MP4RecorderFacade_native_7aa1c37706fa59c2() {
+MP4RecorderFacade *_wrap_new_MP4RecorderFacade_native_ab264d744f132009() {
   MP4RecorderFacade *result = 0 ;
   MP4RecorderFacade *_swig_go_result;
   
@@ -6306,7 +6402,7 @@ MP4RecorderFacade *_wrap_new_MP4RecorderFacade_native_7aa1c37706fa59c2() {
 }
 
 
-bool _wrap_MP4RecorderFacade_Create_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0, _gostring_ _swig_go_1) {
+bool _wrap_MP4RecorderFacade_Create_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0, _gostring_ _swig_go_1) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   char *arg2 = (char *) 0 ;
   bool result;
@@ -6326,7 +6422,7 @@ bool _wrap_MP4RecorderFacade_Create_native_7aa1c37706fa59c2(MP4RecorderFacade *_
 }
 
 
-bool _wrap_MP4RecorderFacade_Record__SWIG_0_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0) {
+bool _wrap_MP4RecorderFacade_Record__SWIG_0_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -6339,7 +6435,7 @@ bool _wrap_MP4RecorderFacade_Record__SWIG_0_native_7aa1c37706fa59c2(MP4RecorderF
 }
 
 
-bool _wrap_MP4RecorderFacade_Record__SWIG_1_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0, bool _swig_go_1) {
+bool _wrap_MP4RecorderFacade_Record__SWIG_1_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0, bool _swig_go_1) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   bool arg2 ;
   bool result;
@@ -6354,7 +6450,7 @@ bool _wrap_MP4RecorderFacade_Record__SWIG_1_native_7aa1c37706fa59c2(MP4RecorderF
 }
 
 
-bool _wrap_MP4RecorderFacade_Stop_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0) {
+bool _wrap_MP4RecorderFacade_Stop_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -6367,7 +6463,7 @@ bool _wrap_MP4RecorderFacade_Stop_native_7aa1c37706fa59c2(MP4RecorderFacade *_sw
 }
 
 
-bool _wrap_MP4RecorderFacade_Close__SWIG_0_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0) {
+bool _wrap_MP4RecorderFacade_Close__SWIG_0_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -6380,7 +6476,7 @@ bool _wrap_MP4RecorderFacade_Close__SWIG_0_native_7aa1c37706fa59c2(MP4RecorderFa
 }
 
 
-void _wrap_MP4RecorderFacade_SetTimeShiftDuration_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0, intgo _swig_go_1) {
+void _wrap_MP4RecorderFacade_SetTimeShiftDuration_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0, intgo _swig_go_1) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   uint32_t arg2 ;
   
@@ -6392,7 +6488,7 @@ void _wrap_MP4RecorderFacade_SetTimeShiftDuration_native_7aa1c37706fa59c2(MP4Rec
 }
 
 
-bool _wrap_MP4RecorderFacade_Close__SWIG_1_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0, bool _swig_go_1) {
+bool _wrap_MP4RecorderFacade_Close__SWIG_1_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0, bool _swig_go_1) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   bool arg2 ;
   bool result;
@@ -6407,7 +6503,7 @@ bool _wrap_MP4RecorderFacade_Close__SWIG_1_native_7aa1c37706fa59c2(MP4RecorderFa
 }
 
 
-void _wrap_delete_MP4RecorderFacade_native_7aa1c37706fa59c2(MP4RecorderFacade *_swig_go_0) {
+void _wrap_delete_MP4RecorderFacade_native_ab264d744f132009(MP4RecorderFacade *_swig_go_0) {
   MP4RecorderFacade *arg1 = (MP4RecorderFacade *) 0 ;
   
   arg1 = *(MP4RecorderFacade **)&_swig_go_0; 
@@ -6417,7 +6513,7 @@ void _wrap_delete_MP4RecorderFacade_native_7aa1c37706fa59c2(MP4RecorderFacade *_
 }
 
 
-PlayerFacade *_wrap_new_PlayerFacade_native_7aa1c37706fa59c2() {
+PlayerFacade *_wrap_new_PlayerFacade_native_ab264d744f132009() {
   PlayerFacade *result = 0 ;
   PlayerFacade *_swig_go_result;
   
@@ -6428,7 +6524,7 @@ PlayerFacade *_wrap_new_PlayerFacade_native_7aa1c37706fa59c2() {
 }
 
 
-RTPIncomingSourceGroup *_wrap_PlayerFacade_GetAudioSource_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+RTPIncomingSourceGroup *_wrap_PlayerFacade_GetAudioSource_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   RTPIncomingSourceGroup *result = 0 ;
   RTPIncomingSourceGroup *_swig_go_result;
@@ -6441,7 +6537,7 @@ RTPIncomingSourceGroup *_wrap_PlayerFacade_GetAudioSource_native_7aa1c37706fa59c
 }
 
 
-RTPIncomingSourceGroup *_wrap_PlayerFacade_GetVideoSource_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+RTPIncomingSourceGroup *_wrap_PlayerFacade_GetVideoSource_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   RTPIncomingSourceGroup *result = 0 ;
   RTPIncomingSourceGroup *_swig_go_result;
@@ -6454,7 +6550,7 @@ RTPIncomingSourceGroup *_wrap_PlayerFacade_GetVideoSource_native_7aa1c37706fa59c
 }
 
 
-void _wrap_PlayerFacade_Reset_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+void _wrap_PlayerFacade_Reset_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   
   arg1 = *(PlayerFacade **)&_swig_go_0; 
@@ -6464,7 +6560,7 @@ void _wrap_PlayerFacade_Reset_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) 
 }
 
 
-void _wrap_PlayerFacade_setPlayEndListener_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0, PlayerEndListener *_swig_go_1) {
+void _wrap_PlayerFacade_setPlayEndListener_native_ab264d744f132009(PlayerFacade *_swig_go_0, PlayerEndListener *_swig_go_1) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   PlayerEndListener *arg2 = (PlayerEndListener *) 0 ;
   
@@ -6476,7 +6572,7 @@ void _wrap_PlayerFacade_setPlayEndListener_native_7aa1c37706fa59c2(PlayerFacade 
 }
 
 
-intgo _wrap_PlayerFacade_Open_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_PlayerFacade_Open_native_ab264d744f132009(PlayerFacade *_swig_go_0, _gostring_ _swig_go_1) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -6496,7 +6592,7 @@ intgo _wrap_PlayerFacade_Open_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0, 
 }
 
 
-bool _wrap_PlayerFacade_HasAudioTrack_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+bool _wrap_PlayerFacade_HasAudioTrack_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -6509,7 +6605,7 @@ bool _wrap_PlayerFacade_HasAudioTrack_native_7aa1c37706fa59c2(PlayerFacade *_swi
 }
 
 
-bool _wrap_PlayerFacade_HasVideoTrack_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+bool _wrap_PlayerFacade_HasVideoTrack_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   bool result;
   bool _swig_go_result;
@@ -6522,7 +6618,7 @@ bool _wrap_PlayerFacade_HasVideoTrack_native_7aa1c37706fa59c2(PlayerFacade *_swi
 }
 
 
-intgo _wrap_PlayerFacade_GetAudioCodec_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_GetAudioCodec_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -6535,7 +6631,7 @@ intgo _wrap_PlayerFacade_GetAudioCodec_native_7aa1c37706fa59c2(PlayerFacade *_sw
 }
 
 
-intgo _wrap_PlayerFacade_GetVideoCodec_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_GetVideoCodec_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -6548,7 +6644,7 @@ intgo _wrap_PlayerFacade_GetVideoCodec_native_7aa1c37706fa59c2(PlayerFacade *_sw
 }
 
 
-double _wrap_PlayerFacade_GetDuration_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+double _wrap_PlayerFacade_GetDuration_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   double result;
   double _swig_go_result;
@@ -6561,7 +6657,7 @@ double _wrap_PlayerFacade_GetDuration_native_7aa1c37706fa59c2(PlayerFacade *_swi
 }
 
 
-intgo _wrap_PlayerFacade_GetVideoWidth_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_GetVideoWidth_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -6574,7 +6670,7 @@ intgo _wrap_PlayerFacade_GetVideoWidth_native_7aa1c37706fa59c2(PlayerFacade *_sw
 }
 
 
-intgo _wrap_PlayerFacade_GetVideoHeight_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_GetVideoHeight_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -6587,7 +6683,7 @@ intgo _wrap_PlayerFacade_GetVideoHeight_native_7aa1c37706fa59c2(PlayerFacade *_s
 }
 
 
-intgo _wrap_PlayerFacade_GetVideoBitrate_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_GetVideoBitrate_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint32_t result;
   intgo _swig_go_result;
@@ -6600,7 +6696,7 @@ intgo _wrap_PlayerFacade_GetVideoBitrate_native_7aa1c37706fa59c2(PlayerFacade *_
 }
 
 
-double _wrap_PlayerFacade_GetVideoFramerate_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+double _wrap_PlayerFacade_GetVideoFramerate_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   double result;
   double _swig_go_result;
@@ -6613,7 +6709,7 @@ double _wrap_PlayerFacade_GetVideoFramerate_native_7aa1c37706fa59c2(PlayerFacade
 }
 
 
-intgo _wrap_PlayerFacade_Play_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_Play_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -6626,7 +6722,7 @@ intgo _wrap_PlayerFacade_Play_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) 
 }
 
 
-long long _wrap_PlayerFacade_PreSeek_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0, long long _swig_go_1) {
+long long _wrap_PlayerFacade_PreSeek_native_ab264d744f132009(PlayerFacade *_swig_go_0, long long _swig_go_1) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint64_t arg2 ;
   uint64_t result;
@@ -6641,7 +6737,7 @@ long long _wrap_PlayerFacade_PreSeek_native_7aa1c37706fa59c2(PlayerFacade *_swig
 }
 
 
-intgo _wrap_PlayerFacade_Seek_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0, long long _swig_go_1) {
+intgo _wrap_PlayerFacade_Seek_native_ab264d744f132009(PlayerFacade *_swig_go_0, long long _swig_go_1) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint64_t arg2 ;
   int result;
@@ -6656,7 +6752,7 @@ intgo _wrap_PlayerFacade_Seek_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0, 
 }
 
 
-long long _wrap_PlayerFacade_Tell_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+long long _wrap_PlayerFacade_Tell_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   uint64_t result;
   long long _swig_go_result;
@@ -6669,7 +6765,7 @@ long long _wrap_PlayerFacade_Tell_native_7aa1c37706fa59c2(PlayerFacade *_swig_go
 }
 
 
-intgo _wrap_PlayerFacade_Stop_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_Stop_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -6682,7 +6778,7 @@ intgo _wrap_PlayerFacade_Stop_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) 
 }
 
 
-intgo _wrap_PlayerFacade_Close_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+intgo _wrap_PlayerFacade_Close_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -6695,7 +6791,7 @@ intgo _wrap_PlayerFacade_Close_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0)
 }
 
 
-void _wrap_delete_PlayerFacade_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0) {
+void _wrap_delete_PlayerFacade_native_ab264d744f132009(PlayerFacade *_swig_go_0) {
   PlayerFacade *arg1 = (PlayerFacade *) 0 ;
   
   arg1 = *(PlayerFacade **)&_swig_go_0; 
@@ -6705,7 +6801,7 @@ void _wrap_delete_PlayerFacade_native_7aa1c37706fa59c2(PlayerFacade *_swig_go_0)
 }
 
 
-RawRTPSessionFacade *_wrap_new_RawRTPSessionFacade_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+RawRTPSessionFacade *_wrap_new_RawRTPSessionFacade_native_ab264d744f132009(intgo _swig_go_0) {
   MediaFrameType arg1 ;
   RawRTPSessionFacade *result = 0 ;
   RawRTPSessionFacade *_swig_go_result;
@@ -6718,7 +6814,7 @@ RawRTPSessionFacade *_wrap_new_RawRTPSessionFacade_native_7aa1c37706fa59c2(intgo
 }
 
 
-intgo _wrap_RawRTPSessionFacade_Init_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0, Properties *_swig_go_1) {
+intgo _wrap_RawRTPSessionFacade_Init_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0, Properties *_swig_go_1) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   Properties *arg2 = 0 ;
   int result;
@@ -6733,7 +6829,7 @@ intgo _wrap_RawRTPSessionFacade_Init_native_7aa1c37706fa59c2(RawRTPSessionFacade
 }
 
 
-void _wrap_RawRTPSessionFacade_onRTPPacket_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0, char *_swig_go_1, intgo _swig_go_2) {
+void _wrap_RawRTPSessionFacade_onRTPPacket_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0, char *_swig_go_1, intgo _swig_go_2) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   uint8_t *arg2 = (uint8_t *) 0 ;
   int arg3 ;
@@ -6747,7 +6843,7 @@ void _wrap_RawRTPSessionFacade_onRTPPacket_native_7aa1c37706fa59c2(RawRTPSession
 }
 
 
-RTPIncomingSourceGroup *_wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0) {
+RTPIncomingSourceGroup *_wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   RTPIncomingSourceGroup *result = 0 ;
   RTPIncomingSourceGroup *_swig_go_result;
@@ -6760,7 +6856,7 @@ RTPIncomingSourceGroup *_wrap_RawRTPSessionFacade_GetIncomingSourceGroup_native_
 }
 
 
-intgo _wrap_RawRTPSessionFacade_End_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0) {
+intgo _wrap_RawRTPSessionFacade_End_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -6773,7 +6869,7 @@ intgo _wrap_RawRTPSessionFacade_End_native_7aa1c37706fa59c2(RawRTPSessionFacade 
 }
 
 
-intgo _wrap_RawRTPSessionFacade_SendPLI_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_RawRTPSessionFacade_SendPLI_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0, intgo _swig_go_1) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   uint32_t arg2 ;
   int result;
@@ -6788,7 +6884,7 @@ intgo _wrap_RawRTPSessionFacade_SendPLI_native_7aa1c37706fa59c2(RawRTPSessionFac
 }
 
 
-void _wrap_delete_RawRTPSessionFacade_native_7aa1c37706fa59c2(RawRTPSessionFacade *_swig_go_0) {
+void _wrap_delete_RawRTPSessionFacade_native_ab264d744f132009(RawRTPSessionFacade *_swig_go_0) {
   RawRTPSessionFacade *arg1 = (RawRTPSessionFacade *) 0 ;
   
   arg1 = *(RawRTPSessionFacade **)&_swig_go_0; 
@@ -6798,7 +6894,7 @@ void _wrap_delete_RawRTPSessionFacade_native_7aa1c37706fa59c2(RawRTPSessionFacad
 }
 
 
-SenderSideEstimatorListener *_wrap__swig_NewDirectorSenderSideEstimatorListenerSenderSideEstimatorListener_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+SenderSideEstimatorListener *_wrap__swig_NewDirectorSenderSideEstimatorListenerSenderSideEstimatorListener_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   SenderSideEstimatorListener *result = 0 ;
   SenderSideEstimatorListener *_swig_go_result;
@@ -6811,7 +6907,7 @@ SenderSideEstimatorListener *_wrap__swig_NewDirectorSenderSideEstimatorListenerS
 }
 
 
-void _wrap_DeleteDirectorSenderSideEstimatorListener_native_7aa1c37706fa59c2(SenderSideEstimatorListener *_swig_go_0) {
+void _wrap_DeleteDirectorSenderSideEstimatorListener_native_ab264d744f132009(SenderSideEstimatorListener *_swig_go_0) {
   SenderSideEstimatorListener *arg1 = (SenderSideEstimatorListener *) 0 ;
   
   arg1 = *(SenderSideEstimatorListener **)&_swig_go_0; 
@@ -6821,7 +6917,7 @@ void _wrap_DeleteDirectorSenderSideEstimatorListener_native_7aa1c37706fa59c2(Sen
 }
 
 
-SenderSideEstimatorListener *_wrap_new_SenderSideEstimatorListener_native_7aa1c37706fa59c2() {
+SenderSideEstimatorListener *_wrap_new_SenderSideEstimatorListener_native_ab264d744f132009() {
   SenderSideEstimatorListener *result = 0 ;
   SenderSideEstimatorListener *_swig_go_result;
   
@@ -6832,7 +6928,7 @@ SenderSideEstimatorListener *_wrap_new_SenderSideEstimatorListener_native_7aa1c3
 }
 
 
-void _wrap_delete_SenderSideEstimatorListener_native_7aa1c37706fa59c2(SenderSideEstimatorListener *_swig_go_0) {
+void _wrap_delete_SenderSideEstimatorListener_native_ab264d744f132009(SenderSideEstimatorListener *_swig_go_0) {
   SenderSideEstimatorListener *arg1 = (SenderSideEstimatorListener *) 0 ;
   
   arg1 = *(SenderSideEstimatorListener **)&_swig_go_0; 
@@ -6842,7 +6938,7 @@ void _wrap_delete_SenderSideEstimatorListener_native_7aa1c37706fa59c2(SenderSide
 }
 
 
-void _wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_7aa1c37706fa59c2(SenderSideEstimatorListener *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_ab264d744f132009(SenderSideEstimatorListener *_swig_go_0, intgo _swig_go_1) {
   SenderSideEstimatorListener *arg1 = (SenderSideEstimatorListener *) 0 ;
   uint32_t arg2 ;
   
@@ -6854,7 +6950,7 @@ void _wrap_SenderSideEstimatorListener_onTargetBitrateRequested_native_7aa1c3770
 }
 
 
-ActiveSpeakerDetectorFacade *_wrap_new_ActiveSpeakerDetectorFacade_native_7aa1c37706fa59c2(ActiveTrackListener *_swig_go_0) {
+ActiveSpeakerDetectorFacade *_wrap_new_ActiveSpeakerDetectorFacade_native_ab264d744f132009(ActiveTrackListener *_swig_go_0) {
   ActiveTrackListener *arg1 = (ActiveTrackListener *) 0 ;
   ActiveSpeakerDetectorFacade *result = 0 ;
   ActiveSpeakerDetectorFacade *_swig_go_result;
@@ -6867,7 +6963,7 @@ ActiveSpeakerDetectorFacade *_wrap_new_ActiveSpeakerDetectorFacade_native_7aa1c3
 }
 
 
-void _wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0, intgo _swig_go_1) {
+void _wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0, intgo _swig_go_1) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   uint32_t arg2 ;
   
@@ -6879,7 +6975,7 @@ void _wrap_ActiveSpeakerDetectorFacade_SetMinChangePeriod_native_7aa1c37706fa59c
 }
 
 
-void _wrap_ActiveSpeakerDetectorFacade_SetMaxAccumulatedScore_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0, long long _swig_go_1) {
+void _wrap_ActiveSpeakerDetectorFacade_SetMaxAccumulatedScore_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0, long long _swig_go_1) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   uint64_t arg2 ;
   
@@ -6891,7 +6987,7 @@ void _wrap_ActiveSpeakerDetectorFacade_SetMaxAccumulatedScore_native_7aa1c37706f
 }
 
 
-void _wrap_ActiveSpeakerDetectorFacade_SetNoiseGatingThreshold_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0, char _swig_go_1) {
+void _wrap_ActiveSpeakerDetectorFacade_SetNoiseGatingThreshold_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0, char _swig_go_1) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   uint8_t arg2 ;
   
@@ -6903,7 +6999,7 @@ void _wrap_ActiveSpeakerDetectorFacade_SetNoiseGatingThreshold_native_7aa1c37706
 }
 
 
-void _wrap_ActiveSpeakerDetectorFacade_SetMinActivationScore_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0, intgo _swig_go_1) {
+void _wrap_ActiveSpeakerDetectorFacade_SetMinActivationScore_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0, intgo _swig_go_1) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   uint32_t arg2 ;
   
@@ -6915,7 +7011,7 @@ void _wrap_ActiveSpeakerDetectorFacade_SetMinActivationScore_native_7aa1c37706fa
 }
 
 
-void _wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1, intgo _swig_go_2) {
+void _wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1, intgo _swig_go_2) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   RTPIncomingMediaStream *arg2 = (RTPIncomingMediaStream *) 0 ;
   uint32_t arg3 ;
@@ -6929,7 +7025,7 @@ void _wrap_ActiveSpeakerDetectorFacade_AddIncomingSourceGroup_native_7aa1c37706f
 }
 
 
-void _wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1) {
+void _wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0, RTPIncomingMediaStream *_swig_go_1) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   RTPIncomingMediaStream *arg2 = (RTPIncomingMediaStream *) 0 ;
   
@@ -6941,7 +7037,7 @@ void _wrap_ActiveSpeakerDetectorFacade_RemoveIncomingSourceGroup_native_7aa1c377
 }
 
 
-void _wrap_delete_ActiveSpeakerDetectorFacade_native_7aa1c37706fa59c2(ActiveSpeakerDetectorFacade *_swig_go_0) {
+void _wrap_delete_ActiveSpeakerDetectorFacade_native_ab264d744f132009(ActiveSpeakerDetectorFacade *_swig_go_0) {
   ActiveSpeakerDetectorFacade *arg1 = (ActiveSpeakerDetectorFacade *) 0 ;
   
   arg1 = *(ActiveSpeakerDetectorFacade **)&_swig_go_0; 
@@ -6951,7 +7047,7 @@ void _wrap_delete_ActiveSpeakerDetectorFacade_native_7aa1c37706fa59c2(ActiveSpea
 }
 
 
-MediaFrameListenerFacade *_wrap__swig_NewDirectorMediaFrameListenerFacadeMediaFrameListenerFacade_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+MediaFrameListenerFacade *_wrap__swig_NewDirectorMediaFrameListenerFacadeMediaFrameListenerFacade_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   MediaFrameListenerFacade *result = 0 ;
   MediaFrameListenerFacade *_swig_go_result;
@@ -6964,7 +7060,7 @@ MediaFrameListenerFacade *_wrap__swig_NewDirectorMediaFrameListenerFacadeMediaFr
 }
 
 
-void _wrap_DeleteDirectorMediaFrameListenerFacade_native_7aa1c37706fa59c2(MediaFrameListenerFacade *_swig_go_0) {
+void _wrap_DeleteDirectorMediaFrameListenerFacade_native_ab264d744f132009(MediaFrameListenerFacade *_swig_go_0) {
   MediaFrameListenerFacade *arg1 = (MediaFrameListenerFacade *) 0 ;
   
   arg1 = *(MediaFrameListenerFacade **)&_swig_go_0; 
@@ -6974,7 +7070,7 @@ void _wrap_DeleteDirectorMediaFrameListenerFacade_native_7aa1c37706fa59c2(MediaF
 }
 
 
-void _wrap__swig_DirectorMediaFrameListenerFacade_upcall_OnMediaFrame_native_7aa1c37706fa59c2(SwigDirector_MediaFrameListenerFacade *_swig_go_0, MediaFrame *_swig_go_1) {
+void _wrap__swig_DirectorMediaFrameListenerFacade_upcall_OnMediaFrame_native_ab264d744f132009(SwigDirector_MediaFrameListenerFacade *_swig_go_0, MediaFrame *_swig_go_1) {
   SwigDirector_MediaFrameListenerFacade *arg1 = (SwigDirector_MediaFrameListenerFacade *) 0 ;
   MediaFrame *arg2 = 0 ;
   
@@ -6986,7 +7082,7 @@ void _wrap__swig_DirectorMediaFrameListenerFacade_upcall_OnMediaFrame_native_7aa
 }
 
 
-MediaFrameListenerFacade *_wrap_new_MediaFrameListenerFacade_native_7aa1c37706fa59c2() {
+MediaFrameListenerFacade *_wrap_new_MediaFrameListenerFacade_native_ab264d744f132009() {
   MediaFrameListenerFacade *result = 0 ;
   MediaFrameListenerFacade *_swig_go_result;
   
@@ -6997,7 +7093,7 @@ MediaFrameListenerFacade *_wrap_new_MediaFrameListenerFacade_native_7aa1c37706fa
 }
 
 
-void _wrap_delete_MediaFrameListenerFacade_native_7aa1c37706fa59c2(MediaFrameListenerFacade *_swig_go_0) {
+void _wrap_delete_MediaFrameListenerFacade_native_ab264d744f132009(MediaFrameListenerFacade *_swig_go_0) {
   MediaFrameListenerFacade *arg1 = (MediaFrameListenerFacade *) 0 ;
   
   arg1 = *(MediaFrameListenerFacade **)&_swig_go_0; 
@@ -7007,7 +7103,7 @@ void _wrap_delete_MediaFrameListenerFacade_native_7aa1c37706fa59c2(MediaFrameLis
 }
 
 
-void _wrap_MediaFrameListenerFacade_onMediaFrame_native_7aa1c37706fa59c2(MediaFrameListenerFacade *_swig_go_0, MediaFrame *_swig_go_1) {
+void _wrap_MediaFrameListenerFacade_onMediaFrame_native_ab264d744f132009(MediaFrameListenerFacade *_swig_go_0, MediaFrame *_swig_go_1) {
   MediaFrameListenerFacade *arg1 = (MediaFrameListenerFacade *) 0 ;
   MediaFrame *arg2 = 0 ;
   
@@ -7019,7 +7115,7 @@ void _wrap_MediaFrameListenerFacade_onMediaFrame_native_7aa1c37706fa59c2(MediaFr
 }
 
 
-MediaFrameMultiplexer *_wrap_new_MediaFrameMultiplexer_native_7aa1c37706fa59c2(RTPIncomingMediaStream *_swig_go_0) {
+MediaFrameMultiplexer *_wrap_new_MediaFrameMultiplexer_native_ab264d744f132009(RTPIncomingMediaStream *_swig_go_0) {
   RTPIncomingMediaStream *arg1 = (RTPIncomingMediaStream *) 0 ;
   MediaFrameMultiplexer *result = 0 ;
   MediaFrameMultiplexer *_swig_go_result;
@@ -7032,31 +7128,31 @@ MediaFrameMultiplexer *_wrap_new_MediaFrameMultiplexer_native_7aa1c37706fa59c2(R
 }
 
 
-void _wrap_MediaFrameMultiplexer_AddMediaListener_native_7aa1c37706fa59c2(MediaFrameMultiplexer *_swig_go_0, MediaFrameListener *_swig_go_1) {
+void _wrap_MediaFrameMultiplexer_AddMediaListener_native_ab264d744f132009(MediaFrameMultiplexer *_swig_go_0, MediaFrameListenerFacade *_swig_go_1) {
   MediaFrameMultiplexer *arg1 = (MediaFrameMultiplexer *) 0 ;
-  MediaFrameListener *arg2 = (MediaFrameListener *) 0 ;
+  MediaFrameListenerFacade *arg2 = (MediaFrameListenerFacade *) 0 ;
   
   arg1 = *(MediaFrameMultiplexer **)&_swig_go_0; 
-  arg2 = *(MediaFrameListener **)&_swig_go_1; 
+  arg2 = *(MediaFrameListenerFacade **)&_swig_go_1; 
   
   (arg1)->AddMediaListener(arg2);
   
 }
 
 
-void _wrap_MediaFrameMultiplexer_RemoveMediaListener_native_7aa1c37706fa59c2(MediaFrameMultiplexer *_swig_go_0, MediaFrameListener *_swig_go_1) {
+void _wrap_MediaFrameMultiplexer_RemoveMediaListener_native_ab264d744f132009(MediaFrameMultiplexer *_swig_go_0, MediaFrameListenerFacade *_swig_go_1) {
   MediaFrameMultiplexer *arg1 = (MediaFrameMultiplexer *) 0 ;
-  MediaFrameListener *arg2 = (MediaFrameListener *) 0 ;
+  MediaFrameListenerFacade *arg2 = (MediaFrameListenerFacade *) 0 ;
   
   arg1 = *(MediaFrameMultiplexer **)&_swig_go_0; 
-  arg2 = *(MediaFrameListener **)&_swig_go_1; 
+  arg2 = *(MediaFrameListenerFacade **)&_swig_go_1; 
   
   (arg1)->RemoveMediaListener(arg2);
   
 }
 
 
-void _wrap_MediaFrameMultiplexer_Stop_native_7aa1c37706fa59c2(MediaFrameMultiplexer *_swig_go_0) {
+void _wrap_MediaFrameMultiplexer_Stop_native_ab264d744f132009(MediaFrameMultiplexer *_swig_go_0) {
   MediaFrameMultiplexer *arg1 = (MediaFrameMultiplexer *) 0 ;
   
   arg1 = *(MediaFrameMultiplexer **)&_swig_go_0; 
@@ -7066,7 +7162,7 @@ void _wrap_MediaFrameMultiplexer_Stop_native_7aa1c37706fa59c2(MediaFrameMultiple
 }
 
 
-void _wrap_delete_MediaFrameMultiplexer_native_7aa1c37706fa59c2(MediaFrameMultiplexer *_swig_go_0) {
+void _wrap_delete_MediaFrameMultiplexer_native_ab264d744f132009(MediaFrameMultiplexer *_swig_go_0) {
   MediaFrameMultiplexer *arg1 = (MediaFrameMultiplexer *) 0 ;
   
   arg1 = *(MediaFrameMultiplexer **)&_swig_go_0; 
@@ -7076,7 +7172,7 @@ void _wrap_delete_MediaFrameMultiplexer_native_7aa1c37706fa59c2(MediaFrameMultip
 }
 
 
-PlayerEndListener *_wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+PlayerEndListener *_wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   PlayerEndListener *result = 0 ;
   PlayerEndListener *_swig_go_result;
@@ -7089,7 +7185,7 @@ PlayerEndListener *_wrap__swig_NewDirectorPlayerEndListenerPlayerEndListener_nat
 }
 
 
-void _wrap_DeleteDirectorPlayerEndListener_native_7aa1c37706fa59c2(PlayerEndListener *_swig_go_0) {
+void _wrap_DeleteDirectorPlayerEndListener_native_ab264d744f132009(PlayerEndListener *_swig_go_0) {
   PlayerEndListener *arg1 = (PlayerEndListener *) 0 ;
   
   arg1 = *(PlayerEndListener **)&_swig_go_0; 
@@ -7099,7 +7195,7 @@ void _wrap_DeleteDirectorPlayerEndListener_native_7aa1c37706fa59c2(PlayerEndList
 }
 
 
-void _wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_7aa1c37706fa59c2(SwigDirector_PlayerEndListener *_swig_go_0) {
+void _wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_ab264d744f132009(SwigDirector_PlayerEndListener *_swig_go_0) {
   SwigDirector_PlayerEndListener *arg1 = (SwigDirector_PlayerEndListener *) 0 ;
   
   arg1 = *(SwigDirector_PlayerEndListener **)&_swig_go_0; 
@@ -7109,7 +7205,7 @@ void _wrap__swig_DirectorPlayerEndListener_upcall_OnEnd_native_7aa1c37706fa59c2(
 }
 
 
-PlayerEndListener *_wrap_new_PlayerEndListener_native_7aa1c37706fa59c2() {
+PlayerEndListener *_wrap_new_PlayerEndListener_native_ab264d744f132009() {
   PlayerEndListener *result = 0 ;
   PlayerEndListener *_swig_go_result;
   
@@ -7120,7 +7216,7 @@ PlayerEndListener *_wrap_new_PlayerEndListener_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_PlayerEndListener_native_7aa1c37706fa59c2(PlayerEndListener *_swig_go_0) {
+void _wrap_delete_PlayerEndListener_native_ab264d744f132009(PlayerEndListener *_swig_go_0) {
   PlayerEndListener *arg1 = (PlayerEndListener *) 0 ;
   
   arg1 = *(PlayerEndListener **)&_swig_go_0; 
@@ -7130,7 +7226,7 @@ void _wrap_delete_PlayerEndListener_native_7aa1c37706fa59c2(PlayerEndListener *_
 }
 
 
-void _wrap_PlayerEndListener_onEnd_native_7aa1c37706fa59c2(PlayerEndListener *_swig_go_0) {
+void _wrap_PlayerEndListener_onEnd_native_ab264d744f132009(PlayerEndListener *_swig_go_0) {
   PlayerEndListener *arg1 = (PlayerEndListener *) 0 ;
   
   arg1 = *(PlayerEndListener **)&_swig_go_0; 
@@ -7140,7 +7236,7 @@ void _wrap_PlayerEndListener_onEnd_native_7aa1c37706fa59c2(PlayerEndListener *_s
 }
 
 
-REMBBitrateListener *_wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListener_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+REMBBitrateListener *_wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListener_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   REMBBitrateListener *result = 0 ;
   REMBBitrateListener *_swig_go_result;
@@ -7153,7 +7249,7 @@ REMBBitrateListener *_wrap__swig_NewDirectorREMBBitrateListenerREMBBitrateListen
 }
 
 
-void _wrap_DeleteDirectorREMBBitrateListener_native_7aa1c37706fa59c2(REMBBitrateListener *_swig_go_0) {
+void _wrap_DeleteDirectorREMBBitrateListener_native_ab264d744f132009(REMBBitrateListener *_swig_go_0) {
   REMBBitrateListener *arg1 = (REMBBitrateListener *) 0 ;
   
   arg1 = *(REMBBitrateListener **)&_swig_go_0; 
@@ -7163,7 +7259,7 @@ void _wrap_DeleteDirectorREMBBitrateListener_native_7aa1c37706fa59c2(REMBBitrate
 }
 
 
-void _wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_7aa1c37706fa59c2(SwigDirector_REMBBitrateListener *_swig_go_0) {
+void _wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_ab264d744f132009(SwigDirector_REMBBitrateListener *_swig_go_0) {
   SwigDirector_REMBBitrateListener *arg1 = (SwigDirector_REMBBitrateListener *) 0 ;
   
   arg1 = *(SwigDirector_REMBBitrateListener **)&_swig_go_0; 
@@ -7173,7 +7269,7 @@ void _wrap__swig_DirectorREMBBitrateListener_upcall_OnREMB_native_7aa1c37706fa59
 }
 
 
-REMBBitrateListener *_wrap_new_REMBBitrateListener_native_7aa1c37706fa59c2() {
+REMBBitrateListener *_wrap_new_REMBBitrateListener_native_ab264d744f132009() {
   REMBBitrateListener *result = 0 ;
   REMBBitrateListener *_swig_go_result;
   
@@ -7184,7 +7280,7 @@ REMBBitrateListener *_wrap_new_REMBBitrateListener_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_REMBBitrateListener_native_7aa1c37706fa59c2(REMBBitrateListener *_swig_go_0) {
+void _wrap_delete_REMBBitrateListener_native_ab264d744f132009(REMBBitrateListener *_swig_go_0) {
   REMBBitrateListener *arg1 = (REMBBitrateListener *) 0 ;
   
   arg1 = *(REMBBitrateListener **)&_swig_go_0; 
@@ -7194,7 +7290,7 @@ void _wrap_delete_REMBBitrateListener_native_7aa1c37706fa59c2(REMBBitrateListene
 }
 
 
-void _wrap_REMBBitrateListener_onREMB_native_7aa1c37706fa59c2(REMBBitrateListener *_swig_go_0) {
+void _wrap_REMBBitrateListener_onREMB_native_ab264d744f132009(REMBBitrateListener *_swig_go_0) {
   REMBBitrateListener *arg1 = (REMBBitrateListener *) 0 ;
   
   arg1 = *(REMBBitrateListener **)&_swig_go_0; 
@@ -7204,7 +7300,7 @@ void _wrap_REMBBitrateListener_onREMB_native_7aa1c37706fa59c2(REMBBitrateListene
 }
 
 
-ActiveTrackListener *_wrap__swig_NewDirectorActiveTrackListenerActiveTrackListener_native_7aa1c37706fa59c2(intgo _swig_go_0) {
+ActiveTrackListener *_wrap__swig_NewDirectorActiveTrackListenerActiveTrackListener_native_ab264d744f132009(intgo _swig_go_0) {
   int arg1 ;
   ActiveTrackListener *result = 0 ;
   ActiveTrackListener *_swig_go_result;
@@ -7217,7 +7313,7 @@ ActiveTrackListener *_wrap__swig_NewDirectorActiveTrackListenerActiveTrackListen
 }
 
 
-void _wrap_DeleteDirectorActiveTrackListener_native_7aa1c37706fa59c2(ActiveTrackListener *_swig_go_0) {
+void _wrap_DeleteDirectorActiveTrackListener_native_ab264d744f132009(ActiveTrackListener *_swig_go_0) {
   ActiveTrackListener *arg1 = (ActiveTrackListener *) 0 ;
   
   arg1 = *(ActiveTrackListener **)&_swig_go_0; 
@@ -7227,7 +7323,7 @@ void _wrap_DeleteDirectorActiveTrackListener_native_7aa1c37706fa59c2(ActiveTrack
 }
 
 
-void _wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_7aa1c37706fa59c2(SwigDirector_ActiveTrackListener *_swig_go_0, intgo _swig_go_1) {
+void _wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_ab264d744f132009(SwigDirector_ActiveTrackListener *_swig_go_0, intgo _swig_go_1) {
   SwigDirector_ActiveTrackListener *arg1 = (SwigDirector_ActiveTrackListener *) 0 ;
   uint32_t arg2 ;
   
@@ -7239,7 +7335,7 @@ void _wrap__swig_DirectorActiveTrackListener_upcall_OnActiveTrackchanged_native_
 }
 
 
-ActiveTrackListener *_wrap_new_ActiveTrackListener_native_7aa1c37706fa59c2() {
+ActiveTrackListener *_wrap_new_ActiveTrackListener_native_ab264d744f132009() {
   ActiveTrackListener *result = 0 ;
   ActiveTrackListener *_swig_go_result;
   
@@ -7250,7 +7346,7 @@ ActiveTrackListener *_wrap_new_ActiveTrackListener_native_7aa1c37706fa59c2() {
 }
 
 
-void _wrap_delete_ActiveTrackListener_native_7aa1c37706fa59c2(ActiveTrackListener *_swig_go_0) {
+void _wrap_delete_ActiveTrackListener_native_ab264d744f132009(ActiveTrackListener *_swig_go_0) {
   ActiveTrackListener *arg1 = (ActiveTrackListener *) 0 ;
   
   arg1 = *(ActiveTrackListener **)&_swig_go_0; 
@@ -7260,7 +7356,7 @@ void _wrap_delete_ActiveTrackListener_native_7aa1c37706fa59c2(ActiveTrackListene
 }
 
 
-void _wrap_ActiveTrackListener_onActiveTrackchanged_native_7aa1c37706fa59c2(ActiveTrackListener *_swig_go_0, intgo _swig_go_1) {
+void _wrap_ActiveTrackListener_onActiveTrackchanged_native_ab264d744f132009(ActiveTrackListener *_swig_go_0, intgo _swig_go_1) {
   ActiveTrackListener *arg1 = (ActiveTrackListener *) 0 ;
   uint32_t arg2 ;
   

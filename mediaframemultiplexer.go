@@ -2,7 +2,9 @@ package mediaserver
 
 import "C"
 import (
+	"fmt"
 	native "github.com/notedit/media-server-go/wrapper"
+	"unsafe"
 )
 
 // MediaStreamDuplicater we can make a copy of the incoming stream and callback the mediaframe data
@@ -11,7 +13,7 @@ type MediaFrameMultiplexer struct {
 	multiplexer native.MediaFrameMultiplexer
 	listener    mediaframeListener // used for native wrapper, see swig's doc
 
-	mediaframeListener func([]byte, uint) // used for outside
+	mediaframeListener func([]byte, uint64) // used for outside
 }
 
 type mediaframeListener interface {
@@ -24,8 +26,7 @@ type goMediaFrameListener struct {
 }
 
 func (m *goMediaFrameListener) deleteMediaFrameListener() {
-	// TODO
-	//native.DeleteDirectorMediaFrameListener(m.MediaFrameListener)
+	native.DeleteDirectorMediaFrameListenerFacade(m.MediaFrameListenerFacade)
 }
 
 type overwrittenMediaFrameListener struct {
@@ -35,20 +36,20 @@ type overwrittenMediaFrameListener struct {
 
 func (p *overwrittenMediaFrameListener) OnMediaFrame(frame native.MediaFrame) {
 
-	//if p.multiplexer != nil && p.multiplexer.mediaframeListener != nil {
-	//	buffer := C.GoBytes(unsafe.Pointer(frame.GetData()), C.int(frame.GetLength()))
-	//	if frame.GetType() == native.MediaFrameVideo {
-	//		data, err := annexbConvert(buffer)
-	//		if err == nil {
-	//			p.multiplexer.mediaframeListener(data, frame.GetTimeStamp())
-	//		} else {
-	//			fmt.Println(err)
-	//		}
-	//	} else {
-	//		p.multiplexer.mediaframeListener(buffer, frame.GetTimeStamp())
-	//	}
-	//
-	//}
+	if p.multiplexer != nil && p.multiplexer.mediaframeListener != nil {
+		buffer := C.GoBytes(unsafe.Pointer(frame.GetData()), C.int(frame.GetLength()))
+		if frame.GetType() == native.MediaFrameVideo {
+			data, err := annexbConvert(buffer)
+			if err == nil {
+				p.multiplexer.mediaframeListener(data, frame.GetTimeStamp())
+			} else {
+				fmt.Println(err)
+			}
+		} else {
+			p.multiplexer.mediaframeListener(buffer, frame.GetTimeStamp())
+		}
+
+	}
 }
 
 // NewMediaStreamDuplicater duplicate this IncomingStreamTrack and callback the mediaframe
@@ -69,13 +70,13 @@ func NewMediaFrameMultiplexer(track *IncomingStreamTrack) *MediaFrameMultiplexer
 
 	duplicater.listener = &goMediaFrameListener{MediaFrameListenerFacade: p}
 
-	//duplicater.multiplexer.AddMediaListener(duplicater.listener)
+	duplicater.multiplexer.AddMediaListener(duplicater.listener)
 
 	return duplicater
 }
 
 // SetMediaFrameListener set outside mediaframe listener
-func (d *MediaFrameMultiplexer) SetMediaFrameListener(listener func([]byte, uint)) {
+func (d *MediaFrameMultiplexer) SetMediaFrameListener(listener func([]byte, uint64)) {
 	d.mediaframeListener = listener
 }
 
@@ -87,7 +88,7 @@ func (d *MediaFrameMultiplexer) Stop() {
 	}
 
 	if d.listener != nil {
-		//d.multiplexer.RemoveMediaListener(d.listener)
+		d.multiplexer.RemoveMediaListener(d.listener)
 		d.listener.deleteMediaFrameListener()
 	}
 

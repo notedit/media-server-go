@@ -194,6 +194,7 @@ public:
 };
 
 
+// todo remove this
 class REMBBitrateListener {
 public:
 	REMBBitrateListener()
@@ -603,6 +604,11 @@ public:
 
 	virtual void onRTP(RTPIncomingMediaStream* group,const RTPPacket::shared& packet)
 	{
+
+	    if (listeners.empty())
+	           return;
+
+
 		//If depacketizer is not the same codec 
 		if (depacketizer && depacketizer->GetCodec()!=packet->GetCodec())
 		{
@@ -758,8 +764,6 @@ public:
         // todo make callback
 	}
 
-	void SetMinPeriod(DWORD period) { this->period = period; }
-
 private:
 	DWORD period  = 500;
 	QWORD last = 0;
@@ -794,6 +798,8 @@ public:
 	size_t size() const  { return std::vector<LayerSource*>::size(); }
 	LayerSource* get(size_t i)	{ return  std::vector<LayerSource*>::at(i); }
 };
+
+
 
 class ActiveSpeakerDetectorFacade :
 	public ActiveSpeakerDetector,
@@ -1043,9 +1049,7 @@ private:
 %include "stdint.i"
 %include "std_string.i"
 %include "std_vector.i"
-%include "../include/media-server/include/media.h"
-%include "../include/media-server/include/acumulator.h"
-%include "../include/media-server/include/UDPReader.h"
+
 
 #define QWORD		uint64_t
 #define DWORD		uint32_t
@@ -1053,6 +1057,12 @@ private:
 #define SWORD		int16_t
 #define BYTE		uint8_t
 #define SBYTE		char
+
+%include "../media-server/include/media.h"
+%include "../media-server/include/acumulator.h"
+%include "../media-server/include/UDPReader.h"
+
+
 %{
 using MediaFrameType = MediaFrame::Type;
 %}
@@ -1268,8 +1278,7 @@ public:
 };
 
 
-
-
+// TODO, remove this
 class PCAPTransportEmulator
 {
 public:
@@ -1316,6 +1325,7 @@ class DTLSICETransport
 public:
 
 	void SetListener(DTLSICETransportListener* listener);
+
 	void Start();
 	void Stop();
 	
@@ -1479,8 +1489,6 @@ public:
 	int Close();
 };
 
-
-
 class RawRTPSessionFacade :
 	public RTPReceiver
 {
@@ -1530,8 +1538,8 @@ class MediaFrameMultiplexer
 {
 public:
 	MediaFrameMultiplexer(RTPIncomingMediaStream* incomingSource);
-	void AddMediaListener(MediaFrameListener* listener);
-	void RemoveMediaListener(MediaFrameListener* listener);
+	void AddMediaListener(MediaFrameListenerFacade* listener);
+	void RemoveMediaListener(MediaFrameListenerFacade* listener);
 	void Stop();
 };
 

@@ -476,7 +476,7 @@ func (i *IncomingStreamTrack) OnAttach(attach func()) {
 }
 
 // OnMediaFrame callback
-func (i *IncomingStreamTrack) OnMediaFrame(listener func([]byte, uint)) {
+func (i *IncomingStreamTrack) OnMediaFrame(listener func([]byte, uint64)) {
 
 	if i.mediaframeMultiplexer == nil {
 		i.mediaframeMultiplexer = NewMediaFrameMultiplexer(i)
