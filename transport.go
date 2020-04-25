@@ -94,7 +94,6 @@ type Transport struct {
 	senderSideListener       senderSideEstimatorListener
 	dtlsICEListener          dtlsICETransportListener
 	outDTLSStateListener     DTLSStateListener
-	onTransportStopListeners []TransportStopListener
 	onIncomingTrackListeners []IncomingTrackListener
 	onOutgoingTrackListeners []OutgoingTrackListener
 	sync.Mutex
@@ -173,8 +172,6 @@ func NewTransport(bundle native.RTPBundleTransport, remoteIce *sdp.ICEInfo, remo
 
 	transport.incomingStreamTracks = make(map[string]*IncomingStreamTrack)
 	transport.outgoingStreamTracks = make(map[string]*OutgoingStreamTrack)
-
-	transport.onTransportStopListeners = make([]TransportStopListener, 0)
 
 	transport.onIncomingTrackListeners = make([]IncomingTrackListener, 0)
 	transport.onOutgoingTrackListeners = make([]OutgoingTrackListener, 0)
@@ -568,18 +565,25 @@ func (t *Transport) GetOutgoingStream(streamId string) *OutgoingStream {
 	return t.outgoingStreams[streamId]
 }
 
+
 // OnIncomingTrack register incoming track
 func (t *Transport) OnIncomingTrack(listener IncomingTrackListener) {
+	t.Lock()
+	defer t.Unlock()
 	t.onIncomingTrackListeners = append(t.onIncomingTrackListeners, listener)
 }
 
 // OnOutgoingTrack register outgoing track
 func (t *Transport) OnOutgoingTrack(listener OutgoingTrackListener) {
+	t.Lock()
+	defer t.Unlock()
 	t.onOutgoingTrackListeners = append(t.onOutgoingTrackListeners, listener)
 }
 
 // OnDTLSICEState  OnDTLSICEState
 func (t *Transport) OnDTLSICEState(listener DTLSStateListener) {
+	t.Lock()
+	defer t.Unlock()
 	t.outDTLSStateListener = listener
 }
 
@@ -609,11 +613,6 @@ func (t *Transport) Stop() {
 	}
 
 	t.bundle.RemoveICETransport(t.username)
-
-	for _, stopFunc := range t.onTransportStopListeners {
-		stopFunc()
-	}
-
 
 	t.incomingStreams = nil
 	t.outgoingStreams = nil

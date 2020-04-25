@@ -13,15 +13,15 @@
 #include "../media-server/include/rtpsession.h"
 #include "../media-server/include/DTLSICETransport.h"
 #include "../media-server/include/RTPBundleTransport.h"
-#include "../media-server/include/PCAPTransportEmulator.h"
 #include "../media-server/include/mp4recorder.h"
 #include "../media-server/include/mp4streamer.h"
 #include "../media-server/include/rtp/RTPStreamTransponder.h"
 #include "../media-server/include/ActiveSpeakerDetector.h"
+#include "../media-server/include/EventLoop.h"
+
 
 using RTPBundleTransportConnection = RTPBundleTransport::Connection;
 using MediaFrameListener = MediaFrame::Listener;
-
 
 
 class PropertiesFacade : private Properties
@@ -179,37 +179,6 @@ public:
 };
 
 
-class PlayerEndListener {
-public:
-	PlayerEndListener()
-	{
-
-	}
-	virtual ~PlayerEndListener() {
-
-	}
-	virtual void onEnd() {
-
-	}
-};
-
-
-// todo remove this
-class REMBBitrateListener {
-public:
-	REMBBitrateListener()
-	{
-
-	}
-	virtual ~REMBBitrateListener() {
-
-	}
-	virtual void onREMB() {
-
-	}
-};
-
-
 class ActiveTrackListener {
 public:
 	ActiveTrackListener()
@@ -226,95 +195,21 @@ public:
 
 
 
-class PlayerFacade :
-	public MP4Streamer,
-	public MP4Streamer::Listener
-{
-public:
-	PlayerFacade():
-		MP4Streamer(this),
-		audio(MediaFrame::Audio, loop),
-		video(MediaFrame::Video, loop)
-	{
-		Reset();
-		//Start dispatching
-		audio.Start();
-		video.Start();
-	}
 
-	void setPlayEndListener(PlayerEndListener *listener) 
-	{
-		endlistener = listener;
-	}
-
-	virtual void onRTPPacket(RTPPacket &packet)
-	{
-		switch(packet.GetMedia())
-		{
-			case MediaFrame::Video:
-				//Update stats
-				video.media.Update(getTimeMS(),packet.GetSeqNum(),packet.GetRTPHeader().GetSize()+packet.GetMediaLength());
-				//Set ssrc of video
-				packet.SetSSRC(video.media.ssrc);
-				//Multiplex
-				video.AddPacket(packet.Clone(),0);
-				break;
-			case MediaFrame::Audio:
-				//Update stats
-				audio.media.Update(getTimeMS(),packet.GetSeqNum(),packet.GetRTPHeader().GetSize()+packet.GetMediaLength());
-				//Set ssrc of audio
-				packet.SetSSRC(audio.media.ssrc);
-				//Multiplex
-				audio.AddPacket(packet.Clone(),0);
-				break;
-			default:
-				///Ignore
-				return;
-		}
-	}
-
-	virtual void onTextFrame(TextFrame &frame) {}
-	virtual void onEnd() 
-	{
-
-        // todo make callback 
-	}
-	
-	void Reset() 
-	{
-		audio.media.Reset();
-		video.media.Reset();
-		audio.media.ssrc = rand();
-		video.media.ssrc = rand();
-	}
-	
-	virtual void onMediaFrame(const MediaFrame &frame)  {}
-	virtual void onMediaFrame(DWORD ssrc, const MediaFrame &frame) {}
-
-	RTPIncomingSourceGroup* GetAudioSource() { return &audio; }
-	RTPIncomingSourceGroup* GetVideoSource() { return &video; }
-	
-private:
-	//TODO: Update to multitrack
-	PlayerEndListener *endlistener;
-	RTPIncomingSourceGroup audio;
-	RTPIncomingSourceGroup video;
-};
-
-
-
-class RawRTPSessionFacade :
+class MediaFrameSessionFacade :
 	public RTPReceiver
 {
 public:
-	RawRTPSessionFacade(MediaFrame::Type media):
+	MediaFrameSessionFacade(MediaFrame::Type media):
 	source(media,loop)
 	{
+
+		loop.Start(-1);
 		source.Start();
 		mediatype = media;
 	}
 	int Init(const Properties &properties)
-	{	
+	{
 		//Get codecs
 		std::vector<Properties> codecs;
 		properties.GetChildrenArray("codecs",codecs);
@@ -322,16 +217,18 @@ public:
 		//For each codec
 		for (auto it = codecs.begin(); it!=codecs.end(); ++it)
 		{
-			
+
 			BYTE codec;
 			//Depending on the type
 			switch (mediatype)
 			{
 				case MediaFrame::Audio:
 					codec = (BYTE)AudioCodec::GetCodecForName(it->GetProperty("codec"));
+					audioCodec = codec;
 					break;
 				case MediaFrame::Video:
 					codec = (BYTE)VideoCodec::GetCodecForName(it->GetProperty("codec"));
+					videoCodec = codec;
 					break;
 				default:
 					///Ignore
@@ -344,45 +241,42 @@ public:
 			//ADD it
 			rtp[type] = codec;
 		}
-	
-		//Set local 
-		//RTPSession::SetSendingRTPMap(rtp,apt);
-		//RTPSession::SetReceivingRTPMap(rtp,apt);
 
 		return 1;
 	}
-	void onRTPPacket(uint8_t* data, int size) 
+
+	void onRTPPacket(uint8_t* data, int size)
 	{
-		
-		Log("RawRTPSessionFacade  onRTPPacket\n");
+
+		Log("MediaFrameSessionFacade  onRTPPacket\n");
 
 		RTPHeader header;
 		RTPHeaderExtension extension;
 
-		int ini = header.Parse(data,size);
+		int len = header.Parse(data,size);
 
-		if (!ini)
+		if (!len)
 		{
 			//Debug
-			Debug("-RawRTPSessionFacade::onRTPPacket() | Could not parse RTP header\n");
+			Debug("-MediaFrameSessionFacade::onRTPPacket() | Could not parse RTP header\n");
 			return;
 		}
 
 		if (header.extension)
 		{
-			
+
 			//Parse extension
-			int l = extension.Parse(extMap,data+ini,size-ini);
+			int l = extension.Parse(extMap,data+len,size-len);
 			//If not parsed
 			if (!l)
 			{
 				///Debug
-				Debug("-RawRTPSessionFacade::onRTPPacket() | Could not parse RTP header extension\n");
+				Debug("-MediaFrameSessionFacade::onRTPPacket() | Could not parse RTP header extension\n");
 				//Exit
 				return;
 			}
 			//Inc ini
-			ini += l;
+			len += l;
 		}
 
 		if (header.padding)
@@ -390,41 +284,41 @@ public:
 			//Get last 2 bytes
 			WORD padding = get1(data,size-1);
 			//Ensure we have enought size
-			if (size-ini<padding)
+			if (size-len<padding)
 			{
 				///Debug
-				Debug("-RawRTPSessionFacade::onRTPPacket() | RTP padding is bigger than size\n");
+				Debug("-PCAPTransportEmulator::Run() | RTP padding is bigger than size [padding:%u,size%u]\n",padding,size);
+				//Ignore this try again
 				return;
 			}
 			//Remove from size
 			size -= padding;
 		}
 
+
 		DWORD ssrc = header.ssrc;
 		BYTE type  = header.payloadType;
 		//Get initial codec
 		BYTE codec = rtp.GetCodecForType(header.payloadType);
-		
+
 		//Check codec
 		if (codec==RTPMap::NotFound)
 		{
 			//Exit
-			Error("-RawRTPSessionFacade::onRTPPacket(%s) | RTP packet type unknown [%d]\n",MediaFrame::TypeToString(mediatype),type);
+			Error("-MediaFrameSessionFacade::onRTPPacket(%s) | RTP packet type unknown [%d]\n",MediaFrame::TypeToString(mediatype),type);
 			//Exit
 			return;
 		}
 
+
 		auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
 
 		//Set the payload
-		packet->SetPayload(data+ini,size-ini);
-		
-		//Get sec number
+		packet->SetPayload(data+len,size-len);
+
 		WORD seq = packet->GetSeqNum();
 
-		WORD cycles = source.media.SetSeqNum(seq);
-
-		packet->SetSeqCycles(cycles);
+		source.media.SetSeqNum(seq);
 
 		if (source.media.ssrc != ssrc) {
 			source.media.Reset();
@@ -432,32 +326,49 @@ public:
 		}
 
 		source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
-		packet->SetSSRC(source.media.ssrc);
-		source.AddPacket(packet->Clone(),0);
-		
-		Debug("-RawRTPSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
+
+		packet->Dump();
+
+		source.AddPacket(packet,0);
+
+		Debug("-MediaFrameSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
+
 
 	}
+
+	void onRTPData(uint8_t* data, int size, uint32_t timestamp)
+	{
+
+	}
+
 	RTPIncomingSourceGroup* GetIncomingSourceGroup()
 	{
 		return &source;
 	}
-	int End() 
+	int End()
 	{
-		Log("RawRTPSessionFacade End\n");
+		Log("MediaFrameSessionFacade End\n");
 		return 1;
 	}
 	virtual int SendPLI(DWORD ssrc) {
-		return 0;
+		return 1;
 	}
+
 private:
 	RTPMap extMap;
 	RTPMap rtp;
 	RTPMap apt;
+	BYTE audioCodec;
+	BYTE videoCodec;
+
+	DWORD ssrc = 0;
+	DWORD extSeqNum = 0;
+
 	MediaFrame::Type mediatype;
 	EventLoop loop;
 	RTPIncomingSourceGroup source;
 };
+
 
 
 
@@ -492,15 +403,11 @@ public:
 		receiver = session;
 	}
 
-	RTPReceiverFacade(RawRTPSessionFacade* session)
-	{
-		receiver = session;
-	}
-	
-	RTPReceiverFacade(PCAPTransportEmulator *transport)
-	{
-		receiver = transport;
-	}
+    RTPReceiverFacade(MediaFrameSessionFacade* session)
+    {
+        receiver = session;
+    }
+
 
 	int SendPLI(DWORD ssrc)
 	{
@@ -522,11 +429,6 @@ RTPReceiverFacade* TransportToReceiver(DTLSICETransport* transport)
 	return new RTPReceiverFacade(transport);
 }
 
-RTPReceiverFacade* PCAPTransportEmulatorToReceiver(PCAPTransportEmulator* transport)
-{
-	return new RTPReceiverFacade(transport);
-}
-
 RTPSenderFacade* SessionToSender(RTPSessionFacade* session)
 {
 	return new RTPSenderFacade(session);	
@@ -537,10 +439,12 @@ RTPReceiverFacade* SessionToReceiver(RTPSessionFacade* session)
 	return new RTPReceiverFacade(session);
 }
 
-RTPReceiverFacade* RTPSessionToReceiver(RawRTPSessionFacade* session)
+
+RTPReceiverFacade* RTPSessionToReceiver(MediaFrameSessionFacade* session)
 {
 	return new RTPReceiverFacade(session);
 }
+
 
 
 
@@ -548,9 +452,8 @@ class RTPStreamTransponderFacade :
 	public RTPStreamTransponder
 {
 public:
-	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender, REMBBitrateListener* listener) :
-		RTPStreamTransponder(outgoing, sender ? sender->get() : NULL),
-		listener(listener)
+	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender) :
+		RTPStreamTransponder(outgoing, sender ? sender->get() : NULL)
 	{}
 
 	bool SetIncoming(RTPIncomingMediaStream* incoming, RTPReceiverFacade* receiver)
@@ -572,8 +475,7 @@ public:
 
 private:
 	DWORD period = 1000;
-	QWORD last = 0; 
-	REMBBitrateListener* listener;
+	QWORD last = 0;
 };
 
 
@@ -1035,9 +937,6 @@ private:
 %}
 
 
-
-%feature("director") PlayerEndListener;
-%feature("director") REMBBitrateListener;
 %feature("director") SenderSideEstimatorListener;
 %feature("director") MediaFrameListenerFacade;
 %feature("director") ActiveTrackListener;
@@ -1060,7 +959,6 @@ private:
 
 %include "../media-server/include/media.h"
 %include "../media-server/include/acumulator.h"
-%include "../media-server/include/UDPReader.h"
 
 
 %{
@@ -1278,27 +1176,6 @@ public:
 };
 
 
-// TODO, remove this
-class PCAPTransportEmulator
-{
-public:
-	PCAPTransportEmulator();
-	
-	void SetRemoteProperties(const Properties& properties);
-
-	bool AddIncomingSourceGroup(RTPIncomingSourceGroup *group);
-	bool RemoveIncomingSourceGroup(RTPIncomingSourceGroup *group);
-	
-	bool Open(const char* filename);
-	bool SetReader(UDPReader* reader);
-	bool Play();
-	uint64_t Seek(uint64_t time);
-	bool Stop();
-	bool Close();
-	
-	TimeService& GetTimeService();
-};
-
 
 class DTLSICETransportListener
 {
@@ -1397,7 +1274,6 @@ class RTPReceiverFacade
 public:	
 	RTPReceiverFacade(DTLSICETransport* transport);
 	RTPReceiverFacade(RTPSessionFacade* session);
-	RTPReceiverFacade(PCAPTransportEmulator *transport);
 	RTPReceiver* get();
 	int SendPLI(DWORD ssrc);
 };
@@ -1405,16 +1281,15 @@ public:
 
 RTPSenderFacade*	TransportToSender(DTLSICETransport* transport);
 RTPReceiverFacade*	TransportToReceiver(DTLSICETransport* transport);
-RTPReceiverFacade*	PCAPTransportEmulatorToReceiver(PCAPTransportEmulator* transport);
 RTPSenderFacade*	SessionToSender(RTPSessionFacade* session);
 RTPReceiverFacade*	SessionToReceiver(RTPSessionFacade* session);
-RTPReceiverFacade*  RTPSessionToReceiver(RawRTPSessionFacade* session);
+RTPReceiverFacade*  RTPSessionToReceiver(MediaFrameSessionFacade* session);
 
 
 class RTPStreamTransponderFacade 
 {
 public:
-	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender,REMBBitrateListener *listener);
+	RTPStreamTransponderFacade(RTPOutgoingSourceGroup* outgoing,RTPSenderFacade* sender);
 	bool SetIncoming(RTPIncomingMediaStream* incoming, RTPReceiverFacade* receiver);
 	bool SetIncoming(RTPIncomingMediaStream* incoming, RTPReceiver* receiver);
 	void SelectLayer(int spatialLayerId,int temporalLayerId);
@@ -1459,43 +1334,14 @@ public:
 };
 
 
-
-
-class PlayerFacade
-{
-public:
-	PlayerFacade();
-	RTPIncomingSourceGroup* GetAudioSource();
-	RTPIncomingSourceGroup* GetVideoSource();
-	void Reset();
-
-	void setPlayEndListener(PlayerEndListener *listener);
-
-	int Open(const char* filename);
-	bool HasAudioTrack();
-	bool HasVideoTrack();
-	DWORD GetAudioCodec();
-	DWORD GetVideoCodec();
-	double GetDuration();
-	DWORD GetVideoWidth();
-	DWORD GetVideoHeight();
-	DWORD GetVideoBitrate();
-	double GetVideoFramerate();
-	int Play();
-	QWORD PreSeek(QWORD time);
-	int Seek(QWORD time);
-	QWORD Tell();
-	int Stop();
-	int Close();
-};
-
-class RawRTPSessionFacade :
+class MediaFrameSessionFacade :
 	public RTPReceiver
 {
 public:
-	RawRTPSessionFacade(MediaFrameType media);
+	MediaFrameSessionFacade(MediaFrameType media);
 	int Init(const Properties &properties);
 	void onRTPPacket(uint8_t* buffer, int len);
+	void onRTPData(uint8_t* buffer, int size, uint8_t payloadType);
 	RTPIncomingSourceGroup* GetIncomingSourceGroup();
 	int End();
 	virtual int SendPLI(DWORD ssrc);
@@ -1541,22 +1387,6 @@ public:
 	void AddMediaListener(MediaFrameListenerFacade* listener);
 	void RemoveMediaListener(MediaFrameListenerFacade* listener);
 	void Stop();
-};
-
-
-class PlayerEndListener {
-public:
-	PlayerEndListener();
-	virtual ~PlayerEndListener() {}
-	virtual void onEnd();
-};
-
-
-class REMBBitrateListener {
-public:
-	REMBBitrateListener();
-	virtual ~REMBBitrateListener() {}
-	virtual void onREMB();
 };
 
 

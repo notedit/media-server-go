@@ -117,16 +117,6 @@ func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sd
 	return sdp.Create(ice, dtls, candidates, capabilities)
 }
 
-// CreateSDPManager Create new SDP manager, this object will manage the SDP O/A for you and produce a suitable trasnport.
-func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string]*sdp.Capability) SDPManager {
-
-	if sdpSemantics == "plan-b" {
-		return NewSDPManagerPlanb(e, capabilities)
-	} else if sdpSemantics == "unified-plan" {
-		return NewSDPManagerUnified(e, capabilities)
-	}
-	return nil
-}
 
 // Stop stop the endpoint UDP server and terminate any associated transport
 func (e *Endpoint) Stop() {

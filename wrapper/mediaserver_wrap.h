@@ -53,34 +53,6 @@ class SwigDirector_MediaFrameListenerFacade : public MediaFrameListenerFacade
   Swig_memory *swig_mem;
 };
 
-class SwigDirector_PlayerEndListener : public PlayerEndListener
-{
- public:
-  SwigDirector_PlayerEndListener(int swig_p);
-  virtual ~SwigDirector_PlayerEndListener();
-  void _swig_upcall_onEnd() {
-    PlayerEndListener::onEnd();
-  }
-  virtual void onEnd();
- private:
-  intgo go_val;
-  Swig_memory *swig_mem;
-};
-
-class SwigDirector_REMBBitrateListener : public REMBBitrateListener
-{
- public:
-  SwigDirector_REMBBitrateListener(int swig_p);
-  virtual ~SwigDirector_REMBBitrateListener();
-  void _swig_upcall_onREMB() {
-    REMBBitrateListener::onREMB();
-  }
-  virtual void onREMB();
- private:
-  intgo go_val;
-  Swig_memory *swig_mem;
-};
-
 class SwigDirector_ActiveTrackListener : public ActiveTrackListener
 {
  public:
