@@ -16,7 +16,6 @@ type OutgoingStreamTrack struct {
 	source          native.RTPOutgoingSourceGroup
 	transpoder      *Transponder
 	trackInfo       *sdp.TrackInfo
-	interCallback   rembBitrateListener
 	statss          *OutgoingStatss
 	onMuteListeners []func(bool)
 	onStopListeners []func()
@@ -38,28 +37,6 @@ type OutgoingStatss struct {
 	Rtx       *OutgoingStats
 	Fec       *OutgoingStats
 	timestamp int64
-}
-
-type rembBitrateListener interface {
-	native.REMBBitrateListener
-	deleteREMBBitrateListener()
-}
-
-type goREMBBitrateListener struct {
-	native.REMBBitrateListener
-}
-
-func (r *goREMBBitrateListener) deleteREMBBitrateListener() {
-	native.DeleteDirectorREMBBitrateListener(r.REMBBitrateListener)
-}
-
-type overwrittenREMBBitrateListener struct {
-	p     native.REMBBitrateListener
-	track *OutgoingStreamTrack
-}
-
-func (p *overwrittenREMBBitrateListener) OnREMB() {
-
 }
 
 func getStatsFromOutgoingSource(source native.RTPOutgoingSource) *OutgoingStats {
@@ -106,14 +83,6 @@ func newOutgoingStreamTrack(media string, id string, sender native.RTPSenderFaca
 		track.trackInfo.AddSourceGroup(sourceGroup)
 	}
 
-	// callback
-	callback := &overwrittenREMBBitrateListener{
-		track: track,
-	}
-	p := native.NewDirectorREMBBitrateListener(callback)
-	callback.p = p
-
-	track.interCallback = &goREMBBitrateListener{REMBBitrateListener: p}
 
 	track.onMuteListeners = make([]func(bool), 0)
 	track.onStopListeners = make([]func(), 0)
@@ -190,8 +159,7 @@ func (o *OutgoingStreamTrack) AttachTo(incomingTrack *IncomingStreamTrack) *Tran
 	// detach first
 	o.Detach()
 
-	// todo add remblistener
-	transponder := native.NewRTPStreamTransponderFacade(o.source, o.sender, o.interCallback)
+	transponder := native.NewRTPStreamTransponderFacade(o.source, o.sender)
 
 	o.transpoder = NewTransponder(transponder)
 
@@ -231,9 +199,6 @@ func (o *OutgoingStreamTrack) Stop() {
 	if o.sender == nil {
 		return
 	}
-
-	// swig memory clean
-	o.interCallback.deleteREMBBitrateListener()
 
 	if o.transpoder != nil { // maybe = nil at onTransponderStopped
 		o.transpoder.Stop()

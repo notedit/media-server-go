@@ -10,7 +10,7 @@ import (
 // Recorder represent a file recorder
 type Recorder struct {
 	tracks     map[string]*RecorderTrack
-	recorder   native.MP4Recorder
+	recorder   native.MP4RecorderFacade
 	ticker     *time.Ticker
 	refresher  *Refresher
 	maxTrackId int
@@ -19,7 +19,7 @@ type Recorder struct {
 // NewRecorder create a new recorder
 func NewRecorder(filename string, waitForIntra bool, refresh int) *Recorder {
 	recorder := &Recorder{}
-	recorder.recorder = native.NewMP4Recorder()
+	recorder.recorder = native.NewMP4RecorderFacade()
 	recorder.recorder.Create(filename)
 	recorder.recorder.Record(waitForIntra)
 	recorder.tracks = map[string]*RecorderTrack{}
@@ -73,7 +73,7 @@ func (r *Recorder) Stop() {
 
 	r.recorder.Close()
 
-	native.DeleteMP4Recorder(r.recorder)
+	native.DeleteMP4RecorderFacade(r.recorder)
 
 	r.refresher = nil
 	r.recorder = nil

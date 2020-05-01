@@ -48,22 +48,6 @@ func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPRec
 	return stream
 }
 
-// NewIncomingStreamWithEmulatedTransport Create new incoming stream through PCAPTransportEmulator
-func NewIncomingStreamWithEmulatedTransport(transport native.PCAPTransportEmulator, receiver native.RTPReceiverFacade, info *sdp.StreamInfo) *IncomingStream {
-	stream := &IncomingStream{}
-	stream.id = info.GetID()
-	stream.transport = transport
-	stream.receiver = receiver
-	stream.tracks = make(map[string]*IncomingStreamTrack)
-
-	stream.onStopListeners = make([]func(), 0)
-	stream.onStreamAddIncomingTrackListeners = make([]func(*IncomingStreamTrack), 0)
-
-	for _, track := range info.GetTracks() {
-		stream.CreateTrack(track)
-	}
-	return stream
-}
 
 // GetID get id
 func (i *IncomingStream) GetID() string {
@@ -178,10 +162,10 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 				rid := encoding.GetID()
 
-				source.SetRid(native.NewStringFacade(rid))
+				source.SetRid(rid)
 
 				if mid != "" {
-					source.SetMid(native.NewStringFacade(mid))
+					source.SetMid(mid)
 				}
 
 				params := encoding.GetParams()

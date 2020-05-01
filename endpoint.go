@@ -25,7 +25,7 @@ func NewEndpoint(ip string) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init()
-	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
+	endpoint.fingerprint = native.MediaServerGetFingerprint()
 	endpoint.mirroredStreams = make(map[string]*IncomingStream)
 	endpoint.mirroredTracks = make(map[string]*IncomingStreamTrack)
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
@@ -37,7 +37,7 @@ func NewEndpointWithPort(ip string, port int) *Endpoint {
 	endpoint := &Endpoint{}
 	endpoint.bundle = native.NewRTPBundleTransport()
 	endpoint.bundle.Init(port)
-	endpoint.fingerprint = native.MediaServerGetFingerprint().ToString()
+	endpoint.fingerprint = native.MediaServerGetFingerprint()
 	endpoint.candidate = sdp.NewCandidateInfo("1", 1, "UDP", 33554431, ip, endpoint.bundle.GetLocalPort(), "host", "", 0)
 	return endpoint
 }
@@ -117,16 +117,6 @@ func (e *Endpoint) CreateOffer(video *sdp.Capability, audio *sdp.Capability) *sd
 	return sdp.Create(ice, dtls, candidates, capabilities)
 }
 
-// CreateSDPManager Create new SDP manager, this object will manage the SDP O/A for you and produce a suitable trasnport.
-func (e *Endpoint) CreateSDPManager(sdpSemantics string, capabilities map[string]*sdp.Capability) SDPManager {
-
-	if sdpSemantics == "plan-b" {
-		return NewSDPManagerPlanb(e, capabilities)
-	} else if sdpSemantics == "unified-plan" {
-		return NewSDPManagerUnified(e, capabilities)
-	}
-	return nil
-}
 
 // Stop stop the endpoint UDP server and terminate any associated transport
 func (e *Endpoint) Stop() {
