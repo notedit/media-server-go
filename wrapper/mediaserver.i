@@ -8,6 +8,8 @@
 #include "../media-server/include/dtls.h"
 #include "../media-server/include/OpenSSL.h"
 #include "../media-server/include/media.h"
+#include "../media-server/include/video.h"
+#include "../media-server/include/audio.h"
 #include "../media-server/include/rtp.h"
 #include "../media-server/include/tools.h"
 #include "../media-server/include/rtpsession.h"
@@ -248,92 +250,95 @@ public:
 	void onRTPPacket(uint8_t* data, int size)
 	{
 
-		Log("MediaFrameSessionFacade  onRTPPacket\n");
 
-		RTPHeader header;
-		RTPHeaderExtension extension;
+		// Run on thread
+		loop.Async([=](...)  {
 
-		int len = header.Parse(data,size);
+			Log("MediaFrameSessionFacade  onRTPPacket\n");
 
-		if (!len)
-		{
-			//Debug
-			Debug("-MediaFrameSessionFacade::onRTPPacket() | Could not parse RTP header\n");
-			return;
-		}
+			RTPHeader header;
+			RTPHeaderExtension extension;
 
-		if (header.extension)
-		{
+			int lsize = size;
+			int len = header.Parse(data,lsize);
 
-			//Parse extension
-			int l = extension.Parse(extMap,data+len,size-len);
-			//If not parsed
-			if (!l)
+			if (!len)
 			{
-				///Debug
-				Debug("-MediaFrameSessionFacade::onRTPPacket() | Could not parse RTP header extension\n");
+				//Debug
+				Debug("-MediaFrameSessionFacade::onRTPPacket() | Could not parse RTP header\n");
+				return;
+			}
+
+			if (header.extension)
+			{
+
+				//Parse extension
+				int l = extension.Parse(extMap,data+len,lsize-len);
+				//If not parsed
+				if (!l)
+				{
+					///Debug
+					Debug("-MediaFrameSessionFacade::onRTPPacket() | Could not parse RTP header extension\n");
+					//Exit
+					return;
+				}
+				//Inc ini
+				len += l;
+			}
+
+			if (header.padding)
+			{
+				//Get last 2 bytes
+				WORD padding = get1(data,lsize-1);
+				//Ensure we have enought size
+				if (size-len<padding)
+				{
+					///Debug
+					Debug("-PCAPTransportEmulator::Run() | RTP padding is bigger than size [padding:%u,size%u]\n",padding,size);
+					//Ignore this try again
+					return;
+				}
+				//Remove from size
+				lsize -= padding;
+			}
+
+
+			DWORD ssrc = header.ssrc;
+			BYTE type  = header.payloadType;
+			//Get initial codec
+			BYTE codec = rtp.GetCodecForType(header.payloadType);
+
+			//Check codec
+			if (codec==RTPMap::NotFound)
+			{
+				//Exit
+				Error("-MediaFrameSessionFacade::onRTPPacket(%s) | RTP packet type unknown [%d]\n",MediaFrame::TypeToString(mediatype),type);
 				//Exit
 				return;
 			}
-			//Inc ini
-			len += l;
-		}
 
-		if (header.padding)
-		{
-			//Get last 2 bytes
-			WORD padding = get1(data,size-1);
-			//Ensure we have enought size
-			if (size-len<padding)
-			{
-				///Debug
-				Debug("-PCAPTransportEmulator::Run() | RTP padding is bigger than size [padding:%u,size%u]\n",padding,size);
-				//Ignore this try again
-				return;
+
+			auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
+
+			//Set the payload
+			packet->SetPayload(data+len,lsize-len);
+
+			WORD seq = packet->GetSeqNum();
+
+			source.media.SetSeqNum(seq);
+
+			if (source.media.ssrc != ssrc) {
+				source.media.Reset();
+				source.media.ssrc = ssrc;
 			}
-			//Remove from size
-			size -= padding;
-		}
 
+			source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
 
-		DWORD ssrc = header.ssrc;
-		BYTE type  = header.payloadType;
-		//Get initial codec
-		BYTE codec = rtp.GetCodecForType(header.payloadType);
+			source.AddPacket(packet,0);
 
-		//Check codec
-		if (codec==RTPMap::NotFound)
-		{
-			//Exit
-			Error("-MediaFrameSessionFacade::onRTPPacket(%s) | RTP packet type unknown [%d]\n",MediaFrame::TypeToString(mediatype),type);
-			//Exit
-			return;
-		}
+			Debug("-MediaFrameSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
 
-
-		auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
-
-		//Set the payload
-		packet->SetPayload(data+len,size-len);
-
-		WORD seq = packet->GetSeqNum();
-
-		source.media.SetSeqNum(seq);
-
-		if (source.media.ssrc != ssrc) {
-			source.media.Reset();
-			source.media.ssrc = ssrc;
-		}
-
-		source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
-
-		packet->Dump();
-
-		source.AddPacket(packet,0);
-
-		Debug("-MediaFrameSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
-
-
+		});
 	}
 
 	void onRTPData(uint8_t* data, int size, uint32_t timestamp)
@@ -957,7 +962,7 @@ private:
 #define BYTE		uint8_t
 #define SBYTE		char
 
-%include "../media-server/include/media.h"
+
 %include "../media-server/include/acumulator.h"
 
 

@@ -2,12 +2,14 @@ package mediaserver
 
 import (
 	"fmt"
+	"strings"
+
 	native "github.com/notedit/media-server-go/wrapper"
 	"github.com/notedit/sdp"
-	"strings"
 )
 
 type MediaFrameSession struct {
+	sources  map[string]native.RTPIncomingSourceGroup
 	incoming *IncomingStreamTrack
 	session  native.MediaFrameSessionFacade
 }
@@ -37,8 +39,11 @@ func NewMediaFrameSession(media *sdp.MediaInfo) *MediaFrameSession {
 
 	session.Init(properties)
 	native.DeletePropertiesFacade(properties)
+
+	sources := map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()}
+	mediaSession.sources = sources
 	mediaSession.session = session
-	mediaSession.incoming = NewIncomingStreamTrack(media.GetType(), media.GetType(), native.RTPSessionToReceiver(session), map[string]native.RTPIncomingSourceGroup{"": session.GetIncomingSourceGroup()})
+	mediaSession.incoming = NewIncomingStreamTrack(media.GetType(), media.GetType(), native.RTPSessionToReceiver(session), sources)
 
 	return mediaSession
 }
@@ -53,7 +58,6 @@ func (s *MediaFrameSession) Push(rtp []byte) {
 	if rtp == nil || len(rtp) == 0 {
 		return
 	}
-	fmt.Println("push buffer 22222", len(rtp))
 	s.session.OnRTPPacket(&rtp[0], len(rtp))
 }
 

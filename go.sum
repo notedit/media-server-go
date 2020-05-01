@@ -1,10 +1,10 @@
 github.com/Jeffail/gabs v1.1.1 h1:V0uzR08Hj22EX8+8QMhyI9sX2hwRu+/RJhJUmnwda/E=
 github.com/Jeffail/gabs v1.1.1/go.mod h1:6xMvQMK4k33lb7GUUpaAPh6nKMmemQeg5d4gn7/bOXc=
-github.com/chuckpreslar/emission v0.0.0-20170206194824-a7ddd980baf9 h1:xz6Nv3zcwO2Lila35hcb0QloCQsc38Al13RNEzWRpX4=
-github.com/chuckpreslar/emission v0.0.0-20170206194824-a7ddd980baf9/go.mod h1:2wSM9zJkl1UQEFZgSd68NfCgRz1VL1jzy/RjCg+ULrs=
 github.com/gofrs/uuid v3.1.0+incompatible h1:q2rtkjaKT4YEr6E1kamy0Ha4RtepWlQBedyHx0uzKwA=
 github.com/gofrs/uuid v3.1.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRxnplIgP/c0N/04lM=
 github.com/notedit/sdp v0.0.0-20190418080450-702b42591eb2 h1:OBlsQl9n5djQqLqwHO5gou1irbitUPwS+SfOrt3yHTU=
 github.com/notedit/sdp v0.0.0-20190418080450-702b42591eb2/go.mod h1:GbICVEB3gb4OfNreIqFKFqWASbpTgrB+Q6lErFpYeaY=
-github.com/sanity-io/litter v1.1.0 h1:BllcKWa3VbZmOZbDCoszYLk7zCsKHz5Beossi8SUcTc=
-github.com/sanity-io/litter v1.1.0/go.mod h1:CJ0VCw2q4qKU7LaQr3n7UOSHzgEMgcGco7N/SkZQPjw=
+github.com/notedit/sdp v0.0.3 h1:lcuxczyUgWKaBn49hyVu1ezOoGvVRT89Ur/eQKqyHfc=
+github.com/notedit/sdp v0.0.3/go.mod h1:v7SdJxYpW6sY8RhA2KX14mmIHXKC0Kl/XrEQwaQJ7lM=
+github.com/notedit/sdp v0.0.4 h1:P4L8HbZ8SfzrRDE2m3zPnkHhcSdr/0sZkapKo0lyDJs=
+github.com/notedit/sdp v0.0.4/go.mod h1:v7SdJxYpW6sY8RhA2KX14mmIHXKC0Kl/XrEQwaQJ7lM=
