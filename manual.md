@@ -7,7 +7,6 @@ First import both media server go and sdp module:
 
 ```go
 import "github.com/notedit/media-server-go"
-import "github.com/notedit/media-server-go/sdp"
 ```
 
 
