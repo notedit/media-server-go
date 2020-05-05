@@ -254,8 +254,6 @@ public:
 		// Run on thread
 		loop.Async([=](...)  {
 
-			Log("MediaFrameSessionFacade  onRTPPacket\n");
-
 			RTPHeader header;
 			RTPHeaderExtension extension;
 
@@ -306,7 +304,7 @@ public:
 			DWORD ssrc = header.ssrc;
 			BYTE type  = header.payloadType;
 			//Get initial codec
-			BYTE codec = rtp.GetCodecForType(header.payloadType);
+			BYTE codec = rtp.GetCodecForType(header.payloadType);;
 
 			//Check codec
 			if (codec==RTPMap::NotFound)
@@ -316,7 +314,6 @@ public:
 				//Exit
 				return;
 			}
-
 
 			auto packet = std::make_shared<RTPPacket>(mediatype,codec,header,extension);
 
@@ -334,9 +331,11 @@ public:
 
 			source.media.Update(getTimeMS(),packet->GetSeqNum(),packet->GetRTPHeader().GetSize()+packet->GetMediaLength());
 
-			source.AddPacket(packet,0);
+			WORD cycles = source.media.SetSeqNum(packet->GetSeqNum());
+            //Set cycles back
+            packet->SetSeqCycles(cycles);
 
-			Debug("-MediaFrameSessionFacade::onRTPPacket() | Seq Num = %d\n", packet->GetSeqNum());
+			source.AddPacket(packet,0);
 
 		});
 	}
