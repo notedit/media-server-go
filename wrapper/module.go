@@ -11,10 +11,11 @@ package native
 #cgo CPPFLAGS: -I${SRCDIR}/../media-server/ext/libdatachannels/src/internal/
 #cgo CPPFLAGS: -I${SRCDIR}/../media-server/include/
 #cgo CPPFLAGS: -I${SRCDIR}/../media-server/src/
-#cgo LDFLAGS: -L${SRCDIR}/../media-server/bin/release  -lmediaserver
-#cgo LDFLAGS: -L${SRCDIR}/../thirdparty/openssl/build  -lssl -lcrypto
-#cgo LDFLAGS: -L${SRCDIR}/../thirdparty/libsrtp/build  -lsrtp2
-#cgo LDFLAGS: -L${SRCDIR}/../thirdparty/mp4v2/build  -lmp4v2
+#cgo LDFLAGS: ${SRCDIR}/../media-server/bin/release/libmediaserver.a
+#cgo LDFLAGS: ${SRCDIR}/../thirdparty/openssl/build/libssl.a
+#cgo LDFLAGS: ${SRCDIR}/../thirdparty/openssl/build/libcrypto.a
+#cgo LDFLAGS: ${SRCDIR}/../thirdparty/libsrtp/build/libsrtp2.a
+#cgo LDFLAGS: ${SRCDIR}/../thirdparty/mp4v2/build/libmp4v2.a
 #cgo LDFLAGS: -ldl
 */
 import "C"
