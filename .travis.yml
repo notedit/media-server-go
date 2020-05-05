@@ -7,8 +7,8 @@ sudo: true
 language: go
 
 go:
-  - "1.11" # use the latest Go release
-  
+  - "1.13"
+  - "1.14"
 
 matrix:
   include:
@@ -23,12 +23,7 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update -qq; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y autoconf libtool automake g++-7; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90; fi
-
-
-install:
-  - git clone --recurse-submodules https://github.com/notedit/media-server-go-native.git 
-  - cd  media-server-go-native && make && cd ../
-  - go get -t -d ./...
+  - 
 
 script:
   - go test -v
