@@ -2,6 +2,7 @@ package native
 
 
 /*
+#cgo CFLAGS: -Wno-deprecated
 #cgo CXXFLAGS: -std=c++1z
 #cgo CPPFLAGS: -I${SRCDIR}/../thirdparty/openssl/build/include/
 #cgo CPPFLAGS: -I${SRCDIR}/../thirdparty/libsrtp/build/include/

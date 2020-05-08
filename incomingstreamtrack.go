@@ -157,9 +157,7 @@ func getStatsFromIncomingSource(source native.RTPIncomingSource) *IncomingStats 
 		}
 
 		for _, layer2 := range individual {
-
 			if layer2.SpatialLayerId <= aggregated.SpatialLayerId && layer2.TemporalLayerId <= aggregated.TemporalLayerId {
-
 				aggregated.TotalBytes += layer2.TotalBytes
 				aggregated.NumPackets += layer2.NumPackets
 				aggregated.Bitrate += layer2.Bitrate

@@ -16,9 +16,8 @@ type OutgoingStream struct {
 	muted               bool
 	tracks              map[string]*OutgoingStreamTrack
 	onStopListeners     []func()
-	onMuteListeners     []func(bool)
 	onAddTrackListeners []func(*OutgoingStreamTrack)
-	sync.Mutex
+	l                   sync.Mutex
 }
 
 // NewOutgoingStream create outgoing stream
@@ -35,7 +34,6 @@ func NewOutgoingStream(transport native.DTLSICETransport, info *sdp.StreamInfo) 
 	}
 
 	stream.onStopListeners = make([]func(), 0)
-	stream.onMuteListeners = make([]func(bool), 0)
 	stream.onAddTrackListeners = make([]func(*OutgoingStreamTrack), 0)
 
 	return stream
@@ -70,9 +68,6 @@ func (o *OutgoingStream) Mute(muting bool) {
 
 	if o.muted != muting {
 		o.muted = muting
-		for _, muteFunc := range o.onMuteListeners {
-			muteFunc(muting)
-		}
 	}
 }
 
@@ -116,6 +111,8 @@ func (o *OutgoingStream) AttachTo(incomingStream *IncomingStream) []*Transponder
 // Detach Stop listening for media
 func (o *OutgoingStream) Detach() {
 
+	o.l.Lock()
+	defer o.l.Unlock()
 	for _, track := range o.tracks {
 		track.Detach()
 	}
@@ -123,19 +120,20 @@ func (o *OutgoingStream) Detach() {
 
 // GetStreamInfo get the stream info
 func (o *OutgoingStream) GetStreamInfo() *sdp.StreamInfo {
-
 	return o.info
 }
 
 // GetTrack get one track
 func (o *OutgoingStream) GetTrack(trackID string) *OutgoingStreamTrack {
-	o.Lock()
-	defer o.Unlock()
+	o.l.Lock()
+	defer o.l.Unlock()
 	return o.tracks[trackID]
 }
 
 // GetTracks get all the tracks
 func (o *OutgoingStream) GetTracks() []*OutgoingStreamTrack {
+	o.l.Lock()
+	defer o.l.Unlock()
 	tracks := []*OutgoingStreamTrack{}
 	for _, track := range o.tracks {
 		tracks = append(tracks, track)
@@ -145,6 +143,8 @@ func (o *OutgoingStream) GetTracks() []*OutgoingStreamTrack {
 
 // GetAudioTracks Get an array of the media stream audio tracks
 func (o *OutgoingStream) GetAudioTracks() []*OutgoingStreamTrack {
+	o.l.Lock()
+	defer o.l.Unlock()
 	audioTracks := []*OutgoingStreamTrack{}
 	for _, track := range o.tracks {
 		if strings.ToLower(track.GetMedia()) == "audio" {
@@ -156,6 +156,8 @@ func (o *OutgoingStream) GetAudioTracks() []*OutgoingStreamTrack {
 
 // GetVideoTracks Get an array of the media stream video tracks
 func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
+	o.l.Lock()
+	defer o.l.Unlock()
 	videoTracks := []*OutgoingStreamTrack{}
 	for _, track := range o.tracks {
 		if strings.ToLower(track.GetMedia()) == "video" {
@@ -167,9 +169,8 @@ func (o *OutgoingStream) GetVideoTracks() []*OutgoingStreamTrack {
 
 // AddTrack add one outgoing track
 func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) {
-
-	o.Lock()
-	defer o.Unlock()
+	o.l.Lock()
+	defer o.l.Unlock()
 
 	if _, ok := o.tracks[track.GetID()]; ok {
 		return
@@ -178,7 +179,10 @@ func (o *OutgoingStream) AddTrack(track *OutgoingStreamTrack) {
 }
 
 func (o *OutgoingStream) RemoveTrack(track *OutgoingStreamTrack) {
-	// TODO
+	o.l.Lock()
+	defer o.l.Unlock()
+
+	delete(o.tracks, track.GetID())
 }
 
 // CreateTrack Create new track from a TrackInfo object and add it to this stream
@@ -216,13 +220,14 @@ func (o *OutgoingStream) CreateTrack(track *sdp.TrackInfo) *OutgoingStreamTrack 
 
 	outgoingTrack := newOutgoingStreamTrack(track.GetMedia(), track.GetID(), native.TransportToSender(o.transport), source)
 
+	// TODO
 	// runtime.SetFinalizer(source, func(source native.RTPOutgoingSourceGroup) {
 	// 	o.transport.RemoveOutgoingSourceGroup(source)
 	// })
 
-	o.Lock()
+	o.l.Lock()
 	o.tracks[outgoingTrack.GetID()] = outgoingTrack
-	o.Unlock()
+	o.l.Unlock()
 
 	for _, addTrackFunc := range o.onAddTrackListeners {
 		addTrackFunc(outgoingTrack)
@@ -236,10 +241,6 @@ func (o *OutgoingStream) OnTrack(listener func(*OutgoingStreamTrack)) {
 	o.onAddTrackListeners = append(o.onAddTrackListeners, listener)
 }
 
-// OnMute register onmute listener
-func (o *OutgoingStream) OnMute(listener func(bool)) {
-	o.onMuteListeners = append(o.onMuteListeners, listener)
-}
 
 // Stop stop the remote stream
 func (o *OutgoingStream) Stop() {
@@ -250,10 +251,6 @@ func (o *OutgoingStream) Stop() {
 
 	for _, track := range o.tracks {
 		track.Stop()
-	}
-
-	for _, stopFunc := range o.onStopListeners {
-		stopFunc()
 	}
 
 	o.tracks = make(map[string]*OutgoingStreamTrack, 0)

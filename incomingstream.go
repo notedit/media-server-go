@@ -15,20 +15,13 @@ import (
 type IncomingStream struct {
 	id                                string
 	info                              *sdp.StreamInfo
-	transport                         transportWrapper
+	transport                         native.DTLSICETransport
 	receiver                          native.RTPReceiverFacade
 	tracks                            map[string]*IncomingStreamTrack
-	onStopListeners                   []func()
 	onStreamAddIncomingTrackListeners []func(*IncomingStreamTrack)
-	sync.Mutex
+	l sync.Mutex
 }
 
-// internal use
-type transportWrapper interface {
-	AddIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
-	RemoveIncomingSourceGroup(group native.RTPIncomingSourceGroup) bool
-	GetTimeService() native.TimeService
-}
 
 // NewIncomingStream  Create new incoming stream
 // TODO: make this public
@@ -39,7 +32,6 @@ func newIncomingStream(transport native.DTLSICETransport, receiver native.RTPRec
 	stream.receiver = receiver
 	stream.tracks = make(map[string]*IncomingStreamTrack)
 
-	stream.onStopListeners = make([]func(), 0)
 	stream.onStreamAddIncomingTrackListeners = make([]func(*IncomingStreamTrack), 0)
 
 	for _, track := range info.GetTracks() {
@@ -79,13 +71,15 @@ func (i *IncomingStream) GetStats() map[string]map[string]*IncomingAllStats {
 
 // GetTrack Get track by id
 func (i *IncomingStream) GetTrack(trackID string) *IncomingStreamTrack {
-	i.Lock()
-	defer i.Unlock()
+	i.l.Lock()
+	defer i.l.Unlock()
 	return i.tracks[trackID]
 }
 
 // GetTracks Get all tracks in this stream
 func (i *IncomingStream) GetTracks() []*IncomingStreamTrack {
+	i.l.Lock()
+	defer i.l.Unlock()
 	tracks := []*IncomingStreamTrack{}
 	for _, track := range i.tracks {
 		tracks = append(tracks, track)
@@ -95,6 +89,8 @@ func (i *IncomingStream) GetTracks() []*IncomingStreamTrack {
 
 // GetAudioTracks get all audio tracks
 func (i *IncomingStream) GetAudioTracks() []*IncomingStreamTrack {
+	i.l.Lock()
+	defer i.l.Unlock()
 	audioTracks := []*IncomingStreamTrack{}
 	for _, track := range i.tracks {
 		if strings.ToLower(track.GetMedia()) == "audio" {
@@ -106,6 +102,8 @@ func (i *IncomingStream) GetAudioTracks() []*IncomingStreamTrack {
 
 // GetVideoTracks get all video tracks
 func (i *IncomingStream) GetVideoTracks() []*IncomingStreamTrack {
+	i.l.Lock()
+	defer i.l.Unlock()
 	videoTracks := []*IncomingStreamTrack{}
 	for _, track := range i.tracks {
 		if strings.ToLower(track.GetMedia()) == "video" {
@@ -118,8 +116,8 @@ func (i *IncomingStream) GetVideoTracks() []*IncomingStreamTrack {
 // AddTrack Adds an incoming stream track created using the Transpocnder.CreateIncomingStreamTrack to this stream
 func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 
-	i.Lock()
-	defer i.Unlock()
+	i.l.Lock()
+	defer i.l.Unlock()
 	if _, ok := i.tracks[track.GetID()]; ok {
 		return errors.New("Track id already present in stream")
 	}
@@ -130,7 +128,10 @@ func (i *IncomingStream) AddTrack(track *IncomingStreamTrack) error {
 
 func (i *IncomingStream) RemoveTrack(track *IncomingStreamTrack) error {
 
-	// TODO
+	i.l.Lock()
+	defer i.l.Unlock()
+
+	delete(i.tracks,track.GetID())
 	return nil
 }
 
@@ -268,20 +269,11 @@ func (i *IncomingStream) CreateTrack(track *sdp.TrackInfo) *IncomingStreamTrack 
 
 	incomingTrack := NewIncomingStreamTrack(track.GetMedia(), track.GetID(), i.receiver, sources)
 
-	i.Lock()
+	i.l.Lock()
 	i.tracks[track.GetID()] = incomingTrack
-	i.Unlock()
-
-	for _, ontrack := range i.onStreamAddIncomingTrackListeners {
-		ontrack(incomingTrack)
-	}
+	i.l.Unlock()
 
 	return incomingTrack
-}
-
-// OnTrack register addtrack listener
-func (i *IncomingStream) OnTrack(ontrack func(*IncomingStreamTrack)) {
-	i.onStreamAddIncomingTrackListeners = append(i.onStreamAddIncomingTrackListeners, ontrack)
 }
 
 // Stop Removes the media strem from the transport and also detaches from any attached incoming stream
@@ -291,13 +283,16 @@ func (i *IncomingStream) Stop() {
 		return
 	}
 
+	i.l.Lock()
+	defer i.l.Unlock()
+
 	for k, track := range i.tracks {
 		track.Stop()
-		i.Lock()
 		delete(i.tracks, k)
-		i.Unlock()
 	}
+
 
 	native.DeleteRTPReceiverFacade(i.receiver) // other module maybe need delete
 	i.receiver = nil
+	i.transport = nil
 }

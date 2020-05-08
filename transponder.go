@@ -28,7 +28,6 @@ type Transponder struct {
 	temporalLayerId    int
 	maxSpatialLayerId  int
 	maxTemporalLayerId int
-	onMuteListeners    []func(bool)
 	onStopListeners    []func()
 }
 
@@ -42,7 +41,6 @@ func NewTransponder(transponderFacade native.RTPStreamTransponderFacade) *Transp
 	transponder.maxSpatialLayerId = MaxLayerId
 	transponder.maxTemporalLayerId = MaxLayerId
 
-	transponder.onMuteListeners = make([]func(bool), 0)
 	transponder.onStopListeners = make([]func(), 0)
 
 	return transponder
@@ -108,10 +106,6 @@ func (t *Transponder) Mute(muting bool) {
 		t.muted = muting
 		if t.transponder != nil {
 			t.transponder.Mute(muting)
-		}
-
-		for _, mutefunc := range t.onMuteListeners {
-			mutefunc(muting)
 		}
 	}
 }
@@ -302,10 +296,6 @@ func (t *Transponder) SetMaximumLayers(maxSpatialLayerId, maxTemporalLayerId int
 	t.maxTemporalLayerId = maxTemporalLayerId
 }
 
-// OnMute register mute listener
-func (t *Transponder) OnMute(listener func(bool)) {
-	t.onMuteListeners = append(t.onMuteListeners, listener)
-}
 
 // Stop stop this transponder
 func (t *Transponder) Stop() {
