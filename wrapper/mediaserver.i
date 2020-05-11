@@ -1240,6 +1240,8 @@ public:
 	const char* GetLocalPwd()	const;
 	
 	DWORD GetRTT() const { return rtt; }
+
+	QWORD GetLastActiveTime() { return lastActiveTime; }
 	
 	TimeService& GetTimeService();
 };

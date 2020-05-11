@@ -586,6 +586,13 @@ func (t *Transport) OnDTLSICEState(listener DTLSStateListener) {
 	t.outDTLSStateListener = listener
 }
 
+
+func (t *Transport) GetLastActiveTime() uint64 {
+
+	return t.transport.GetLastActiveTime()
+}
+
+
 // Stop stop this transport
 func (t *Transport) Stop() {
 
