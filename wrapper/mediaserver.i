@@ -472,8 +472,8 @@ public:
 	
 	virtual void onREMB(RTPOutgoingSourceGroup* group,DWORD ssrc, DWORD bitrate) override
 	{
-        // todo  make callback
-		Log("onREMB\n");
+		// todo  make callback
+		// Log("onREMB\n");
 	}
 	void SetMinPeriod(DWORD period) { this->period = period; }
 
