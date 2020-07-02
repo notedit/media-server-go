@@ -1176,7 +1176,8 @@ public:
 	int AddRemoteCandidate(const std::string& username,const char* ip, WORD port);
 	bool SetAffinity(int cpu);
 	void SetIceTimeout(uint32_t timeout);
-	TimeService& GetTimeService();		
+	TimeService& GetTimeService();
+	void DeleteOutGoingSourceGroup(RTPOutgoingSourceGroup *outgoing);
 };
 
 

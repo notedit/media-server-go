@@ -251,6 +251,16 @@ func (o *OutgoingStream) Stop() {
 
 	for _, track := range o.tracks {
 		track.Stop()
+		if o.transport != nil {
+			o.transport.RemoveOutgoingSourceGroup(track.GetRTPOutgoingSourceGroup())
+		}
+	}
+}
+
+func (o *OutgoingStream) DeleteRTPOutgoingSourceGroup(bundle native.RTPBundleTransport)  {
+
+	for _, track := range o.tracks {
+		track.DeleteRTPOutgoingSourceGroup(bundle)
 	}
 
 	o.tracks = make(map[string]*OutgoingStreamTrack, 0)

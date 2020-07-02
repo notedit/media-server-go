@@ -205,12 +205,19 @@ func (o *OutgoingStreamTrack) Stop() {
 		o.transpoder = nil
 	}
 
+	native.DeleteRTPSenderFacade(o.sender)
+	o.sender = nil
+}
+
+func (o *OutgoingStreamTrack) GetRTPOutgoingSourceGroup() native.RTPOutgoingSourceGroup {
+	return o.source
+}
+
+func (o *OutgoingStreamTrack) DeleteRTPOutgoingSourceGroup(bundle native.RTPBundleTransport) {
+
 	if o.source != nil {
-		native.DeleteRTPOutgoingSourceGroup(o.source)
+		bundle.DeleteOutGoingSourceGroup(o.source)
 	}
 
 	o.source = nil
-
-	native.DeleteRTPSenderFacade(o.sender)
-	o.sender = nil
 }

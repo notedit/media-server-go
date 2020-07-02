@@ -620,6 +620,11 @@ func (t *Transport) Stop() {
 
 	t.bundle.RemoveICETransport(t.username)
 
+	//after RemoveICETransport delete RTPOutgoingSourceGroup
+	for _, outgoing := range t.outgoingStreams {
+		outgoing.DeleteRTPOutgoingSourceGroup(t.bundle)
+	}
+
 	t.incomingStreams = nil
 	t.outgoingStreams = nil
 
