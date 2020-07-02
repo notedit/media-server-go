@@ -205,12 +205,15 @@ func (o *OutgoingStreamTrack) Stop() {
 		o.transpoder = nil
 	}
 
-	if o.source != nil {
-		native.DeleteRTPOutgoingSourceGroup(o.source)
-	}
-
-	o.source = nil
-
 	native.DeleteRTPSenderFacade(o.sender)
 	o.sender = nil
 }
+
+func (o *OutgoingStreamTrack) DeleteOutgoingSourceGroup(transport native.DTLSICETransport)  {
+	if o.source != nil {
+		transport.RemoveOutgoingSourceGroup(o.source)
+		native.DeleteRTPOutgoingSourceGroup(o.source)
+		o.source = nil
+	}
+}
+

@@ -251,6 +251,7 @@ func (o *OutgoingStream) Stop() {
 
 	for _, track := range o.tracks {
 		track.Stop()
+		track.DeleteOutgoingSourceGroup(o.transport)
 	}
 
 	o.tracks = make(map[string]*OutgoingStreamTrack, 0)
